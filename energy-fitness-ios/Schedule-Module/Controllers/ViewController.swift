@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     private var pageNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "SCHEDULE"
+        label.text = NSLocalizedString("schedule", comment: "Schedule header of ScheduleViewController").uppercased()
         label.font = UIFont.helveticaNeue(ofSize: 30)
         label.textColor = .energyContainerColor
         return label
@@ -83,7 +83,19 @@ struct TestPreviewController: View {
 
 struct TestPreviewController_Previews: PreviewProvider {
     static var previews: some View {
-        TestPreviewController().previewDevice("iPhone X").preferredColorScheme(.light)
+        TestPreviewController()
+            .previewDevice("iPhone X")
+            .preferredColorScheme(.light)
+            .environment(\.locale, .init(identifier: "ru"))
     }
+    
+//    static var previews: some View {
+//            ForEach(["en", "ru"], id: \.self) { id in
+//                TestPreviewController()
+//                    .previewDevice("iPhone X")
+//                    .preferredColorScheme(.light)
+//                    .environment(\.locale, .init(identifier: id))
+//            }
+//        }
 }
 

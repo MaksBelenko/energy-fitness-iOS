@@ -23,6 +23,7 @@
 		B5A3870925CA08BF000883E0 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A386FD25CA08BF000883E0 /* Roboto-Light.ttf */; };
 		B5A3870A25CA08BF000883E0 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A386FE25CA08BF000883E0 /* Roboto-Regular.ttf */; };
 		B5A3870C25CA08BF000883E0 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A3870025CA08BF000883E0 /* Roboto-Medium.ttf */; };
+		B5A3872825CA2FCA000883E0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A3872A25CA2FCA000883E0 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,9 @@
 		B5A386FD25CA08BF000883E0 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		B5A386FE25CA08BF000883E0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		B5A3870025CA08BF000883E0 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		B5A3871925CA2B1E000883E0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		B5A3872925CA2FCA000883E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5A3872C25CA2FD0000883E0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 			children = (
 				B598E63A258141270068DB9E /* .gitignore */,
 				B598E624258140FF0068DB9E /* energy-fitness-ios */,
+				B5A3872A25CA2FCA000883E0 /* Localizable.strings */,
 				B598E623258140FF0068DB9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = B598E619258140FE0068DB9E;
 			packageReferences = (
@@ -258,6 +264,7 @@
 				B5A3870525CA08BF000883E0 /* Roboto-Thin.ttf in Resources */,
 				B598E63B258141270068DB9E /* .gitignore in Resources */,
 				B5A3870C25CA08BF000883E0 /* Roboto-Medium.ttf in Resources */,
+				B5A3872825CA2FCA000883E0 /* Localizable.strings in Resources */,
 				B598E632258140FF0068DB9E /* LaunchScreen.storyboard in Resources */,
 				B5A3870225CA08BF000883E0 /* Roboto-Bold.ttf in Resources */,
 				B598E62F258140FF0068DB9E /* Assets.xcassets in Resources */,
@@ -290,8 +297,19 @@
 			isa = PBXVariantGroup;
 			children = (
 				B598E631258140FF0068DB9E /* Base */,
+				B5A3871925CA2B1E000883E0 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		B5A3872A25CA2FCA000883E0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5A3872925CA2FCA000883E0 /* en */,
+				B5A3872C25CA2FD0000883E0 /* ru */,
+			);
+			name = Localizable.strings;
+			path = "energy-fitness-ios";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -301,6 +319,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -362,6 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
