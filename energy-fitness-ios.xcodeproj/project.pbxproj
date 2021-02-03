@@ -7,17 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B59280D625C9C641001D7AED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B59280D525C9C641001D7AED /* Main.storyboard */; };
+		B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DB25C9C805001D7AED /* MainTabBarController.swift */; };
+		B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */; };
 		B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E625258140FF0068DB9E /* AppDelegate.swift */; };
 		B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E627258140FF0068DB9E /* SceneDelegate.swift */; };
 		B598E62A258140FF0068DB9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E629258140FF0068DB9E /* ViewController.swift */; };
 		B598E62F258140FF0068DB9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B598E62E258140FF0068DB9E /* Assets.xcassets */; };
 		B598E632258140FF0068DB9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B598E630258140FF0068DB9E /* LaunchScreen.storyboard */; };
 		B598E63B258141270068DB9E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B598E63A258141270068DB9E /* .gitignore */; };
+		B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A386E525CA056C000883E0 /* UIView+Ext.swift */; };
+		B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */; };
+		B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A386F025CA0876000883E0 /* UIFont+Ext.swift */; };
+		B5A3870225CA08BF000883E0 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A386F625CA08BF000883E0 /* Roboto-Bold.ttf */; };
+		B5A3870525CA08BF000883E0 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A386F925CA08BF000883E0 /* Roboto-Thin.ttf */; };
+		B5A3870925CA08BF000883E0 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A386FD25CA08BF000883E0 /* Roboto-Light.ttf */; };
+		B5A3870A25CA08BF000883E0 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A386FE25CA08BF000883E0 /* Roboto-Regular.ttf */; };
+		B5A3870C25CA08BF000883E0 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A3870025CA08BF000883E0 /* Roboto-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B59280D525C9C641001D7AED /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B59280DB25C9C805001D7AED /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		B598E622258140FF0068DB9E /* energy-fitness-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "energy-fitness-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B598E625258140FF0068DB9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B598E627258140FF0068DB9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +36,14 @@
 		B598E631258140FF0068DB9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B598E633258140FF0068DB9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B598E63A258141270068DB9E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		B5A386E525CA056C000883E0 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCornerDateView.swift; sourceTree = "<group>"; };
+		B5A386F025CA0876000883E0 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		B5A386F625CA08BF000883E0 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		B5A386F925CA08BF000883E0 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		B5A386FD25CA08BF000883E0 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		B5A386FE25CA08BF000883E0 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		B5A3870025CA08BF000883E0 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,22 +68,14 @@
 			isa = PBXGroup;
 			children = (
 				B598E630258140FF0068DB9E /* LaunchScreen.storyboard */,
-				B59280D525C9C641001D7AED /* Main.storyboard */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		B520898A25C8AC0F0026AF4A /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B520898B25C8AC220026AF4A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B598E629258140FF0068DB9E /* ViewController.swift */,
+				B59280DB25C9C805001D7AED /* MainTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -73,6 +83,9 @@
 		B520898C25C8AC3A0026AF4A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */,
+				B5A386E525CA056C000883E0 /* UIView+Ext.swift */,
+				B5A386F025CA0876000883E0 /* UIFont+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -115,15 +128,69 @@
 				B598E62E258140FF0068DB9E /* Assets.xcassets */,
 				B598E625258140FF0068DB9E /* AppDelegate.swift */,
 				B598E627258140FF0068DB9E /* SceneDelegate.swift */,
+				B5A386F325CA0892000883E0 /* Fonts */,
 				B520898E25C8AC580026AF4A /* Networking */,
-				B520898A25C8AC0F0026AF4A /* ViewModels */,
-				B520898825C8ABF20026AF4A /* Models */,
 				B520898925C8AC070026AF4A /* Views */,
 				B520898B25C8AC220026AF4A /* Controllers */,
 				B520898D25C8AC420026AF4A /* Utils */,
 				B520898C25C8AC3A0026AF4A /* Extensions */,
+				B5A386DF25CA03E4000883E0 /* Schedule-Module */,
 			);
 			path = "energy-fitness-ios";
+			sourceTree = "<group>";
+		};
+		B5A386DF25CA03E4000883E0 /* Schedule-Module */ = {
+			isa = PBXGroup;
+			children = (
+				B5A386E425CA053E000883E0 /* Views */,
+				B5A386E125CA0420000883E0 /* ViewModels */,
+				B5A386E025CA040C000883E0 /* Controllers */,
+				B520898825C8ABF20026AF4A /* Models */,
+			);
+			path = "Schedule-Module";
+			sourceTree = "<group>";
+		};
+		B5A386E025CA040C000883E0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B598E629258140FF0068DB9E /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		B5A386E125CA0420000883E0 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B5A386E425CA053E000883E0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B5A386F325CA0892000883E0 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B5A386F425CA089C000883E0 /* Roboto */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B5A386F425CA089C000883E0 /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				B5A386F625CA08BF000883E0 /* Roboto-Bold.ttf */,
+				B5A386FD25CA08BF000883E0 /* Roboto-Light.ttf */,
+				B5A3870025CA08BF000883E0 /* Roboto-Medium.ttf */,
+				B5A386FE25CA08BF000883E0 /* Roboto-Regular.ttf */,
+				B5A386F925CA08BF000883E0 /* Roboto-Thin.ttf */,
+			);
+			path = Roboto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,10 +254,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A3870925CA08BF000883E0 /* Roboto-Light.ttf in Resources */,
+				B5A3870525CA08BF000883E0 /* Roboto-Thin.ttf in Resources */,
 				B598E63B258141270068DB9E /* .gitignore in Resources */,
+				B5A3870C25CA08BF000883E0 /* Roboto-Medium.ttf in Resources */,
 				B598E632258140FF0068DB9E /* LaunchScreen.storyboard in Resources */,
+				B5A3870225CA08BF000883E0 /* Roboto-Bold.ttf in Resources */,
 				B598E62F258140FF0068DB9E /* Assets.xcassets in Resources */,
-				B59280D625C9C641001D7AED /* Main.storyboard in Resources */,
+				B5A3870A25CA08BF000883E0 /* Roboto-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +274,11 @@
 			files = (
 				B598E62A258140FF0068DB9E /* ViewController.swift in Sources */,
 				B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */,
+				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,
+				B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */,
+				B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */,
+				B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */,
+				B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */,
 				B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -345,6 +421,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KELPFZXFAP;
 				INFOPLIST_FILE = "energy-fitness-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -364,6 +441,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KELPFZXFAP;
 				INFOPLIST_FILE = "energy-fitness-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
