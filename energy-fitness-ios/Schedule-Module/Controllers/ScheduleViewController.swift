@@ -10,6 +10,8 @@ import SwiftUI
 
 class ScheduleViewController: UIViewController {
 
+    private var topCornerDateView: TopCornerDateView!
+    
     private var pageNameLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("schedule", comment: "Schedule header of ScheduleViewController").uppercased()
@@ -23,44 +25,66 @@ class ScheduleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         view.backgroundColor = .energyBackgroundColor
         configureUI()
-        
-        
-        
     }
     
     // MARK: - Configure UI
     private func configureUI() {
         configureTopCornerDate()
+        configurePageNameLabel()
+        configureScheduleViewContainer()
     }
     
     private func configureTopCornerDate() {
-        let dateContainer = TopCornerDateView()
-//        dateContainer.backgroundColor = .green
-        view.addSubview(dateContainer)
-        dateContainer.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 10,
-                                leading: view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 22)
+        topCornerDateView = TopCornerDateView()
+        view.addSubview(topCornerDateView)
+        topCornerDateView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                                 leading: view.safeAreaLayoutGuide.leadingAnchor, paddingLeading: 22)
         
-        
-        view.addSubview(pageNameLabel)
-//        pageNameLabel.backgroundColor = .yellow
-        pageNameLabel.anchor(top: dateContainer.bottomAnchor, paddingTop: -10,
-                             trailing: view.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 25)
-        
-        
-        let container = UIView()
-        view.addSubview(container)
-        container.backgroundColor = .energyContainerColor
-        container.anchor(top: pageNameLabel.bottomAnchor, paddingTop: -6.2,
-                         leading: view.leadingAnchor,
-                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                         trailing: view.trailingAnchor)
-        container.layer.cornerRadius = 26
+        topCornerDateView.setDateToBeShown(date: Date())
     }
     
+    private func configurePageNameLabel() {
+        view.addSubview(pageNameLabel)
+        pageNameLabel.anchor(top: topCornerDateView.bottomAnchor, paddingTop: -10,
+                             trailing: view.safeAreaLayoutGuide.trailingAnchor, paddingTrailing: 25)
+    }
+    
+    private func configureScheduleViewContainer() {
+        let scheduleViewContainer = UIView()
+        scheduleViewContainer.layer.cornerRadius = 26
+        
+        view.addSubview(scheduleViewContainer)
+        scheduleViewContainer.backgroundColor = .energyContainerColor
+        scheduleViewContainer.anchor(top: pageNameLabel.bottomAnchor, paddingTop: -6.2,
+                                     leading: view.leadingAnchor,
+                                     bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                                     trailing: view.trailingAnchor)
+        
+        
+        let weekView = WeekViewBuilder()
+                        .withNumberOfWeeks(8)
+                        .withFirstDayOfWeek(.Monday)
+                        .build()
+    
+        weekView.delegate = self
+        
+        view.addSubview(weekView)
+        weekView.anchor(top: scheduleViewContainer.topAnchor, paddingTop: 15,
+                        leading: scheduleViewContainer.leadingAnchor, paddingLeading: 15,
+                        trailing: scheduleViewContainer.trailingAnchor, paddingTrailing: 15,
+                        height: 78)
+    }
+    
+}
+
+// MARK: - DateSelectedDelegate extension
+extension ScheduleViewController: DateSelectedDelegate {
+    func onDateSelected(date: DateObject) {
+        print("Selected date = \(date)")
+    }
 }
 
 

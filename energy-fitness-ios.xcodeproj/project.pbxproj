@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E1F25CC44EC002264C2 /* WeekViewBuilder.swift */; };
+		B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2325CC44FA002264C2 /* LayoutAttrHelper.swift */; };
+		B54F6E2725CC44FA002264C2 /* WeekCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2425CC44FA002264C2 /* WeekCalendarView.swift */; };
+		B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2525CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift */; };
+		B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2B25CC4503002264C2 /* LocalizedString.swift */; };
+		B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2C25CC4503002264C2 /* DateFinder.swift */; };
+		B54F6E3C25CC4503002264C2 /* WeekDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2E25CC4503002264C2 /* WeekDay.swift */; };
+		B54F6E3D25CC4503002264C2 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2F25CC4503002264C2 /* Day.swift */; };
+		B54F6E3E25CC4503002264C2 /* MonthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3025CC4503002264C2 /* MonthData.swift */; };
+		B54F6E3F25CC4503002264C2 /* WeekDayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3125CC4503002264C2 /* WeekDayFactory.swift */; };
+		B54F6E4025CC4503002264C2 /* MonthFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3225CC4503002264C2 /* MonthFactory.swift */; };
+		B54F6E4125CC4503002264C2 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3325CC4503002264C2 /* Month.swift */; };
+		B54F6E4225CC4503002264C2 /* DateObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3425CC4503002264C2 /* DateObject.swift */; };
+		B54F6E4325CC4503002264C2 /* DateSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3625CC4503002264C2 /* DateSelectorCell.swift */; };
+		B54F6E4425CC4503002264C2 /* MonthNameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3725CC4503002264C2 /* MonthNameHeader.swift */; };
+		B54F6E4525CC4503002264C2 /* WeekCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3925CC4503002264C2 /* WeekCalendarViewModel.swift */; };
+		B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E4825CC454A002264C2 /* Date+Ext.swift */; };
 		B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DB25C9C805001D7AED /* MainTabBarController.swift */; };
 		B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */; };
 		B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E625258140FF0068DB9E /* AppDelegate.swift */; };
@@ -27,6 +44,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B54F6E1F25CC44EC002264C2 /* WeekViewBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekViewBuilder.swift; sourceTree = "<group>"; };
+		B54F6E2325CC44FA002264C2 /* LayoutAttrHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttrHelper.swift; sourceTree = "<group>"; };
+		B54F6E2425CC44FA002264C2 /* WeekCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekCalendarView.swift; sourceTree = "<group>"; };
+		B54F6E2525CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalFloatingHeaderLayout.swift; sourceTree = "<group>"; };
+		B54F6E2B25CC4503002264C2 /* LocalizedString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
+		B54F6E2C25CC4503002264C2 /* DateFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFinder.swift; sourceTree = "<group>"; };
+		B54F6E2E25CC4503002264C2 /* WeekDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDay.swift; sourceTree = "<group>"; };
+		B54F6E2F25CC4503002264C2 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		B54F6E3025CC4503002264C2 /* MonthData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthData.swift; sourceTree = "<group>"; };
+		B54F6E3125CC4503002264C2 /* WeekDayFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekDayFactory.swift; sourceTree = "<group>"; };
+		B54F6E3225CC4503002264C2 /* MonthFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthFactory.swift; sourceTree = "<group>"; };
+		B54F6E3325CC4503002264C2 /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
+		B54F6E3425CC4503002264C2 /* DateObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateObject.swift; sourceTree = "<group>"; };
+		B54F6E3625CC4503002264C2 /* DateSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateSelectorCell.swift; sourceTree = "<group>"; };
+		B54F6E3725CC4503002264C2 /* MonthNameHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthNameHeader.swift; sourceTree = "<group>"; };
+		B54F6E3925CC4503002264C2 /* WeekCalendarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekCalendarViewModel.swift; sourceTree = "<group>"; };
+		B54F6E4825CC454A002264C2 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		B59280DB25C9C805001D7AED /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		B598E622258140FF0068DB9E /* energy-fitness-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "energy-fitness-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +124,7 @@
 				B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */,
 				B5A386E525CA056C000883E0 /* UIView+Ext.swift */,
 				B5A386F025CA0876000883E0 /* UIFont+Ext.swift */,
+				B54F6E4825CC454A002264C2 /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -106,6 +141,69 @@
 			children = (
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		B54F6E2225CC44FA002264C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B54F6E2325CC44FA002264C2 /* LayoutAttrHelper.swift */,
+				B54F6E2425CC44FA002264C2 /* WeekCalendarView.swift */,
+				B54F6E2525CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B54F6E2A25CC4503002264C2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B54F6E2B25CC4503002264C2 /* LocalizedString.swift */,
+				B54F6E2C25CC4503002264C2 /* DateFinder.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B54F6E2D25CC4503002264C2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B54F6E2F25CC4503002264C2 /* Day.swift */,
+				B54F6E3025CC4503002264C2 /* MonthData.swift */,
+				B54F6E2E25CC4503002264C2 /* WeekDay.swift */,
+				B54F6E3125CC4503002264C2 /* WeekDayFactory.swift */,
+				B54F6E3325CC4503002264C2 /* Month.swift */,
+				B54F6E3225CC4503002264C2 /* MonthFactory.swift */,
+				B54F6E3425CC4503002264C2 /* DateObject.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B54F6E3525CC4503002264C2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B54F6E3625CC4503002264C2 /* DateSelectorCell.swift */,
+				B54F6E3725CC4503002264C2 /* MonthNameHeader.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B54F6E3825CC4503002264C2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B54F6E3925CC4503002264C2 /* WeekCalendarViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B56A25BF25CC4386006C223C /* WeekCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				B54F6E1F25CC44EC002264C2 /* WeekViewBuilder.swift */,
+				B54F6E3825CC4503002264C2 /* ViewModels */,
+				B54F6E2225CC44FA002264C2 /* Views */,
+				B54F6E3525CC4503002264C2 /* Cells */,
+				B54F6E2D25CC4503002264C2 /* Models */,
+				B54F6E2A25CC4503002264C2 /* Utils */,
+			);
+			path = WeekCalendar;
 			sourceTree = "<group>";
 		};
 		B598E619258140FE0068DB9E = {
@@ -140,6 +238,7 @@
 				B520898D25C8AC420026AF4A /* Utils */,
 				B520898C25C8AC3A0026AF4A /* Extensions */,
 				B5A386DF25CA03E4000883E0 /* Schedule-Module */,
+				B56A25BF25CC4386006C223C /* WeekCalendar */,
 			);
 			path = "energy-fitness-ios";
 			sourceTree = "<group>";
@@ -279,12 +378,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B54F6E4025CC4503002264C2 /* MonthFactory.swift in Sources */,
+				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
+				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,
+				B54F6E3D25CC4503002264C2 /* Day.swift in Sources */,
+				B54F6E4225CC4503002264C2 /* DateObject.swift in Sources */,
+				B54F6E3E25CC4503002264C2 /* MonthData.swift in Sources */,
 				B598E62A258140FF0068DB9E /* ScheduleViewController.swift in Sources */,
 				B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */,
+				B54F6E4525CC4503002264C2 /* WeekCalendarViewModel.swift in Sources */,
+				B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */,
+				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
+				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
+				B54F6E3F25CC4503002264C2 /* WeekDayFactory.swift in Sources */,
+				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
 				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,
 				B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */,
+				B54F6E4425CC4503002264C2 /* MonthNameHeader.swift in Sources */,
 				B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */,
+				B54F6E2725CC44FA002264C2 /* WeekCalendarView.swift in Sources */,
+				B54F6E4325CC4503002264C2 /* DateSelectorCell.swift in Sources */,
+				B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */,
 				B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */,
+				B54F6E3C25CC4503002264C2 /* WeekDay.swift in Sources */,
 				B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */,
 				B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */,
 			);
@@ -367,7 +483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -423,7 +539,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

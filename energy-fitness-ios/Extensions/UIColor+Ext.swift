@@ -33,14 +33,15 @@ extension UIColor {
 extension UIColor {
     
     static let customLightGray = UIColor(rgb: 0xEFEFEF)
-    static let customOrange = UIColor(rgb: 0xEF7D54)
+    static let customOrangeLight = UIColor(rgb: 0xEF7D54)
+    static let customOrangeDark = UIColor(rgb: 0xD36E4A)
     static let customTextGreyLight = UIColor(rgb: 0x9A9A9A)
     static let customTextGreyDark = UIColor(rgb: 0x7C7C7C)
     static let customContainerDark = UIColor(rgb: 0x0F0F0F)
     
     static let energyBackgroundColor = UIColor.dynamic(light: .customLightGray, dark: .black)
     static let energyContainerColor = UIColor.dynamic(light: .white, dark: .customContainerDark)
-    static let energyOrange = UIColor.dynamic(light: .customOrange, dark: .customOrange)
+    static let energyOrange = UIColor.dynamic(light: .customOrangeLight, dark: .customOrangeDark)
     static let energyCalendarDateColour = UIColor.dynamic(light: .black, dark: .white)
     static let energyDateDarkened = UIColor.dynamic(light: .customTextGreyLight, dark: .customTextGreyDark)
     

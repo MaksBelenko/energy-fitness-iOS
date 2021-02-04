@@ -10,7 +10,10 @@ import SwiftUI
 
 class TopCornerDateView: UIView {
 
-    private let spacePadding: CGFloat = 5
+    let weekdayFactory = WeekDayFactory()
+    let monthFactory = MonthFactory()
+    
+    private let dateToTextSpacing: CGFloat = 5
     
     private var dateNumberLabel: UILabel = {
         let label = UILabel()
@@ -53,7 +56,7 @@ class TopCornerDateView: UIView {
     override var intrinsicContentSize: CGSize {
         layoutSubviews() // adjust to get layout width and height
         let viewHeight = dateNumberLabel.frame.height
-        let viewWidth = dateNumberLabel.frame.width + spacePadding + monthYearLabel.frame.width
+        let viewWidth = dateNumberLabel.frame.width + dateToTextSpacing + monthYearLabel.frame.width
         return CGSize(width: viewWidth, height: viewHeight)
     }
     
@@ -65,11 +68,23 @@ class TopCornerDateView: UIView {
         
         addSubview(weekdayLabel)
         weekdayLabel.anchor(top: dateNumberLabel.topAnchor, paddingTop: 7,
-                            leading: dateNumberLabel.trailingAnchor, paddingLeading: spacePadding)
+                            leading: dateNumberLabel.trailingAnchor, paddingLeading: dateToTextSpacing)
         
         addSubview(monthYearLabel)
-        monthYearLabel.anchor(leading: dateNumberLabel.trailingAnchor, paddingLeading: spacePadding,
+        monthYearLabel.anchor(leading: dateNumberLabel.trailingAnchor, paddingLeading: dateToTextSpacing,
                               bottom: dateNumberLabel.bottomAnchor, paddingBottom: 7)
+    }
+    
+    // MARK: - Set date to be shown
+    func setDateToBeShown(date: Date) {
+        let dateComp = date.get(.day, .weekday, .month, .year)
+        
+        dateNumberLabel.text = String(dateComp.day!)
+        weekdayLabel.text = String(weekdayFactory.create(from: dateComp.weekday!)!.getLocalisedString(format: .Short))
+        
+        let monthShortName = monthFactory.create(from: dateComp.month!)!.getLocalisedName(format: .ThreeLetters)
+        let year = dateComp.year!
+        monthYearLabel.text = "\(monthShortName) \(year)"
     }
 
 }
