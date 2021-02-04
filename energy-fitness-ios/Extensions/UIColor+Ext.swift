@@ -42,7 +42,7 @@ extension UIColor {
     static let energyContainerColor = UIColor.dynamic(light: .white, dark: .customContainerDark)
     static let energyOrange = UIColor.dynamic(light: .customOrange, dark: .customOrange)
     static let energyCalendarDateColour = UIColor.dynamic(light: .black, dark: .white)
-    static let energyDateDarkened = UIColor.dynamic(light: .customTextGreyDark, dark: .customTextGreyDark)
+    static let energyDateDarkened = UIColor.dynamic(light: .customTextGreyLight, dark: .customTextGreyDark)
     
     
     static let customBlue = UIColor(rgb: 0x0075EB)

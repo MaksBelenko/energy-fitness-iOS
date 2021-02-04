@@ -38,18 +38,18 @@ class MainTabBarController: UITabBarController {
     }
     
     private func configureViewControllers() {
-        let vc1 = ViewController()
+        let vc1 = ScheduleViewController()
         vc1.tabBarItem.image = UIImage(systemName: "house")
         
-        let vc2 = ViewController()
+        let vc2 = ScheduleViewController()
         vc2.tabBarItem.image = UIImage(systemName: "calendar")
         vc2.view.backgroundColor = .green
         
-        let vc3 = ViewController()
+        let vc3 = ScheduleViewController()
         vc3.tabBarItem.image = UIImage(systemName: "person")
         vc3.view.backgroundColor = .blue
         
-        let vc4 = ViewController()
+        let vc4 = ScheduleViewController()
         vc4.tabBarItem.image = UIImage(systemName: "gear")
         vc4.view.backgroundColor = .cyan
         
@@ -84,12 +84,12 @@ struct MainTabBar_TestPreviewController: View {
 
 struct MainTabBar_TestPreviewController_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabBar_TestPreviewController()//.previewDevice("iPhone 7")
+        MainTabBar_TestPreviewController().preferredColorScheme(.light)//.previewDevice("iPhone 7")
     }
 }
 
 //struct MainTabBar_TestPreviewController_Previews2: PreviewProvider {
 //    static var previews: some View {
-//        MainTabBar_TestPreviewController().previewDevice("iPhone 7")
+//        MainTabBar_TestPreviewController().previewDevice("iPhone 12 mini")
 //    }
 //}

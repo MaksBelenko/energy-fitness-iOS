@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class ViewController: UIViewController {
+class ScheduleViewController: UIViewController {
 
     private var pageNameLabel: UILabel = {
         let label = UILabel()
@@ -68,7 +68,7 @@ class ViewController: UIViewController {
 // -------------- SWIFTUI PREVIEW HELPER --------------------
 struct TestIntegratedController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        return ViewController()
+        return ScheduleViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
