@@ -18,7 +18,7 @@ class TopCornerDateView: UIView {
     private var dateNumberLabel: UILabel = {
         let label = UILabel()
         label.text = "24"
-        label.font = UIFont.helveticaNeue(ofSize: 44)
+        label.font = UIFont.topCornerDateFont(ofSize: 44)
         label.textColor = .energyCalendarDateColour
         return label
     }()
@@ -26,7 +26,7 @@ class TopCornerDateView: UIView {
     private var weekdayLabel: UILabel = {
         let label = UILabel()
         label.text = "Wed"
-        label.font = UIFont.helveticaNeue(ofSize: 13)
+        label.font = UIFont.topCornerDateFont(ofSize: 13)
         label.textColor = .energyDateDarkened
         return label
     }()
@@ -34,7 +34,7 @@ class TopCornerDateView: UIView {
     private var monthYearLabel: UILabel = {
         let label = UILabel()
         label.text = "Jan 2020"
-        label.font = UIFont.helveticaNeue(ofSize: 13)
+        label.font = UIFont.topCornerDateFont(ofSize: 13)
         label.textColor = .energyDateDarkened
         return label
     }()
@@ -97,7 +97,9 @@ struct TopCornerDateView_IntegratedController: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> some UIView {
-        return TopCornerDateView()
+        let view = TopCornerDateView()
+        view.setDateToBeShown(date: Date())
+        return view
     }
 }
 

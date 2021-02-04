@@ -25,7 +25,7 @@ class DateSelectorCell: UICollectionViewCell, DateCellProtocol {
     var weekDayLabel: UILabel = {
         let label = UILabel()
         label.text = "W"
-        label.font = UIFont.helveticaNeue(ofSize: 13)
+        label.font = UIFont.calendarDateFont(ofSize: 13)
         label.textColor = .energyDateDarkened
         return label
     }()
@@ -33,7 +33,7 @@ class DateSelectorCell: UICollectionViewCell, DateCellProtocol {
     var dayLabel: UILabel = {
         let label = UILabel()
         label.text = "25"
-        label.font = UIFont.helveticaNeue(ofSize: 18)
+        label.font = UIFont.calendarDateFont(ofSize: 18)
         label.textColor = .energyCalendarDateColour
         return label
     }()

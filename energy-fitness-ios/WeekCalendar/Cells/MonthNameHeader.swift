@@ -19,7 +19,7 @@ class MonthNameHeader: UICollectionViewCell {
     var monthNameLabel: UILabel = {
         let label = UILabel()
         label.text = "February"
-        label.font = UIFont.helveticaNeue(ofSize: 18)
+        label.font = UIFont.calendarDateFont(ofSize: 18)
         label.textColor = .energyDateDarkened
         return label
     }()

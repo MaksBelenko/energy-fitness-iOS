@@ -22,6 +22,15 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Raleway-Thin.ttf</string>
+		<string>Raleway-SemiBold.ttf</string>
+		<string>Raleway-Regular.ttf</string>
+		<string>Raleway-Medium.ttf</string>
+		<string>Raleway-Light.ttf</string>
+		<string>Raleway-ExtraLight.ttf</string>
+		<string>Raleway-ExtraBold.ttf</string>
+		<string>Raleway-Bold.ttf</string>
+		<string>Raleway-Black.ttf</string>
 		<string>Roboto-Bold.ttf</string>
 		<string>Roboto-Light.ttf</string>
 		<string>Roboto-Medium.ttf</string>
