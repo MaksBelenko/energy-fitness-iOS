@@ -111,6 +111,14 @@ struct TopCornerDateView_PreviewView: View {
 
 struct TopCornerDateView__Previews: PreviewProvider {
     static var previews: some View {
-        TopCornerDateView_PreviewView().previewLayout(.fixed(width: 200, height: 100))//.previewDevice("iPhone 7")
+        Group {
+            TopCornerDateView_PreviewView()
+                .previewLayout(.fixed(width: 200, height: 100))
+                .preferredColorScheme(.light)
+            
+            TopCornerDateView_PreviewView()
+                .previewLayout(.fixed(width: 200, height: 100))
+                .preferredColorScheme(.dark)
+        }
     }
 }

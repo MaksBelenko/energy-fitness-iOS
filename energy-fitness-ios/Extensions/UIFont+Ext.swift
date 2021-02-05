@@ -8,12 +8,21 @@
 import UIKit.UIFont
 
 extension UIFont {
+    static func classNameHeader(ofSize size: CGFloat) -> UIFont {
+        return UIFont.raleway(ofSize: size, weight: .semiBold)
+    }
+    
+    static func scheduleParagraph(ofSize size: CGFloat) -> UIFont {
+        return UIFont.helveticaNeue(ofSize: size, weight: .regular)
+    }
+    
+    
     static func calendarDateFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont.helveticaNeue(ofSize: size)
+        return UIFont.helveticaNeue(ofSize: size, weight: .regular)
     }
     
     static func topCornerDateFont(ofSize size: CGFloat) -> UIFont {
-        return UIFont.helveticaNeue(ofSize: size)
+        return UIFont.helveticaNeue(ofSize: size, weight: .regular)
     }
 }
 

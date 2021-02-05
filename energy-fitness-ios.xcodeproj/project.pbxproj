@@ -16,6 +16,8 @@
 		B527C90625CC74A100342113 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5A25CC7037002264C2 /* Raleway-Regular.ttf */; };
 		B527C90825CC74A400342113 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E6025CC7038002264C2 /* Raleway-SemiBold.ttf */; };
 		B527C90A25CC74A600342113 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E6125CC7038002264C2 /* Raleway-Thin.ttf */; };
+		B527C90D25CC7DD200342113 /* ScheduleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */; };
+		B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90F25CC7E4000342113 /* ScheduleCell.swift */; };
 		B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E1F25CC44EC002264C2 /* WeekViewBuilder.swift */; };
 		B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2325CC44FA002264C2 /* LayoutAttrHelper.swift */; };
 		B54F6E2725CC44FA002264C2 /* WeekCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2425CC44FA002264C2 /* WeekCalendarView.swift */; };
@@ -33,6 +35,8 @@
 		B54F6E4425CC4503002264C2 /* MonthNameHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3725CC4503002264C2 /* MonthNameHeader.swift */; };
 		B54F6E4525CC4503002264C2 /* WeekCalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3925CC4503002264C2 /* WeekCalendarViewModel.swift */; };
 		B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E4825CC454A002264C2 /* Date+Ext.swift */; };
+		B55451C825CC830000BCA984 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55451C725CC830000BCA984 /* CALayer+Ext.swift */; };
+		B55451CB25CC94AC00BCA984 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55451CA25CC94AC00BCA984 /* ReuseIdentifiable.swift */; };
 		B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DB25C9C805001D7AED /* MainTabBarController.swift */; };
 		B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */; };
 		B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E625258140FF0068DB9E /* AppDelegate.swift */; };
@@ -53,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
+		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		B54F6E1F25CC44EC002264C2 /* WeekViewBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekViewBuilder.swift; sourceTree = "<group>"; };
 		B54F6E2325CC44FA002264C2 /* LayoutAttrHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttrHelper.swift; sourceTree = "<group>"; };
 		B54F6E2425CC44FA002264C2 /* WeekCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekCalendarView.swift; sourceTree = "<group>"; };
@@ -79,6 +85,8 @@
 		B54F6E5F25CC7038002264C2 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		B54F6E6025CC7038002264C2 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
 		B54F6E6125CC7038002264C2 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
+		B55451C725CC830000BCA984 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
+		B55451CA25CC94AC00BCA984 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
 		B59280DB25C9C805001D7AED /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		B598E622258140FF0068DB9E /* energy-fitness-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "energy-fitness-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +151,7 @@
 				B5A386E525CA056C000883E0 /* UIView+Ext.swift */,
 				B5A386F025CA0876000883E0 /* UIFont+Ext.swift */,
 				B54F6E4825CC454A002264C2 /* Date+Ext.swift */,
+				B55451C725CC830000BCA984 /* CALayer+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -150,6 +159,7 @@
 		B520898D25C8AC420026AF4A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B55451CA25CC94AC00BCA984 /* ReuseIdentifiable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -164,8 +174,8 @@
 		B54F6E2225CC44FA002264C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B54F6E2325CC44FA002264C2 /* LayoutAttrHelper.swift */,
 				B54F6E2425CC44FA002264C2 /* WeekCalendarView.swift */,
+				B54F6E2325CC44FA002264C2 /* LayoutAttrHelper.swift */,
 				B54F6E2525CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift */,
 			);
 			path = Views;
@@ -292,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				B598E629258140FF0068DB9E /* ScheduleViewController.swift */,
+				B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -307,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */,
+				B527C90F25CC7E4000342113 /* ScheduleCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -423,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B54F6E4025CC4503002264C2 /* MonthFactory.swift in Sources */,
+				B527C90D25CC7DD200342113 /* ScheduleCollectionView.swift in Sources */,
 				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
 				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,
 				B54F6E3D25CC4503002264C2 /* Day.swift in Sources */,
@@ -434,6 +447,7 @@
 				B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */,
 				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
+				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
 				B54F6E3F25CC4503002264C2 /* WeekDayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
 				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,
@@ -441,6 +455,8 @@
 				B54F6E4425CC4503002264C2 /* MonthNameHeader.swift in Sources */,
 				B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */,
 				B54F6E2725CC44FA002264C2 /* WeekCalendarView.swift in Sources */,
+				B55451C825CC830000BCA984 /* CALayer+Ext.swift in Sources */,
+				B55451CB25CC94AC00BCA984 /* ReuseIdentifiable.swift in Sources */,
 				B54F6E4325CC4503002264C2 /* DateSelectorCell.swift in Sources */,
 				B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */,
 				B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */,

@@ -38,12 +38,16 @@ extension UIColor {
     static let customTextGreyLight = UIColor(rgb: 0x9A9A9A)
     static let customTextGreyDark = UIColor(rgb: 0x7C7C7C)
     static let customContainerDark = UIColor(rgb: 0x0F0F0F)
+    static let customCellLightGray = UIColor(rgb: 0xEFEFEF)
+    static let customCellDarkGray = UIColor(rgb: 0x1C1C1C)
     
     static let energyBackgroundColor = UIColor.dynamic(light: .customLightGray, dark: .black)
     static let energyContainerColor = UIColor.dynamic(light: .white, dark: .customContainerDark)
     static let energyOrange = UIColor.dynamic(light: .customOrangeLight, dark: .customOrangeDark)
     static let energyCalendarDateColour = UIColor.dynamic(light: .black, dark: .white)
     static let energyDateDarkened = UIColor.dynamic(light: .customTextGreyLight, dark: .customTextGreyDark)
+    static let energyScheduleTrainerName = UIColor.dynamic(light: .customTextGreyLight, dark: .customTextGreyDark)
+    static let energyCellColour = UIColor.dynamic(light: .customCellLightGray, dark: .customCellDarkGray)
     
     
     static let customBlue = UIColor(rgb: 0x0075EB)
