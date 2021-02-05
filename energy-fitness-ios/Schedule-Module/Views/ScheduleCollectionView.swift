@@ -11,10 +11,13 @@ import SwiftUI
 class ClassesScheduleView: UIView {
     
     private var reuseIdentifier: String!
+    private let pressAnimation = PressAnimation()
     
     lazy var scheduleCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-//        layout.itemSize = CGSize(width: 300, height: 90)
+        layout.minimumLineSpacing = 12
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.isScrollEnabled = true
@@ -30,17 +33,28 @@ class ClassesScheduleView: UIView {
         return collectionView
     }()
     
+    var gradientLayer: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.energyContainerColor.cgColor, UIColor.white.withAlphaComponent(0).cgColor]//Colors you want to add
+//        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+//        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.shouldRasterize = true
+        gradientLayer.frame = CGRect.zero
+       return gradientLayer
+    }()
     
     
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
         addSubview(scheduleCollectionView)
         scheduleCollectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
- 
+        
         reuseIdentifier = ScheduleCell.reuseIdentifier()
         scheduleCollectionView.register(ScheduleCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        layer.addSublayer(gradientLayer)
     }
     
     required init?(coder: NSCoder) {
@@ -53,17 +67,9 @@ class ClassesScheduleView: UIView {
 //        scheduleCollectionView.register(T.self, forCellWithReuseIdentifier: reuseIdentifier)
 //    }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    override func layoutSubviews() {
+        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.width, height: 10)
     }
-    */
-
 }
 
 // MARK: - UICollectionViewDataSource
@@ -99,11 +105,28 @@ extension ClassesScheduleView: UICollectionViewDelegateFlowLayout {
         let width = self.frame.width
         return CGSize(width: width - 30, height: 90)
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return 20
+//    }
 }
 
 // MARK: - UICollectionViewDelegate
 extension ClassesScheduleView: UICollectionViewDelegate {
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)!
+//        UIView.animate(withDuration: 0.1,  animations: {
+//            cell!.transform = CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95)
+//        }, completion: nil)
+//        animate(cell, transform: CGAffineTransform.identity.scaledBy(x: 0.85, y: 0.85))
+    }
+    
+//    private func animate(_ view: UIView, transform: CGAffineTransform) {
+//        UIView.animate(withDuration: 0.1,  animations: {
+//            view.transform = transform
+//        }, completion: nil)
+//    }
     
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking

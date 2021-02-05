@@ -302,7 +302,6 @@
 			isa = PBXGroup;
 			children = (
 				B598E629258140FF0068DB9E /* ScheduleViewController.swift */,
-				B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -318,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */,
+				B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */,
 				B527C90F25CC7E4000342113 /* ScheduleCell.swift */,
 			);
 			path = Views;

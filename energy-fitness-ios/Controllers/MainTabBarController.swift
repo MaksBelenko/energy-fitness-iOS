@@ -43,6 +43,7 @@ class MainTabBarController: UITabBarController {
         
         let vc2 = ScheduleViewController()
         vc2.tabBarItem.image = UIImage(systemName: "calendar")
+//        vc2.tabBarItem.imageInsets = UIEdgeInsets(top: 10, left: 0, bottom: -10, right: 0)
         vc2.view.backgroundColor = .green
         
         let vc3 = ScheduleViewController()

@@ -57,7 +57,7 @@ class ScheduleViewController: UIViewController {
         /* Container setup */
         let scheduleViewContainer = UIView()
         scheduleViewContainer.layer.cornerRadius = 26
-//        scheduleViewContainer.clipsToBounds = true
+        scheduleViewContainer.clipsToBounds = true
         
         view.addSubview(scheduleViewContainer)
         scheduleViewContainer.backgroundColor = .energyContainerColor
@@ -82,12 +82,14 @@ class ScheduleViewController: UIViewController {
         
         /* Schedule collection view */
         let classesView = ClassesScheduleView()
-        view.addSubview(classesView)
-        classesView.anchor(top: weekView.bottomAnchor, paddingTop: 30,
+        scheduleViewContainer.addSubview(classesView)
+        classesView.anchor(top: weekView.bottomAnchor, paddingTop: 55,
                            leading: scheduleViewContainer.leadingAnchor,
                            bottom: scheduleViewContainer.bottomAnchor,
                            trailing: scheduleViewContainer.trailingAnchor)
     }
+    
+    
     
 }
 
