@@ -19,6 +19,14 @@ protocol ScheduleCellProtocol: UICollectionViewCell, ReuseIdentifiable {
 
 class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
+    private var internalView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .energyCellColour
+        view.layer.cornerRadius = 16
+        view.layer.applyShadow(color: .black, alpha: 0.16, x: 5, y: 5, blur: 10)
+        return view
+    }()
+    
     var classNameLabel: UILabel = {
         let label = UILabel()
         label.text = "CrossFit"
@@ -55,7 +63,7 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     override init(frame: CGRect) {
         super.init(frame: frame)
     
-        backgroundColor = .energyCellColour
+        backgroundColor = .clear
         configureUI()
     }
 
@@ -73,35 +81,41 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
 //        }
 //    }
     
-//    override func layoutSubviews() {
-//        cornerRadius(16)
-//        applyShadow(color: .black, alpha: 0.16, x: 5, y: 5, blur: 10)
-//    }
-    
     // MARK: - UI Configuration
     
     private func configureUI() {
         
-        addSubview(classNameLabel)
-        classNameLabel.anchor(top: topAnchor, paddingTop: 7,
-                              leading: leadingAnchor, paddingLeading: 19)
+        addSubview(internalView)
+        internalView.anchor(top: topAnchor,
+                            leading: leadingAnchor, paddingLeading: 10,
+                            bottom: bottomAnchor, paddingBottom: 10,
+                            trailing: trailingAnchor, paddingTrailing: 10)
         
-        addSubview(timeLabel)
+        configureElements(in: internalView)
+    }
+    
+    
+    private func configureElements(in view: UIView) {
+        view.addSubview(classNameLabel)
+        classNameLabel.anchor(top: view.topAnchor, paddingTop: 7,
+                              leading: view.leadingAnchor, paddingLeading: 19)
+        
+        view.addSubview(timeLabel)
         timeLabel.anchor(top: classNameLabel.bottomAnchor, paddingTop: 0,
                          leading: classNameLabel.leadingAnchor)
        
-        addSubview(trainerImageView)
+        view.addSubview(trainerImageView)
         trainerImageView.anchor(top: timeLabel.bottomAnchor, paddingTop: 9,
                                 leading: classNameLabel.leadingAnchor,
                                 width: 27, height: 27)
         
+        view.addSubview(trainerNameLabel)
+        trainerNameLabel.centerY(withView: trainerImageView)
+        trainerNameLabel.anchor(leading: trainerImageView.trailingAnchor, paddingLeading: 10)
+        
         layoutIfNeeded()
         trainerImageView.layer.masksToBounds = true
         trainerImageView.layer.cornerRadius = trainerImageView.frame.height / 2
-        
-        addSubview(trainerNameLabel)
-        trainerNameLabel.centerY(withView: trainerImageView)
-        trainerNameLabel.anchor(leading: trainerImageView.trailingAnchor, paddingLeading: 10)
     }
 }
 
@@ -128,11 +142,11 @@ struct ScheduleCell_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ScheduleCell_PreviewView()
-                .previewLayout(.fixed(width: 346, height: 90))
+                .previewLayout(.fixed(width: 346, height: 100))
                 .preferredColorScheme(.light)
         
             ScheduleCell_PreviewView()
-                .previewLayout(.fixed(width: 346, height: 90))
+                .previewLayout(.fixed(width: 346, height: 100))
                 .preferredColorScheme(.dark)
         }
     }

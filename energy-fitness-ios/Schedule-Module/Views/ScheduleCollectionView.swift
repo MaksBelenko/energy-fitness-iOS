@@ -11,11 +11,10 @@ import SwiftUI
 class ClassesScheduleView: UIView {
     
     private var reuseIdentifier: String!
-    private let pressAnimation = PressAnimation()
     
     lazy var scheduleCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 12
+        layout.minimumLineSpacing = 2
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         
@@ -33,15 +32,15 @@ class ClassesScheduleView: UIView {
         return collectionView
     }()
     
-    var gradientLayer: CAGradientLayer = {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.energyContainerColor.cgColor, UIColor.white.withAlphaComponent(0).cgColor]//Colors you want to add
-//        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-//        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        gradientLayer.shouldRasterize = true
-        gradientLayer.frame = CGRect.zero
-       return gradientLayer
-    }()
+//    var gradientLayer: CAGradientLayer = {
+//        let gradientLayer = CAGradientLayer()
+//        gradientLayer.colors = [UIColor.energyContainerColor.cgColor, UIColor.white.withAlphaComponent(0).cgColor]//Colors you want to add
+////        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+////        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+//        gradientLayer.shouldRasterize = true
+//        gradientLayer.frame = CGRect.zero
+//       return gradientLayer
+//    }()
     
     
     // MARK: - Lifecycle
@@ -54,21 +53,15 @@ class ClassesScheduleView: UIView {
         reuseIdentifier = ScheduleCell.reuseIdentifier()
         scheduleCollectionView.register(ScheduleCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        layer.addSublayer(gradientLayer)
+//        layer.addSublayer(gradientLayer)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    
-//    private func registerCell<T: ScheduleCellProtocol>(type: T) {
-//        reuseIdentifier = T.reuseIdentifier()
-//        scheduleCollectionView.register(T.self, forCellWithReuseIdentifier: reuseIdentifier)
-//    }
     
     override func layoutSubviews() {
-        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.width, height: 10)
+//        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.width, height: 10)
     }
 }
 
@@ -89,9 +82,6 @@ extension ClassesScheduleView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         
-        cell.cornerRadius(16)
-        cell.applyShadow(color: .black, alpha: 0.16, x: 5, y: 5, blur: 10)
-        
         return cell
     }
     
@@ -103,7 +93,7 @@ extension ClassesScheduleView: UICollectionViewDataSource {
 extension ClassesScheduleView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.frame.width
-        return CGSize(width: width - 30, height: 90)
+        return CGSize(width: width - 5, height: 100)
     }
     
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -116,9 +106,9 @@ extension ClassesScheduleView: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)!
-//        UIView.animate(withDuration: 0.1,  animations: {
-//            cell!.transform = CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95)
-//        }, completion: nil)
+        UIView.animate(withDuration: 0.1,  animations: {
+            cell.transform = CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95)
+        }, completion: nil)
 //        animate(cell, transform: CGAffineTransform.identity.scaledBy(x: 0.85, y: 0.85))
     }
     

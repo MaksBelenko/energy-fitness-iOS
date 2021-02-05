@@ -83,7 +83,7 @@ class ScheduleViewController: UIViewController {
         /* Schedule collection view */
         let classesView = ClassesScheduleView()
         scheduleViewContainer.addSubview(classesView)
-        classesView.anchor(top: weekView.bottomAnchor, paddingTop: 55,
+        classesView.anchor(top: weekView.bottomAnchor, paddingTop: 30,
                            leading: scheduleViewContainer.leadingAnchor,
                            bottom: scheduleViewContainer.bottomAnchor,
                            trailing: scheduleViewContainer.trailingAnchor)
