@@ -53,7 +53,7 @@ class DateSelectorCell: UICollectionViewCell, DateCellProtocol {
     // MARK: - UI Configuration
     
     private func configureUI() {
-        self.layer.cornerRadius = self.frame.height/8
+        self.layer.cornerRadius = self.frame.height / 6
         
         addSubview(weekDayLabel)
         weekDayLabel.anchor(top: topAnchor, paddingTop: 7)

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,6 +37,9 @@
 		B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E4825CC454A002264C2 /* Date+Ext.swift */; };
 		B55451C825CC830000BCA984 /* CALayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55451C725CC830000BCA984 /* CALayer+Ext.swift */; };
 		B55451CB25CC94AC00BCA984 /* ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55451CA25CC94AC00BCA984 /* ReuseIdentifiable.swift */; };
+		B556D60925CF2E7500F39EDC /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D60825CF2E7500F39EDC /* UnitTests.swift */; };
+		B569CDD525CE142E00B1DBAE /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B569CDD425CE142E00B1DBAE /* Swinject */; };
+		B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569CDD725CE160500B1DBAE /* DIContainer.swift */; };
 		B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DB25C9C805001D7AED /* MainTabBarController.swift */; };
 		B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */; };
 		B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E625258140FF0068DB9E /* AppDelegate.swift */; };
@@ -55,6 +58,16 @@
 		B5A3870C25CA08BF000883E0 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A3870025CA08BF000883E0 /* Roboto-Medium.ttf */; };
 		B5A3872825CA2FCA000883E0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A3872A25CA2FCA000883E0 /* Localizable.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B556D60B25CF2E7500F39EDC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B598E61A258140FE0068DB9E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B598E621258140FF0068DB9E;
+			remoteInfo = "energy-fitness-ios";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
@@ -87,6 +100,10 @@
 		B54F6E6125CC7038002264C2 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		B55451C725CC830000BCA984 /* CALayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Ext.swift"; sourceTree = "<group>"; };
 		B55451CA25CC94AC00BCA984 /* ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifiable.swift; sourceTree = "<group>"; };
+		B556D60625CF2E7500F39EDC /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B556D60825CF2E7500F39EDC /* UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
+		B556D60A25CF2E7500F39EDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B569CDD725CE160500B1DBAE /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		B59280DB25C9C805001D7AED /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		B598E622258140FF0068DB9E /* energy-fitness-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "energy-fitness-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,10 +128,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B556D60325CF2E7500F39EDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B598E61F258140FF0068DB9E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B569CDD525CE142E00B1DBAE /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +262,15 @@
 			path = Raleway;
 			sourceTree = "<group>";
 		};
+		B556D60725CF2E7500F39EDC /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				B556D60825CF2E7500F39EDC /* UnitTests.swift */,
+				B556D60A25CF2E7500F39EDC /* Info.plist */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
 		B56A25BF25CC4386006C223C /* WeekCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +290,7 @@
 				B598E63A258141270068DB9E /* .gitignore */,
 				B598E624258140FF0068DB9E /* energy-fitness-ios */,
 				B5A3872A25CA2FCA000883E0 /* Localizable.strings */,
+				B556D60725CF2E7500F39EDC /* UnitTests */,
 				B598E623258140FF0068DB9E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -264,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				B598E622258140FF0068DB9E /* energy-fitness-ios.app */,
+				B556D60625CF2E7500F39EDC /* UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -275,6 +311,7 @@
 				B598E62E258140FF0068DB9E /* Assets.xcassets */,
 				B598E625258140FF0068DB9E /* AppDelegate.swift */,
 				B598E627258140FF0068DB9E /* SceneDelegate.swift */,
+				B569CDD725CE160500B1DBAE /* DIContainer.swift */,
 				B5A386F325CA0892000883E0 /* Fonts */,
 				B520898E25C8AC580026AF4A /* Networking */,
 				B520898925C8AC070026AF4A /* Views */,
@@ -347,6 +384,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B556D60525CF2E7500F39EDC /* UnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B556D60F25CF2E7500F39EDC /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildPhases = (
+				B556D60225CF2E7500F39EDC /* Sources */,
+				B556D60325CF2E7500F39EDC /* Frameworks */,
+				B556D60425CF2E7500F39EDC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B556D60C25CF2E7500F39EDC /* PBXTargetDependency */,
+			);
+			name = UnitTests;
+			productName = UnitTests;
+			productReference = B556D60625CF2E7500F39EDC /* UnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B598E621258140FF0068DB9E /* energy-fitness-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B598E636258140FF0068DB9E /* Build configuration list for PBXNativeTarget "energy-fitness-ios" */;
@@ -361,6 +416,7 @@
 			);
 			name = "energy-fitness-ios";
 			packageProductDependencies = (
+				B569CDD425CE142E00B1DBAE /* Swinject */,
 			);
 			productName = "energy-fitness-ios";
 			productReference = B598E622258140FF0068DB9E /* energy-fitness-ios.app */;
@@ -372,9 +428,13 @@
 		B598E61A258140FE0068DB9E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1210;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
+					B556D60525CF2E7500F39EDC = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = B598E621258140FF0068DB9E;
+					};
 					B598E621258140FF0068DB9E = {
 						CreatedOnToolsVersion = 12.1;
 					};
@@ -391,17 +451,26 @@
 			);
 			mainGroup = B598E619258140FE0068DB9E;
 			packageReferences = (
+				B569CDD325CE142E00B1DBAE /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = B598E623258140FF0068DB9E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				B598E621258140FF0068DB9E /* energy-fitness-ios */,
+				B556D60525CF2E7500F39EDC /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B556D60425CF2E7500F39EDC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B598E620258140FF0068DB9E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -430,6 +499,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B556D60225CF2E7500F39EDC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B556D60925CF2E7500F39EDC /* UnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B598E61E258140FF0068DB9E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -456,6 +533,7 @@
 				B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */,
 				B54F6E2725CC44FA002264C2 /* WeekCalendarView.swift in Sources */,
 				B55451C825CC830000BCA984 /* CALayer+Ext.swift in Sources */,
+				B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */,
 				B55451CB25CC94AC00BCA984 /* ReuseIdentifiable.swift in Sources */,
 				B54F6E4325CC4503002264C2 /* DateSelectorCell.swift in Sources */,
 				B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */,
@@ -467,6 +545,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B556D60C25CF2E7500F39EDC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B598E621258140FF0068DB9E /* energy-fitness-ios */;
+			targetProxy = B556D60B25CF2E7500F39EDC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B598E630258140FF0068DB9E /* LaunchScreen.storyboard */ = {
@@ -491,6 +577,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B556D60D25CF2E7500F39EDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KELPFZXFAP;
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.belenko.UnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/energy-fitness-ios.app/energy-fitness-ios";
+			};
+			name = Debug;
+		};
+		B556D60E25CF2E7500F39EDC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KELPFZXFAP;
+				INFOPLIST_FILE = UnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.belenko.UnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/energy-fitness-ios.app/energy-fitness-ios";
+			};
+			name = Release;
+		};
 		B598E634258140FF0068DB9E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -652,6 +780,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B556D60F25CF2E7500F39EDC /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B556D60D25CF2E7500F39EDC /* Debug */,
+				B556D60E25CF2E7500F39EDC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B598E61D258140FE0068DB9E /* Build configuration list for PBXProject "energy-fitness-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -671,6 +808,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B569CDD325CE142E00B1DBAE /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B569CDD425CE142E00B1DBAE /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B569CDD325CE142E00B1DBAE /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B598E61A258140FE0068DB9E /* Project object */;
 }

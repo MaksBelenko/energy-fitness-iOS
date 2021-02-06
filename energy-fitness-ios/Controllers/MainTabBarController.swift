@@ -8,26 +8,33 @@
 import UIKit
 import SwiftUI
 
-class MainTabBarController: UITabBarController {
+protocol MainTabControllerProtocol: UIViewController {
+}
+
+class MainTabBarController: UITabBarController, MainTabControllerProtocol {
     
-    static func create(_ viewControllers: [UIViewController]) -> MainTabBarController {
+    static func create(viewControllers: [UIViewController]) -> MainTabBarController {
         let tabBarController = MainTabBarController()
         tabBarController.viewControllers = viewControllers
-        
+
         return tabBarController
     }
-
+    
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureTabBar()
-        configureViewControllers()
-        
+
 //        tabBar.layer.cornerRadius = 15
 //        tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
 //        tabBar.layer.masksToBounds = true
         
     }
+    
+    // MARK: - Configuration
 
     private func configureTabBar() {
         UITabBar.appearance().barTintColor = .energyBackgroundColor
@@ -35,26 +42,6 @@ class MainTabBarController: UITabBarController {
         // remove tabbar separator line
         UITabBar.appearance().shadowImage = UIImage()
         UITabBar.appearance().backgroundImage = UIImage()
-    }
-    
-    private func configureViewControllers() {
-        let vc1 = ScheduleViewController()
-        vc1.tabBarItem.image = UIImage(systemName: "house")
-        
-        let vc2 = ScheduleViewController()
-        vc2.tabBarItem.image = UIImage(systemName: "calendar")
-//        vc2.tabBarItem.imageInsets = UIEdgeInsets(top: 10, left: 0, bottom: -10, right: 0)
-        vc2.view.backgroundColor = .green
-        
-        let vc3 = ScheduleViewController()
-        vc3.tabBarItem.image = UIImage(systemName: "person")
-        vc3.view.backgroundColor = .blue
-        
-        let vc4 = ScheduleViewController()
-        vc4.tabBarItem.image = UIImage(systemName: "gear")
-        vc4.view.backgroundColor = .cyan
-        
-        self.viewControllers = [vc1, vc2, vc3, vc4]
     }
 }
 
@@ -70,7 +57,10 @@ extension MainTabBarController: UITabBarControllerDelegate {
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------
 struct MainTabBar_TestIntegratedController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        return MainTabBarController()
+        let vc1 = ScheduleViewController()
+        vc1.tabBarItem.image = UIImage(systemName: "calendar")
+        
+        return MainTabBarController.create(viewControllers: [vc1])
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
@@ -79,18 +69,15 @@ struct MainTabBar_TestIntegratedController: UIViewControllerRepresentable {
 
 struct MainTabBar_TestPreviewController: View {
     var body: some View {
-        MainTabBar_TestIntegratedController().edgesIgnoringSafeArea(.all)
+        MainTabBar_TestIntegratedController()
+            .edgesIgnoringSafeArea(.all)
     }
 }
 
 struct MainTabBar_TestPreviewController_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabBar_TestPreviewController().preferredColorScheme(.light)//.previewDevice("iPhone 7")
+        MainTabBar_TestPreviewController()
+            .preferredColorScheme(.light)
+//            .previewDevice("iPhone 7")
     }
 }
-
-//struct MainTabBar_TestPreviewController_Previews2: PreviewProvider {
-//    static var previews: some View {
-//        MainTabBar_TestPreviewController().previewDevice("iPhone 12 mini")
-//    }
-//}

@@ -23,7 +23,7 @@ class WeekDayFactory {
         dict[4] = .Wednesday
         dict[5] = .Thursday
         dict[6] = .Friday
-        dict[7] = .Sunday
+        dict[7] = .Saturday
     }
     
     func create(from day: Int) -> WeekDay? {

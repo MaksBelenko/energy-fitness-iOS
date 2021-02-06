@@ -23,7 +23,8 @@ class DateFinder {
         comps.weekday = startWeekDay.getNumber()
         
         // if date points to Sunday -> show previous week
-        if startWeekDay != .Sunday && weekdayFactory.create(from: date.get(.weekday)) == .Sunday {
+        let todaysWeekday = weekdayFactory.create(from: date.get(.weekday))
+        if startWeekDay != .Sunday && todaysWeekday == .Sunday {
             comps.weekOfYear! -= 1
         }
         
