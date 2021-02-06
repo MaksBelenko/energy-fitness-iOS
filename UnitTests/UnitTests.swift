@@ -6,11 +6,12 @@
 //
 
 import XCTest
-@testable import energy_fitness_ios
+@testable import EnergyFitnessApp
 
 class UnitTests: XCTestCase {
 
     override func setUpWithError() throws {
+        var t = 5
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-@main
+//@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // Generate localization file Localize.string for english
