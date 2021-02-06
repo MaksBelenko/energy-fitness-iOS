@@ -14,7 +14,7 @@ enum WeekDayPresentation {
     case Full
 }
 
-enum WeekDay {
+enum WeekDay: String, CaseIterable {
     case Monday
     case Tuesday
     case Wednesday

@@ -15,7 +15,7 @@ enum MonthPresentationType {
 }
 
 
-enum Month: LocalizedString {
+enum Month: String, CaseIterable {
     case January
     case February
     case March
