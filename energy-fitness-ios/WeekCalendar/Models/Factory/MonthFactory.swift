@@ -8,7 +8,11 @@
 
 import Foundation
 
-class MonthFactory {
+protocol MonthFactoryProtocol {
+    func create(from monthNumber: Int) -> Month?
+}
+
+class MonthFactory: MonthFactoryProtocol {
     
     private var dict = [Int : Month]()
     

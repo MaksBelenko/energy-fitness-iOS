@@ -17,7 +17,7 @@ class WeekCalendarViewModel {
     
     private let calendar = Calendar(identifier: .gregorian)
     private let monthFactory = MonthFactory()
-    private let dateObjectFactory = DateObjectFactory()
+    private lazy var dateObjectFactory = DateObjectFactory(monthFactory: monthFactory)
     private let weekdayFactory = WeekDayFactory()
     private let dateFinder: DateFinder
     

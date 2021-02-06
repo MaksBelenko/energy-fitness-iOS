@@ -20,22 +20,12 @@ struct DateObject {
         dateComp.day = self.day
         dateComp.hour = 3 // to avoid time change
         
-        return Calendar.current.date(from: dateComp)!
+        return Date.calendar.date(from: dateComp)!
     }
     
     func addDays(_ number: Int) -> DateObject {
         var newDate = self
         newDate.day += number
         return newDate
-    }
-}
-
-class DateObjectFactory {
-    private let monthFactory = MonthFactory()
-    
-    func create(from date: Date) -> DateObject {
-        return DateObject(day: date.get(.day),
-                          month: monthFactory.create(from: date.get(.month))!,
-                          year: date.get(.year))
     }
 }

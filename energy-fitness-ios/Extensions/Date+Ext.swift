@@ -31,7 +31,7 @@ extension Date {
 }
 
 extension Date {
-    var calendar: Calendar {
+    static var calendar: Calendar {
         get { return Calendar.init(identifier: .gregorian) }
     }
     
@@ -39,50 +39,50 @@ extension Date {
     func months(from date: Date) -> Int {
         let toDate = self.startOfMonth
         let fromDate = date.startOfMonth
-        return calendar.dateComponents([.month], from: fromDate, to: toDate).month ?? 0
+        return Date.calendar.dateComponents([.month], from: fromDate, to: toDate).month ?? 0
     }
     /// Returns the amount of weeks from another date
     func weeks(from date: Date) -> Int {
         let toDate = self.startOfDay
         let fromDate = date.startOfDay
-        return calendar.dateComponents([.weekOfMonth], from: fromDate, to: toDate).weekOfMonth ?? 0
+        return Date.calendar.dateComponents([.weekOfMonth], from: fromDate, to: toDate).weekOfMonth ?? 0
     }
     /// Returns the amount of days from another date
     func days(from date: Date) -> Int {
         let toDate = self.startOfDay
         let fromDate = date.startOfDay
-        return calendar.dateComponents([.day], from: fromDate, to: toDate).day ?? 0
+        return Date.calendar.dateComponents([.day], from: fromDate, to: toDate).day ?? 0
     }
 }
 
 
 extension Date {
     var startOfDay: Date {
-        return calendar.startOfDay(for: self)
+        return Date.calendar.startOfDay(for: self)
     }
 
     var startOfMonth: Date {
-        let components = calendar.dateComponents([.year, .month], from: self)
+        let components = Date.calendar.dateComponents([.year, .month], from: self)
 
-        return  calendar.date(from: components)!
+        return  Date.calendar.date(from: components)!
     }
 
     var endOfDay: Date {
         var components = DateComponents()
         components.day = 1
         components.second = -1
-        return calendar.date(byAdding: components, to: startOfDay)!
+        return Date.calendar.date(byAdding: components, to: startOfDay)!
     }
 
     var endOfMonth: Date {
         var components = DateComponents()
         components.month = 1
         components.second = -1
-        return calendar.date(byAdding: components, to: startOfMonth)!
+        return Date.calendar.date(byAdding: components, to: startOfMonth)!
     }
 
     func isMonday() -> Bool {
-        let components = calendar.dateComponents([.weekday], from: self)
+        let components = Date.calendar.dateComponents([.weekday], from: self)
         return components.weekday == 2
     }
 }
