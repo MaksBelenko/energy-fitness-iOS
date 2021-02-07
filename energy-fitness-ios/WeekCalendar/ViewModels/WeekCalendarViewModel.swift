@@ -113,7 +113,7 @@ class WeekCalendarViewModel {
     
     func getDate(from indexPath: IndexPath) -> DateObject {
         let startDayDateObject = months[indexPath.section].startDate
-        let selectedDateObject = startDayDateObject.addDays(indexPath.row)
+        let selectedDateObject = dateObjectFactory.createByAddingDays(indexPath.row, to: startDayDateObject)
         
         return selectedDateObject
     }
@@ -132,7 +132,7 @@ class WeekCalendarViewModel {
         let month = months[indexPath.section]
         let dayToShow = month.startDay + indexPath.row
         
-        let dateObject = month.startDate.addDays(indexPath.row)
+        let dateObject = dateObjectFactory.createByAddingDays(indexPath.row, to: month.startDate)
         let date = dateObject.getDate()
         
         let weekDay = weekdayFactory.create(from: date.get(.weekday))!

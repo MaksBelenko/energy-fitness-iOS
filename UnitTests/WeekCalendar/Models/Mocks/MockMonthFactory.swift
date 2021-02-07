@@ -10,7 +10,13 @@ import Foundation
 
 class MockMonthFactory: MonthFactoryProtocol {
     
+    private let expectedMonth: Month
+    
+    init(expectedMonth: Month) {
+        self.expectedMonth = expectedMonth
+    }
+    
     func create(from monthNumber: Int) -> Month? {
-        return .January
+        return expectedMonth
     }
 }

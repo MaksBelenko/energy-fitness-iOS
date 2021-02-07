@@ -19,4 +19,12 @@ class DateObjectFactory {
                           month: monthFactory.create(from: date.get(.month))!,
                           year: date.get(.year))
     }
+    
+    func createByAddingDays(_ number: Int, to dateObject: DateObject) -> DateObject {
+        var newDate = dateObject.getDate()
+        newDate = Date.calendar.date(byAdding: .day, value: number, to: newDate)!
+        
+        let newDateObject = self.create(from: newDate)
+        return newDateObject
+    }
 }

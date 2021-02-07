@@ -18,14 +18,8 @@ struct DateObject {
         dateComp.year = self.year
         dateComp.month = self.month.getNumber()
         dateComp.day = self.day
-        dateComp.hour = 3 // to avoid time change
+        dateComp.hour = 3 // to avoid time change for dateObject
         
         return Date.calendar.date(from: dateComp)!
-    }
-    
-    func addDays(_ number: Int) -> DateObject {
-        var newDate = self
-        newDate.day += number
-        return newDate
     }
 }

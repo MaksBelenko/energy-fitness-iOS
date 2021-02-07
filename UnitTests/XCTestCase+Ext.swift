@@ -28,4 +28,3 @@ extension XCTestCase {
                        file: file, line: line)
     }
 }
-
