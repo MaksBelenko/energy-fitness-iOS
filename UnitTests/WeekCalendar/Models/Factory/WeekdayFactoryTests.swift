@@ -10,10 +10,10 @@ import XCTest
 
 class WeekdayFactoryTests: XCTestCase {
 
-    var weekdayFactory: WeekDayFactory!
+    var weekdayFactory: WeekdayFactory!
     
     override func setUpWithError() throws {
-        weekdayFactory = WeekDayFactory()
+        weekdayFactory = WeekdayFactory()
     }
 
     override func tearDownWithError() throws {

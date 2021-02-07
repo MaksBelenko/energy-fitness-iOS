@@ -10,7 +10,7 @@ import SwiftUI
 
 class TopCornerDateView: UIView {
 
-    let weekdayFactory = WeekDayFactory()
+    let weekdayFactory = WeekdayFactory()
     let monthFactory = MonthFactory()
     
     private let dateToTextSpacing: CGFloat = 5

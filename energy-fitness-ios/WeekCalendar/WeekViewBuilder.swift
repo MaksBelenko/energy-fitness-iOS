@@ -11,11 +11,16 @@ import CoreGraphics
 
 class WeekViewBuilder {
     
-    private var spacing: CGFloat = 4
+    private var cellSpacing: CGFloat = 4
     private var numberOfWeeks = 4
     private var firstDayOfWeek: WeekDay = .Monday
     private var headerSpacing: CGFloat = 10
     
+    private let weekCalendarViewModel: WeekCalendarVMProtocol
+    
+    init(viewModel: WeekCalendarVMProtocol) {
+        self.weekCalendarViewModel = viewModel
+    }
     
     /**
      Changes the number of weeks that will be shown (default 4)
@@ -56,21 +61,24 @@ class WeekViewBuilder {
      
      This is a spacing between the items (date). Left and right items will
      have half a spacing on the ends
-     - Parameter spacing: Spacing (default is 4)
+     - Parameter spacing: Spacing (default is 4 as CGFloat)
      */
     @discardableResult
-    func withBetweenItemSpacing(_ spacing: CGFloat) -> WeekViewBuilder {
-        self.spacing = spacing
+    func withCellSpacing(_ spacing: CGFloat) -> WeekViewBuilder {
+        self.cellSpacing = spacing
         return self
     }
     
 
     
     func build() -> WeekCalendarView {
-        let weekView = WeekCalendarView.create(weeksToShow: numberOfWeeks,
-                                               spacing: spacing,
-                                               headerSpacing: headerSpacing,
-                                               startWeekDay: firstDayOfWeek)
+//        let weekCalendarData = WeekCalendarData(numberOfWeeks: numberOfWeeks,
+//                                                startDay: firstDayOfWeek,
+//                                                headerSpacing: headerSpacing)
+//
+//        let viewModel = WeekCalendarViewModel(data: weekCalendarData)
+        
+        let weekView = WeekCalendarView.create(cellSpacing: cellSpacing, viewModel: weekCalendarViewModel)
         return weekView
     }
 }

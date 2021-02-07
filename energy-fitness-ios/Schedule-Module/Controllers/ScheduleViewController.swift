@@ -10,6 +10,8 @@ import SwiftUI
 
 class ScheduleViewController: UIViewController {
 
+    private var weekCalendarView: WeekCalendarViewProtocol
+    
     private var topCornerDateView: TopCornerDateView!
     
     private var pageNameLabel: UILabel = {
@@ -23,12 +25,25 @@ class ScheduleViewController: UIViewController {
     
     // MARK: - Initialisation
     
+    init(weekCalendarView: WeekCalendarViewProtocol) {
+        self.weekCalendarView = weekCalendarView
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         print("Loaded")
         super.viewDidLoad()
         
         view.backgroundColor = .energyBackgroundColor
         configureUI()
+    }
+    
+    deinit {
+        print("Deinit on \(String(describing: self))")
     }
     
     // MARK: - Configure UI
@@ -66,16 +81,11 @@ class ScheduleViewController: UIViewController {
                                      bottom: view.safeAreaLayoutGuide.bottomAnchor,
                                      trailing: view.trailingAnchor)
         
-        /* Week View */
-        let weekView = WeekViewBuilder()
-                        .withNumberOfWeeks(8)
-                        .withFirstDayOfWeek(.Monday)
-                        .build()
-    
-        weekView.delegate = self
+        /* Week Calendar View */
+        weekCalendarView.delegate = self
         
-        view.addSubview(weekView)
-        weekView.anchor(top: scheduleViewContainer.topAnchor, paddingTop: 15,
+        view.addSubview(weekCalendarView)
+        weekCalendarView.anchor(top: scheduleViewContainer.topAnchor, paddingTop: 15,
                         leading: scheduleViewContainer.leadingAnchor, paddingLeading: 15,
                         trailing: scheduleViewContainer.trailingAnchor, paddingTrailing: 15,
                         height: 78)
@@ -83,7 +93,7 @@ class ScheduleViewController: UIViewController {
         /* Schedule collection view */
         let classesView = ClassesScheduleView()
         scheduleViewContainer.addSubview(classesView)
-        classesView.anchor(top: weekView.bottomAnchor, paddingTop: 30,
+        classesView.anchor(top: weekCalendarView.bottomAnchor, paddingTop: 30,
                            leading: scheduleViewContainer.leadingAnchor,
                            bottom: scheduleViewContainer.bottomAnchor,
                            trailing: scheduleViewContainer.trailingAnchor)
@@ -105,7 +115,9 @@ extension ScheduleViewController: DateSelectedDelegate {
 // -------------- SWIFTUI PREVIEW HELPER --------------------
 struct TestIntegratedController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        return ScheduleViewController()
+        let container = DIContainer.staticContainerSwiftUIPreviews
+        let vc = container.resolve(ScheduleViewController.self)!
+        return vc
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
@@ -125,14 +137,5 @@ struct TestPreviewController_Previews: PreviewProvider {
             .preferredColorScheme(.light)
             .environment(\.locale, .init(identifier: "ru"))
     }
-    
-//    static var previews: some View {
-//            ForEach(["en", "ru"], id: \.self) { id in
-//                TestPreviewController()
-//                    .previewDevice("iPhone X")
-//                    .preferredColorScheme(.light)
-//                    .environment(\.locale, .init(identifier: id))
-//            }
-//        }
 }
 

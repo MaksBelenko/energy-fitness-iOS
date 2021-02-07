@@ -8,9 +8,9 @@
 import Foundation
 
 class DateObjectFactory {
-    private let monthFactory: MonthFactoryProtocol
+    private let monthFactory: MonthFactory
     
-    init(monthFactory: MonthFactoryProtocol) {
+    init(monthFactory: MonthFactory) {
         self.monthFactory = monthFactory
     }
     

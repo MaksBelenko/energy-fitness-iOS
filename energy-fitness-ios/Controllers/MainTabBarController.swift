@@ -57,7 +57,8 @@ extension MainTabBarController: UITabBarControllerDelegate {
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------
 struct MainTabBar_TestIntegratedController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        let vc1 = ScheduleViewController()
+        let container = DIContainer.staticContainerSwiftUIPreviews
+        let vc1 = container.resolve(ScheduleViewController.self)!
         vc1.tabBarItem.image = UIImage(systemName: "calendar")
         
         return MainTabBarController.create(viewControllers: [vc1])

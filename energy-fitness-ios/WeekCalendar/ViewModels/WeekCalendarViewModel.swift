@@ -9,17 +9,27 @@
 import Foundation
 import UIKit
 
+protocol WeekCalendarVMProtocol {
+    func setSelectedCell(indexPath: IndexPath) -> IndexPath
+    func getDate(from indexPath: IndexPath) -> DateObject
+    func getNumberOfSections() -> Int
+    func getNumberOfDays(for section: Int) -> Int
+    func getDay(for indexPath: IndexPath) -> Day
+    func getMonthName(for section: Int) -> String
+    func getMonthNameSize(for section: Int) -> CGSize
+}
 
-class WeekCalendarViewModel {
+
+class WeekCalendarViewModel: WeekCalendarVMProtocol {
     
     private let headerSpacing: CGFloat
     private let startWeekDay: WeekDay
     
-    private let calendar = Calendar(identifier: .gregorian)
-    private let monthFactory = MonthFactory()
-    private lazy var dateObjectFactory = DateObjectFactory(monthFactory: monthFactory)
-    private let weekdayFactory = WeekDayFactory()
-    private let dateFinder: DateFinder
+    private let calendar = Date.calendar
+    private let monthFactory: MonthFactory
+    private let dateObjectFactory: DateObjectFactory
+    private let weekdayFactory: WeekdayFactory
+    private let dateFinder: DateFinderProtocol
     
     private var months = [MonthData]()
     private var numberOfMonthsDifference: Int!
@@ -30,11 +40,21 @@ class WeekCalendarViewModel {
     
     // MARK: - Lifecycle
     
-    init(numberOfWeeks: Int, startDay: WeekDay = .Monday, headerSpacing: CGFloat = 10) {
-        dateFinder = DateFinder(calendar: calendar)
-        self.headerSpacing = headerSpacing
-        self.startWeekDay = startDay
-        generateMetaData(for: numberOfWeeks)
+    init(data: WeekCalendarData,
+         dateFinder: DateFinderProtocol,
+         weekdayFactory: WeekdayFactory,
+         monthFactory: MonthFactory,
+         dateObjectFactory: DateObjectFactory
+    ) {
+        self.dateFinder = dateFinder
+        self.weekdayFactory = weekdayFactory
+        self.monthFactory = monthFactory
+        self.dateObjectFactory = dateObjectFactory
+        
+        
+        self.headerSpacing = data.headerSpacing
+        self.startWeekDay = data.startDay
+        generateMetaData(for: data.numberOfWeeks)
     }
     
     

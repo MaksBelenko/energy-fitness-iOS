@@ -8,10 +8,15 @@
 
 import Foundation
 
-class DateFinder {
+protocol DateFinderProtocol {
+    func getWeekBeginDate(from startWeekDay: WeekDay, date: Date) -> Date
+    func getLastDayOfMonth(from date: Date) -> Date
+}
+
+class DateFinder: DateFinderProtocol {
     
     let calendar: Calendar
-    let weekdayFactory = WeekDayFactory()
+    let weekdayFactory = WeekdayFactory()
     
     init(calendar: Calendar) {
         self.calendar = calendar

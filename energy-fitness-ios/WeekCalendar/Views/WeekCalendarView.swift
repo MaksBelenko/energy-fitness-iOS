@@ -13,15 +13,19 @@ protocol DateSelectedDelegate: AnyObject {
     func onDateSelected(date: DateObject)
 }
 
-class WeekCalendarView: UIView {
+protocol WeekCalendarViewProtocol: UIView {
+    var delegate: DateSelectedDelegate? { get set }
+}
+
+class WeekCalendarView: UIView, WeekCalendarViewProtocol {
     
     weak var delegate: DateSelectedDelegate?
     
-    private var viewModel: WeekCalendarViewModel!
+    private var viewModel: WeekCalendarVMProtocol!
     private var spacingBetweenCells: CGFloat!
     
-    private let numberOfDisplayedCells: CGFloat = 7 // 7 days to show
     
+    private let numberOfDisplayedCells: CGFloat = 7 // 7 days to show
     private var constraintsCV: [NSLayoutConstraint]!
     
     lazy var weekCollectionView: UICollectionView = {
@@ -41,16 +45,16 @@ class WeekCalendarView: UIView {
     
     
     // MARK: - Injection
-    static func create(weeksToShow: Int, spacing spacingBetweenCells: CGFloat, headerSpacing: CGFloat, startWeekDay: WeekDay) -> WeekCalendarView {
+    static func create(cellSpacing spacingBetweenCells: CGFloat, viewModel: WeekCalendarVMProtocol) -> WeekCalendarView {
         let view = WeekCalendarView()
         view.spacingBetweenCells = spacingBetweenCells
-        view.viewModel = WeekCalendarViewModel(numberOfWeeks: weeksToShow, startDay: startWeekDay, headerSpacing: headerSpacing)
+        view.viewModel = viewModel
         return view
     }
     
     
     // MARK: - Lifecycle
-    override init(frame: CGRect) {
+    override private init(frame: CGRect) {
         super.init(frame: frame)
         
         configureUI()
@@ -178,7 +182,9 @@ struct WeekCalendarView_IntegratedCell: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> some UIView {
-        return WeekCalendarView.create(weeksToShow: 4, spacing: 4, headerSpacing: 10, startWeekDay: .Monday)
+        let container = DIContainer.staticContainerSwiftUIPreviews
+        let viewModel = container.resolve(WeekCalendarVMProtocol.self)!
+        return WeekCalendarView.create(cellSpacing: 4, viewModel: viewModel)
     }
 }
 
