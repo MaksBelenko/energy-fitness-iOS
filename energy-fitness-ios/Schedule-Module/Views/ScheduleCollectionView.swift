@@ -50,8 +50,11 @@ class ClassesScheduleView: UIView {
         addSubview(scheduleCollectionView)
         scheduleCollectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         
-        reuseIdentifier = ScheduleCell.reuseIdentifier()
-        scheduleCollectionView.register(ScheduleCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+//        reuseIdentifier = ScheduleCell.reuseIdentifier()
+//        scheduleCollectionView.register(ScheduleCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        reuseIdentifier = ShimmerScheduleCell.reuseIdentifier()
+        scheduleCollectionView.register(ShimmerScheduleCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
 //        layer.addSublayer(gradientLayer)
     }
@@ -104,13 +107,13 @@ extension ClassesScheduleView: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension ClassesScheduleView: UICollectionViewDelegate {
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)!
-        UIView.animate(withDuration: 0.1,  animations: {
-            cell.transform = CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95)
-        }, completion: nil)
-//        animate(cell, transform: CGAffineTransform.identity.scaledBy(x: 0.85, y: 0.85))
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath)!
+//        UIView.animate(withDuration: 0.1,  animations: {
+//            cell.transform = CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95)
+//        }, completion: nil)
+////        animate(cell, transform: CGAffineTransform.identity.scaledBy(x: 0.85, y: 0.85))
+//    }
     
 //    private func animate(_ view: UIView, transform: CGAffineTransform) {
 //        UIView.animate(withDuration: 0.1,  animations: {

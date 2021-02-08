@@ -24,12 +24,16 @@ class DIContainer {
         setupForWeekCalendar(using: container)
         
         container.autoregister(ScheduleViewController.self, initializer: ScheduleViewController.init)
+            .inObjectScope(.transient)
         
         container.register(MainTabControllerProtocol.self) { resolver in
             let vc1 = resolver.resolve(ScheduleViewController.self)!
-            return MainTabBarController.create(viewControllers: [vc1])
+            vc1.tabBarItem.image = UIImage(systemName: "calendar")
+            let vc2 = resolver.resolve(ScheduleViewController.self)!
+            vc2.tabBarItem.image = UIImage(systemName: "calendar")
+            return MainTabBarController.create(viewControllers: [vc1, vc2])
         }
-//        .inObjectScope(.container)
+//        .inObjectScope(.transient)
     }
     
     // MARK: - WeekCalendar setup of container
@@ -38,7 +42,9 @@ class DIContainer {
         container.autoregister(WeekdayFactoryProtocol.self, initializer: WeekdayFactory.init)
         container.autoregister(MonthFactoryProtocol.self, initializer: MonthFactory.init)
         container.autoregister(DateObjectFactoryProtocol.self, initializer: DateObjectFactory.init)
+        
         container.autoregister(WeekCalendarVMProtocol.self, initializer: WeekCalendarViewModel.init)
+            .inObjectScope(.transient)
     
         container.register(DateFinderProtocol.self) { resolver in
             let weekdayFactory = resolver.resolve(WeekdayFactoryProtocol.self)!
@@ -48,11 +54,13 @@ class DIContainer {
         container.register(WeekCalendarData.self) { resolver in
             return WeekCalendarData(numberOfWeeks: 6, startDay: .Monday, headerSpacing: 10)
         }
+        .inObjectScope(.transient)
         
         container.register(WeekCalendarViewProtocol.self) { resolver in
             let weeCalendarVM = resolver.resolve(WeekCalendarVMProtocol.self)!
             return WeekCalendarView.create(cellSpacing: 4, viewModel: weeCalendarVM)
         }
+        .inObjectScope(.transient)
     }
 }
 

@@ -8,7 +8,11 @@
 
 import Foundation
 
-class WeekdayFactory {
+protocol WeekdayFactoryProtocol {
+    func create(from day: Int) -> WeekDay?
+}
+
+class WeekdayFactory: WeekdayFactoryProtocol {
     
     private var dict = [Int : WeekDay]()
     

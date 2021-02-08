@@ -58,6 +58,13 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         return label
     }()
     
+    private var chevronArrow: UIImageView = {
+        let iv = UIImageView()
+        let image: UIImage = #imageLiteral(resourceName: "chevron").withTintColor(.energyDateDarkened)
+        iv.image = image
+        return iv
+    }()
+    
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -116,6 +123,29 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         layoutIfNeeded()
         trainerImageView.layer.masksToBounds = true
         trainerImageView.layer.cornerRadius = trainerImageView.frame.height / 2
+        
+        view.addSubview(chevronArrow)
+        chevronArrow.anchor(trailing: view.trailingAnchor, paddingTrailing: 20,
+                            width: 15, height: 20)
+        chevronArrow.centerY(withView: view)
+    }
+    
+    // MARK: - Configure Gestures
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: { [weak self] in
+            self?.transform = CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95)
+        }, completion: nil)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: { [weak self] in
+            self?.transform = CGAffineTransform.identity
+        }, completion: nil)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchesEnded(touches, with: event)
     }
 }
 

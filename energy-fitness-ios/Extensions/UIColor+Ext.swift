@@ -40,6 +40,8 @@ extension UIColor {
     static let customContainerDark = UIColor(rgb: 0x0F0F0F)
     static let customCellLightGray = UIColor(rgb: 0xEFEFEF)
     static let customCellDarkGray = UIColor(rgb: 0x1C1C1C)
+    static let customShimmerLight = UIColor(rgb: 0xD6D6D6)
+    static let customShimmerDark = UIColor(rgb: 0x2F2F2F)
     
     static let energyBackgroundColor = UIColor.dynamic(light: .customLightGray, dark: .black)
     static let energyContainerColor = UIColor.dynamic(light: .white, dark: .customContainerDark)
@@ -48,6 +50,9 @@ extension UIColor {
     static let energyDateDarkened = UIColor.dynamic(light: .customTextGreyLight, dark: .customTextGreyDark)
     static let energyScheduleTrainerName = UIColor.dynamic(light: .customTextGreyLight, dark: .customTextGreyDark)
     static let energyCellColour = UIColor.dynamic(light: .customCellLightGray, dark: .customCellDarkGray)
+    
+    static let energyShimmerUnder = UIColor.dynamic(light: .customCellLightGray, dark: .customCellDarkGray)
+    static let energyShimmer = UIColor.dynamic(light: .customShimmerLight, dark: .customShimmerDark)
     
     
     static let customBlue = UIColor(rgb: 0x0075EB)
