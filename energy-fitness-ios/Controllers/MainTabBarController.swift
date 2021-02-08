@@ -78,7 +78,7 @@ struct MainTabBar_TestPreviewController: View {
 struct MainTabBar_TestPreviewController_Previews: PreviewProvider {
     static var previews: some View {
         MainTabBar_TestPreviewController()
-            .preferredColorScheme(.light)
+            .preferredColorScheme(.dark)
 //            .previewDevice("iPhone 7")
     }
 }

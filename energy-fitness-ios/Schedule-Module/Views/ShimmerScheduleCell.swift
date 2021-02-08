@@ -111,11 +111,10 @@ class ShimmerScheduleCell: UICollectionViewCell, ReuseIdentifiable {
         let view = UIView()
         view.backgroundColor = .energyShimmerUnder
         addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.leftAnchor.constraint(equalTo: bottomView.leftAnchor).isActive = true
-        view.topAnchor.constraint(equalTo: bottomView.topAnchor).isActive = true
-        view.heightAnchor.constraint(equalTo: bottomView.heightAnchor).isActive = true
-        view.widthAnchor.constraint(equalTo: bottomView.widthAnchor).isActive = true
+        view.anchor(top: bottomView.topAnchor,
+                    leading: bottomView.leadingAnchor,
+                    bottom: bottomView.bottomAnchor,
+                    trailing: bottomView.trailingAnchor)
 
         addShimmerMask(to: view)
     }
@@ -136,6 +135,7 @@ class ShimmerScheduleCell: UICollectionViewCell, ReuseIdentifiable {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.energyShimmerUnder.cgColor, UIColor.clear.cgColor]
         gradientLayer.locations = [0.0, 0.5, 1.0]
         self.layer.addSublayer(gradientLayer)
+        gradientLayer.shouldRasterize = true
         
         return gradientLayer
     }
