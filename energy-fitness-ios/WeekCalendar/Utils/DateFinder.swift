@@ -15,11 +15,12 @@ protocol DateFinderProtocol {
 
 class DateFinder: DateFinderProtocol {
     
-    let calendar: Calendar
-    let weekdayFactory = WeekdayFactory()
+    private let calendar: Calendar
+    private let weekdayFactory: WeekdayFactoryProtocol
     
-    init(calendar: Calendar) {
+    init(calendar: Calendar, weekdayFactory: WeekdayFactoryProtocol) {
         self.calendar = calendar
+        self.weekdayFactory = weekdayFactory
     }
     
     
@@ -27,8 +28,9 @@ class DateFinder: DateFinderProtocol {
         var comps = calendar.dateComponents([.weekOfYear, .yearForWeekOfYear], from: date)
         comps.weekday = startWeekDay.getNumber()
         
-        // if date points to Sunday -> show previous week
         let todaysWeekday = weekdayFactory.create(from: date.get(.weekday))
+        
+        // if date points to Sunday -> show previous week
         if startWeekDay != .Sunday && todaysWeekday == .Sunday {
             comps.weekOfYear! -= 1
         }

@@ -26,9 +26,9 @@ class WeekCalendarViewModel: WeekCalendarVMProtocol {
     private let startWeekDay: WeekDay
     
     private let calendar = Date.calendar
-    private let monthFactory: MonthFactory
-    private let dateObjectFactory: DateObjectFactory
-    private let weekdayFactory: WeekdayFactory
+    private let monthFactory: MonthFactoryProtocol
+    private let dateObjectFactory: DateObjectFactoryProtocol
+    private let weekdayFactory: WeekdayFactoryProtocol
     private let dateFinder: DateFinderProtocol
     
     private var months = [MonthData]()
@@ -42,9 +42,9 @@ class WeekCalendarViewModel: WeekCalendarVMProtocol {
     
     init(data: WeekCalendarData,
          dateFinder: DateFinderProtocol,
-         weekdayFactory: WeekdayFactory,
-         monthFactory: MonthFactory,
-         dateObjectFactory: DateObjectFactory
+         weekdayFactory: WeekdayFactoryProtocol,
+         monthFactory: MonthFactoryProtocol,
+         dateObjectFactory: DateObjectFactoryProtocol
     ) {
         self.dateFinder = dateFinder
         self.weekdayFactory = weekdayFactory
@@ -156,8 +156,7 @@ class WeekCalendarViewModel: WeekCalendarVMProtocol {
         let date = dateObject.getDate()
         
         let weekDay = weekdayFactory.create(from: date.get(.weekday))!
-//        let selected = date.isEqualTo(todayDate) ? true : false
-        let selected = selectedIndexPath == indexPath
+        let selected = (selectedIndexPath == indexPath)
         
         return Day(number: dayToShow, weekDay: weekDay, isSelected: selected)
     }
@@ -167,7 +166,7 @@ class WeekCalendarViewModel: WeekCalendarVMProtocol {
     }
     
     func getMonthNameSize(for section: Int) -> CGSize {
-        let fontAttributes = [NSAttributedString.Key.font: UIFont.helveticaNeue(ofSize: 18)]
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.calendarDateFont(ofSize: 18)]
         let monthName = months[section].name.getLocalisedName()
         var size = (monthName as NSString).size(withAttributes: fontAttributes as [NSAttributedString.Key : Any])
         size.width += headerSpacing // spacing when two month are near each other

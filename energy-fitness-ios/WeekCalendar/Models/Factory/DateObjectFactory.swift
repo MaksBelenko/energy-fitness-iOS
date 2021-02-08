@@ -7,10 +7,15 @@
 
 import Foundation
 
-class DateObjectFactory {
-    private let monthFactory: MonthFactory
+protocol DateObjectFactoryProtocol {
+    func create(from date: Date) -> DateObject
+    func createByAddingDays(_ number: Int, to dateObject: DateObject) -> DateObject
+}
+
+class DateObjectFactory: DateObjectFactoryProtocol {
+    private let monthFactory: MonthFactoryProtocol
     
-    init(monthFactory: MonthFactory) {
+    init(monthFactory: MonthFactoryProtocol) {
         self.monthFactory = monthFactory
     }
     

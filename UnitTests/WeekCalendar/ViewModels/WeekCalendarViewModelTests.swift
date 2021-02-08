@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import EnergyFitnessApp
 
 class WeekCalendarViewModelTests: XCTestCase {
 
@@ -15,8 +16,15 @@ class WeekCalendarViewModelTests: XCTestCase {
     override func tearDownWithError() throws {
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func test_setSelectedCell() throws {
     }
+    
+    
+//    func setSelectedCell(indexPath: IndexPath) -> IndexPath
+//    func getDate(from indexPath: IndexPath) -> DateObject
+//    func getNumberOfSections() -> Int
+//    func getNumberOfDays(for section: Int) -> Int
+//    func getDay(for indexPath: IndexPath) -> Day
+//    func getMonthName(for section: Int) -> String
+//    func getMonthNameSize(for section: Int) -> CGSize
 }

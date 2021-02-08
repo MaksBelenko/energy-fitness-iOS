@@ -38,27 +38,40 @@ class WeedayEnumTests: XCTestCase {
         XCTAssert(weekday.getLocalisedString(format: .OneLetter) == "S")
     }
     
-    func test_getNumber_ReturnsCorrectWeekdayEnum() throws {
+    func test_getNumber_ForSunday() throws {
         weekday = .Sunday
-        XCTAssert(weekday.getNumber() == 1, "Should be equal to 1")
-        
+        XCTAssert(weekday.getNumber() == 1, "\(weekday.rawValue) should be equal to 1")
+    }
+    
+    func test_getNumber_ForMonday() throws {
         weekday = .Monday
-        XCTAssert(weekday.getNumber() == 2, "Should be equal to 2")
-        
+        XCTAssert(weekday.getNumber() == 2, "\(weekday.rawValue) should be equal to 2")
+    }
+    
+    func test_getNumber_ForTuesday() throws {
         weekday = .Tuesday
-        XCTAssert(weekday.getNumber() == 3, "Should be equal to 3")
-        
+        XCTAssert(weekday.getNumber() == 3, "\(weekday.rawValue) should be equal to 3")
+    }
+    
+    func test_getNumber_ForWednesday() throws {
         weekday = .Wednesday
-        XCTAssert(weekday.getNumber() == 4, "Should be equal to 4")
-        
+        XCTAssert(weekday.getNumber() == 4, "\(weekday.rawValue) should be equal to 4")
+    }
+    
+    func test_getNumber_ForThursday() throws {
         weekday = .Thursday
-        XCTAssert(weekday.getNumber() == 5, "Should be equal to 5")
-        
+        XCTAssert(weekday.getNumber() == 5, "\(weekday.rawValue) should be equal to 5")
+    }
+    
+    func test_getNumber_ForFriday() throws {
         weekday = .Friday
-        XCTAssert(weekday.getNumber() == 6, "Should be equal to 6")
+        XCTAssert(weekday.getNumber() == 6, "\(weekday.rawValue) should be equal to 6")
         
+    }
+    
+    func test_getNumber_ForSaturday() throws {
         weekday = .Saturday
-        XCTAssert(weekday.getNumber() == 7, "Should be equal to 7")
+        XCTAssert(weekday.getNumber() == 7, "\(weekday.rawValue) should be equal to 7")
     }
 
 }
