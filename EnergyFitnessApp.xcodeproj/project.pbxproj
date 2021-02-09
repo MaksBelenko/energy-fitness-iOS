@@ -72,7 +72,6 @@
 		B5D8AFA925CF48140010CE47 /* MonthEnumExtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFA825CF48140010CE47 /* MonthEnumExtTests.swift */; };
 		B5D8AFAD25CF4BC90010CE47 /* WeekdayFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFAC25CF4BC90010CE47 /* WeekdayFactoryTests.swift */; };
 		B5D8AFB325CF4D820010CE47 /* WeedayEnumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFB225CF4D820010CE47 /* WeedayEnumTests.swift */; };
-		B5D8AFB925CF4FD50010CE47 /* swift-ci.yml in Resources */ = {isa = PBXBuildFile; fileRef = B5D8AFB825CF4FD50010CE47 /* swift-ci.yml */; };
 		B5D8AFC125CF56C40010CE47 /* DateObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFC025CF56C40010CE47 /* DateObjectFactory.swift */; };
 		B5D8AFC725CF57100010CE47 /* DateObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFC625CF57100010CE47 /* DateObjectFactory.swift */; };
 		B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3125CC4503002264C2 /* WeekdayFactory.swift */; };
@@ -159,7 +158,6 @@
 		B5D8AFA825CF48140010CE47 /* MonthEnumExtTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthEnumExtTests.swift; sourceTree = "<group>"; };
 		B5D8AFAC25CF4BC90010CE47 /* WeekdayFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayFactoryTests.swift; sourceTree = "<group>"; };
 		B5D8AFB225CF4D820010CE47 /* WeedayEnumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeedayEnumTests.swift; sourceTree = "<group>"; };
-		B5D8AFB825CF4FD50010CE47 /* swift-ci.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = "swift-ci.yml"; sourceTree = "<group>"; };
 		B5D8AFC025CF56C40010CE47 /* DateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectFactory.swift; sourceTree = "<group>"; };
 		B5D8AFC625CF57100010CE47 /* DateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -349,7 +347,6 @@
 			isa = PBXGroup;
 			children = (
 				B598E63A258141270068DB9E /* .gitignore */,
-				B5D8AFB625CF4FD50010CE47 /* .github */,
 				B598E624258140FF0068DB9E /* energy-fitness-ios */,
 				B5A3872A25CA2FCA000883E0 /* Localizable.strings */,
 				B556D60725CF2E7500F39EDC /* UnitTests */,
@@ -452,22 +449,6 @@
 				B5739F7125D0B4A3001E71B9 /* MockWeekdayFactory.swift */,
 			);
 			path = Mocks;
-			sourceTree = "<group>";
-		};
-		B5D8AFB625CF4FD50010CE47 /* .github */ = {
-			isa = PBXGroup;
-			children = (
-				B5D8AFB725CF4FD50010CE47 /* workflows */,
-			);
-			path = .github;
-			sourceTree = "<group>";
-		};
-		B5D8AFB725CF4FD50010CE47 /* workflows */ = {
-			isa = PBXGroup;
-			children = (
-				B5D8AFB825CF4FD50010CE47 /* swift-ci.yml */,
-			);
-			path = workflows;
 			sourceTree = "<group>";
 		};
 		B5D8AFBC25CF558C0010CE47 /* Models */ = {
@@ -612,7 +593,6 @@
 				B527C90A25CC74A600342113 /* Raleway-Thin.ttf in Resources */,
 				B527C90825CC74A400342113 /* Raleway-SemiBold.ttf in Resources */,
 				B527C90625CC74A100342113 /* Raleway-Regular.ttf in Resources */,
-				B5D8AFB925CF4FD50010CE47 /* swift-ci.yml in Resources */,
 				B527C90225CC749B00342113 /* Raleway-Light.ttf in Resources */,
 				B598E63B258141270068DB9E /* .gitignore in Resources */,
 				B5A3870C25CA08BF000883E0 /* Roboto-Medium.ttf in Resources */,
