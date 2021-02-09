@@ -9,13 +9,19 @@ import UIKit
 import SwiftUI
 
 class ShimmerScheduleCell: UICollectionViewCell, ReuseIdentifiable {
+
+    private let shimmerCycleDuration = 1.5 //sec
     
-    private var shimmerAnimation: CABasicAnimation = {
+    private lazy var shimmerAnimation: CABasicAnimation = {
         let animation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.locations))
         animation.fromValue = [-1.0, -0.5, 0.0]
         animation.toValue = [1.0, 1.5, 2.0]
         animation.repeatCount = .infinity
-        animation.duration = 1.5
+        animation.duration = shimmerCycleDuration
+        // sync the times for all cells
+        let ct = CACurrentMediaTime().truncatingRemainder(dividingBy: shimmerCycleDuration * 2)
+        animation.timeOffset = ct
+        
         return animation
     }()
     
@@ -135,7 +141,7 @@ class ShimmerScheduleCell: UICollectionViewCell, ReuseIdentifiable {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.energyShimmerUnder.cgColor, UIColor.clear.cgColor]
         gradientLayer.locations = [0.0, 0.5, 1.0]
         self.layer.addSublayer(gradientLayer)
-        gradientLayer.shouldRasterize = true
+//        gradientLayer.shouldRasterize = true
         
         return gradientLayer
     }
