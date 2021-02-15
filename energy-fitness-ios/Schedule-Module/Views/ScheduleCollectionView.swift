@@ -50,11 +50,11 @@ class ClassesScheduleView: UIView {
         addSubview(scheduleCollectionView)
         scheduleCollectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         
-//        reuseIdentifier = ScheduleCell.reuseIdentifier()
-//        scheduleCollectionView.register(ScheduleCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        reuseIdentifier = ScheduleCell.reuseIdentifier()
+        scheduleCollectionView.register(ScheduleCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        reuseIdentifier = ShimmerScheduleCell.reuseIdentifier()
-        scheduleCollectionView.register(ShimmerScheduleCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+//        reuseIdentifier = ShimmerScheduleCell.reuseIdentifier()
+//        scheduleCollectionView.register(ShimmerScheduleCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
 //        layer.addSublayer(gradientLayer)
     }

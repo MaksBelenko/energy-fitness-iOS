@@ -42,6 +42,7 @@
 		B556D62D25CF34D800F39EDC /* TestingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D62C25CF34D800F39EDC /* TestingSceneDelegate.swift */; };
 		B569CDD525CE142E00B1DBAE /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B569CDD425CE142E00B1DBAE /* Swinject */; };
 		B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569CDD725CE160500B1DBAE /* DIContainer.swift */; };
+		B57372E125DB062300CC541F /* BookClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57372E025DB062300CC541F /* BookClassViewController.swift */; };
 		B573867725D1DC9D002ECC4D /* ShimmerScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B573867625D1DC9D002ECC4D /* ShimmerScheduleCell.swift */; };
 		B5739F6725D0A654001E71B9 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = B5739F6625D0A654001E71B9 /* SwinjectAutoregistration */; };
 		B5739F6C25D0B18B001E71B9 /* DateFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5739F6B25D0B18B001E71B9 /* DateFinderTests.swift */; };
@@ -56,6 +57,13 @@
 		B598E62F258140FF0068DB9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B598E62E258140FF0068DB9E /* Assets.xcassets */; };
 		B598E632258140FF0068DB9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B598E630258140FF0068DB9E /* LaunchScreen.storyboard */; };
 		B598E63B258141270068DB9E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B598E63A258141270068DB9E /* .gitignore */; };
+		B59BB57625D43AB300910962 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B59BB57525D43AB300910962 /* Alamofire */; };
+		B59BB57A25D43ADD00910962 /* AlamofireAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB57925D43ADD00910962 /* AlamofireAdapter.swift */; };
+		B59BB57E25D43B1600910962 /* NetworkAdapterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */; };
+		B59BB58225D43BBB00910962 /* NetworkConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB58125D43BBB00910962 /* NetworkConst.swift */; };
+		B59BB58825D4436500910962 /* URLSessionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB58725D4436500910962 /* URLSessionAdapter.swift */; };
+		B59BB58D25D447E800910962 /* GymClassDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB58C25D447E800910962 /* GymClassDto.swift */; };
+		B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB59325D48E9C00910962 /* JsonDecoderWrapper.swift */; };
 		B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A386E525CA056C000883E0 /* UIView+Ext.swift */; };
 		B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */; };
 		B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A386F025CA0876000883E0 /* UIFont+Ext.swift */; };
@@ -126,6 +134,7 @@
 		B556D62C25CF34D800F39EDC /* TestingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingSceneDelegate.swift; sourceTree = "<group>"; };
 		B556D63025CF350300F39EDC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B569CDD725CE160500B1DBAE /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		B57372E025DB062300CC541F /* BookClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookClassViewController.swift; sourceTree = "<group>"; };
 		B573867625D1DC9D002ECC4D /* ShimmerScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerScheduleCell.swift; sourceTree = "<group>"; };
 		B5739F6B25D0B18B001E71B9 /* DateFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFinderTests.swift; sourceTree = "<group>"; };
 		B5739F7125D0B4A3001E71B9 /* MockWeekdayFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeekdayFactory.swift; sourceTree = "<group>"; };
@@ -140,6 +149,12 @@
 		B598E631258140FF0068DB9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B598E633258140FF0068DB9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B598E63A258141270068DB9E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		B59BB57925D43ADD00910962 /* AlamofireAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireAdapter.swift; sourceTree = "<group>"; };
+		B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapterProtocol.swift; sourceTree = "<group>"; };
+		B59BB58125D43BBB00910962 /* NetworkConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConst.swift; sourceTree = "<group>"; };
+		B59BB58725D4436500910962 /* URLSessionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionAdapter.swift; sourceTree = "<group>"; };
+		B59BB58C25D447E800910962 /* GymClassDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymClassDto.swift; sourceTree = "<group>"; };
+		B59BB59325D48E9C00910962 /* JsonDecoderWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDecoderWrapper.swift; sourceTree = "<group>"; };
 		B5A386E525CA056C000883E0 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCornerDateView.swift; sourceTree = "<group>"; };
 		B5A386F025CA0876000883E0 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
@@ -174,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B59BB57625D43AB300910962 /* Alamofire in Frameworks */,
 				B569CDD525CE142E00B1DBAE /* Swinject in Frameworks */,
 				B5739F6725D0A654001E71B9 /* SwinjectAutoregistration in Frameworks */,
 			);
@@ -228,6 +244,12 @@
 		B520898E25C8AC580026AF4A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B59BB59225D48E8600910962 /* Wrappers */,
+				B59BB58B25D447BD00910962 /* ResponseDto */,
+				B59BB58125D43BBB00910962 /* NetworkConst.swift */,
+				B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */,
+				B59BB57925D43ADD00910962 /* AlamofireAdapter.swift */,
+				B59BB58725D4436500910962 /* URLSessionAdapter.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -384,6 +406,22 @@
 			path = "energy-fitness-ios";
 			sourceTree = "<group>";
 		};
+		B59BB58B25D447BD00910962 /* ResponseDto */ = {
+			isa = PBXGroup;
+			children = (
+				B59BB58C25D447E800910962 /* GymClassDto.swift */,
+			);
+			path = ResponseDto;
+			sourceTree = "<group>";
+		};
+		B59BB59225D48E8600910962 /* Wrappers */ = {
+			isa = PBXGroup;
+			children = (
+				B59BB59325D48E9C00910962 /* JsonDecoderWrapper.swift */,
+			);
+			path = Wrappers;
+			sourceTree = "<group>";
+		};
 		B5A386DF25CA03E4000883E0 /* Schedule-Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				B598E629258140FF0068DB9E /* ScheduleViewController.swift */,
+				B57372E025DB062300CC541F /* BookClassViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -527,6 +566,7 @@
 			packageProductDependencies = (
 				B569CDD425CE142E00B1DBAE /* Swinject */,
 				B5739F6625D0A654001E71B9 /* SwinjectAutoregistration */,
+				B59BB57525D43AB300910962 /* Alamofire */,
 			);
 			productName = "energy-fitness-ios";
 			productReference = B598E622258140FF0068DB9E /* EnergyFitnessApp.app */;
@@ -563,6 +603,7 @@
 			packageReferences = (
 				B569CDD325CE142E00B1DBAE /* XCRemoteSwiftPackageReference "Swinject" */,
 				B5739F6525D0A654001E71B9 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
+				B59BB57425D43AB200910962 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = B598E623258140FF0068DB9E /* Products */;
 			projectDirPath = "";
@@ -641,18 +682,22 @@
 				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,
 				B573867725D1DC9D002ECC4D /* ShimmerScheduleCell.swift in Sources */,
 				B54F6E3D25CC4503002264C2 /* Day.swift in Sources */,
+				B59BB57E25D43B1600910962 /* NetworkAdapterProtocol.swift in Sources */,
 				B54F6E4225CC4503002264C2 /* DateObject.swift in Sources */,
+				B59BB58825D4436500910962 /* URLSessionAdapter.swift in Sources */,
 				B54F6E3E25CC4503002264C2 /* MonthData.swift in Sources */,
 				B598E62A258140FF0068DB9E /* ScheduleViewController.swift in Sources */,
 				B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */,
 				B54F6E4525CC4503002264C2 /* WeekCalendarViewModel.swift in Sources */,
 				B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */,
+				B59BB58D25D447E800910962 /* GymClassDto.swift in Sources */,
 				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
+				B59BB58225D43BBB00910962 /* NetworkConst.swift in Sources */,
 				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,
 				B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */,
 				B54F6E4425CC4503002264C2 /* MonthNameHeader.swift in Sources */,
@@ -660,12 +705,15 @@
 				B54F6E2725CC44FA002264C2 /* WeekCalendarView.swift in Sources */,
 				B55451C825CC830000BCA984 /* CALayer+Ext.swift in Sources */,
 				B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */,
+				B57372E125DB062300CC541F /* BookClassViewController.swift in Sources */,
 				B55451CB25CC94AC00BCA984 /* ReuseIdentifiable.swift in Sources */,
+				B59BB57A25D43ADD00910962 /* AlamofireAdapter.swift in Sources */,
 				B54F6E4325CC4503002264C2 /* DateSelectorCell.swift in Sources */,
 				B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */,
 				B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */,
 				B54F6E3C25CC4503002264C2 /* WeekDay.swift in Sources */,
 				B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */,
+				B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */,
 				B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */,
 				B5CA0EE825D0749600CCCC22 /* WeekCalendarData.swift in Sources */,
 				B5D8AFC125CF56C40010CE47 /* DateObjectFactory.swift in Sources */,
@@ -954,6 +1002,14 @@
 				minimumVersion = 2.7.0;
 			};
 		};
+		B59BB57425D43AB200910962 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -966,6 +1022,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B5739F6525D0A654001E71B9 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */;
 			productName = SwinjectAutoregistration;
+		};
+		B59BB57525D43AB300910962 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B59BB57425D43AB200910962 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
