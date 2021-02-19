@@ -133,18 +133,21 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     // MARK: - Configure Gestures
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseIn, animations: { [weak self] in
+        super.touchesBegan(touches, with: event)
+        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: { [weak self] in
             self?.transform = CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95)
         }, completion: nil)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: { [weak self] in
             self?.transform = CGAffineTransform.identity
         }, completion: nil)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
         touchesEnded(touches, with: event)
     }
 }

@@ -13,6 +13,7 @@ class ScheduleViewController: UIViewController {
     private var weekCalendarView: WeekCalendarViewProtocol
     
     private var topCornerDateView: TopCornerDateView!
+    private let gymClassesView = ClassesScheduleView()
     
     private var pageNameLabel: UILabel = {
         let label = UILabel()
@@ -22,6 +23,7 @@ class ScheduleViewController: UIViewController {
         return label
     }()
     
+    let urlSession = URLSessionAdapter()
     
     // MARK: - Initialisation
     
@@ -40,10 +42,17 @@ class ScheduleViewController: UIViewController {
         
         view.backgroundColor = .energyBackgroundColor
         configureUI()
+        configureSubscriptions()
     }
     
     deinit {
         print("Deinit on \(String(describing: self))")
+    }
+    
+    
+    
+    private func configureSubscriptions() {
+        gymClassesView.delegate = self
     }
     
     // MARK: - Configure UI
@@ -91,22 +100,27 @@ class ScheduleViewController: UIViewController {
                         height: 78)
         
         /* Schedule collection view */
-        let classesView = ClassesScheduleView()
-        scheduleViewContainer.addSubview(classesView)
-        classesView.anchor(top: weekCalendarView.bottomAnchor, paddingTop: 30,
+        scheduleViewContainer.addSubview(gymClassesView)
+        gymClassesView.anchor(top: weekCalendarView.bottomAnchor, paddingTop: 30,
                            leading: scheduleViewContainer.leadingAnchor,
                            bottom: scheduleViewContainer.bottomAnchor,
                            trailing: scheduleViewContainer.trailingAnchor)
     }
-    
-    
-    
 }
 
 // MARK: - DateSelectedDelegate extension
 extension ScheduleViewController: DateSelectedDelegate {
     func onDateSelected(date: DateObject) {
         print("Selected date = \(date)")
+    }
+}
+
+extension ScheduleViewController: CellSelectedDelegate {
+    func onCellSelected() {
+        let bookVC = BookClassViewController()
+        bookVC.modalPresentationStyle = .fullScreen
+        present(bookVC, animated: true, completion: nil)
+        print("Cell Selected")
     }
 }
 

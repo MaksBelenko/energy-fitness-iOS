@@ -8,7 +8,13 @@
 import UIKit
 import SwiftUI
 
+protocol CellSelectedDelegate: AnyObject {
+    func onCellSelected()
+}
+
 class ClassesScheduleView: UIView {
+    
+    weak var delegate: CellSelectedDelegate?
     
     private var reuseIdentifier: String!
     
@@ -107,19 +113,10 @@ extension ClassesScheduleView: UICollectionViewDelegateFlowLayout {
 // MARK: - UICollectionViewDelegate
 extension ClassesScheduleView: UICollectionViewDelegate {
 
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let cell = collectionView.cellForItem(at: indexPath)!
-//        UIView.animate(withDuration: 0.1,  animations: {
-//            cell.transform = CGAffineTransform.identity.scaledBy(x: 0.95, y: 0.95)
-//        }, completion: nil)
-////        animate(cell, transform: CGAffineTransform.identity.scaledBy(x: 0.85, y: 0.85))
-//    }
-    
-//    private func animate(_ view: UIView, transform: CGAffineTransform) {
-//        UIView.animate(withDuration: 0.1,  animations: {
-//            view.transform = transform
-//        }, completion: nil)
-//    }
+        delegate?.onCellSelected()
+    }
     
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking

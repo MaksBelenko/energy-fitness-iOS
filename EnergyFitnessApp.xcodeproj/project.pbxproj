@@ -18,6 +18,7 @@
 		B527C90A25CC74A600342113 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E6125CC7038002264C2 /* Raleway-Thin.ttf */; };
 		B527C90D25CC7DD200342113 /* ScheduleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */; };
 		B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90F25CC7E4000342113 /* ScheduleCell.swift */; };
+		B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543EDCA25DEE13D00710FCC /* URLCombine.swift */; };
 		B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E1F25CC44EC002264C2 /* WeekViewBuilder.swift */; };
 		B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2325CC44FA002264C2 /* LayoutAttrHelper.swift */; };
 		B54F6E2725CC44FA002264C2 /* WeekCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E2425CC44FA002264C2 /* WeekCalendarView.swift */; };
@@ -73,6 +74,8 @@
 		B5A3870A25CA08BF000883E0 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A386FE25CA08BF000883E0 /* Roboto-Regular.ttf */; };
 		B5A3870C25CA08BF000883E0 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5A3870025CA08BF000883E0 /* Roboto-Medium.ttf */; };
 		B5A3872825CA2FCA000883E0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A3872A25CA2FCA000883E0 /* Localizable.strings */; };
+		B5AB32AB25DEFED6003E950F /* GradientImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB32AA25DEFED6003E950F /* GradientImageView.swift */; };
+		B5BCFF1C25DFD2A4007746F8 /* ButtonAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */; };
 		B5CA0ED525CF597700CCCC22 /* MockMonthFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA0ED425CF597700CCCC22 /* MockMonthFactory.swift */; };
 		B5CA0EDB25D05EA500CCCC22 /* DateObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA0EDA25D05EA500CCCC22 /* DateObjectTests.swift */; };
 		B5CA0EDF25D06B1C00CCCC22 /* WeekCalendarViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA0EDE25D06B1C00CCCC22 /* WeekCalendarViewModelTests.swift */; };
@@ -98,6 +101,7 @@
 /* Begin PBXFileReference section */
 		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
 		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
+		B543EDCA25DEE13D00710FCC /* URLCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCombine.swift; sourceTree = "<group>"; };
 		B54F6E1F25CC44EC002264C2 /* WeekViewBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekViewBuilder.swift; sourceTree = "<group>"; };
 		B54F6E2325CC44FA002264C2 /* LayoutAttrHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttrHelper.swift; sourceTree = "<group>"; };
 		B54F6E2425CC44FA002264C2 /* WeekCalendarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekCalendarView.swift; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 		B5A3871925CA2B1E000883E0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		B5A3872925CA2FCA000883E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A3872C25CA2FD0000883E0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B5AB32AA25DEFED6003E950F /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
+		B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimations.swift; sourceTree = "<group>"; };
 		B5CA0ED425CF597700CCCC22 /* MockMonthFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMonthFactory.swift; sourceTree = "<group>"; };
 		B5CA0EDA25D05EA500CCCC22 /* DateObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectTests.swift; sourceTree = "<group>"; };
 		B5CA0EDE25D06B1C00CCCC22 /* WeekCalendarViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCalendarViewModelTests.swift; sourceTree = "<group>"; };
@@ -237,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				B55451CA25CC94AC00BCA984 /* ReuseIdentifiable.swift */,
+				B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -245,11 +252,12 @@
 			isa = PBXGroup;
 			children = (
 				B59BB59225D48E8600910962 /* Wrappers */,
-				B59BB58B25D447BD00910962 /* ResponseDto */,
+				B59BB58B25D447BD00910962 /* ServerResponseDto */,
 				B59BB58125D43BBB00910962 /* NetworkConst.swift */,
 				B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */,
 				B59BB57925D43ADD00910962 /* AlamofireAdapter.swift */,
 				B59BB58725D4436500910962 /* URLSessionAdapter.swift */,
+				B543EDCA25DEE13D00710FCC /* URLCombine.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -406,12 +414,12 @@
 			path = "energy-fitness-ios";
 			sourceTree = "<group>";
 		};
-		B59BB58B25D447BD00910962 /* ResponseDto */ = {
+		B59BB58B25D447BD00910962 /* ServerResponseDto */ = {
 			isa = PBXGroup;
 			children = (
 				B59BB58C25D447E800910962 /* GymClassDto.swift */,
 			);
-			path = ResponseDto;
+			path = ServerResponseDto;
 			sourceTree = "<group>";
 		};
 		B59BB59225D48E8600910962 /* Wrappers */ = {
@@ -456,6 +464,7 @@
 				B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */,
 				B527C90F25CC7E4000342113 /* ScheduleCell.swift */,
 				B573867625D1DC9D002ECC4D /* ShimmerScheduleCell.swift */,
+				B5AB32AA25DEFED6003E950F /* GradientImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -687,6 +696,7 @@
 				B59BB58825D4436500910962 /* URLSessionAdapter.swift in Sources */,
 				B54F6E3E25CC4503002264C2 /* MonthData.swift in Sources */,
 				B598E62A258140FF0068DB9E /* ScheduleViewController.swift in Sources */,
+				B5AB32AB25DEFED6003E950F /* GradientImageView.swift in Sources */,
 				B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */,
 				B54F6E4525CC4503002264C2 /* WeekCalendarViewModel.swift in Sources */,
 				B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */,
@@ -697,6 +707,7 @@
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
+				B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */,
 				B59BB58225D43BBB00910962 /* NetworkConst.swift in Sources */,
 				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,
 				B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */,
@@ -714,6 +725,7 @@
 				B54F6E3C25CC4503002264C2 /* WeekDay.swift in Sources */,
 				B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */,
 				B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */,
+				B5BCFF1C25DFD2A4007746F8 /* ButtonAnimations.swift in Sources */,
 				B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */,
 				B5CA0EE825D0749600CCCC22 /* WeekCalendarData.swift in Sources */,
 				B5D8AFC125CF56C40010CE47 /* DateObjectFactory.swift in Sources */,

@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum NetworkError: Error {
+    case decodingError(message: String)
+}
+
 class URLSessionAdapter: NetworkAdapterProtocol {
     
     // TODO: Put in DI properties below
@@ -15,34 +19,61 @@ class URLSessionAdapter: NetworkAdapterProtocol {
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
         configuration.waitsForConnectivity = false
-
+        
         return URLSession(configuration: configuration)
     }()
     
+    let networkConstants = NetworkConstants()
     
     
-    func request<T: Decodable>(url: URL, _ returnType: T.Type) {
-        let url = URL(string: "http://localhost:3000/api/gym-classes/")!
-        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5)
+    
+    func request<T: Decodable>(method: HttpNetworkMethod, apiRoute: ApiRoute, returnType: T.Type, completion: @escaping (T) -> ()) throws {
+        let urlString = networkConstants.baseUrl + apiRoute.rawValue
         
-//        session
-//                    .request(url: request)
-//                    .decoded()
-//                    .saved(in: database)
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5)
+        request.httpMethod = method.rawValue
         
         let task = session.dataTask(with: request) { [weak self] data, response, error in
             
-//            debugPrint("Data: \(data)")
-//            debugPrint("Response: \(response)")
-            
             do {
-                let gymClass = try self?.jsonDecoder.decode(returnType, from: data!)
-                debugPrint(gymClass)
+                let requestResult = try self?.jsonDecoder.decode(returnType, from: data!)
+                
+                guard let result = requestResult else {
+                    throw NetworkError.decodingError(message: "Could not decode message for data using type \(String(describing: T.self))")
+                }
+                
+                completion(result)
             } catch {
                 print("Error decoding")
             }
+        }
+        
+        task.resume()
+    }
+    
+    
+    func getOne<T: Decodable>(apiRoute: ApiRoute, itemId: String, returnType: T.Type, completion: @escaping (T) -> ()) {
+        let urlString = networkConstants.baseUrl + apiRoute.rawValue + "/" + itemId
+        
+        let url = URL(string: urlString)!
+        
+        let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5)
+        
+        let task = session.dataTask(with: request) { [weak self] data, response, error in
             
-            
+            do {
+                let requestResult = try self?.jsonDecoder.decode(returnType, from: data!)
+                
+                guard let result = requestResult else {
+                    throw NetworkError.decodingError(message: "Could not decode message for data from \(String(describing: T.self))")
+                }
+                
+                completion(result)
+            } catch {
+                print("Error decoding")
+            }
         }
         
         task.resume()

@@ -44,7 +44,6 @@ class TopCornerDateView: UIView {
         super.init(frame: frame)
         
         configureUI()
-        layoutSubviews()
     }
     
     

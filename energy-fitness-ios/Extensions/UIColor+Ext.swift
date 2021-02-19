@@ -42,6 +42,9 @@ extension UIColor {
     static let customCellDarkGray = UIColor(rgb: 0x1C1C1C)
     static let customShimmerLight = UIColor(rgb: 0xD6D6D6)
     static let customShimmerDark = UIColor(rgb: 0x2F2F2F)
+    static let customParagraphTextLight = UIColor(rgb: 0x808080)
+    static let customParagraphTextDark = UIColor(rgb: 0x909090)
+    
     
     static let energyBackgroundColor = UIColor.dynamic(light: .customLightGray, dark: .black)
     static let energyContainerColor = UIColor.dynamic(light: .white, dark: .customContainerDark)
@@ -53,6 +56,8 @@ extension UIColor {
     
     static let energyShimmerUnder = UIColor.dynamic(light: .customCellLightGray, dark: .customCellDarkGray)
     static let energyShimmer = UIColor.dynamic(light: .customShimmerLight, dark: .customShimmerDark)
+    
+    static let energyParagraphColor = UIColor.dynamic(light: customParagraphTextLight, dark: customParagraphTextDark)
     
     
     static let customBlue = UIColor(rgb: 0x0075EB)

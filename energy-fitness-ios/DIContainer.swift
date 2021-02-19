@@ -1,6 +1,6 @@
 //
 //  DIContainer.swift
-//  energy-fitness-ios
+//  energy-fitness-iOS
 //
 //  Created by Maksim on 06/02/2021.
 //
@@ -38,11 +38,9 @@ class DIContainer {
     
     // MARK: - WeekCalendar setup of container
     private func setupForWeekCalendar(using container: Container) {
-        
         container.autoregister(WeekdayFactoryProtocol.self, initializer: WeekdayFactory.init)
         container.autoregister(MonthFactoryProtocol.self, initializer: MonthFactory.init)
         container.autoregister(DateObjectFactoryProtocol.self, initializer: DateObjectFactory.init)
-        
         container.autoregister(WeekCalendarVMProtocol.self, initializer: WeekCalendarViewModel.init)
             .inObjectScope(.transient)
     
