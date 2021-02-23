@@ -7,13 +7,24 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 class ScheduleViewController: UIViewController {
-
+    
     private var weekCalendarView: WeekCalendarViewProtocol
     
     private var topCornerDateView: TopCornerDateView!
     private let gymClassesView = ClassesScheduleView()
+    
+    private lazy var filterButton: UIView = {
+        let view = UIView()
+        let icon = UIImageView()
+        icon.image = UIImage(systemName: "line.horizontal.3.decrease.circle")
+        icon.tintColor = .energyOrange
+        view.addSubview(icon)
+        icon.contain(in: view)
+        return view
+    }()
     
     private var pageNameLabel: UILabel = {
         let label = UILabel()
@@ -93,15 +104,21 @@ class ScheduleViewController: UIViewController {
         /* Week Calendar View */
         weekCalendarView.delegate = self
         
-        view.addSubview(weekCalendarView)
+        scheduleViewContainer.addSubview(weekCalendarView)
         weekCalendarView.anchor(top: scheduleViewContainer.topAnchor, paddingTop: 15,
                         leading: scheduleViewContainer.leadingAnchor, paddingLeading: 15,
                         trailing: scheduleViewContainer.trailingAnchor, paddingTrailing: 15,
                         height: 78)
         
+        /* Filter Button */
+        scheduleViewContainer.addSubview(filterButton)
+        filterButton.anchor(top: weekCalendarView.bottomAnchor, paddingTop: 5,
+                            trailing: scheduleViewContainer.trailingAnchor, paddingTrailing: 25,
+                            width: 30, height: 30)
+
         /* Schedule collection view */
         scheduleViewContainer.addSubview(gymClassesView)
-        gymClassesView.anchor(top: weekCalendarView.bottomAnchor, paddingTop: 30,
+        gymClassesView.anchor(top: filterButton.bottomAnchor, paddingTop: 5,
                            leading: scheduleViewContainer.leadingAnchor,
                            bottom: scheduleViewContainer.bottomAnchor,
                            trailing: scheduleViewContainer.trailingAnchor)

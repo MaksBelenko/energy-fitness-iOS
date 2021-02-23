@@ -55,6 +55,13 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: constant).isActive = true
     }
+    
+    func contain(in view: UIView) {
+        self.anchor(top: view.topAnchor,
+                    leading: view.leadingAnchor,
+                    bottom: view.bottomAnchor,
+                    trailing: view.trailingAnchor)
+    }
 }
 
 

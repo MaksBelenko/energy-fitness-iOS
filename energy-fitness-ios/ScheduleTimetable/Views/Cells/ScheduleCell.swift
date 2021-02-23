@@ -45,7 +45,7 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
     var trainerImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "personal_trainer_colour")
+        iv.image = #imageLiteral(resourceName: "zhgileva")
         iv.layer.masksToBounds = true
         return iv
     }()

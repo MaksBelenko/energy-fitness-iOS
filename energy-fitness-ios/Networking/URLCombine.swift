@@ -13,7 +13,7 @@ class URLCombine {
     private let urlSession = URLSession.shared
     private let jsonDecoder: IJsonDecoderWrapper = JSONDecoderWrapper()
     
-    func fetch<T: Decodable>() -> AnyPublisher<T, Error> {
+    func fetch<T: Decodable>(returnType: T.Type) -> AnyPublisher<T, Error> {
         
         let url = URL(string: "http://localhost:3000/api/gym-classes")!
         

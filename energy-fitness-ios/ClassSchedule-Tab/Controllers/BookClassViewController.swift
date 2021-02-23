@@ -80,7 +80,7 @@ class BookClassViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .energyOrange
         buttonAnimations.startAnimatingPressActions(for: button)
-        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 20, bottom: 14, right: 20)
+        button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 20, bottom: 17, right: 20)
         return button
     }()
     
