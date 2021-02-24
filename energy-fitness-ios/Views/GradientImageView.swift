@@ -11,7 +11,6 @@ import SwiftUI
 class GradientImageView: UIView {
 
     private let gradientHeightProportion: CGFloat = 1/4
-    private let gradientColours = [UIColor.clear.withAlphaComponent(0).cgColor, UIColor.energyBackgroundColor.cgColor]
     
     private lazy var photoIV: UIImageView = {
         let iv = UIImageView()
@@ -26,7 +25,7 @@ class GradientImageView: UIView {
     
     private lazy var gradientLayer: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = gradientColours
+        gradientLayer.colors = [UIColor.clear.withAlphaComponent(0).cgColor, UIColor.energyBackgroundColor.cgColor]
 //        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
 //        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
         gradientLayer.shouldRasterize = true
@@ -84,7 +83,7 @@ extension GradientImageView {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         if #available(iOS 13.0, *) {
             if (traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection)) {
-                gradientLayer.colors = gradientColours
+                gradientLayer.colors = [UIColor.clear.withAlphaComponent(0).cgColor, UIColor.energyBackgroundColor.cgColor]
             }
         }
     }

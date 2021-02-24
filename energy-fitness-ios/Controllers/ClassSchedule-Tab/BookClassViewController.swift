@@ -44,6 +44,7 @@ class BookClassViewController: UIViewController {
         textView.textContainerInset = UIEdgeInsets.zero
         textView.textContainer.lineFragmentPadding = 0
         textView.showsVerticalScrollIndicator = false
+        textView.isEditable = false
         return textView
     }()
     
@@ -90,6 +91,7 @@ class BookClassViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .energyBackgroundColor
         configureUI()
+        print("Stopping \(CFAbsoluteTimeGetCurrent())")
     }
 
     deinit {

@@ -66,6 +66,8 @@
 		B59BB58D25D447E800910962 /* GymClassDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB58C25D447E800910962 /* GymClassDto.swift */; };
 		B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB59325D48E9C00910962 /* JsonDecoderWrapper.swift */; };
 		B5A21B0A25E1CD3400B6F739 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A21B0925E1CD3400B6F739 /* NetworkService.swift */; };
+		B5A2CE9725E5D97E00776B25 /* LoggingExcluded.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A2CE9625E5D97E00776B25 /* LoggingExcluded.swift */; };
+		B5A2CE9C25E5DE2000776B25 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A2CE9B25E5DE2000776B25 /* Log.swift */; };
 		B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A386E525CA056C000883E0 /* UIView+Ext.swift */; };
 		B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */; };
 		B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A386F025CA0876000883E0 /* UIFont+Ext.swift */; };
@@ -162,6 +164,8 @@
 		B59BB58C25D447E800910962 /* GymClassDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymClassDto.swift; sourceTree = "<group>"; };
 		B59BB59325D48E9C00910962 /* JsonDecoderWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDecoderWrapper.swift; sourceTree = "<group>"; };
 		B5A21B0925E1CD3400B6F739 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		B5A2CE9625E5D97E00776B25 /* LoggingExcluded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingExcluded.swift; sourceTree = "<group>"; };
+		B5A2CE9B25E5DE2000776B25 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		B5A386E525CA056C000883E0 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCornerDateView.swift; sourceTree = "<group>"; };
 		B5A386F025CA0876000883E0 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
@@ -211,6 +215,10 @@
 		B520898925C8AC070026AF4A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */,
+				B5AB32AA25DEFED6003E950F /* GradientImageView.swift */,
+				B5FF272125E5BC1E003AB00B /* ScheduleTimetable */,
+				B56A25BF25CC4386006C223C /* WeekCalendar */,
 				B598E630258140FF0068DB9E /* LaunchScreen.storyboard */,
 			);
 			path = Views;
@@ -220,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				B59280DB25C9C805001D7AED /* MainTabBarController.swift */,
+				B5A386DF25CA03E4000883E0 /* ClassSchedule-Tab */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -241,6 +250,7 @@
 			children = (
 				B55451CA25CC94AC00BCA984 /* ReuseIdentifiable.swift */,
 				B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */,
+				B5A2CE9F25E5DE4300776B25 /* Logging */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -282,7 +292,6 @@
 		B54F6E2D25CC4503002264C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B5D8AFC425CF56D50010CE47 /* Factory */,
 				B54F6E2F25CC4503002264C2 /* Day.swift */,
 				B54F6E3025CC4503002264C2 /* MonthData.swift */,
 				B54F6E2E25CC4503002264C2 /* WeekDay.swift */,
@@ -346,6 +355,7 @@
 				B54F6E3825CC4503002264C2 /* ViewModels */,
 				B54F6E2225CC44FA002264C2 /* Views */,
 				B54F6E3525CC4503002264C2 /* Cells */,
+				B5D8AFC425CF56D50010CE47 /* Factory */,
 				B54F6E2D25CC4503002264C2 /* Models */,
 				B54F6E2A25CC4503002264C2 /* Utils */,
 			);
@@ -412,13 +422,10 @@
 				B569CDD725CE160500B1DBAE /* DIContainer.swift */,
 				B5A386F325CA0892000883E0 /* Fonts */,
 				B520898E25C8AC580026AF4A /* Networking */,
-				B520898925C8AC070026AF4A /* Views */,
 				B520898B25C8AC220026AF4A /* Controllers */,
+				B520898925C8AC070026AF4A /* Views */,
 				B520898D25C8AC420026AF4A /* Utils */,
 				B520898C25C8AC3A0026AF4A /* Extensions */,
-				B5A386DF25CA03E4000883E0 /* ClassSchedule-Tab */,
-				B5FF272125E5BC1E003AB00B /* ScheduleTimetable */,
-				B56A25BF25CC4386006C223C /* WeekCalendar */,
 			);
 			path = "energy-fitness-ios";
 			sourceTree = "<group>";
@@ -439,31 +446,22 @@
 			path = Wrappers;
 			sourceTree = "<group>";
 		};
-		B5A386DF25CA03E4000883E0 /* ClassSchedule-Tab */ = {
+		B5A2CE9F25E5DE4300776B25 /* Logging */ = {
 			isa = PBXGroup;
 			children = (
-				B5A386E425CA053E000883E0 /* Views */,
-				B5A386E025CA040C000883E0 /* Controllers */,
+				B5A2CE9B25E5DE2000776B25 /* Log.swift */,
+				B5A2CE9625E5D97E00776B25 /* LoggingExcluded.swift */,
 			);
-			path = "ClassSchedule-Tab";
+			path = Logging;
 			sourceTree = "<group>";
 		};
-		B5A386E025CA040C000883E0 /* Controllers */ = {
+		B5A386DF25CA03E4000883E0 /* ClassSchedule-Tab */ = {
 			isa = PBXGroup;
 			children = (
 				B598E629258140FF0068DB9E /* ScheduleViewController.swift */,
 				B57372E025DB062300CC541F /* BookClassViewController.swift */,
 			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		B5A386E425CA053E000883E0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */,
-				B5AB32AA25DEFED6003E950F /* GradientImageView.swift */,
-			);
-			path = Views;
+			path = "ClassSchedule-Tab";
 			sourceTree = "<group>";
 		};
 		B5A386F325CA0892000883E0 /* Fonts */ = {
@@ -737,12 +735,14 @@
 				B59BB57A25D43ADD00910962 /* AlamofireAdapter.swift in Sources */,
 				B54F6E4325CC4503002264C2 /* DateSelectorCell.swift in Sources */,
 				B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */,
+				B5A2CE9C25E5DE2000776B25 /* Log.swift in Sources */,
 				B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */,
 				B54F6E3C25CC4503002264C2 /* WeekDay.swift in Sources */,
 				B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */,
 				B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */,
 				B5BCFF1C25DFD2A4007746F8 /* ButtonAnimations.swift in Sources */,
 				B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */,
+				B5A2CE9725E5D97E00776B25 /* LoggingExcluded.swift in Sources */,
 				B5CA0EE825D0749600CCCC22 /* WeekCalendarData.swift in Sources */,
 				B5D8AFC125CF56C40010CE47 /* DateObjectFactory.swift in Sources */,
 			);
