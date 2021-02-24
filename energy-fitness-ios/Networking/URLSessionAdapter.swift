@@ -36,7 +36,7 @@ class URLSessionAdapter: NetworkAdapterProtocol {
         request.httpMethod = method.rawValue
         
         let task = session.dataTask(with: request) { [weak self] data, response, error in
-            
+//            dump(data!
             do {
                 let requestResult = try self?.jsonDecoder.decode(returnType, from: data!)
                 

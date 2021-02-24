@@ -7,10 +7,9 @@
 
 import Foundation
 
-struct GymClassDto: Decodable {
+struct GymClass: Decodable {
     let id: String
     let name: String
     let description: String
-//    let sessions: GymSessionDto[]
-//    let photos: PhotoDto[]
+    let photos: [Photo]
 }

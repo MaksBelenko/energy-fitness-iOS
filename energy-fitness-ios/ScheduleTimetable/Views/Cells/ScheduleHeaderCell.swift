@@ -8,12 +8,11 @@
 import UIKit
 import SwiftUI
 
-//protocol HeaderSchedule: UICollectionViewCell {
-//    var monthNameLabel: UILabel { get set }
-//}
+protocol ScheduleHeaderCellProtocol: ReuseIdentifiable {
+    func setTimeLabelText(to text: String)
+}
 
-class ScheduleHeaderCell: UICollectionViewCell, ReuseIdentifiable {
-    static let identifier = "MonthNameHeader"
+class ScheduleHeaderCell: UICollectionViewCell, ScheduleHeaderCellProtocol {
     
     private lazy var bgView: UIView = {
         let view = UIView()
@@ -21,7 +20,7 @@ class ScheduleHeaderCell: UICollectionViewCell, ReuseIdentifiable {
         return view
     }()
     
-    var monthNameLabel: UILabel = {
+    private var timeLabel: UILabel = {
         let label = UILabel()
         label.text = "time here --- "
         label.font = UIFont.helveticaNeue(ofSize: 18, weight: .medium)
@@ -47,11 +46,23 @@ class ScheduleHeaderCell: UICollectionViewCell, ReuseIdentifiable {
         addSubview(bgView)
         bgView.contain(in: self)
         
-        bgView.addSubview(monthNameLabel)
-        monthNameLabel.anchor(leading: bgView.leadingAnchor, paddingLeading: 15)
-        monthNameLabel.centerY(withView: bgView)
+        bgView.addSubview(timeLabel)
+        timeLabel.anchor(leading: bgView.leadingAnchor, paddingLeading: 15)
+        timeLabel.centerY(withView: bgView)
+    }
+    
+    
+    // MARK: - Public methods
+    func setTimeLabelText(to text: String) {
+        timeLabel.text = text
     }
 }
+
+
+
+
+
+
 
 
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------

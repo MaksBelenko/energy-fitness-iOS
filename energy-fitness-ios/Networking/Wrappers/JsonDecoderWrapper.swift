@@ -13,7 +13,12 @@ protocol IJsonDecoderWrapper {
 
 class JSONDecoderWrapper: IJsonDecoderWrapper {
     
-    private let decoder = JSONDecoder()
+    private let decoder: JSONDecoder = {
+        let d = JSONDecoder()
+        d.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+        // d.dateDecodingStrategy = .iso8601 <- not uses milliseconds
+        return d
+    }()
     
     
     func decode<T>(_ type: T.Type, from data: Data) throws -> T where T : Decodable {

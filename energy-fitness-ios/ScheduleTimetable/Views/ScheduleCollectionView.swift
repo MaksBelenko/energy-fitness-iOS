@@ -16,6 +16,8 @@ class ClassesScheduleView: UIView {
     
     weak var delegate: CellSelectedDelegate?
     
+    private var viewModel: ScheduleViewModel!
+    
     private var headerReuseIdentifier: String!
     private var realReuseIdentifier: String!
     private var shimmerReuseIdentifier: String!
@@ -44,24 +46,26 @@ class ClassesScheduleView: UIView {
         return collectionView
     }()
     
-//    var gradientLayer: CAGradientLayer = {
-//        let gradientLayer = CAGradientLayer()
-//        gradientLayer.colors = [UIColor.energyContainerColor.cgColor, UIColor.white.withAlphaComponent(0).cgColor]//Colors you want to add
-////        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-////        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-//        gradientLayer.shouldRasterize = true
-//        gradientLayer.frame = CGRect.zero
-//       return gradientLayer
-//    }()
-    
-    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         addSubview(scheduleCollectionView)
-        scheduleCollectionView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+        scheduleCollectionView.contain(in: self)
         
+        setupCells()
+        
+        /* Set View Model */
+        viewModel = ScheduleViewModel(cellReuseIdentifier: realReuseIdentifier,
+                                      shimmerReuseIdentifier: shimmerReuseIdentifier)
+        viewModel.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupCells() {
         headerReuseIdentifier = ScheduleHeaderCell.reuseIdentifier()
         scheduleCollectionView.register(ScheduleHeaderCell.self,
                                         forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -72,16 +76,6 @@ class ClassesScheduleView: UIView {
         
         shimmerReuseIdentifier = ShimmerScheduleCell.reuseIdentifier()
         scheduleCollectionView.register(ShimmerScheduleCell.self, forCellWithReuseIdentifier: shimmerReuseIdentifier)
-        
-//        layer.addSublayer(gradientLayer)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-//        gradientLayer.frame = CGRect(x: 0, y: 0, width: frame.width, height: 10)
     }
 }
 
@@ -89,19 +83,17 @@ class ClassesScheduleView: UIView {
 extension ClassesScheduleView: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 3
+        return viewModel.getNumberOfSections()
     }
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 6
+        return viewModel.getNumberOfItems(for: section)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: realReuseIdentifier, for: indexPath)
-        
+        let reuseIdentifier = viewModel.getCurrentReuseIdentifier()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         return cell
     }
 
@@ -116,7 +108,7 @@ extension ClassesScheduleView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! ScheduleHeaderCell
-//        header.monthNameLabel.text = viewModel.getMonthName(for: indexPath.section)
+        header.setTimeLabelText(to: viewModel.getTextForHeader(at: indexPath.section))
         return header
     }
     
@@ -137,8 +129,18 @@ extension ClassesScheduleView: UICollectionViewDelegate {
 //        let cell = collectionView.cellForItem(at: indexPath)!
         delegate?.onCellSelected()
     }
-
 }
+
+extension ClassesScheduleView: ScheduleViewModelDelegate {
+    func reloadData() {
+        scheduleCollectionView.reloadData()
+    }
+}
+
+
+
+
+
 
 
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------
