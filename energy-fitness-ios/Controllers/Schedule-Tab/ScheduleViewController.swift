@@ -1,19 +1,17 @@
 //
 //  ViewController.swift
-//  energy-fitness-ios
+//  energy-fitness-iOS
 //
 //  Created by Maksim on 09/12/2020.
 //
 
 import UIKit
 import SwiftUI
-import Combine
 
 class ScheduleViewController: UIViewController {
     
     private let weekCalendarView: WeekCalendarViewProtocol
     private let scheduleView: ScheduleViewProtocol
-    
     private var topCornerDateView: TopCornerDateView!
     
     private lazy var filterButton: UIView = {
@@ -61,7 +59,6 @@ class ScheduleViewController: UIViewController {
     
     deinit {
         Log.logDeinit(String(describing: self))
-//        print("Deinit on \(String(describing: self))")
     }
     
     
@@ -112,7 +109,7 @@ class ScheduleViewController: UIViewController {
         weekCalendarView.anchor(top: scheduleViewContainer.topAnchor, paddingTop: 15,
                         leading: scheduleViewContainer.leadingAnchor, paddingLeading: 15,
                         trailing: scheduleViewContainer.trailingAnchor, paddingTrailing: 15,
-                        height: 78)
+                        height: 73)
         
         /* Filter Button */
         scheduleViewContainer.addSubview(filterButton)

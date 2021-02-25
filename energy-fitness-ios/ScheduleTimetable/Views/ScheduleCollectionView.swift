@@ -61,9 +61,6 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         setupCells()
         
         /* Set View Model */
-//        viewModel = ScheduleViewModel()
-        self.viewModel.cellReuseIdentifier = realReuseIdentifier
-        self.viewModel.shimmerReuseIdentifier = shimmerReuseIdentifier
         self.viewModel.delegate = self
         self.viewModel.enableLoadingAnimation()
     }
@@ -80,9 +77,6 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         
         realReuseIdentifier = ScheduleCell.reuseIdentifier()
         scheduleCollectionView.register(ScheduleCell.self, forCellWithReuseIdentifier: realReuseIdentifier)
-        
-        shimmerReuseIdentifier = ShimmerScheduleCell.reuseIdentifier()
-        scheduleCollectionView.register(ShimmerScheduleCell.self, forCellWithReuseIdentifier: shimmerReuseIdentifier)
     }
 }
 
@@ -99,8 +93,9 @@ extension ScheduleView: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let reuseIdentifier = viewModel.getCurrentReuseIdentifier()
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: realReuseIdentifier, for: indexPath) as! ScheduleCell
+        cell.isTextLoading = true
+        cell.isImagesLoading = true
         return cell
     }
 
@@ -116,6 +111,7 @@ extension ScheduleView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! ScheduleHeaderCell
         header.setTimeLabelText(to: viewModel.getTextForHeader(at: indexPath.section))
+        header.isLoading = true
         return header
     }
     
@@ -143,6 +139,9 @@ extension ScheduleView: ScheduleViewModelDelegate {
         scheduleCollectionView.reloadData()
     }
 }
+
+
+
 
 
 

@@ -79,7 +79,7 @@ class DIContainer {
         
         container.register(WeekCalendarViewProtocol.self) { resolver in
             let weeCalendarVM = resolver.resolve(WeekCalendarVMProtocol.self)!
-            return WeekCalendarView.create(cellSpacing: 4, viewModel: weeCalendarVM)
+            return WeekCalendarView.create(cellSpacing: 6, viewModel: weeCalendarVM)
         }
         .inObjectScope(.transient)
     }

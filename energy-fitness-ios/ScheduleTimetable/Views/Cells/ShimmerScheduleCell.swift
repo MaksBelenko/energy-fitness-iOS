@@ -10,20 +10,7 @@ import SwiftUI
 
 class ShimmerScheduleCell: UICollectionViewCell, ReuseIdentifiable {
 
-    private let shimmerCycleDuration = 1.5 //sec
-    
-    private lazy var shimmerAnimation: CABasicAnimation = {
-        let animation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.locations))
-        animation.fromValue = [-1.0, -0.5, 0.0]
-        animation.toValue = [1.0, 1.5, 2.0]
-        animation.repeatCount = .infinity
-        animation.duration = shimmerCycleDuration
-        // sync the times for all cells
-        let ct = CACurrentMediaTime().truncatingRemainder(dividingBy: shimmerCycleDuration * 2)
-        animation.timeOffset = ct
-        
-        return animation
-    }()
+    private let rectCornerRadius: CGFloat = 3
     
     private var internalView: UIView = {
         let view = UIView()
@@ -66,87 +53,52 @@ class ShimmerScheduleCell: UICollectionViewCell, ReuseIdentifiable {
     }
     
     private func configureElements(in view: UIView) {
-        let classNameBox = createUnderView()
+        let classNameBox = ShimmerView(gradientColour: .energyShimmerUnder, gradientFrame: self.bounds)
+        classNameBox.backgroundColor = .energyShimmer
         view.addSubview(classNameBox)
         classNameBox.anchor(top: view.topAnchor, paddingTop: 10,
                             leading: view.leadingAnchor, paddingLeading: 19,
                             width: 166, height: 15)
         
-        let timeBox = createUnderView()
+        let timeBox = ShimmerView(gradientColour: .energyShimmerUnder, gradientFrame: self.bounds)
+        timeBox.backgroundColor = .energyShimmer
         view.addSubview(timeBox)
         timeBox.anchor(top: classNameBox.bottomAnchor, paddingTop: 8,
                        leading: classNameBox.leadingAnchor,
                        width: 127, height: 13)
 
-        let trainerImageBox = createUnderView()
+        let trainerImageBox = ShimmerView(gradientColour: .energyShimmerUnder, gradientFrame: self.bounds)
+        trainerImageBox.backgroundColor = .energyShimmer
         view.addSubview(trainerImageBox)
         trainerImageBox.anchor(top: timeBox.bottomAnchor, paddingTop: 9,
                                leading: classNameBox.leadingAnchor,
                                width: 27, height: 27)
 
-        let trainerNameBox = createUnderView()
+        let trainerNameBox = ShimmerView(gradientColour: .energyShimmerUnder, gradientFrame: self.bounds)
+        trainerNameBox.backgroundColor = .energyShimmer
         view.addSubview(trainerNameBox)
         trainerNameBox.centerY(withView: trainerImageBox)
         trainerNameBox.anchor(leading: trainerImageBox.trailingAnchor, paddingLeading: 10,
                               width: 93, height: 13)
 
-        layoutIfNeeded()
-        trainerImageBox.layer.cornerRadius = trainerImageBox.frame.height / 2
-
         view.addSubview(chevronArrow)
         chevronArrow.anchor(trailing: view.trailingAnchor, paddingTrailing: 20,
                             width: 15, height: 20)
         chevronArrow.centerY(withView: view)
-        
-        
-        addTopBox(for: classNameBox)
-        addTopBox(for: timeBox)
-        addTopBox(for: trainerImageBox)
-        addTopBox(for: trainerNameBox)
-    }
-    
-    private func createUnderView() -> UIView {
-        let view = UIView()
-        view.backgroundColor = .energyShimmer
-        return view
-    }
-    
-    //MARK: - Helpers
-    
-    private func addTopBox(for bottomView: UIView) {
-        let view = UIView()
-        view.backgroundColor = .energyShimmerUnder
-        addSubview(view)
-        view.anchor(top: bottomView.topAnchor,
-                    leading: bottomView.leadingAnchor,
-                    bottom: bottomView.bottomAnchor,
-                    trailing: bottomView.trailingAnchor)
 
-        addShimmerMask(to: view)
-    }
-
-
-    private func addShimmerMask(to view: UIView) {
-        let gradLayer = createGradientLayer()
-        view.layer.mask = gradLayer
-        gradLayer.add(shimmerAnimation, forKey: shimmerAnimation.keyPath)
+        layoutIfNeeded()
+        trainerImageBox.layer.cornerRadius = trainerImageBox.frame.height / 2
     }
     
-    
-    func createGradientLayer() -> CAGradientLayer {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.bounds
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.energyShimmerUnder.cgColor, UIColor.clear.cgColor]
-        gradientLayer.locations = [0.0, 0.5, 1.0]
-        self.layer.addSublayer(gradientLayer)
-//        gradientLayer.shouldRasterize = true
-        
-        return gradientLayer
-    }
-
 }
+
+
+
+
+
+
+
+
 
 
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------

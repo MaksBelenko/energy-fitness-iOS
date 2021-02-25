@@ -9,20 +9,34 @@ import UIKit
 import SwiftUI
 
 protocol ScheduleHeaderCellProtocol: ReuseIdentifiable {
+    var isLoading: Bool { get set }
     func setTimeLabelText(to text: String)
 }
 
 class ScheduleHeaderCell: UICollectionViewCell, ScheduleHeaderCellProtocol {
     
-    private lazy var bgView: UIView = {
+    var isLoading: Bool = true {
+        didSet {
+            shimmerView.isHidden = !isLoading
+            timeLabel.isHidden = isLoading
+        }
+    }
+    
+    private lazy var shimmerView: ShimmerView = {
+        let view = ShimmerView(gradientColour: .energyShimmerUnder, gradientFrame: self.bounds)
+        view.backgroundColor = .energyShimmer
+        return view
+    }()
+    
+    private let bgView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.energyContainerColor.withAlphaComponent(0.7)
         return view
     }()
     
-    private var timeLabel: UILabel = {
+    private let timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "time here --- "
+        label.text = "time here -"
         label.font = UIFont.helveticaNeue(ofSize: 18, weight: .medium)
         label.textColor = .energyOrange
         return label
@@ -49,6 +63,12 @@ class ScheduleHeaderCell: UICollectionViewCell, ScheduleHeaderCellProtocol {
         bgView.addSubview(timeLabel)
         timeLabel.anchor(leading: bgView.leadingAnchor, paddingLeading: 15)
         timeLabel.centerY(withView: bgView)
+        
+        addSubview(shimmerView)
+        shimmerView.anchor(top: timeLabel.topAnchor, paddingTop: 5,
+                                leading: timeLabel.leadingAnchor,
+                                bottom: timeLabel.bottomAnchor,
+                                width: 60)
     }
     
     

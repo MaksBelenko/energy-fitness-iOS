@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B507035825E8065F000FF843 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507035725E8065F000FF843 /* ShimmerView.swift */; };
+		B523CC7125E857980068D74A /* ShimmerScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */; };
 		B527C8FA25CC749000342113 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5925CC7037002264C2 /* Raleway-Black.ttf */; };
 		B527C8FC25CC749300342113 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5C25CC7038002264C2 /* Raleway-Bold.ttf */; };
 		B527C8FE25CC749600342113 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5B25CC7038002264C2 /* Raleway-ExtraBold.ttf */; };
@@ -44,7 +46,6 @@
 		B569CDD525CE142E00B1DBAE /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B569CDD425CE142E00B1DBAE /* Swinject */; };
 		B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569CDD725CE160500B1DBAE /* DIContainer.swift */; };
 		B57372E125DB062300CC541F /* BookClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57372E025DB062300CC541F /* BookClassViewController.swift */; };
-		B573867725D1DC9D002ECC4D /* ShimmerScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B573867625D1DC9D002ECC4D /* ShimmerScheduleCell.swift */; };
 		B5739F6725D0A654001E71B9 /* SwinjectAutoregistration in Frameworks */ = {isa = PBXBuildFile; productRef = B5739F6625D0A654001E71B9 /* SwinjectAutoregistration */; };
 		B5739F6C25D0B18B001E71B9 /* DateFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5739F6B25D0B18B001E71B9 /* DateFinderTests.swift */; };
 		B5739F7225D0B4A3001E71B9 /* MockWeekdayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5739F7125D0B4A3001E71B9 /* MockWeekdayFactory.swift */; };
@@ -110,6 +111,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B507035725E8065F000FF843 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
+		B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerScheduleCell.swift; sourceTree = "<group>"; };
 		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
 		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		B543EDCA25DEE13D00710FCC /* URLCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCombine.swift; sourceTree = "<group>"; };
@@ -150,7 +153,6 @@
 		B556D63025CF350300F39EDC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B569CDD725CE160500B1DBAE /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		B57372E025DB062300CC541F /* BookClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookClassViewController.swift; sourceTree = "<group>"; };
-		B573867625D1DC9D002ECC4D /* ShimmerScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerScheduleCell.swift; sourceTree = "<group>"; };
 		B5739F6B25D0B18B001E71B9 /* DateFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFinderTests.swift; sourceTree = "<group>"; };
 		B5739F7125D0B4A3001E71B9 /* MockWeekdayFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeekdayFactory.swift; sourceTree = "<group>"; };
 		B585773225E6DEF7006B21C3 /* TimePeriodFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriodFormatter.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				B55451CA25CC94AC00BCA984 /* ReuseIdentifiable.swift */,
 				B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */,
 				B585773225E6DEF7006B21C3 /* TimePeriodFormatter.swift */,
+				B507035725E8065F000FF843 /* ShimmerView.swift */,
 				B5A2CE9F25E5DE4300776B25 /* Logging */,
 			);
 			path = Utils;
@@ -274,9 +277,9 @@
 			children = (
 				B59BB59225D48E8600910962 /* Wrappers */,
 				B59BB58B25D447BD00910962 /* ServerResponseDto */,
+				B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */,
 				B59BB58125D43BBB00910962 /* NetworkConst.swift */,
 				B5A21B0925E1CD3400B6F739 /* NetworkService.swift */,
-				B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */,
 				B59BB57925D43ADD00910962 /* AlamofireAdapter.swift */,
 				B59BB58725D4436500910962 /* URLSessionAdapter.swift */,
 				B543EDCA25DEE13D00710FCC /* URLCombine.swift */,
@@ -390,7 +393,7 @@
 			children = (
 				B5CE877925E5995C00380FB4 /* ScheduleHeaderCell.swift */,
 				B527C90F25CC7E4000342113 /* ScheduleCell.swift */,
-				B573867625D1DC9D002ECC4D /* ShimmerScheduleCell.swift */,
+				B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -449,8 +452,8 @@
 				B520898925C8AC070026AF4A /* Views */,
 				B520898D25C8AC420026AF4A /* Utils */,
 				B520898C25C8AC3A0026AF4A /* Extensions */,
-				B56A25BF25CC4386006C223C /* WeekCalendar */,
 				B5FF272125E5BC1E003AB00B /* ScheduleTimetable */,
+				B56A25BF25CC4386006C223C /* WeekCalendar */,
 			);
 			path = "energy-fitness-ios";
 			sourceTree = "<group>";
@@ -739,7 +742,6 @@
 				B527C90D25CC7DD200342113 /* ScheduleCollectionView.swift in Sources */,
 				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
 				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,
-				B573867725D1DC9D002ECC4D /* ShimmerScheduleCell.swift in Sources */,
 				B585774225E7149B006B21C3 /* Trainer.swift in Sources */,
 				B54F6E3D25CC4503002264C2 /* Day.swift in Sources */,
 				B59BB57E25D43B1600910962 /* NetworkAdapterProtocol.swift in Sources */,
@@ -757,11 +759,13 @@
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
+				B523CC7125E857980068D74A /* ShimmerScheduleCell.swift in Sources */,
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
 				B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */,
 				B59BB58225D43BBB00910962 /* NetworkConst.swift in Sources */,
 				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,
+				B507035825E8065F000FF843 /* ShimmerView.swift in Sources */,
 				B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */,
 				B585773E25E71418006B21C3 /* Photo.swift in Sources */,
 				B585774825E7150F006B21C3 /* GymSession.swift in Sources */,

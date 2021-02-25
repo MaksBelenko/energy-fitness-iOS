@@ -6,18 +6,17 @@
 //
 
 import Foundation
+import Combine
 
 protocol ScheduleViewModelDelegate: AnyObject {
     func reloadData()
 }
 
 protocol ScheduleViewModelProtocol {
+//    var isTextLoading: Bool { get set }
     var delegate: ScheduleViewModelDelegate? { get set }
-    var cellReuseIdentifier: String! { get set }
-    var shimmerReuseIdentifier: String! { get set }
     
     func enableLoadingAnimation()
-    func getCurrentReuseIdentifier() -> String
     func getNumberOfSections() -> Int
     func getNumberOfItems(for section: Int) -> Int
     func getTextForHeader(at section: Int) -> String
@@ -29,13 +28,9 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     
     private let networkService: NetworkServiceProtocol
     
-    private var reuseIdentifier: String!
-    
-    var cellReuseIdentifier: String!
-    var shimmerReuseIdentifier: String!
-    
-//    private var gymClasses = [GymClass]()
     private var gymSessions = [GymSession]()
+    
+    var isTextLoading = PassthroughSubject<Bool, Never>()
     
     
     // MARK: - Lifecycle
@@ -49,8 +44,8 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     
     
     
+    // MARK: - Animation handling
     func enableLoadingAnimation() {
-        reuseIdentifier = shimmerReuseIdentifier
         delegate?.reloadData()
     }
     
@@ -71,20 +66,17 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     
     // MARK: - CollectionView related
     
-    func getCurrentReuseIdentifier() -> String {
-        return reuseIdentifier
-    }
-    
     func getNumberOfSections() -> Int {
-        return 1
+        return 2
     }
     
     func getNumberOfItems(for section: Int) -> Int {
-        if reuseIdentifier == cellReuseIdentifier {
-            return gymSessions.count
+//            return gymSessions.count
+        if section == 0 {
+            return 2
         }
         
-        return 8
+        return 3
     }
     
     func getTextForHeader(at section: Int) -> String {

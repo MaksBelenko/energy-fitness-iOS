@@ -19,6 +19,29 @@ protocol ScheduleCellProtocol: UICollectionViewCell, ReuseIdentifiable {
 
 class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
+    private var textShimmers = [UIView]()
+    private var imageShimmers = [UIView]()
+    
+    private var textLabels = [UIView]()
+    private var imageViews = [UIView]()
+    
+    var isTextLoading = true {
+        didSet {
+            textShimmers.forEach { $0.isHidden = !isTextLoading }
+            textLabels.forEach { $0.isHidden = isTextLoading }
+        }
+    }
+    
+    var isImagesLoading = true {
+        didSet {
+            imageShimmers.forEach { $0.isHidden = !isTextLoading }
+            imageViews.forEach { $0.isHidden = isTextLoading }
+        }
+    }
+    
+    // MARK: - Computed Views
+    private let imageWidth: CGFloat = 27
+    
     private var internalView: UIView = {
         let view = UIView()
         view.backgroundColor = .energyCellColour
@@ -78,16 +101,6 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    override func willMove(toWindow newWindow: UIWindow?) {
-//        super.willMove(toWindow: newWindow)
-//
-//        if newWindow == nil {
-//            // UIView disappear
-//        } else {
-//            // UIView appear
-//        }
-//    }
-    
     // MARK: - UI Configuration
     
     private func configureUI() {
@@ -99,6 +112,15 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
                             trailing: trailingAnchor, paddingTrailing: 10)
         
         configureElements(in: internalView)
+        addShimmers()
+        
+        textLabels = [
+            classNameLabel,
+            timeLabel,
+            trainerNameLabel,
+        ]
+        
+        imageViews = [ trainerImageView ]
     }
     
     
@@ -114,20 +136,51 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         view.addSubview(trainerImageView)
         trainerImageView.anchor(top: timeLabel.bottomAnchor, paddingTop: 9,
                                 leading: classNameLabel.leadingAnchor,
-                                width: 27, height: 27)
+                                width: imageWidth, height: imageWidth)
+        trainerImageView.layer.cornerRadius = imageWidth / 2
         
         view.addSubview(trainerNameLabel)
         trainerNameLabel.centerY(withView: trainerImageView)
         trainerNameLabel.anchor(leading: trainerImageView.trailingAnchor, paddingLeading: 10)
         
-        layoutIfNeeded()
-        trainerImageView.layer.masksToBounds = true
-        trainerImageView.layer.cornerRadius = trainerImageView.frame.height / 2
-        
         view.addSubview(chevronArrow)
         chevronArrow.anchor(trailing: view.trailingAnchor, paddingTrailing: 20,
                             width: 15, height: 20)
         chevronArrow.centerY(withView: view)
+        
+    }
+    
+    // MARK: - Shimmers
+    private func addShimmers() {
+        textShimmers = [
+            addShimmerView(for: classNameLabel, width: 166, topOffset: 3),
+            addShimmerView(for: timeLabel, width: 127, topOffset: 3),
+            addShimmerView(for: trainerNameLabel, width: 93, topOffset: 3),
+        ]
+        
+        let shimmerTrainerImageView = addShimmerView(for: trainerImageView)
+        shimmerTrainerImageView.layer.cornerRadius = imageWidth/2
+        
+        imageShimmers = [ shimmerTrainerImageView ]
+    }
+    
+    
+    private func addShimmerView(for view: UIView, width: CGFloat? = nil, topOffset: CGFloat = 0) -> UIView {
+        let shimmerView = ShimmerView(gradientColour: .energyShimmerUnder, gradientFrame: self.bounds)
+        shimmerView.backgroundColor = .energyShimmer
+        
+        self.addSubview(shimmerView)
+        shimmerView.anchor(top: view.topAnchor, paddingTop: topOffset,
+                           leading: view.leadingAnchor,
+                           bottom: view.bottomAnchor)
+        
+        if let width = width {
+            shimmerView.anchor(width: width)
+        } else {
+            shimmerView.anchor(trailing: view.trailingAnchor)
+        }
+        
+        return shimmerView
     }
     
     // MARK: - Configure Gestures
@@ -151,6 +204,15 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         touchesEnded(touches, with: event)
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------
