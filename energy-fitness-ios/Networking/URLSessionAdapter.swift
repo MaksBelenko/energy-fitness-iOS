@@ -11,10 +11,13 @@ enum NetworkError: Error {
     case decodingError(message: String)
 }
 
+
 class URLSessionAdapter: NetworkAdapterProtocol {
     
     // TODO: Put in DI properties below
-    private let jsonDecoder: IJsonDecoderWrapper = JSONDecoderWrapper()
+    private let networkConstants: NetworkConstants
+    private let jsonDecoder: IJsonDecoderWrapper
+
     private lazy var session: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
@@ -23,8 +26,12 @@ class URLSessionAdapter: NetworkAdapterProtocol {
         return URLSession(configuration: configuration)
     }()
     
-    let networkConstants = NetworkConstants()
     
+    
+    init(networkConstants: NetworkConstants, jsonDecoder: IJsonDecoderWrapper) {
+        self.networkConstants = networkConstants
+        self.jsonDecoder = jsonDecoder
+    }
     
     
     func request<T: Decodable>(method: HttpNetworkMethod, apiRoute: ApiRoute, returnType: T.Type, completion: @escaping (T) -> ()) throws {

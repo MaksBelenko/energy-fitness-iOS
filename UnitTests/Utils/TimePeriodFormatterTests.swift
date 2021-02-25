@@ -37,8 +37,9 @@ class TimePeriodFormatterTests: XCTestCase {
         
         let result = formatter.getTimePeriod(from: date, durationMins: 90)
         let expected = "11:00 AM - 12:30 PM"
+        let expected2 = "11:00 - 12:30"
         
-        XCTAssert(result == expected, "received \(result) but should be \(expected)")
+        XCTAssert((result == expected) || (result == expected2), "received \(result) but should be \(expected) or \(expected2)")
     }
 
 }

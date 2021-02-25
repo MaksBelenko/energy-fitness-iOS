@@ -11,10 +11,10 @@ import Combine
 
 class ScheduleViewController: UIViewController {
     
-    private var weekCalendarView: WeekCalendarViewProtocol
+    private let weekCalendarView: WeekCalendarViewProtocol
+    private let scheduleView: ScheduleViewProtocol
     
     private var topCornerDateView: TopCornerDateView!
-    private let gymClassesView = ClassesScheduleView()
     
     private lazy var filterButton: UIView = {
         let view = UIView()
@@ -34,18 +34,21 @@ class ScheduleViewController: UIViewController {
         return label
     }()
     
-    let urlSession = URLSessionAdapter()
+    // MARK: - Lifecycle
     
-    // MARK: - Initialisation
-    
-    init(weekCalendarView: WeekCalendarViewProtocol) {
+    init(
+        weekCalendarView: WeekCalendarViewProtocol,
+        scheduleView: ScheduleViewProtocol
+    ) {
         self.weekCalendarView = weekCalendarView
+        self.scheduleView = scheduleView
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     override func viewDidLoad() {
         print("Loaded")
@@ -57,13 +60,14 @@ class ScheduleViewController: UIViewController {
     }
     
     deinit {
-        print("Deinit on \(String(describing: self))")
+        Log.logDeinit(String(describing: self))
+//        print("Deinit on \(String(describing: self))")
     }
     
     
     
     private func configureSubscriptions() {
-        gymClassesView.delegate = self
+        scheduleView.delegate = self
     }
     
     // MARK: - Configure UI
@@ -117,8 +121,8 @@ class ScheduleViewController: UIViewController {
                             width: 30, height: 30)
 
         /* Schedule collection view */
-        scheduleViewContainer.addSubview(gymClassesView)
-        gymClassesView.anchor(top: filterButton.bottomAnchor, paddingTop: 5,
+        scheduleViewContainer.addSubview(scheduleView)
+        scheduleView.anchor(top: filterButton.bottomAnchor, paddingTop: 5,
                            leading: scheduleViewContainer.leadingAnchor,
                            bottom: scheduleViewContainer.bottomAnchor,
                            trailing: scheduleViewContainer.trailingAnchor)

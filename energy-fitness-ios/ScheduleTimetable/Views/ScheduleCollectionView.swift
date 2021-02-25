@@ -12,17 +12,21 @@ protocol CellSelectedDelegate: AnyObject {
     func onCellSelected()
 }
 
-class ClassesScheduleView: UIView {
+protocol ScheduleViewProtocol: UIView {
+    var delegate: CellSelectedDelegate? { get set }
+}
+
+class ScheduleView: UIView, ScheduleViewProtocol {
     
     weak var delegate: CellSelectedDelegate?
     
-    private var viewModel: ScheduleViewModel!
+    private var viewModel: ScheduleViewModelProtocol
     
     private var headerReuseIdentifier: String!
     private var realReuseIdentifier: String!
     private var shimmerReuseIdentifier: String!
     
-    private lazy var collectionViewFlLayout: UICollectionViewFlowLayout = {
+    private lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.sectionHeadersPinToVisibleBounds = true
         layout.minimumLineSpacing = 2
@@ -32,7 +36,7 @@ class ClassesScheduleView: UIView {
     }()
     
     private lazy var scheduleCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlLayout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
         collectionView.isScrollEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isPagingEnabled = false
@@ -47,8 +51,9 @@ class ClassesScheduleView: UIView {
     }()
     
     // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: ScheduleViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         
         addSubview(scheduleCollectionView)
         scheduleCollectionView.contain(in: self)
@@ -56,9 +61,11 @@ class ClassesScheduleView: UIView {
         setupCells()
         
         /* Set View Model */
-        viewModel = ScheduleViewModel(cellReuseIdentifier: realReuseIdentifier,
-                                      shimmerReuseIdentifier: shimmerReuseIdentifier)
-        viewModel.delegate = self
+//        viewModel = ScheduleViewModel()
+        self.viewModel.cellReuseIdentifier = realReuseIdentifier
+        self.viewModel.shimmerReuseIdentifier = shimmerReuseIdentifier
+        self.viewModel.delegate = self
+        self.viewModel.enableLoadingAnimation()
     }
     
     required init?(coder: NSCoder) {
@@ -80,7 +87,7 @@ class ClassesScheduleView: UIView {
 }
 
 // MARK: - UICollectionViewDataSource
-extension ClassesScheduleView: UICollectionViewDataSource {
+extension ScheduleView: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewModel.getNumberOfSections()
@@ -100,7 +107,7 @@ extension ClassesScheduleView: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension ClassesScheduleView: UICollectionViewDelegateFlowLayout {
+extension ScheduleView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = self.frame.width
         return CGSize(width: width - 5, height: 100)
@@ -123,7 +130,7 @@ extension ClassesScheduleView: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - UICollectionViewDelegate
-extension ClassesScheduleView: UICollectionViewDelegate {
+extension ScheduleView: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let cell = collectionView.cellForItem(at: indexPath)!
@@ -131,7 +138,7 @@ extension ClassesScheduleView: UICollectionViewDelegate {
     }
 }
 
-extension ClassesScheduleView: ScheduleViewModelDelegate {
+extension ScheduleView: ScheduleViewModelDelegate {
     func reloadData() {
         scheduleCollectionView.reloadData()
     }
@@ -149,7 +156,9 @@ struct ClassesScheduleView_IntegratedCell: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> some UIView {
-        return ClassesScheduleView()
+        let container = DIContainer.staticContainerSwiftUIPreviews
+        let viewModel = container.resolve(ScheduleViewModelProtocol.self)!
+        return ScheduleView(viewModel: viewModel)
     }
 }
 

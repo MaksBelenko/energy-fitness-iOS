@@ -41,9 +41,9 @@ class Log {
     /// - Parameters:
     ///   - name: name of the Object (ie "String(describing: self)" )
     ///   - file: DON'T fill (automatically gets the filename)
-    static func logDeinit(_ name: String, file: String = #file) {
+    static func logDeinit(_ name: Any, file: String = #file) {
         let fileName = file.components(separatedBy: "/").last ?? "unknown_filename"
-        print("Deinit Called - [\(fileName)]")
+        print("Deinit Called for \(name) - [\(fileName)]")
     }
     
 }

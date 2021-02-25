@@ -11,43 +11,59 @@ protocol ScheduleViewModelDelegate: AnyObject {
     func reloadData()
 }
 
-class ScheduleViewModel {
+protocol ScheduleViewModelProtocol {
+    var delegate: ScheduleViewModelDelegate? { get set }
+    var cellReuseIdentifier: String! { get set }
+    var shimmerReuseIdentifier: String! { get set }
+    
+    func enableLoadingAnimation()
+    func getCurrentReuseIdentifier() -> String
+    func getNumberOfSections() -> Int
+    func getNumberOfItems(for section: Int) -> Int
+    func getTextForHeader(at section: Int) -> String
+}
+
+class ScheduleViewModel: ScheduleViewModelProtocol {
     
     weak var delegate: ScheduleViewModelDelegate?
-    private let networkService = NetworkService()
+    
+    private let networkService: NetworkServiceProtocol
     
     private var reuseIdentifier: String!
     
-    private let cellReuseIdentifier: String
-    private let shimmerReuseIdentifier: String
+    var cellReuseIdentifier: String!
+    var shimmerReuseIdentifier: String!
     
 //    private var gymClasses = [GymClass]()
     private var gymSessions = [GymSession]()
     
     
-    init(cellReuseIdentifier: String, shimmerReuseIdentifier: String) {
-        self.cellReuseIdentifier = cellReuseIdentifier
-        self.shimmerReuseIdentifier = shimmerReuseIdentifier
-        
-        startLoadingAnimation()
-        fetchGymClasses()
+    // MARK: - Lifecycle
+    init(networkService: NetworkServiceProtocol) {
+        self.networkService = networkService
     }
     
-    private func startLoadingAnimation() {
+    deinit {
+        Log.logDeinit(String(describing: self))
+    }
+    
+    
+    
+    func enableLoadingAnimation() {
         reuseIdentifier = shimmerReuseIdentifier
         delegate?.reloadData()
     }
     
-    private func fetchGymClasses() {
+    func fetchGymClasses() {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.networkService.getAllSessions { [weak self] sessions in
-                guard let self = self else { return }
-//                self.gymSessions = sessions
-                self.reuseIdentifier = self.cellReuseIdentifier
-                DispatchQueue.main.async {
-                    self.delegate?.reloadData()
-                }
-            }
+//            self.networkService.getAllSessions { [weak self] sessions in
+//                guard let self = self else { return }
+////                self.gymSessions = sessions
+//                self.reuseIdentifier = self.cellReuseIdentifier
+//                DispatchQueue.main.async {
+//                    self.delegate?.reloadData()
+//                }
+//            }
 //        }
     }
     

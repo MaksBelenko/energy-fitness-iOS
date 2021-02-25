@@ -21,7 +21,10 @@ class DIContainer {
     
     func setupContainer(using container: Container) {
         
+        setupForNetworking(using: container)
         setupForWeekCalendar(using: container)
+        setupForScheduleView(using: container)
+        
         
         container.autoregister(ScheduleViewController.self, initializer: ScheduleViewController.init)
             .inObjectScope(.transient)
@@ -35,6 +38,26 @@ class DIContainer {
         }
 //        .inObjectScope(.transient)
     }
+    
+    // MARK: - Networking setup of container
+    private func setupForNetworking(using container: Container) {
+        container.autoregister(NetworkConstants.self, initializer: NetworkConstants.init)
+        container.autoregister(IJsonDecoderWrapper.self, initializer: JSONDecoderWrapper.init)
+        container.autoregister(NetworkAdapterProtocol.self, initializer: URLSessionAdapter.init)
+        container.autoregister(NetworkServiceProtocol.self, initializer: NetworkService.init)
+    }
+    
+    
+    // MARK: - ScheduleView setup of container
+    private func setupForScheduleView(using container: Container) {
+        container.autoregister(ScheduleViewProtocol.self, initializer: ScheduleView.init)
+            .inObjectScope(.transient)
+        
+        container.autoregister(ScheduleViewModelProtocol.self, initializer: ScheduleViewModel.init)
+            .inObjectScope(.transient)
+    }
+    
+    
     
     // MARK: - WeekCalendar setup of container
     private func setupForWeekCalendar(using container: Container) {

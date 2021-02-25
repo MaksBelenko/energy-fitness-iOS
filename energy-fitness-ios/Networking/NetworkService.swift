@@ -8,11 +8,19 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
+    func getAllGymClasses(completion: @escaping ([GymClass]) -> ())
+    func getAllSessions(completion: @escaping ([GymSession]) -> ())
+    func getAllTrainers(completion: @escaping ([Trainer]) -> ())
 }
 
 class NetworkService: NetworkServiceProtocol {
     
-    private let networkAdapter = URLSessionAdapter()
+    private let networkAdapter: NetworkAdapterProtocol
+    
+    init(networkAdapter: NetworkAdapterProtocol) {
+        self.networkAdapter = networkAdapter
+    }
+    
     
     func getAllGymClasses(completion: @escaping ([GymClass]) -> ()) {
         try! networkAdapter.request(method: .get, apiRoute: .GymClasses, returnType: [GymClass].self, completion: completion)

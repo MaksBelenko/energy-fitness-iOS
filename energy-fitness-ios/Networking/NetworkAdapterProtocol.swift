@@ -6,4 +6,5 @@
 //
 
 protocol NetworkAdapterProtocol {
+    func request<T: Decodable>(method: HttpNetworkMethod, apiRoute: ApiRoute, returnType: T.Type, completion: @escaping (T) -> ()) throws
 }
