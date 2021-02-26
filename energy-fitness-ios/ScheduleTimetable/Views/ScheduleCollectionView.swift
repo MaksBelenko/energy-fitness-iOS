@@ -24,7 +24,12 @@ class ScheduleView: UIView, ScheduleViewProtocol {
     
     private var headerReuseIdentifier: String!
     private var realReuseIdentifier: String!
-    private var shimmerReuseIdentifier: String!
+    
+    private let noSessionView: NoSessionView = {
+        let view = NoSessionView()
+        view.isHidden = false
+        return view
+    }()
     
     private lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -55,10 +60,10 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         self.viewModel = viewModel
         super.init(frame: .zero)
         
-        addSubview(scheduleCollectionView)
-        scheduleCollectionView.contain(in: self)
-        
+        configureUI()
         setupCells()
+        
+        scheduleCollectionView.isHidden = true
         
         /* Set View Model */
         self.viewModel.delegate = self
@@ -77,6 +82,21 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         
         realReuseIdentifier = ScheduleCell.reuseIdentifier()
         scheduleCollectionView.register(ScheduleCell.self, forCellWithReuseIdentifier: realReuseIdentifier)
+    }
+    
+    
+    private func configureUI() {
+        addSubview(scheduleCollectionView)
+        scheduleCollectionView.contain(in: self)
+        
+        addSubview(noSessionView)
+        noSessionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noSessionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
+            noSessionView.heightAnchor.constraint(equalToConstant: 180),
+            noSessionView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            noSessionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30)
+        ])
     }
 }
 

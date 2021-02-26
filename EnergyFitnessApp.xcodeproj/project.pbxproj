@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B507035825E8065F000FF843 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507035725E8065F000FF843 /* ShimmerView.swift */; };
 		B523CC7125E857980068D74A /* ShimmerScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */; };
+		B523CC7525E877710068D74A /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7425E877710068D74A /* NoSessionView.swift */; };
 		B527C8FA25CC749000342113 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5925CC7037002264C2 /* Raleway-Black.ttf */; };
 		B527C8FC25CC749300342113 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5C25CC7038002264C2 /* Raleway-Bold.ttf */; };
 		B527C8FE25CC749600342113 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5B25CC7038002264C2 /* Raleway-ExtraBold.ttf */; };
@@ -113,6 +114,7 @@
 /* Begin PBXFileReference section */
 		B507035725E8065F000FF843 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerScheduleCell.swift; sourceTree = "<group>"; };
+		B523CC7425E877710068D74A /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
 		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		B543EDCA25DEE13D00710FCC /* URLCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCombine.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */,
 				B5AB32AA25DEFED6003E950F /* GradientImageView.swift */,
 				B598E630258140FF0068DB9E /* LaunchScreen.storyboard */,
+				B523CC7425E877710068D74A /* NoSessionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -788,6 +791,7 @@
 				B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */,
 				B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */,
 				B5BCFF1C25DFD2A4007746F8 /* ButtonAnimations.swift in Sources */,
+				B523CC7525E877710068D74A /* NoSessionView.swift in Sources */,
 				B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */,
 				B585773325E6DEF7006B21C3 /* TimePeriodFormatter.swift in Sources */,
 				B5A2CE9725E5D97E00776B25 /* LoggingExcluded.swift in Sources */,
