@@ -183,7 +183,7 @@ struct BookClassViewController_Previews: PreviewProvider {
             
             BookClassViewControllerPreviewController()
                 .previewDevice("iPhone 8")
-                .preferredColorScheme(.light)
+                .preferredColorScheme(.dark)
         }
     }
 }

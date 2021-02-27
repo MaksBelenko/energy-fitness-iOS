@@ -7,17 +7,21 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 protocol ScheduleCellProtocol: UICollectionViewCell, ReuseIdentifiable {
-    var classNameLabel: UILabel { get set }
-    var timeLabel: UILabel { get set }
-    var trainerImageView: UIImageView { get set }
-    var trainerNameLabel: UILabel { get set }
+//    var classNameLabel: UILabel { get set }
+//    var timeLabel: UILabel { get set }
+//    var trainerImageView: UIImageView { get set }
+//    var trainerNameLabel: UILabel { get set }
 }
 
 //extension ScheduleCell: ReuseIdentifiable {}
 
 class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
+    
+    private var viewModel: ScheduleCellViewModelProtocol!
+    private var subscription: AnyCancellable!
     
     private var textShimmers = [UIView]()
     private var imageShimmers = [UIView]()
@@ -50,7 +54,7 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         return view
     }()
     
-    var classNameLabel: UILabel = {
+    private var classNameLabel: UILabel = {
         let label = UILabel()
         label.text = "CrossFit"
         label.font = UIFont.classNameHeader(ofSize: 20)
@@ -58,7 +62,7 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         return label
     }()
     
-    var timeLabel: UILabel = {
+    private var timeLabel: UILabel = {
         let label = UILabel()
         label.text = "11:00 am - 12:00 pm"
         label.font = UIFont.scheduleParagraph(ofSize: 14)
@@ -66,14 +70,14 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         return label
     }()
     
-    var trainerImageView: UIImageView = {
+    private var trainerImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = #imageLiteral(resourceName: "zhgileva")
         iv.layer.masksToBounds = true
         return iv
     }()
     
-    var trainerNameLabel: UILabel = {
+    private var trainerNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Жгилева E."
         label.font = UIFont.scheduleParagraph(ofSize: 13)
@@ -101,6 +105,20 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        Log.logDeinit(String(describing: self))
+    }
+    
+    // MARK: - Set ViewModel
+    
+    func setViewModel(to viewModel: ScheduleCellViewModelProtocol) {
+        self.viewModel = viewModel
+        
+        subscription = viewModel.isTextLoading
+                            .assignOnUnowned(to: \.isTextLoading, on: self)
+//            .store(in: &subscriptions)
+    }
+    
     // MARK: - UI Configuration
     
     private func configureUI() {
@@ -114,12 +132,7 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         configureElements(in: internalView)
         addShimmers()
         
-        textLabels = [
-            classNameLabel,
-            timeLabel,
-            trainerNameLabel,
-        ]
-        
+        textLabels = [ classNameLabel, timeLabel, trainerNameLabel ]
         imageViews = [ trainerImageView ]
     }
     

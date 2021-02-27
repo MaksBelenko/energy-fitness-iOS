@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 protocol CellSelectedDelegate: AnyObject {
     func onCellSelected()
@@ -27,7 +28,7 @@ class ScheduleView: UIView, ScheduleViewProtocol {
     
     private let noSessionView: NoSessionView = {
         let view = NoSessionView()
-        view.isHidden = false
+        view.isHidden = true
         return view
     }()
     
@@ -55,6 +56,7 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         return collectionView
     }()
     
+    
     // MARK: - Lifecycle
     init(viewModel: ScheduleViewModelProtocol) {
         self.viewModel = viewModel
@@ -63,7 +65,8 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         configureUI()
         setupCells()
         
-        scheduleCollectionView.isHidden = true
+//        scheduleCollectionView.isScrollEnabled = false
+        
         
         /* Set View Model */
         self.viewModel.delegate = self
@@ -114,8 +117,10 @@ extension ScheduleView: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: realReuseIdentifier, for: indexPath) as! ScheduleCell
-        cell.isTextLoading = true
-        cell.isImagesLoading = true
+        let cellViewModel = viewModel.getViewModel(for: indexPath)
+        cell.setViewModel(to: cellViewModel)
+//        cell.isTextLoading = true
+//        cell.isImagesLoading = true
         return cell
     }
 

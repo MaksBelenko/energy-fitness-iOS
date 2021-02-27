@@ -15,11 +15,13 @@ class ShimmerView: UIView {
     private let gradientFrame: CGRect
     private let rectCornerRadius: CGFloat = 3
     
-    private lazy var shimmerAnimation: CABasicAnimation = {
-        let animation = CABasicAnimation(keyPath: #keyPath(CAGradientLayer.locations))
-        animation.fromValue = [-1.0, -0.5, 0.0]
-        animation.toValue = [1.0, 1.5, 2.0]
+    lazy var shimmerAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: "transform.translation.x")//#keyPath(CAGradientLayer.locations))
         animation.repeatCount = .infinity
+        animation.isRemovedOnCompletion = false
+        animation.fromValue = -gradientFrame.width
+        animation.toValue = gradientFrame.width/2
+        
         animation.duration = shimmerCycleDuration
         // sync the times for all cells
         let ct = CACurrentMediaTime().truncatingRemainder(dividingBy: shimmerCycleDuration * 2)
@@ -28,6 +30,19 @@ class ShimmerView: UIView {
         return animation
     }()
     
+    private lazy var gradientLayer: CAGradientLayer = {
+        let gradLayer = CAGradientLayer()
+        gradLayer.frame = gradientFrame
+        gradLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradLayer.colors = [UIColor.clear.cgColor, gradientColour.cgColor, UIColor.clear.cgColor]
+        gradLayer.locations = [0.0, 0.5, 1.0]
+
+        return gradLayer
+    }()
+    
+    
+    // MARK: - Init
     init(
         gradientColour: UIColor = .energyShimmerUnder,
         gradientFrame: CGRect
@@ -40,6 +55,7 @@ class ShimmerView: UIView {
         self.layer.masksToBounds = true
         
         addTopBox(for: self)
+        startAnimation()
     }
     
     required init?(coder: NSCoder) {
@@ -47,6 +63,17 @@ class ShimmerView: UIView {
     }
     
     
+    // MARK: - Public methods
+    func removeAnimation() {
+        gradientLayer.removeAnimation(forKey: shimmerAnimation.keyPath!)
+    }
+    
+    func startAnimation() {
+        gradientLayer.add(shimmerAnimation, forKey: shimmerAnimation.keyPath!)
+    }
+    
+    
+    // MARK: - Private methods
     private func addTopBox(for bottomView: UIView) {
         let view = UIView()
         view.backgroundColor = gradientColour
@@ -58,23 +85,8 @@ class ShimmerView: UIView {
 
 
     private func addShimmerMask(to view: UIView) {
-        let gradLayer = createGradientLayer()
-        view.layer.mask = gradLayer
-        gradLayer.add(shimmerAnimation, forKey: shimmerAnimation.keyPath)
-    }
-    
-    
-    func createGradientLayer() -> CAGradientLayer {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = gradientFrame
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientLayer.colors = [UIColor.clear.cgColor, gradientColour.cgColor, UIColor.clear.cgColor]
-        gradientLayer.locations = [0.0, 0.5, 1.0]
-        self.layer.addSublayer(gradientLayer)
-//        gradientLayer.shouldRasterize = true
-        
-        return gradientLayer
+        view.layer.addSublayer(gradientLayer)
+        view.layer.mask = gradientLayer
     }
 }
 
