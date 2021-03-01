@@ -10,6 +10,7 @@
 		B507035825E8065F000FF843 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507035725E8065F000FF843 /* ShimmerView.swift */; };
 		B523CC7125E857980068D74A /* ShimmerScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */; };
 		B523CC7525E877710068D74A /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7425E877710068D74A /* NoSessionView.swift */; };
+		B523E76025ED45D6003DD3BE /* ScheduleFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */; };
 		B527C8FA25CC749000342113 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5925CC7037002264C2 /* Raleway-Black.ttf */; };
 		B527C8FC25CC749300342113 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5C25CC7038002264C2 /* Raleway-Bold.ttf */; };
 		B527C8FE25CC749600342113 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5B25CC7038002264C2 /* Raleway-ExtraBold.ttf */; };
@@ -58,8 +59,12 @@
 		B585773E25E71418006B21C3 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585773D25E71418006B21C3 /* Photo.swift */; };
 		B585774225E7149B006B21C3 /* Trainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585774125E7149B006B21C3 /* Trainer.swift */; };
 		B585774825E7150F006B21C3 /* GymSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585774725E7150F006B21C3 /* GymSession.swift */; };
+		B5864D6C25ED738700F47900 /* ScheduleOrganiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */; };
+		B5864D7325ED791800F47900 /* ScheduleOrganiserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D7225ED791800F47900 /* ScheduleOrganiserTests.swift */; };
+		B5864D7A25ED7D6300F47900 /* MockTimePeriodFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */; };
 		B58B3AB225CF3ED900F46BCF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D63025CF350300F39EDC /* main.swift */; };
 		B58B3AB825CF449600F46BCF /* MonthFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B3AB725CF449600F46BCF /* MonthFactoryTests.swift */; };
+		B58EFC3125ED9DD10011C677 /* OrganisedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58EFC3025ED9DD10011C677 /* OrganisedSession.swift */; };
 		B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DB25C9C805001D7AED /* MainTabBarController.swift */; };
 		B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */; };
 		B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598E625258140FF0068DB9E /* AppDelegate.swift */; };
@@ -124,6 +129,7 @@
 		B507035725E8065F000FF843 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerScheduleCell.swift; sourceTree = "<group>"; };
 		B523CC7425E877710068D74A /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
+		B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFilterType.swift; sourceTree = "<group>"; };
 		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
 		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		B543EDCA25DEE13D00710FCC /* URLCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCombine.swift; sourceTree = "<group>"; };
@@ -174,7 +180,11 @@
 		B585773D25E71418006B21C3 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		B585774125E7149B006B21C3 /* Trainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trainer.swift; sourceTree = "<group>"; };
 		B585774725E7150F006B21C3 /* GymSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymSession.swift; sourceTree = "<group>"; };
+		B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOrganiser.swift; sourceTree = "<group>"; };
+		B5864D7225ED791800F47900 /* ScheduleOrganiserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOrganiserTests.swift; sourceTree = "<group>"; };
+		B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimePeriodFormatter.swift; sourceTree = "<group>"; };
 		B58B3AB725CF449600F46BCF /* MonthFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthFactoryTests.swift; sourceTree = "<group>"; };
+		B58EFC3025ED9DD10011C677 /* OrganisedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisedSession.swift; sourceTree = "<group>"; };
 		B59280DB25C9C805001D7AED /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		B598E622258140FF0068DB9E /* EnergyFitnessApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnergyFitnessApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -311,6 +321,15 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		B523E76325ED460A003DD3BE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */,
+				B58EFC3025ED9DD10011C677 /* OrganisedSession.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B54F6E2225CC44FA002264C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +398,7 @@
 		B556D60725CF2E7500F39EDC /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				B5864D7125ED78FE00F47900 /* ScheduleTimetable */,
 				B585773625E6E1F3006B21C3 /* Utils */,
 				B58B3AB625CF446000F46BCF /* WeekCalendar */,
 				B556D60A25CF2E7500F39EDC /* Info.plist */,
@@ -428,6 +448,23 @@
 				B585773725E6E212006B21C3 /* TimePeriodFormatterTests.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		B5864D7125ED78FE00F47900 /* ScheduleTimetable */ = {
+			isa = PBXGroup;
+			children = (
+				B5864D7825ED7D5300F47900 /* Mocks */,
+				B5864D7225ED791800F47900 /* ScheduleOrganiserTests.swift */,
+			);
+			path = ScheduleTimetable;
+			sourceTree = "<group>";
+		};
+		B5864D7825ED7D5300F47900 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		B58B3AB625CF446000F46BCF /* WeekCalendar */ = {
@@ -637,8 +674,10 @@
 		B5FF272125E5BC1E003AB00B /* ScheduleTimetable */ = {
 			isa = PBXGroup;
 			children = (
+				B523E76325ED460A003DD3BE /* Models */,
 				B5D2678825E6B4A3008CE0BE /* ViewModel */,
 				B5FF272225E5BC45003AB00B /* Views */,
+				B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */,
 			);
 			path = ScheduleTimetable;
 			sourceTree = "<group>";
@@ -787,9 +826,11 @@
 				B5D8AFAD25CF4BC90010CE47 /* WeekdayFactoryTests.swift in Sources */,
 				B5CA0EDF25D06B1C00CCCC22 /* WeekCalendarViewModelTests.swift in Sources */,
 				B5CA0EDB25D05EA500CCCC22 /* DateObjectTests.swift in Sources */,
+				B5864D7A25ED7D6300F47900 /* MockTimePeriodFormatter.swift in Sources */,
 				B556D61F25CF336200F39EDC /* XCTestCase+Ext.swift in Sources */,
 				B5739F6C25D0B18B001E71B9 /* DateFinderTests.swift in Sources */,
 				B585773825E6E212006B21C3 /* TimePeriodFormatterTests.swift in Sources */,
+				B5864D7325ED791800F47900 /* ScheduleOrganiserTests.swift in Sources */,
 				B5739F7225D0B4A3001E71B9 /* MockWeekdayFactory.swift in Sources */,
 				B5CA0ED525CF597700CCCC22 /* MockMonthFactory.swift in Sources */,
 				B5D8AFC725CF57100010CE47 /* DateObjectFactory.swift in Sources */,
@@ -842,6 +883,7 @@
 				B5AB790E25EADE46006AE89C /* UIViewGesture+Ext.swift in Sources */,
 				B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */,
 				B57AB5D125E9DB0900D66E19 /* Publisher+Ext.swift in Sources */,
+				B523E76025ED45D6003DD3BE /* ScheduleFilterType.swift in Sources */,
 				B5CE877A25E5995C00380FB4 /* ScheduleHeaderCell.swift in Sources */,
 				B54F6E2725CC44FA002264C2 /* WeekCalendarView.swift in Sources */,
 				B5D2678A25E6B4CC008CE0BE /* ScheduleViewModel.swift in Sources */,
@@ -855,6 +897,8 @@
 				B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */,
 				B5A2CE9C25E5DE2000776B25 /* Log.swift in Sources */,
 				B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */,
+				B58EFC3125ED9DD10011C677 /* OrganisedSession.swift in Sources */,
+				B5864D6C25ED738700F47900 /* ScheduleOrganiser.swift in Sources */,
 				B54F6E3C25CC4503002264C2 /* WeekDay.swift in Sources */,
 				B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */,
 				B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */,

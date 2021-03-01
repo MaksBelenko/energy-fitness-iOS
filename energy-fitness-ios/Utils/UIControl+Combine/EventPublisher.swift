@@ -60,7 +60,7 @@ private extension UIControl {
         }
 
         @objc func trigger() {
-            target?.receive(())
+            let _ = target?.receive(())
         }
     }
 }

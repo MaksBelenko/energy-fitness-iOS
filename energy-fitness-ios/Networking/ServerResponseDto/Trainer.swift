@@ -15,3 +15,9 @@ struct Trainer: Decodable {
     let type: String //TrainerType
     let photos: [Photo]
 }
+
+extension Trainer {
+    static func ==(lhs: Trainer, rhs: Trainer) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

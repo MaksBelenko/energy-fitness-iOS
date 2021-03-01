@@ -50,6 +50,8 @@ class DIContainer {
     
     // MARK: - ScheduleView setup of container
     private func setupForScheduleView(using container: Container) {
+        container.autoregister(TimePeriodFormatterProtocol.self, initializer: TimePeriodFormatter.init)
+        container.autoregister(ScheduleOrganiserProtocol.self, initializer: ScheduleOrganiser.init)
         container.autoregister(ScheduleCellVMFactoryProtocol.self, initializer: ScheduleCellVMFactory.init)
         
         container.autoregister(ScheduleViewProtocol.self, initializer: ScheduleView.init)

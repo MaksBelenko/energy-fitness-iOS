@@ -13,3 +13,9 @@ struct GymClass: Decodable {
     let description: String
     let photos: [Photo]
 }
+
+extension GymClass {
+    static func ==(lhs: GymClass, rhs: GymClass) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
