@@ -52,6 +52,7 @@
 		B5739F7225D0B4A3001E71B9 /* MockWeekdayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5739F7125D0B4A3001E71B9 /* MockWeekdayFactory.swift */; };
 		B57AB5CD25E9AA1B00D66E19 /* ScheduleCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57AB5CC25E9AA1B00D66E19 /* ScheduleCellViewModel.swift */; };
 		B57AB5D125E9DB0900D66E19 /* Publisher+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57AB5D025E9DB0900D66E19 /* Publisher+Ext.swift */; };
+		B57AB5D525E9EAB000D66E19 /* ScheduleCellVMFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57AB5D425E9EAB000D66E19 /* ScheduleCellVMFactory.swift */; };
 		B585773325E6DEF7006B21C3 /* TimePeriodFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585773225E6DEF7006B21C3 /* TimePeriodFormatter.swift */; };
 		B585773825E6E212006B21C3 /* TimePeriodFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585773725E6E212006B21C3 /* TimePeriodFormatterTests.swift */; };
 		B585773E25E71418006B21C3 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B585773D25E71418006B21C3 /* Photo.swift */; };
@@ -88,6 +89,12 @@
 		B5A3872825CA2FCA000883E0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5A3872A25CA2FCA000883E0 /* Localizable.strings */; };
 		B5A9B7B525E71C2600921D4E /* DateFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A9B7B425E71C2600921D4E /* DateFormatter+Ext.swift */; };
 		B5AB32AB25DEFED6003E950F /* GradientImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB32AA25DEFED6003E950F /* GradientImageView.swift */; };
+		B5AB78FB25EAD8AA006AE89C /* EventPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB78FA25EAD8AA006AE89C /* EventPublisher.swift */; };
+		B5AB790025EADD76006AE89C /* GesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB78FF25EADD76006AE89C /* GesturePublisher.swift */; };
+		B5AB790425EADDB4006AE89C /* GestureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB790325EADDB4006AE89C /* GestureType.swift */; };
+		B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB790925EADE08006AE89C /* GestureSubscription.swift */; };
+		B5AB790E25EADE46006AE89C /* UIViewGesture+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB790D25EADE46006AE89C /* UIViewGesture+Ext.swift */; };
+		B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5244725ED23D600018CB0 /* Shimmered.swift */; };
 		B5BCFF1C25DFD2A4007746F8 /* ButtonAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */; };
 		B5CA0ED525CF597700CCCC22 /* MockMonthFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA0ED425CF597700CCCC22 /* MockMonthFactory.swift */; };
 		B5CA0EDB25D05EA500CCCC22 /* DateObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA0EDA25D05EA500CCCC22 /* DateObjectTests.swift */; };
@@ -161,6 +168,7 @@
 		B5739F7125D0B4A3001E71B9 /* MockWeekdayFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeekdayFactory.swift; sourceTree = "<group>"; };
 		B57AB5CC25E9AA1B00D66E19 /* ScheduleCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCellViewModel.swift; sourceTree = "<group>"; };
 		B57AB5D025E9DB0900D66E19 /* Publisher+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Ext.swift"; sourceTree = "<group>"; };
+		B57AB5D425E9EAB000D66E19 /* ScheduleCellVMFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCellVMFactory.swift; sourceTree = "<group>"; };
 		B585773225E6DEF7006B21C3 /* TimePeriodFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriodFormatter.swift; sourceTree = "<group>"; };
 		B585773725E6E212006B21C3 /* TimePeriodFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriodFormatterTests.swift; sourceTree = "<group>"; };
 		B585773D25E71418006B21C3 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -199,6 +207,12 @@
 		B5A3872C25CA2FD0000883E0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B5A9B7B425E71C2600921D4E /* DateFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Ext.swift"; sourceTree = "<group>"; };
 		B5AB32AA25DEFED6003E950F /* GradientImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientImageView.swift; sourceTree = "<group>"; };
+		B5AB78FA25EAD8AA006AE89C /* EventPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventPublisher.swift; sourceTree = "<group>"; };
+		B5AB78FF25EADD76006AE89C /* GesturePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturePublisher.swift; sourceTree = "<group>"; };
+		B5AB790325EADDB4006AE89C /* GestureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureType.swift; sourceTree = "<group>"; };
+		B5AB790925EADE08006AE89C /* GestureSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureSubscription.swift; sourceTree = "<group>"; };
+		B5AB790D25EADE46006AE89C /* UIViewGesture+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewGesture+Ext.swift"; sourceTree = "<group>"; };
+		B5B5244725ED23D600018CB0 /* Shimmered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmered.swift; sourceTree = "<group>"; };
 		B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimations.swift; sourceTree = "<group>"; };
 		B5CA0ED425CF597700CCCC22 /* MockMonthFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMonthFactory.swift; sourceTree = "<group>"; };
 		B5CA0EDA25D05EA500CCCC22 /* DateObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectTests.swift; sourceTree = "<group>"; };
@@ -271,10 +285,12 @@
 		B520898D25C8AC420026AF4A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B5AB78FE25EADD60006AE89C /* UIViewGestures+Combine */,
+				B5AB78F925EAD73A006AE89C /* UIControl+Combine */,
 				B55451CA25CC94AC00BCA984 /* ReuseIdentifiable.swift */,
 				B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */,
 				B585773225E6DEF7006B21C3 /* TimePeriodFormatter.swift */,
-				B507035725E8065F000FF843 /* ShimmerView.swift */,
+				B5B5245325ED2EEA00018CB0 /* Shimmer */,
 				B5A2CE9F25E5DE4300776B25 /* Logging */,
 			);
 			path = Utils;
@@ -524,6 +540,42 @@
 			path = Roboto;
 			sourceTree = "<group>";
 		};
+		B5AB78F925EAD73A006AE89C /* UIControl+Combine */ = {
+			isa = PBXGroup;
+			children = (
+				B5AB78FA25EAD8AA006AE89C /* EventPublisher.swift */,
+			);
+			path = "UIControl+Combine";
+			sourceTree = "<group>";
+		};
+		B5AB78FE25EADD60006AE89C /* UIViewGestures+Combine */ = {
+			isa = PBXGroup;
+			children = (
+				B5AB790D25EADE46006AE89C /* UIViewGesture+Ext.swift */,
+				B5AB790325EADDB4006AE89C /* GestureType.swift */,
+				B5AB78FF25EADD76006AE89C /* GesturePublisher.swift */,
+				B5AB790925EADE08006AE89C /* GestureSubscription.swift */,
+			);
+			path = "UIViewGestures+Combine";
+			sourceTree = "<group>";
+		};
+		B5B5245325ED2EEA00018CB0 /* Shimmer */ = {
+			isa = PBXGroup;
+			children = (
+				B5B5244725ED23D600018CB0 /* Shimmered.swift */,
+				B507035725E8065F000FF843 /* ShimmerView.swift */,
+			);
+			path = Shimmer;
+			sourceTree = "<group>";
+		};
+		B5C92BAA25ED421200755963 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				B57AB5D425E9EAB000D66E19 /* ScheduleCellVMFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		B5CA0ED325CF595C00CCCC22 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,6 +588,7 @@
 		B5D2678825E6B4A3008CE0BE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B5C92BAA25ED421200755963 /* Factory */,
 				B5D2678925E6B4CC008CE0BE /* ScheduleViewModel.swift */,
 				B57AB5CC25E9AA1B00D66E19 /* ScheduleCellViewModel.swift */,
 			);
@@ -752,21 +805,27 @@
 				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
 				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,
 				B57AB5CD25E9AA1B00D66E19 /* ScheduleCellViewModel.swift in Sources */,
+				B57AB5D525E9EAB000D66E19 /* ScheduleCellVMFactory.swift in Sources */,
 				B585774225E7149B006B21C3 /* Trainer.swift in Sources */,
 				B54F6E3D25CC4503002264C2 /* Day.swift in Sources */,
 				B59BB57E25D43B1600910962 /* NetworkAdapterProtocol.swift in Sources */,
 				B54F6E4225CC4503002264C2 /* DateObject.swift in Sources */,
 				B59BB58825D4436500910962 /* URLSessionAdapter.swift in Sources */,
+				B5AB78FB25EAD8AA006AE89C /* EventPublisher.swift in Sources */,
 				B54F6E3E25CC4503002264C2 /* MonthData.swift in Sources */,
 				B598E62A258140FF0068DB9E /* ScheduleViewController.swift in Sources */,
+				B5AB790425EADDB4006AE89C /* GestureType.swift in Sources */,
 				B5AB32AB25DEFED6003E950F /* GradientImageView.swift in Sources */,
 				B5A21B0A25E1CD3400B6F739 /* NetworkService.swift in Sources */,
 				B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */,
+				B5AB790025EADD76006AE89C /* GesturePublisher.swift in Sources */,
 				B54F6E4525CC4503002264C2 /* WeekCalendarViewModel.swift in Sources */,
 				B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */,
 				B59BB58D25D447E800910962 /* GymClass.swift in Sources */,
+				B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */,
 				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,
+				B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
 				B523CC7125E857980068D74A /* ShimmerScheduleCell.swift in Sources */,
@@ -780,6 +839,7 @@
 				B585773E25E71418006B21C3 /* Photo.swift in Sources */,
 				B585774825E7150F006B21C3 /* GymSession.swift in Sources */,
 				B54F6E4425CC4503002264C2 /* MonthNameHeader.swift in Sources */,
+				B5AB790E25EADE46006AE89C /* UIViewGesture+Ext.swift in Sources */,
 				B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */,
 				B57AB5D125E9DB0900D66E19 /* Publisher+Ext.swift in Sources */,
 				B5CE877A25E5995C00380FB4 /* ScheduleHeaderCell.swift in Sources */,

@@ -21,27 +21,7 @@ protocol ScheduleCellProtocol: UICollectionViewCell, ReuseIdentifiable {
 class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
     private var viewModel: ScheduleCellViewModelProtocol!
-    private var subscription: AnyCancellable!
-    
-    private var textShimmers = [UIView]()
-    private var imageShimmers = [UIView]()
-    
-    private var textLabels = [UIView]()
-    private var imageViews = [UIView]()
-    
-    var isTextLoading = true {
-        didSet {
-            textShimmers.forEach { $0.isHidden = !isTextLoading }
-            textLabels.forEach { $0.isHidden = isTextLoading }
-        }
-    }
-    
-    var isImagesLoading = true {
-        didSet {
-            imageShimmers.forEach { $0.isHidden = !isTextLoading }
-            imageViews.forEach { $0.isHidden = isTextLoading }
-        }
-    }
+    private var subscriptions = Set<AnyCancellable>()
     
     // MARK: - Computed Views
     private let imageWidth: CGFloat = 27
@@ -54,34 +34,39 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         return view
     }()
     
-    private var classNameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "CrossFit"
-        label.font = UIFont.classNameHeader(ofSize: 20)
-        label.textColor = .energyOrange
+    private lazy var classNameLabel: Shimmered<UILabel> = {
+        let label = Shimmered<UILabel>()
+        label.configureShimmer(gradientFrame: self.bounds, width: 166, topOffset: 3)
+        label.view.text = " "
+        label.view.font = UIFont.classNameHeader(ofSize: 20)
+        label.view.textColor = .energyOrange
         return label
     }()
     
-    private var timeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "11:00 am - 12:00 pm"
-        label.font = UIFont.scheduleParagraph(ofSize: 14)
-        label.textColor = .energyOrange
+    private lazy var timeLabel: Shimmered<UILabel> = {
+        let label = Shimmered<UILabel>()
+        label.configureShimmer(gradientFrame: self.bounds, width: 127, topOffset: 3)
+        label.view.text = " "
+        label.view.font = UIFont.scheduleParagraph(ofSize: 14)
+        label.view.textColor = .energyOrange
         return label
     }()
     
-    private var trainerImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "zhgileva")
+    private lazy var trainerImageView: Shimmered<UIImageView> = {
+        let iv = Shimmered<UIImageView>()
+        iv.view.image = #imageLiteral(resourceName: "zhgileva")
         iv.layer.masksToBounds = true
+        iv.layer.cornerRadius = imageWidth/2
+        iv.configureShimmer(gradientFrame: self.bounds)
         return iv
     }()
     
-    private var trainerNameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Жгилева E."
-        label.font = UIFont.scheduleParagraph(ofSize: 13)
-        label.textColor = .energyScheduleTrainerName
+    private lazy var trainerNameLabel: Shimmered<UILabel> = {
+        let label = Shimmered<UILabel>()
+        label.configureShimmer(gradientFrame: self.bounds, width: 93, topOffset: 3)
+        label.view.text = " "
+        label.view.font = UIFont.scheduleParagraph(ofSize: 13)
+        label.view.textColor = .energyScheduleTrainerName
         return label
     }()
     
@@ -106,17 +91,55 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     }
     
     deinit {
-        Log.logDeinit(String(describing: self))
+        Log.logDeinit("\(self)")
     }
     
-    // MARK: - Set ViewModel
     
+    // MARK: - Set ViewModel
     func setViewModel(to viewModel: ScheduleCellViewModelProtocol) {
+        subscriptions.removeAll()
+        
         self.viewModel = viewModel
         
-        subscription = viewModel.isTextLoading
-                            .assignOnUnowned(to: \.isTextLoading, on: self)
-//            .store(in: &subscriptions)
+        self.viewModel.gymClassName
+            .sink(receiveValue: { [unowned self] name in
+                if name != "" {
+                    self.classNameLabel.view.text = name
+                    self.classNameLabel.shimmer?.stopAndHide()
+                }
+            })
+            .store(in: &subscriptions)
+        
+        
+        self.viewModel.timePresented
+            .sink(receiveValue: { [unowned self] timeString in
+                if timeString != "" {
+                    self.timeLabel.view.text = timeString
+                    self.timeLabel.shimmer?.stopAndHide()
+                }
+            })
+            .store(in: &subscriptions)
+        
+        
+        self.viewModel.trainerName
+//            .assign(to: \.text, on: trainerNameLabel.view)
+            .sink(receiveValue: { [unowned self] name in
+                if name != "" {
+                    self.trainerNameLabel.view.text = name
+                    self.trainerNameLabel.shimmer?.stopAndHide()
+                }
+            })
+            .store(in: &subscriptions)
+        
+        
+        self.viewModel.trainerImage
+            .sink(receiveValue: { [unowned self] image in
+                if image != nil {
+                    self.trainerImageView.view.image = image
+                    self.trainerImageView.shimmer?.stopAndHide()
+                }
+            })
+            .store(in: &subscriptions)
     }
     
     // MARK: - UI Configuration
@@ -130,10 +153,6 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
                             trailing: trailingAnchor, paddingTrailing: 10)
         
         configureElements(in: internalView)
-        addShimmers()
-        
-        textLabels = [ classNameLabel, timeLabel, trainerNameLabel ]
-        imageViews = [ trainerImageView ]
     }
     
     
@@ -145,12 +164,12 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         view.addSubview(timeLabel)
         timeLabel.anchor(top: classNameLabel.bottomAnchor, paddingTop: 0,
                          leading: classNameLabel.leadingAnchor)
+        
        
         view.addSubview(trainerImageView)
         trainerImageView.anchor(top: timeLabel.bottomAnchor, paddingTop: 9,
                                 leading: classNameLabel.leadingAnchor,
                                 width: imageWidth, height: imageWidth)
-        trainerImageView.layer.cornerRadius = imageWidth / 2
         
         view.addSubview(trainerNameLabel)
         trainerNameLabel.centerY(withView: trainerImageView)
@@ -164,37 +183,33 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     }
     
     // MARK: - Shimmers
-    private func addShimmers() {
-        textShimmers = [
-            addShimmerView(for: classNameLabel, width: 166, topOffset: 3),
-            addShimmerView(for: timeLabel, width: 127, topOffset: 3),
-            addShimmerView(for: trainerNameLabel, width: 93, topOffset: 3),
-        ]
+//    private func addShimmers() {
+//        shimmerGymClassName = addShimmerView(for: classNameLabel, width: 166, topOffset: 3)
+//        shimmerTime = addShimmerView(for: timeLabel, width: 127, topOffset: 3)
+//        shimmerTrainerName = addShimmerView(for: trainerNameLabel, width: 93, topOffset: 3)
         
-        let shimmerTrainerImageView = addShimmerView(for: trainerImageView)
-        shimmerTrainerImageView.layer.cornerRadius = imageWidth/2
-        
-        imageShimmers = [ shimmerTrainerImageView ]
-    }
+//        shimmerTrainerImageView = addShimmerView(for: trainerImageView)
+//        shimmerTrainerImageView!.layer.cornerRadius = imageWidth/2
+//    }
     
     
-    private func addShimmerView(for view: UIView, width: CGFloat? = nil, topOffset: CGFloat = 0) -> UIView {
-        let shimmerView = ShimmerView(gradientColour: .energyShimmerUnder, gradientFrame: self.bounds)
-        shimmerView.backgroundColor = .energyShimmer
-        
-        self.addSubview(shimmerView)
-        shimmerView.anchor(top: view.topAnchor, paddingTop: topOffset,
-                           leading: view.leadingAnchor,
-                           bottom: view.bottomAnchor)
-        
-        if let width = width {
-            shimmerView.anchor(width: width)
-        } else {
-            shimmerView.anchor(trailing: view.trailingAnchor)
-        }
-        
-        return shimmerView
-    }
+//    private func addShimmerView(for view: UIView, width: CGFloat? = nil, topOffset: CGFloat = 0) -> ShimmerView {
+//        let shimmerView = ShimmerView(gradientColour: .energyShimmerUnder, gradientFrame: self.bounds)
+//        shimmerView.backgroundColor = .energyShimmer
+//
+//        self.addSubview(shimmerView)
+//        shimmerView.anchor(top: view.topAnchor, paddingTop: topOffset,
+//                           leading: view.leadingAnchor,
+//                           bottom: view.bottomAnchor)
+//
+//        if let width = width {
+//            shimmerView.anchor(width: width)
+//        } else {
+//            shimmerView.anchor(trailing: view.trailingAnchor)
+//        }
+//
+//        return shimmerView
+//    }
     
     // MARK: - Configure Gestures
     

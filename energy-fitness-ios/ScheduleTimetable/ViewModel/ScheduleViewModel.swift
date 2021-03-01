@@ -23,22 +23,27 @@ protocol ScheduleViewModelProtocol {
     func getTextForHeader(at section: Int) -> String
 }
 
+
 class ScheduleViewModel: ScheduleViewModelProtocol {
     
     weak var delegate: ScheduleViewModelDelegate?
     
     private let networkService: NetworkServiceProtocol
+    private let cellFactory: ScheduleCellVMFactoryProtocol
     
     private var gymSessions = [GymSession]()
-    private var scheduleCellViewModels = [ScheduleCellViewModel]()
-    
-    var isTextLoading = PassthroughSubject<Bool, Never>()
+    private var scheduleCellViewModels = [ScheduleCellViewModelProtocol]()
     
     
     // MARK: - Lifecycle
-    init(networkService: NetworkServiceProtocol) {
+    init(
+        networkService: NetworkServiceProtocol,
+        cellFactory: ScheduleCellVMFactoryProtocol
+    ) {
         self.networkService = networkService
+        self.cellFactory = cellFactory
         
+        showLoadingCells()
         fetchGymClasses()
     }
     
@@ -53,6 +58,13 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
         delegate?.reloadData()
     }
     
+    private func showLoadingCells() {
+        for _ in 1...10 {
+            let dummyVM = cellFactory.createScheduleCellViewModel(textData: nil, trainerImage: nil)
+            self.scheduleCellViewModels.append(dummyVM)
+        }
+    }
+    
     func fetchGymClasses() {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 //            self.networkService.getAllSessions { [weak self] sessions in
@@ -64,50 +76,30 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
 //                }
 //            }
 //        }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
-            self.scheduleCellViewModels = [
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-                ScheduleCellViewModel(),
-            ]
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+            self.scheduleCellViewModels.removeAll()
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [unowned self] in
-                self.scheduleCellViewModels.forEach { $0.setTextLoading(to: false) }
+            showLoadingCells()
+            self.delegate?.reloadData()
+            self.scheduleCellViewModels.forEach { $0.gymClassName.send("Test class name-------") }
+            self.scheduleCellViewModels[0].timePresented.send("11:00 AM - 12:00 PM")
+            self.scheduleCellViewModels[0].trainerName.send("Жгилева В.")
+            self.scheduleCellViewModels[0].trainerImage.send(#imageLiteral(resourceName: "general"))
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [unowned self] in
+                var count = 0
+                for viewModel in scheduleCellViewModels {
+                    viewModel.gymClassName.send("\(count)")
+                    count += 1
+                }
+                
+                self.scheduleCellViewModels[7].timePresented.send("qweqweqweqwe")
+                self.scheduleCellViewModels[7].trainerName.send("dsdfsdfsdf.")
+                self.scheduleCellViewModels[7].trainerImage.send(#imageLiteral(resourceName: "nosessions"))
             }
-//        }
+        }
     }
     
     
