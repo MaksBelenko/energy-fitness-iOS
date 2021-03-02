@@ -72,11 +72,11 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     
     func fetchGymClasses() {
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.networkService.getAllSessions { [weak self] sessions in
-                guard let self = self else { return }
-                self.organisedSessions = self.scheduleOrganiser.filter(sessions: sessions, by: .time)
-                    self.showLoadedSessions()
-            }
+//            self.networkService.getAllSessions { [weak self] sessions in
+//                guard let self = self else { return }
+//                self.organisedSessions = self.scheduleOrganiser.filter(sessions: sessions, by: .time)
+//                    self.showLoadedSessions()
+//            }
 //        }
     }
     

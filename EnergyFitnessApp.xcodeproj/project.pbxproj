@@ -44,6 +44,7 @@
 		B556D62325CF339600F39EDC /* TestingMode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B556D62225CF339600F39EDC /* TestingMode.storyboard */; };
 		B556D62725CF341200F39EDC /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D62625CF341200F39EDC /* TestingAppDelegate.swift */; };
 		B556D62D25CF34D800F39EDC /* TestingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D62C25CF34D800F39EDC /* TestingSceneDelegate.swift */; };
+		B55D184825EEAAF10091FD4C /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D184725EEAAF10091FD4C /* AsyncOperation.swift */; };
 		B569CDD525CE142E00B1DBAE /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B569CDD425CE142E00B1DBAE /* Swinject */; };
 		B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569CDD725CE160500B1DBAE /* DIContainer.swift */; };
 		B57372E125DB062300CC541F /* BookClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57372E025DB062300CC541F /* BookClassViewController.swift */; };
@@ -166,6 +167,7 @@
 		B556D62625CF341200F39EDC /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
 		B556D62C25CF34D800F39EDC /* TestingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingSceneDelegate.swift; sourceTree = "<group>"; };
 		B556D63025CF350300F39EDC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		B55D184725EEAAF10091FD4C /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		B569CDD725CE160500B1DBAE /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		B57372E025DB062300CC541F /* BookClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookClassViewController.swift; sourceTree = "<group>"; };
 		B5739F6B25D0B18B001E71B9 /* DateFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFinderTests.swift; sourceTree = "<group>"; };
@@ -408,6 +410,14 @@
 			path = UnitTests;
 			sourceTree = "<group>";
 		};
+		B55D184625EEAADA0091FD4C /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				B55D184725EEAAF10091FD4C /* AsyncOperation.swift */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
 		B56A25BF25CC4386006C223C /* WeekCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -513,6 +523,7 @@
 				B598E627258140FF0068DB9E /* SceneDelegate.swift */,
 				B569CDD725CE160500B1DBAE /* DIContainer.swift */,
 				B5A386F325CA0892000883E0 /* Fonts */,
+				B55D184625EEAADA0091FD4C /* Operations */,
 				B520898E25C8AC580026AF4A /* Networking */,
 				B520898B25C8AC220026AF4A /* Controllers */,
 				B520898925C8AC070026AF4A /* Views */,
@@ -630,7 +641,6 @@
 		B5D2678825E6B4A3008CE0BE /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B5C92BAA25ED421200755963 /* Factory */,
 				B5D2678925E6B4CC008CE0BE /* ScheduleViewModel.swift */,
 				B58EFC3825ED9FE00011C677 /* Cells */,
 			);
@@ -679,6 +689,7 @@
 		B5FF272125E5BC1E003AB00B /* ScheduleTimetable */ = {
 			isa = PBXGroup;
 			children = (
+				B5C92BAA25ED421200755963 /* Factory */,
 				B523E76325ED460A003DD3BE /* Models */,
 				B5D2678825E6B4A3008CE0BE /* ViewModel */,
 				B5FF272225E5BC45003AB00B /* Views */,
@@ -876,6 +887,7 @@
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
+				B55D184825EEAAF10091FD4C /* AsyncOperation.swift in Sources */,
 				B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */,
 				B59BB58225D43BBB00910962 /* NetworkConst.swift in Sources */,
 				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,

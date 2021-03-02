@@ -10,13 +10,7 @@ import SwiftUI
 import Combine
 
 protocol ScheduleCellProtocol: UICollectionViewCell, ReuseIdentifiable {
-//    var classNameLabel: UILabel { get set }
-//    var timeLabel: UILabel { get set }
-//    var trainerImageView: UIImageView { get set }
-//    var trainerNameLabel: UILabel { get set }
 }
-
-//extension ScheduleCell: ReuseIdentifiable {}
 
 class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
@@ -25,12 +19,12 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
     // MARK: - Computed Views
     private let imageWidth: CGFloat = 27
+    private let internalViewCornerRadius: CGFloat = 16
     
-    private var internalView: UIView = {
+    private lazy var internalView: UIView = {
         let view = UIView()
         view.backgroundColor = .energyCellColour
-        view.layer.cornerRadius = 16
-        view.layer.applyShadow(color: .black, alpha: 0.16, x: 5, y: 5, blur: 10)
+        view.layer.cornerRadius = internalViewCornerRadius
         return view
     }()
     
@@ -84,6 +78,7 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
         backgroundColor = .clear
         configureUI()
+        layoutIfNeeded()
     }
 
     required init?(coder: NSCoder) {
@@ -92,6 +87,12 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
     deinit {
         Log.logDeinit("\(self)")
+    }
+    
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        print("Layout shadow")
+        internalView.layer.applyShadow(rect: internalView.bounds, cornerRadius: internalViewCornerRadius, color: .black, alpha: 0.16, x: 5, y: 5, blur: 10)
     }
     
     
