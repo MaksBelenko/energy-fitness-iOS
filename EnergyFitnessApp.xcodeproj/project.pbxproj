@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B507035825E8065F000FF843 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507035725E8065F000FF843 /* ShimmerView.swift */; };
-		B523CC7125E857980068D74A /* ShimmerScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */; };
 		B523CC7525E877710068D74A /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7425E877710068D74A /* NoSessionView.swift */; };
 		B523E76025ED45D6003DD3BE /* ScheduleFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */; };
 		B527C8FA25CC749000342113 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5925CC7037002264C2 /* Raleway-Black.ttf */; };
@@ -127,7 +126,6 @@
 
 /* Begin PBXFileReference section */
 		B507035725E8065F000FF843 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
-		B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerScheduleCell.swift; sourceTree = "<group>"; };
 		B523CC7425E877710068D74A /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFilterType.swift; sourceTree = "<group>"; };
 		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
@@ -437,7 +435,6 @@
 			children = (
 				B5CE877925E5995C00380FB4 /* ScheduleHeaderCell.swift */,
 				B527C90F25CC7E4000342113 /* ScheduleCell.swift */,
-				B523CC7025E857980068D74A /* ShimmerScheduleCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -476,6 +473,14 @@
 				B5739F6A25D0B16E001E71B9 /* Utils */,
 			);
 			path = WeekCalendar;
+			sourceTree = "<group>";
+		};
+		B58EFC3825ED9FE00011C677 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B57AB5CC25E9AA1B00D66E19 /* ScheduleCellViewModel.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		B598E619258140FE0068DB9E = {
@@ -627,7 +632,7 @@
 			children = (
 				B5C92BAA25ED421200755963 /* Factory */,
 				B5D2678925E6B4CC008CE0BE /* ScheduleViewModel.swift */,
-				B57AB5CC25E9AA1B00D66E19 /* ScheduleCellViewModel.swift */,
+				B58EFC3825ED9FE00011C677 /* Cells */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -869,7 +874,6 @@
 				B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
-				B523CC7125E857980068D74A /* ShimmerScheduleCell.swift in Sources */,
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
 				B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */,

@@ -53,7 +53,7 @@ class DIContainer {
         container.autoregister(TimePeriodFormatterProtocol.self, initializer: TimePeriodFormatter.init)
         container.autoregister(ScheduleOrganiserProtocol.self, initializer: ScheduleOrganiser.init)
         container.autoregister(ScheduleCellVMFactoryProtocol.self, initializer: ScheduleCellVMFactory.init)
-        
+
         container.autoregister(ScheduleViewProtocol.self, initializer: ScheduleView.init)
             .inObjectScope(.transient)
         

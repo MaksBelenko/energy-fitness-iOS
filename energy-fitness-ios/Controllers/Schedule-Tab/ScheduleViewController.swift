@@ -49,7 +49,6 @@ class ScheduleViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        print("Loaded")
         super.viewDidLoad()
         
         view.backgroundColor = .energyBackgroundColor

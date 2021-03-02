@@ -37,7 +37,7 @@ class ScheduleHeaderCell: UICollectionViewCell, ScheduleHeaderCellProtocol {
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.text = "time here -"
-        label.font = UIFont.helveticaNeue(ofSize: 18, weight: .medium)
+        label.font = UIFont.helveticaNeue(ofSize: 16, weight: .regular)
         label.textColor = .energyOrange
         return label
     }()

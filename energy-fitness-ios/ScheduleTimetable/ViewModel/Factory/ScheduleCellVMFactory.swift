@@ -8,7 +8,7 @@
 import UIKit.UIImage
 
 protocol ScheduleCellVMFactoryProtocol {
-    func createScheduleCellViewModel(textData: GymClassTextData?, trainerImage: UIImage?) -> ScheduleCellViewModelProtocol
+    func createScheduleCellViewModel() -> ScheduleCellViewModelProtocol
     func createHeaderCellViewModel() -> ScheduleHeaderCellProtocol
 }
 
@@ -21,7 +21,7 @@ struct GymClassTextData {
 
 class ScheduleCellVMFactory: ScheduleCellVMFactoryProtocol {
     
-    func createScheduleCellViewModel(textData: GymClassTextData?, trainerImage: UIImage?) -> ScheduleCellViewModelProtocol {
+    func createScheduleCellViewModel() -> ScheduleCellViewModelProtocol {
         return ScheduleCellViewModel()
         
 //        if let textData = textData {

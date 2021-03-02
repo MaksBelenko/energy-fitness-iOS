@@ -136,7 +136,7 @@ extension ScheduleView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! ScheduleHeaderCell
         header.setTimeLabelText(to: viewModel.getTextForHeader(at: indexPath.section))
-        header.isLoading = true
+        header.isLoading = viewModel.checkIfLoadingHeader()
         return header
     }
     

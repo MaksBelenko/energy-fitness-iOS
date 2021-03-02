@@ -26,6 +26,10 @@ class ShimmerView: UIView {
         let ct = CACurrentMediaTime().truncatingRemainder(dividingBy: shimmerCycleDuration * 2)
         animation.timeOffset = ct
         
+//        animation.beginTime = Self.now
+//        animation.autoreverses = true
+//        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        
         return animation
     }()
     
