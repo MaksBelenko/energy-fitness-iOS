@@ -65,6 +65,13 @@
 		B5864D6C25ED738700F47900 /* ScheduleOrganiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */; };
 		B5864D7325ED791800F47900 /* ScheduleOrganiserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D7225ED791800F47900 /* ScheduleOrganiserTests.swift */; };
 		B5864D7A25ED7D6300F47900 /* MockTimePeriodFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */; };
+		B588E84D25F2B91900A989DB /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E84C25F2B91900A989DB /* ApiClient.swift */; };
+		B588E85225F2B98400A989DB /* EnergyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85125F2B98400A989DB /* EnergyApi.swift */; };
+		B588E85625F2BA6700A989DB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85525F2BA6700A989DB /* HTTPMethod.swift */; };
+		B588E85A25F2BA8700A989DB /* RequestBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85925F2BA8700A989DB /* RequestBuilderProtocol.swift */; };
+		B588E85E25F2BADD00A989DB /* BasicRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85D25F2BADD00A989DB /* BasicRequestBuilder.swift */; };
+		B588E86225F2BB2B00A989DB /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E86125F2BB2B00A989DB /* Request.swift */; };
+		B588E86625F2BB6500A989DB /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E86525F2BB6500A989DB /* APIError.swift */; };
 		B58AB97125F19C3000D55DC0 /* ApiFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58AB97025F19C3000D55DC0 /* ApiFetchOperation.swift */; };
 		B58B3AB225CF3ED900F46BCF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D63025CF350300F39EDC /* main.swift */; };
 		B58B3AB825CF449600F46BCF /* MonthFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B3AB725CF449600F46BCF /* MonthFactoryTests.swift */; };
@@ -191,6 +198,13 @@
 		B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOrganiser.swift; sourceTree = "<group>"; };
 		B5864D7225ED791800F47900 /* ScheduleOrganiserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOrganiserTests.swift; sourceTree = "<group>"; };
 		B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimePeriodFormatter.swift; sourceTree = "<group>"; };
+		B588E84C25F2B91900A989DB /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		B588E85125F2B98400A989DB /* EnergyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyApi.swift; sourceTree = "<group>"; };
+		B588E85525F2BA6700A989DB /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		B588E85925F2BA8700A989DB /* RequestBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderProtocol.swift; sourceTree = "<group>"; };
+		B588E85D25F2BADD00A989DB /* BasicRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicRequestBuilder.swift; sourceTree = "<group>"; };
+		B588E86125F2BB2B00A989DB /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		B588E86525F2BB6500A989DB /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		B58AB97025F19C3000D55DC0 /* ApiFetchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchOperation.swift; sourceTree = "<group>"; };
 		B58B3AB725CF449600F46BCF /* MonthFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthFactoryTests.swift; sourceTree = "<group>"; };
 		B58EFC3025ED9DD10011C677 /* OrganisedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisedSession.swift; sourceTree = "<group>"; };
@@ -330,6 +344,7 @@
 		B520898E25C8AC580026AF4A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				B588E85025F2B95E00A989DB /* test */,
 				B59BB59225D48E8600910962 /* Wrappers */,
 				B59BB58B25D447BD00910962 /* ServerResponseDto */,
 				B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */,
@@ -495,6 +510,20 @@
 				B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		B588E85025F2B95E00A989DB /* test */ = {
+			isa = PBXGroup;
+			children = (
+				B588E84C25F2B91900A989DB /* ApiClient.swift */,
+				B588E85125F2B98400A989DB /* EnergyApi.swift */,
+				B588E85525F2BA6700A989DB /* HTTPMethod.swift */,
+				B588E85925F2BA8700A989DB /* RequestBuilderProtocol.swift */,
+				B588E85D25F2BADD00A989DB /* BasicRequestBuilder.swift */,
+				B588E86125F2BB2B00A989DB /* Request.swift */,
+				B588E86525F2BB6500A989DB /* APIError.swift */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		B58B3AB625CF446000F46BCF /* WeekCalendar */ = {
@@ -880,16 +909,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B588E85E25F2BADD00A989DB /* BasicRequestBuilder.swift in Sources */,
+				B588E85625F2BA6700A989DB /* HTTPMethod.swift in Sources */,
 				B54F6E4025CC4503002264C2 /* MonthFactory.swift in Sources */,
 				B527C90D25CC7DD200342113 /* ScheduleCollectionView.swift in Sources */,
 				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
 				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,
 				B57AB5CD25E9AA1B00D66E19 /* ScheduleCellViewModel.swift in Sources */,
+				B588E84D25F2B91900A989DB /* ApiClient.swift in Sources */,
 				B57AB5D525E9EAB000D66E19 /* ScheduleCellVMFactory.swift in Sources */,
 				B585774225E7149B006B21C3 /* Trainer.swift in Sources */,
 				B54F6E3D25CC4503002264C2 /* Day.swift in Sources */,
 				B59BB57E25D43B1600910962 /* NetworkAdapterProtocol.swift in Sources */,
 				B54F6E4225CC4503002264C2 /* DateObject.swift in Sources */,
+				B588E86625F2BB6500A989DB /* APIError.swift in Sources */,
 				B59BB58825D4436500910962 /* URLSessionAdapter.swift in Sources */,
 				B5AB78FB25EAD8AA006AE89C /* EventPublisher.swift in Sources */,
 				B54F6E3E25CC4503002264C2 /* MonthData.swift in Sources */,
@@ -897,17 +930,20 @@
 				B5AB790425EADDB4006AE89C /* GestureType.swift in Sources */,
 				B5AB32AB25DEFED6003E950F /* GradientImageView.swift in Sources */,
 				B5A21B0A25E1CD3400B6F739 /* NetworkService.swift in Sources */,
+				B588E86225F2BB2B00A989DB /* Request.swift in Sources */,
 				B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */,
 				B5AB790025EADD76006AE89C /* GesturePublisher.swift in Sources */,
 				B54F6E4525CC4503002264C2 /* WeekCalendarViewModel.swift in Sources */,
 				B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */,
 				B59BB58D25D447E800910962 /* GymClass.swift in Sources */,
+				B588E85225F2B98400A989DB /* EnergyApi.swift in Sources */,
 				B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */,
 				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,
 				B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
+				B588E85A25F2BA8700A989DB /* RequestBuilderProtocol.swift in Sources */,
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
 				B55D184825EEAAF10091FD4C /* AsyncOperation_Ray.swift in Sources */,
