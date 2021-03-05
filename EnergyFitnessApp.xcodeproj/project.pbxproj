@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B506E10D25F15BC3001A8B00 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B506E10C25F15BC3001A8B00 /* AsyncOperation.swift */; };
+		B506E11225F168D7001A8B00 /* AsyncResultOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B506E11125F168D7001A8B00 /* AsyncResultOperation.swift */; };
+		B506E11725F1699C001A8B00 /* ChainedAsyncResultOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B506E11625F1699C001A8B00 /* ChainedAsyncResultOperation.swift */; };
 		B507035825E8065F000FF843 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507035725E8065F000FF843 /* ShimmerView.swift */; };
 		B523CC7525E877710068D74A /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7425E877710068D74A /* NoSessionView.swift */; };
 		B523E76025ED45D6003DD3BE /* ScheduleFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */; };
@@ -44,7 +47,7 @@
 		B556D62325CF339600F39EDC /* TestingMode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B556D62225CF339600F39EDC /* TestingMode.storyboard */; };
 		B556D62725CF341200F39EDC /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D62625CF341200F39EDC /* TestingAppDelegate.swift */; };
 		B556D62D25CF34D800F39EDC /* TestingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D62C25CF34D800F39EDC /* TestingSceneDelegate.swift */; };
-		B55D184825EEAAF10091FD4C /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D184725EEAAF10091FD4C /* AsyncOperation.swift */; };
+		B55D184825EEAAF10091FD4C /* AsyncOperation_Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D184725EEAAF10091FD4C /* AsyncOperation_Ray.swift */; };
 		B569CDD525CE142E00B1DBAE /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B569CDD425CE142E00B1DBAE /* Swinject */; };
 		B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569CDD725CE160500B1DBAE /* DIContainer.swift */; };
 		B57372E125DB062300CC541F /* BookClassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57372E025DB062300CC541F /* BookClassViewController.swift */; };
@@ -62,6 +65,7 @@
 		B5864D6C25ED738700F47900 /* ScheduleOrganiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */; };
 		B5864D7325ED791800F47900 /* ScheduleOrganiserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D7225ED791800F47900 /* ScheduleOrganiserTests.swift */; };
 		B5864D7A25ED7D6300F47900 /* MockTimePeriodFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */; };
+		B58AB97125F19C3000D55DC0 /* ApiFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58AB97025F19C3000D55DC0 /* ApiFetchOperation.swift */; };
 		B58B3AB225CF3ED900F46BCF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D63025CF350300F39EDC /* main.swift */; };
 		B58B3AB825CF449600F46BCF /* MonthFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58B3AB725CF449600F46BCF /* MonthFactoryTests.swift */; };
 		B58EFC3125ED9DD10011C677 /* OrganisedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58EFC3025ED9DD10011C677 /* OrganisedSession.swift */; };
@@ -113,6 +117,7 @@
 		B5D8AFC125CF56C40010CE47 /* DateObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFC025CF56C40010CE47 /* DateObjectFactory.swift */; };
 		B5D8AFC725CF57100010CE47 /* DateObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFC625CF57100010CE47 /* DateObjectFactory.swift */; };
 		B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3125CC4503002264C2 /* WeekdayFactory.swift */; };
+		B5EE99CC25F1839A00F9E8D8 /* ApiFetchChainedOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EE99CB25F1839A00F9E8D8 /* ApiFetchChainedOperation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +131,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B506E10C25F15BC3001A8B00 /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		B506E11125F168D7001A8B00 /* AsyncResultOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResultOperation.swift; sourceTree = "<group>"; };
+		B506E11625F1699C001A8B00 /* ChainedAsyncResultOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChainedAsyncResultOperation.swift; sourceTree = "<group>"; };
 		B507035725E8065F000FF843 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		B523CC7425E877710068D74A /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFilterType.swift; sourceTree = "<group>"; };
@@ -167,7 +175,7 @@
 		B556D62625CF341200F39EDC /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
 		B556D62C25CF34D800F39EDC /* TestingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingSceneDelegate.swift; sourceTree = "<group>"; };
 		B556D63025CF350300F39EDC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		B55D184725EEAAF10091FD4C /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		B55D184725EEAAF10091FD4C /* AsyncOperation_Ray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation_Ray.swift; sourceTree = "<group>"; };
 		B569CDD725CE160500B1DBAE /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		B57372E025DB062300CC541F /* BookClassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookClassViewController.swift; sourceTree = "<group>"; };
 		B5739F6B25D0B18B001E71B9 /* DateFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFinderTests.swift; sourceTree = "<group>"; };
@@ -183,6 +191,7 @@
 		B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOrganiser.swift; sourceTree = "<group>"; };
 		B5864D7225ED791800F47900 /* ScheduleOrganiserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOrganiserTests.swift; sourceTree = "<group>"; };
 		B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimePeriodFormatter.swift; sourceTree = "<group>"; };
+		B58AB97025F19C3000D55DC0 /* ApiFetchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchOperation.swift; sourceTree = "<group>"; };
 		B58B3AB725CF449600F46BCF /* MonthFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthFactoryTests.swift; sourceTree = "<group>"; };
 		B58EFC3025ED9DD10011C677 /* OrganisedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisedSession.swift; sourceTree = "<group>"; };
 		B59280DB25C9C805001D7AED /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -235,6 +244,7 @@
 		B5D8AFB225CF4D820010CE47 /* WeedayEnumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeedayEnumTests.swift; sourceTree = "<group>"; };
 		B5D8AFC025CF56C40010CE47 /* DateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectFactory.swift; sourceTree = "<group>"; };
 		B5D8AFC625CF57100010CE47 /* DateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectFactory.swift; sourceTree = "<group>"; };
+		B5EE99CB25F1839A00F9E8D8 /* ApiFetchChainedOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchChainedOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +268,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B506E11525F1696D001A8B00 /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				B55D184725EEAAF10091FD4C /* AsyncOperation_Ray.swift */,
+				B506E10C25F15BC3001A8B00 /* AsyncOperation.swift */,
+				B506E11125F168D7001A8B00 /* AsyncResultOperation.swift */,
+				B506E11625F1699C001A8B00 /* ChainedAsyncResultOperation.swift */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
 		B520898925C8AC070026AF4A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,7 +434,9 @@
 		B55D184625EEAADA0091FD4C /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				B55D184725EEAAF10091FD4C /* AsyncOperation.swift */,
+				B506E11525F1696D001A8B00 /* Bases */,
+				B5EE99CB25F1839A00F9E8D8 /* ApiFetchChainedOperation.swift */,
+				B58AB97025F19C3000D55DC0 /* ApiFetchOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -887,10 +910,13 @@
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
-				B55D184825EEAAF10091FD4C /* AsyncOperation.swift in Sources */,
+				B55D184825EEAAF10091FD4C /* AsyncOperation_Ray.swift in Sources */,
+				B506E11225F168D7001A8B00 /* AsyncResultOperation.swift in Sources */,
 				B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */,
 				B59BB58225D43BBB00910962 /* NetworkConst.swift in Sources */,
+				B506E11725F1699C001A8B00 /* ChainedAsyncResultOperation.swift in Sources */,
 				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,
+				B506E10D25F15BC3001A8B00 /* AsyncOperation.swift in Sources */,
 				B507035825E8065F000FF843 /* ShimmerView.swift in Sources */,
 				B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */,
 				B585773E25E71418006B21C3 /* Photo.swift in Sources */,
@@ -907,11 +933,13 @@
 				B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */,
 				B57372E125DB062300CC541F /* BookClassViewController.swift in Sources */,
 				B5A9B7B525E71C2600921D4E /* DateFormatter+Ext.swift in Sources */,
+				B58AB97125F19C3000D55DC0 /* ApiFetchOperation.swift in Sources */,
 				B55451CB25CC94AC00BCA984 /* ReuseIdentifiable.swift in Sources */,
 				B59BB57A25D43ADD00910962 /* AlamofireAdapter.swift in Sources */,
 				B54F6E4325CC4503002264C2 /* DateSelectorCell.swift in Sources */,
 				B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */,
 				B5A2CE9C25E5DE2000776B25 /* Log.swift in Sources */,
+				B5EE99CC25F1839A00F9E8D8 /* ApiFetchChainedOperation.swift in Sources */,
 				B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */,
 				B58EFC3125ED9DD10011C677 /* OrganisedSession.swift in Sources */,
 				B5864D6C25ED738700F47900 /* ScheduleOrganiser.swift in Sources */,

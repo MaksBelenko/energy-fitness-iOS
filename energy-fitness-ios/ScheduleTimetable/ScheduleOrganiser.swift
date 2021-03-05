@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ScheduleOrganiserProtocol {
-    func filter(sessions: [GymSession], by type: ScheduleFilterType) -> [OrganisedSession]
+    func sort(sessions: [GymSession], by type: ScheduleFilterType) -> [OrganisedSession]
 }
 
 class ScheduleOrganiser: ScheduleOrganiserProtocol {
@@ -19,18 +19,18 @@ class ScheduleOrganiser: ScheduleOrganiserProtocol {
         self.timeFormatter = timeFormatter
     }
     
-    func filter(sessions: [GymSession], by type: ScheduleFilterType) -> [OrganisedSession] {
+    func sort(sessions: [GymSession], by type: ScheduleFilterType) -> [OrganisedSession] {
         switch type {
             case .time:
-                return filterByTime(sessions)
+                return sortByTime(sessions)
             case .trainer:
-                return filterByTrainer(sessions)
+                return sortByTrainer(sessions)
             case .gymClass:
-                return filterByGymClass(sessions)
+                return sortByGymClass(sessions)
         }
     }
     
-    private func filterByTime(_ sessions: [GymSession]) -> [OrganisedSession] {
+    private func sortByTime(_ sessions: [GymSession]) -> [OrganisedSession] {
         var sessionDictionary = Dictionary<Date, [GymSession]>()
         
         // organise sessions in dictionary
@@ -57,7 +57,7 @@ class ScheduleOrganiser: ScheduleOrganiserProtocol {
     }
     
     
-    private func filterByTrainer(_ sessions: [GymSession]) -> [OrganisedSession] {
+    private func sortByTrainer(_ sessions: [GymSession]) -> [OrganisedSession] {
         var sessionDictionary = Dictionary<String, [GymSession]>()
         
         // organise sessions in dictionary
@@ -90,7 +90,7 @@ class ScheduleOrganiser: ScheduleOrganiserProtocol {
     }
     
     
-    private func filterByGymClass(_ sessions: [GymSession]) -> [OrganisedSession] {
+    private func sortByGymClass(_ sessions: [GymSession]) -> [OrganisedSession] {
         var sessionDictionary = Dictionary<String, [GymSession]>()
         
         // organise sessions in dictionary

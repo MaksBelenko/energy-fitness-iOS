@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AsyncOperation: Operation {
+class AsyncOperation_Ray: Operation {
     
     // MARK: - State management
     enum State: String {

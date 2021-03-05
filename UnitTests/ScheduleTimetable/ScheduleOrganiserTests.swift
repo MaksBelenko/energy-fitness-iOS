@@ -46,7 +46,7 @@ class ScheduleOrganiserTests: XCTestCase {
 
     // MARK: - Tests
     func test_filterByTime() throws {
-        let organisedSessions = scheduleOrganiser.filter(sessions: testSessions, by: .time)
+        let organisedSessions = scheduleOrganiser.sort(sessions: testSessions, by: .time)
         
         XCTAssert(organisedSessions[0].sessions.count == 2, "At 12:00 should be 2 sessions")
         XCTAssert(organisedSessions[1].sessions.count == 2, "At 13:00 should be 2 sessions")
@@ -92,7 +92,7 @@ class ScheduleOrganiserTests: XCTestCase {
     }
 
     func test_filterByTrainer() throws {
-        let organisedSessions = scheduleOrganiser.filter(sessions: testSessions, by: .trainer)
+        let organisedSessions = scheduleOrganiser.sort(sessions: testSessions, by: .trainer)
         
         XCTAssert(organisedSessions.count == 2, "Should be 2 trainers")
         XCTAssert(organisedSessions[0].sessions.count == 3, "At trainer1 should have 3 sessions")
@@ -142,7 +142,7 @@ class ScheduleOrganiserTests: XCTestCase {
     
     
     func test_filterByGymClass() throws {
-        let organisedSessions = scheduleOrganiser.filter(sessions: testSessions, by: .gymClass)
+        let organisedSessions = scheduleOrganiser.sort(sessions: testSessions, by: .gymClass)
         
         XCTAssert(organisedSessions.count == 2, "Should be 2 different gym classes")
         
