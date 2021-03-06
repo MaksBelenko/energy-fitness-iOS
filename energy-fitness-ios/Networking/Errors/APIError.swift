@@ -33,17 +33,10 @@ extension APIError {
         }
         
         switch http.statusCode {
-            case 200...299: // successful request
-                return nil
-            
-            case 400...499: // request error
-                return .requestError(http.statusCode)
-                
-            case 500...599: // server error
-                return .serverError(http.statusCode)
-                
-            default:
-                return .unhandledResponse
+            case 200...299:  return nil
+            case 400...499: return .requestError(http.statusCode)
+            case 500...599: return .serverError(http.statusCode)
+            default: return .unhandledResponse
         }
     }
 }

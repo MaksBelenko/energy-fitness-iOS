@@ -61,4 +61,8 @@ class AsyncOperation_Ray: Operation {
         main()
         state = .executing
     }
+    
+    override func main() {
+        fatalError("Subclasses must implement `execute` without overriding super.")
+    }
 }

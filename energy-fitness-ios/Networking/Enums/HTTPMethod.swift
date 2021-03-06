@@ -13,3 +13,9 @@ public enum HTTPMethod: String {
     case put
     case delete
 }
+
+extension HTTPMethod {
+    func getString() -> String {
+        return self.rawValue.uppercased()
+    }
+}

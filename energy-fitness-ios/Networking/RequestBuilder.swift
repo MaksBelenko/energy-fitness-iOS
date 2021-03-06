@@ -68,7 +68,7 @@ class RequestBuilder: RequestBuilderProtocol {
         
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = headers
-        request.httpMethod = method.rawValue.uppercased()
+        request.httpMethod = method.getString()
         
         return request
     }

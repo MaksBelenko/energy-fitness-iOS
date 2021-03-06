@@ -71,7 +71,7 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     }
     
     func fetchGymClasses() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.networkService.getAllSessions { [weak self] sessions in
                 guard let self = self else { return }
                 self.organisedSessions = self.scheduleOrganiser.sort(sessions: sessions, by: .time)

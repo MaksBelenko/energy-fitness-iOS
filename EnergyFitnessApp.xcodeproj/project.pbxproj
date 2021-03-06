@@ -11,6 +11,9 @@
 		B506E11225F168D7001A8B00 /* AsyncResultOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B506E11125F168D7001A8B00 /* AsyncResultOperation.swift */; };
 		B506E11725F1699C001A8B00 /* ChainedAsyncResultOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B506E11625F1699C001A8B00 /* ChainedAsyncResultOperation.swift */; };
 		B507035825E8065F000FF843 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507035725E8065F000FF843 /* ShimmerView.swift */; };
+		B519BCBE25F2F87900D44A38 /* ApiRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B519BCBD25F2F87900D44A38 /* ApiRoute.swift */; };
+		B52339F425F3DD5900B58BC9 /* ApiFetchOperationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52339F325F3DD5900B58BC9 /* ApiFetchOperationFactory.swift */; };
+		B52339FA25F3E13700B58BC9 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52339F925F3E13700B58BC9 /* Repository.swift */; };
 		B523CC7525E877710068D74A /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7425E877710068D74A /* NoSessionView.swift */; };
 		B523E76025ED45D6003DD3BE /* ScheduleFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */; };
 		B527C8FA25CC749000342113 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5925CC7037002264C2 /* Raleway-Black.ttf */; };
@@ -68,9 +71,7 @@
 		B588E84D25F2B91900A989DB /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E84C25F2B91900A989DB /* ApiClient.swift */; };
 		B588E85225F2B98400A989DB /* EnergyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85125F2B98400A989DB /* EnergyApi.swift */; };
 		B588E85625F2BA6700A989DB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85525F2BA6700A989DB /* HTTPMethod.swift */; };
-		B588E85A25F2BA8700A989DB /* RequestBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85925F2BA8700A989DB /* RequestBuilderProtocol.swift */; };
-		B588E85E25F2BADD00A989DB /* BasicRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85D25F2BADD00A989DB /* BasicRequestBuilder.swift */; };
-		B588E86225F2BB2B00A989DB /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E86125F2BB2B00A989DB /* Request.swift */; };
+		B588E85A25F2BA8700A989DB /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85925F2BA8700A989DB /* RequestBuilder.swift */; };
 		B588E86625F2BB6500A989DB /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E86525F2BB6500A989DB /* APIError.swift */; };
 		B58AB97125F19C3000D55DC0 /* ApiFetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58AB97025F19C3000D55DC0 /* ApiFetchOperation.swift */; };
 		B58B3AB225CF3ED900F46BCF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D63025CF350300F39EDC /* main.swift */; };
@@ -87,7 +88,6 @@
 		B59BB57625D43AB300910962 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B59BB57525D43AB300910962 /* Alamofire */; };
 		B59BB57A25D43ADD00910962 /* AlamofireAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB57925D43ADD00910962 /* AlamofireAdapter.swift */; };
 		B59BB57E25D43B1600910962 /* NetworkAdapterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */; };
-		B59BB58225D43BBB00910962 /* NetworkConst.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB58125D43BBB00910962 /* NetworkConst.swift */; };
 		B59BB58825D4436500910962 /* URLSessionAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB58725D4436500910962 /* URLSessionAdapter.swift */; };
 		B59BB58D25D447E800910962 /* GymClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB58C25D447E800910962 /* GymClass.swift */; };
 		B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59BB59325D48E9C00910962 /* JsonDecoderWrapper.swift */; };
@@ -142,6 +142,9 @@
 		B506E11125F168D7001A8B00 /* AsyncResultOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncResultOperation.swift; sourceTree = "<group>"; };
 		B506E11625F1699C001A8B00 /* ChainedAsyncResultOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChainedAsyncResultOperation.swift; sourceTree = "<group>"; };
 		B507035725E8065F000FF843 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
+		B519BCBD25F2F87900D44A38 /* ApiRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRoute.swift; sourceTree = "<group>"; };
+		B52339F325F3DD5900B58BC9 /* ApiFetchOperationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchOperationFactory.swift; sourceTree = "<group>"; };
+		B52339F925F3E13700B58BC9 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		B523CC7425E877710068D74A /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFilterType.swift; sourceTree = "<group>"; };
 		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
@@ -201,9 +204,7 @@
 		B588E84C25F2B91900A989DB /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		B588E85125F2B98400A989DB /* EnergyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyApi.swift; sourceTree = "<group>"; };
 		B588E85525F2BA6700A989DB /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		B588E85925F2BA8700A989DB /* RequestBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilderProtocol.swift; sourceTree = "<group>"; };
-		B588E85D25F2BADD00A989DB /* BasicRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicRequestBuilder.swift; sourceTree = "<group>"; };
-		B588E86125F2BB2B00A989DB /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		B588E85925F2BA8700A989DB /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		B588E86525F2BB6500A989DB /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		B58AB97025F19C3000D55DC0 /* ApiFetchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchOperation.swift; sourceTree = "<group>"; };
 		B58B3AB725CF449600F46BCF /* MonthFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthFactoryTests.swift; sourceTree = "<group>"; };
@@ -220,7 +221,6 @@
 		B598E63A258141270068DB9E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		B59BB57925D43ADD00910962 /* AlamofireAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireAdapter.swift; sourceTree = "<group>"; };
 		B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAdapterProtocol.swift; sourceTree = "<group>"; };
-		B59BB58125D43BBB00910962 /* NetworkConst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConst.swift; sourceTree = "<group>"; };
 		B59BB58725D4436500910962 /* URLSessionAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionAdapter.swift; sourceTree = "<group>"; };
 		B59BB58C25D447E800910962 /* GymClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymClass.swift; sourceTree = "<group>"; };
 		B59BB59325D48E9C00910962 /* JsonDecoderWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonDecoderWrapper.swift; sourceTree = "<group>"; };
@@ -293,6 +293,23 @@
 			path = Bases;
 			sourceTree = "<group>";
 		};
+		B519BCBC25F2F84500D44A38 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				B588E85525F2BA6700A989DB /* HTTPMethod.swift */,
+				B519BCBD25F2F87900D44A38 /* ApiRoute.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		B519BCC325F2FB1500D44A38 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				B588E86525F2BB6500A989DB /* APIError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		B520898925C8AC070026AF4A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,17 +361,28 @@
 		B520898E25C8AC580026AF4A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				B588E85025F2B95E00A989DB /* test */,
-				B59BB59225D48E8600910962 /* Wrappers */,
 				B59BB58B25D447BD00910962 /* ServerResponseDto */,
+				B519BCC325F2FB1500D44A38 /* Errors */,
+				B519BCBC25F2F84500D44A38 /* Enums */,
+				B59BB59225D48E8600910962 /* Wrappers */,
+				B588E84C25F2B91900A989DB /* ApiClient.swift */,
+				B588E85125F2B98400A989DB /* EnergyApi.swift */,
+				B588E85925F2BA8700A989DB /* RequestBuilder.swift */,
 				B59BB57D25D43B1600910962 /* NetworkAdapterProtocol.swift */,
-				B59BB58125D43BBB00910962 /* NetworkConst.swift */,
 				B5A21B0925E1CD3400B6F739 /* NetworkService.swift */,
-				B59BB57925D43ADD00910962 /* AlamofireAdapter.swift */,
 				B59BB58725D4436500910962 /* URLSessionAdapter.swift */,
 				B543EDCA25DEE13D00710FCC /* URLCombine.swift */,
+				B59BB57925D43ADD00910962 /* AlamofireAdapter.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		B52339F225F3DD3400B58BC9 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				B52339F325F3DD5900B58BC9 /* ApiFetchOperationFactory.swift */,
+			);
+			path = Factories;
 			sourceTree = "<group>";
 		};
 		B523E76325ED460A003DD3BE /* Models */ = {
@@ -449,6 +477,7 @@
 		B55D184625EEAADA0091FD4C /* Operations */ = {
 			isa = PBXGroup;
 			children = (
+				B52339F225F3DD3400B58BC9 /* Factories */,
 				B506E11525F1696D001A8B00 /* Bases */,
 				B5EE99CB25F1839A00F9E8D8 /* ApiFetchChainedOperation.swift */,
 				B58AB97025F19C3000D55DC0 /* ApiFetchOperation.swift */,
@@ -512,20 +541,6 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		B588E85025F2B95E00A989DB /* test */ = {
-			isa = PBXGroup;
-			children = (
-				B588E84C25F2B91900A989DB /* ApiClient.swift */,
-				B588E85125F2B98400A989DB /* EnergyApi.swift */,
-				B588E85525F2BA6700A989DB /* HTTPMethod.swift */,
-				B588E85925F2BA8700A989DB /* RequestBuilderProtocol.swift */,
-				B588E85D25F2BADD00A989DB /* BasicRequestBuilder.swift */,
-				B588E86125F2BB2B00A989DB /* Request.swift */,
-				B588E86525F2BB6500A989DB /* APIError.swift */,
-			);
-			path = test;
-			sourceTree = "<group>";
-		};
 		B58B3AB625CF446000F46BCF /* WeekCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +589,7 @@
 				B598E625258140FF0068DB9E /* AppDelegate.swift */,
 				B598E627258140FF0068DB9E /* SceneDelegate.swift */,
 				B569CDD725CE160500B1DBAE /* DIContainer.swift */,
+				B52339F925F3E13700B58BC9 /* Repository.swift */,
 				B5A386F325CA0892000883E0 /* Fonts */,
 				B55D184625EEAADA0091FD4C /* Operations */,
 				B520898E25C8AC580026AF4A /* Networking */,
@@ -909,7 +925,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B588E85E25F2BADD00A989DB /* BasicRequestBuilder.swift in Sources */,
 				B588E85625F2BA6700A989DB /* HTTPMethod.swift in Sources */,
 				B54F6E4025CC4503002264C2 /* MonthFactory.swift in Sources */,
 				B527C90D25CC7DD200342113 /* ScheduleCollectionView.swift in Sources */,
@@ -930,7 +945,6 @@
 				B5AB790425EADDB4006AE89C /* GestureType.swift in Sources */,
 				B5AB32AB25DEFED6003E950F /* GradientImageView.swift in Sources */,
 				B5A21B0A25E1CD3400B6F739 /* NetworkService.swift in Sources */,
-				B588E86225F2BB2B00A989DB /* Request.swift in Sources */,
 				B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */,
 				B5AB790025EADD76006AE89C /* GesturePublisher.swift in Sources */,
 				B54F6E4525CC4503002264C2 /* WeekCalendarViewModel.swift in Sources */,
@@ -938,21 +952,22 @@
 				B59BB58D25D447E800910962 /* GymClass.swift in Sources */,
 				B588E85225F2B98400A989DB /* EnergyApi.swift in Sources */,
 				B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */,
+				B52339FA25F3E13700B58BC9 /* Repository.swift in Sources */,
 				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,
 				B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
-				B588E85A25F2BA8700A989DB /* RequestBuilderProtocol.swift in Sources */,
+				B588E85A25F2BA8700A989DB /* RequestBuilder.swift in Sources */,
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
 				B55D184825EEAAF10091FD4C /* AsyncOperation_Ray.swift in Sources */,
 				B506E11225F168D7001A8B00 /* AsyncResultOperation.swift in Sources */,
 				B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */,
-				B59BB58225D43BBB00910962 /* NetworkConst.swift in Sources */,
 				B506E11725F1699C001A8B00 /* ChainedAsyncResultOperation.swift in Sources */,
 				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,
 				B506E10D25F15BC3001A8B00 /* AsyncOperation.swift in Sources */,
+				B52339F425F3DD5900B58BC9 /* ApiFetchOperationFactory.swift in Sources */,
 				B507035825E8065F000FF843 /* ShimmerView.swift in Sources */,
 				B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */,
 				B585773E25E71418006B21C3 /* Photo.swift in Sources */,
@@ -987,6 +1002,7 @@
 				B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */,
 				B585773325E6DEF7006B21C3 /* TimePeriodFormatter.swift in Sources */,
 				B5A2CE9725E5D97E00776B25 /* LoggingExcluded.swift in Sources */,
+				B519BCBE25F2F87900D44A38 /* ApiRoute.swift in Sources */,
 				B5CA0EE825D0749600CCCC22 /* WeekCalendarData.swift in Sources */,
 				B5D8AFC125CF56C40010CE47 /* DateObjectFactory.swift in Sources */,
 			);

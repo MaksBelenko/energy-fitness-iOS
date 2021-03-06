@@ -41,7 +41,8 @@ class DIContainer {
     
     // MARK: - Networking setup of container
     private func setupForNetworking(using container: Container) {
-        container.autoregister(NetworkConstants.self, initializer: NetworkConstants.init)
+        container.autoregister(ApiFetchOperationFactoryProtocol.self, initializer: ApiFetchOperationFactory.init)
+        
         container.autoregister(IJsonDecoderWrapper.self, initializer: JSONDecoderWrapper.init)
         container.autoregister(NetworkAdapterProtocol.self, initializer: URLSessionAdapter.init)
         container.autoregister(NetworkServiceProtocol.self, initializer: NetworkService.init)
