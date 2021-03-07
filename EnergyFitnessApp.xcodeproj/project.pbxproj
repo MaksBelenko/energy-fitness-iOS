@@ -27,6 +27,10 @@
 		B527C90A25CC74A600342113 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E6125CC7038002264C2 /* Raleway-Thin.ttf */; };
 		B527C90D25CC7DD200342113 /* ScheduleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */; };
 		B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90F25CC7E4000342113 /* ScheduleCell.swift */; };
+		B53AE28825F57D8200D3C319 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28725F57D8200D3C319 /* CoreDataStack.swift */; };
+		B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28B25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld */; };
+		B53AE29325F585D100D3C319 /* TrainerEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */; };
+		B53AE29425F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE29225F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift */; };
 		B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543EDCA25DEE13D00710FCC /* URLCombine.swift */; };
 		B545365025F51BD500955FD8 /* MockDateFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545364F25F51BD500955FD8 /* MockDateFinder.swift */; };
 		B545365625F51EA100955FD8 /* MockDateObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545365525F51EA100955FD8 /* MockDateObjectFactory.swift */; };
@@ -155,6 +159,10 @@
 		B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFilterType.swift; sourceTree = "<group>"; };
 		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
 		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
+		B53AE28725F57D8200D3C319 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		B53AE28C25F57E6500D3C319 /* EnergyDbModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnergyDbModel.xcdatamodel; sourceTree = "<group>"; };
+		B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainerEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B53AE29225F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainerEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B543EDCA25DEE13D00710FCC /* URLCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCombine.swift; sourceTree = "<group>"; };
 		B545364F25F51BD500955FD8 /* MockDateFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateFinder.swift; sourceTree = "<group>"; };
 		B545365525F51EA100955FD8 /* MockDateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateObjectFactory.swift; sourceTree = "<group>"; };
@@ -616,6 +624,7 @@
 				B52339F925F3E13700B58BC9 /* DataRepository.swift */,
 				B5A386F325CA0892000883E0 /* Fonts */,
 				B55D184625EEAADA0091FD4C /* Operations */,
+				B5AA2EC225F5788600FBD4A1 /* Database */,
 				B520898E25C8AC580026AF4A /* Networking */,
 				B520898B25C8AC220026AF4A /* Controllers */,
 				B520898925C8AC070026AF4A /* Views */,
@@ -683,6 +692,17 @@
 				B5A386F925CA08BF000883E0 /* Roboto-Thin.ttf */,
 			);
 			path = Roboto;
+			sourceTree = "<group>";
+		};
+		B5AA2EC225F5788600FBD4A1 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				B53AE28725F57D8200D3C319 /* CoreDataStack.swift */,
+				B53AE28B25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld */,
+				B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */,
+				B53AE29225F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 		B5AB78F925EAD73A006AE89C /* UIControl+Combine */ = {
@@ -984,6 +1004,7 @@
 				B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */,
 				B52339FA25F3E13700B58BC9 /* DataRepository.swift in Sources */,
 				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
+				B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */,
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,
 				B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
@@ -1003,6 +1024,7 @@
 				B585773E25E71418006B21C3 /* PhotoDto.swift in Sources */,
 				B585774825E7150F006B21C3 /* GymSessionDto.swift in Sources */,
 				B54F6E4425CC4503002264C2 /* MonthNameHeader.swift in Sources */,
+				B53AE29325F585D100D3C319 /* TrainerEntity+CoreDataClass.swift in Sources */,
 				B5AB790E25EADE46006AE89C /* UIViewGesture+Ext.swift in Sources */,
 				B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */,
 				B57AB5D125E9DB0900D66E19 /* Publisher+Ext.swift in Sources */,
@@ -1029,10 +1051,12 @@
 				B54F6E3C25CC4503002264C2 /* WeekDay.swift in Sources */,
 				B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */,
 				B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */,
+				B53AE29425F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift in Sources */,
 				B5BCFF1C25DFD2A4007746F8 /* ButtonAnimations.swift in Sources */,
 				B523CC7525E877710068D74A /* NoSessionView.swift in Sources */,
 				B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */,
 				B585773325E6DEF7006B21C3 /* TimePeriodFormatter.swift in Sources */,
+				B53AE28825F57D8200D3C319 /* CoreDataStack.swift in Sources */,
 				B5A2CE9725E5D97E00776B25 /* LoggingExcluded.swift in Sources */,
 				B519BCBE25F2F87900D44A38 /* ApiRoute.swift in Sources */,
 				B5CA0EE825D0749600CCCC22 /* WeekCalendarData.swift in Sources */,
@@ -1349,6 +1373,19 @@
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		B53AE28B25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B53AE28C25F57E6500D3C319 /* EnergyDbModel.xcdatamodel */,
+			);
+			currentVersion = B53AE28C25F57E6500D3C319 /* EnergyDbModel.xcdatamodel */;
+			path = EnergyDbModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B598E61A258140FE0068DB9E /* Project object */;
 }
