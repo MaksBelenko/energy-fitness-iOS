@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Photo: Decodable {
+struct PhotoDto: Decodable {
     let id: String
     let small: String
     let medium: String

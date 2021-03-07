@@ -9,5 +9,5 @@ import Foundation
 
 struct OrganisedSession {
     let header: String
-    let sessions: [GymSession]
+    let sessions: [GymSessionDto]
 }

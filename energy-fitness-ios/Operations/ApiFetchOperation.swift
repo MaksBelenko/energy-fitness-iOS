@@ -16,6 +16,10 @@ class ApiFetchOperation<T: Decodable>: ChainedAsyncResultOperation<URLRequest, T
         case missingInputURL
     }
     
+    deinit {
+        Log.logDeinit("\(self)")
+    }
+
     var networkAdapter: NetworkAdapterProtocol?
     private var dataTask: URLSessionTask?
     

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIImage
 import Combine
 
 protocol ScheduleViewModelDelegate: AnyObject {
@@ -30,21 +31,22 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     
     private var isInitialContentLoading: Bool
     
-    private let networkService: NetworkServiceProtocol
+    private let dataRepository: DataRepository
     private let cellFactory: ScheduleCellVMFactoryProtocol
     private let scheduleOrganiser: ScheduleOrganiserProtocol
     
     private var organisedSessions = [OrganisedSession]()
-    private var scheduleCellViewModels = [ScheduleCellViewModelProtocol]()
+    private var scheduleCellViewModels = Dictionary<IndexPath, ScheduleCellViewModelProtocol>()
+    private lazy var dummyLoadingCellViewModel = ScheduleCellViewModel()
     
     
     // MARK: - Lifecycle
     init(
-        networkService: NetworkServiceProtocol,
+        dataRepository: DataRepository,
         cellFactory: ScheduleCellVMFactoryProtocol,
         scheduleOrganiser: ScheduleOrganiserProtocol
     ) {
-        self.networkService = networkService
+        self.dataRepository = dataRepository
         self.cellFactory = cellFactory
         self.scheduleOrganiser = scheduleOrganiser
         
@@ -54,7 +56,7 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     }
     
     deinit {
-        Log.logDeinit(String(describing: self))
+        Log.logDeinit("\(self)")
     }
     
     
@@ -67,44 +69,79 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     private func setForInitialLoadingCells() {
         isInitialContentLoading = true
         let dummyVM = cellFactory.createScheduleCellViewModel()
-        self.scheduleCellViewModels.append(dummyVM)
+        self.scheduleCellViewModels[IndexPath(row: 0, section: 0)] =  dummyVM
     }
     
     func fetchGymClasses() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.networkService.getAllSessions { [weak self] sessions in
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.dataRepository.getAllGymSessions { [weak self] result in
                 guard let self = self else { return }
-                self.organisedSessions = self.scheduleOrganiser.sort(sessions: sessions, by: .time)
+                switch result {
+                case .success(let sessions):
+                    print("Here")
+                    self.organisedSessions = self.scheduleOrganiser.sort(sessions: sessions, by: .time)
                     self.showLoadedSessions()
-            }
-        }
-    }
-    
-    private func showLoadedSessions() {
-        isInitialContentLoading = false
-        self.scheduleCellViewModels.removeAll()
-        
-        for i in 0..<organisedSessions.count {
-            for _ in 0..<organisedSessions[i].sessions.count {
-                let dummyVM = cellFactory.createScheduleCellViewModel()
-                self.scheduleCellViewModels.append(dummyVM)
-            }
-        }
-        
-        DispatchQueue.main.async {
-            for i in 0..<self.organisedSessions.count {
-                let vm = self.scheduleCellViewModels[i]
-                let sessions = self.organisedSessions[i].sessions
-                
-                for session in sessions {
-                    vm.gymClassName.value = session.gymClass.name
-                    vm.timePresented.value = TimePeriodFormatter().getTimePeriod(from: session.startDate, durationMins: session.durationMins)
-                    vm.trainerName.value = "\(session.trainer.surname) \(session.trainer.forename.prefix(1))."
+                    
+                case .failure(let error):
+                    Log.exception(message: "Received error \(error.localizedDescription)", error)
                 }
             }
-            
-            self.delegate?.reloadData()
+//        }
+    }
+    
+    
+    private func showLoadedSessions() {
+        self.scheduleCellViewModels.removeAll()
+        
+        for section in 0..<organisedSessions.count {
+            for row in 0..<organisedSessions[section].sessions.count {
+                
+                let session = organisedSessions[section].sessions[row]
+                let cellViewModel = cellFactory.createScheduleCellViewModel()
+                scheduleCellViewModels[IndexPath(row: row, section: section)] = cellViewModel
+                
+                cellViewModel.gymClassName.value = session.gymClass.name
+                cellViewModel.timePresented.value = TimePeriodFormatter().getTimePeriod(from: session.startDate, durationMins: session.durationMins)
+                cellViewModel.trainerName.value = "\(session.trainer.surname) \(session.trainer.forename.prefix(1))."
+            }
         }
+
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.isInitialContentLoading = false
+            self?.delegate?.reloadData()
+        }
+        
+        downloadImagesForTrainers(for: organisedSessions)
+    }
+    
+    private func downloadImagesForTrainers(for sessions: [OrganisedSession]) {
+        var imageCellVMDictionary = Dictionary<String, [ScheduleCellViewModelProtocol]>()
+        
+        for section in 0..<organisedSessions.count {
+            for row in 0..<organisedSessions[section].sessions.count {
+                let session = organisedSessions[section].sessions[row]
+                
+                if let imageUrl = session.trainer.photos.first?.small {
+                    let cellViewModel = scheduleCellViewModels[IndexPath(row: row, section: section)]!
+                    
+                    if imageCellVMDictionary[imageUrl] == nil {
+                        imageCellVMDictionary[imageUrl] = [cellViewModel]
+                    } else {
+                        imageCellVMDictionary[imageUrl]!.append(cellViewModel)
+                    }
+                }
+            }
+        }
+        
+        imageCellVMDictionary.keys.forEach { [weak self] imageDownloadName in
+            self?.dataRepository.getTrainerImage(imageDownloadName, completion: { image in
+                imageCellVMDictionary[imageDownloadName]?.forEach { cellViewModel in
+                    cellViewModel.trainerImage.value = image
+                }
+            })
+        }
+        
     }
     
     
@@ -124,9 +161,10 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     }
     
     func getViewModel(for indexPath: IndexPath) -> ScheduleCellViewModelProtocol {
+        print("--- section \(indexPath.section) row \(indexPath.row)")
         return isInitialContentLoading
-                    ? scheduleCellViewModels[0]
-                    : scheduleCellViewModels[indexPath.row]
+                    ? dummyLoadingCellViewModel
+                    : scheduleCellViewModels[indexPath]!
     }
     
     func getTextForHeader(at section: Int) -> String {

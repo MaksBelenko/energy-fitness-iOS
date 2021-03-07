@@ -67,6 +67,32 @@ class URLSessionAdapter: NetworkAdapterProtocol {
         return task
     }
     
+    func downloadImage(using urlRequest: URLRequest, completion: @escaping (Result<URL, APIError>) -> ()) -> URLSessionDownloadTask {
+        let downloadTask = session.downloadTask(with: urlRequest) { downloadedFileUrl, response, error in
+            let requestResult: Result<URL, APIError>
+            
+            if let error = error {
+                requestResult = .failure(.networkError(error))
+            } else if let apiError = APIError.error(from: response) {
+                requestResult = .failure(apiError)
+            } else {
+                if let downloadedImageUrl = downloadedFileUrl {
+                    requestResult = .success(downloadedImageUrl)
+                } else {
+                    requestResult = .failure(.unhandledResponse)
+                }
+            }
+            
+            completion(requestResult)
+        }
+        
+        downloadTask.resume()
+        
+        return downloadTask
+    }
+    
+    
+    
 //    func request<T: Decodable>(method: HTTPMethod, apiRoute: ApiRoute, returnType: T.Type, completion: @escaping (T) -> ()) throws {
 //        let urlString = networkConstants.baseUrl + apiRoute.rawValue
 //

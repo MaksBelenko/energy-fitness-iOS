@@ -21,3 +21,7 @@ struct EnergyApi {
         return APIClient(configuration: configuration)
     }()
 }
+
+enum ImageDownloadRoute: String {
+    case trainer = "/trainers/image/download"
+}

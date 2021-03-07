@@ -21,6 +21,7 @@ class DIContainer {
     
     func setupContainer(using container: Container) {
         
+        setupForRepository(using: container)
         setupForNetworking(using: container)
         setupForWeekCalendar(using: container)
         setupForScheduleView(using: container)
@@ -32,16 +33,23 @@ class DIContainer {
         container.register(MainTabControllerProtocol.self) { resolver in
             let vc1 = resolver.resolve(ScheduleViewController.self)!
             vc1.tabBarItem.image = UIImage(systemName: "calendar")
-            let vc2 = resolver.resolve(ScheduleViewController.self)!
+            let vc2 = UIViewController()
+            vc2.view.backgroundColor = .gray
             vc2.tabBarItem.image = UIImage(systemName: "calendar")
             return MainTabBarController.create(viewControllers: [vc1, vc2])
         }
 //        .inObjectScope(.transient)
     }
     
+    // MARK: - Repository for data setup of container
+    private func setupForRepository(using container: Container) {
+        container.autoregister(DataRepository.self, initializer: DataRepository.init)
+    }
+    
     // MARK: - Networking setup of container
     private func setupForNetworking(using container: Container) {
         container.autoregister(ApiFetchOperationFactoryProtocol.self, initializer: ApiFetchOperationFactory.init)
+        container.autoregister(ImageDownloadOperationFactory.self, initializer: ImageDownloadOperationFactory.init)
         
         container.autoregister(IJsonDecoderWrapper.self, initializer: JSONDecoderWrapper.init)
         container.autoregister(NetworkAdapterProtocol.self, initializer: URLSessionAdapter.init)

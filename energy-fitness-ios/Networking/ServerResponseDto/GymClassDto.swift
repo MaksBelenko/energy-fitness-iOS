@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct GymClass: Decodable {
+struct GymClassDto: Decodable {
     let id: String
     let name: String
     let description: String
-    let photos: [Photo]
+    let photos: [PhotoDto]
 }
 
-extension GymClass {
-    static func ==(lhs: GymClass, rhs: GymClass) -> Bool {
+extension GymClassDto {
+    static func ==(lhs: GymClassDto, rhs: GymClassDto) -> Bool {
         return lhs.id == rhs.id
     }
 }

@@ -7,17 +7,17 @@
 
 import Foundation
 
-struct Trainer: Decodable {
+struct TrainerDto: Decodable {
     let id: String
     let forename: String
     let surname: String
     let description: String
     let type: String //TrainerType
-    let photos: [Photo]
+    let photos: [PhotoDto]
 }
 
-extension Trainer {
-    static func ==(lhs: Trainer, rhs: Trainer) -> Bool {
+extension TrainerDto {
+    static func ==(lhs: TrainerDto, rhs: TrainerDto) -> Bool {
         return lhs.id == rhs.id
     }
 }

@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct GymSession: Decodable {
+struct GymSessionDto: Decodable {
     let id: String
     let maxNumberOfPlaces: Int
     let bookedPlaces: Int
     let startDate: Date
     let durationMins: Int
-    let gymClass: GymClass
-    let trainer: Trainer
+    let gymClass: GymClassDto
+    let trainer: TrainerDto
 }

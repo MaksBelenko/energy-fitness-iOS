@@ -46,15 +46,6 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         return label
     }()
     
-    private lazy var trainerImageView: Shimmered<UIImageView> = {
-        let iv = Shimmered<UIImageView>()
-        iv.view.image = #imageLiteral(resourceName: "zhgileva")
-        iv.layer.masksToBounds = true
-        iv.layer.cornerRadius = imageWidth/2
-        iv.configureShimmer(gradientFrame: self.bounds)
-        return iv
-    }()
-    
     private lazy var trainerNameLabel: Shimmered<UILabel> = {
         let label = Shimmered<UILabel>()
         label.configureShimmer(gradientFrame: self.bounds, width: 93, topOffset: 3)
@@ -62,6 +53,16 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         label.view.font = UIFont.scheduleParagraph(ofSize: 13)
         label.view.textColor = .energyScheduleTrainerName
         return label
+    }()
+
+    private lazy var trainerImageView: Shimmered<UIImageView> = {
+        let iv = Shimmered<UIImageView>()
+        iv.view.image = #imageLiteral(resourceName: "zhgileva")
+        iv.view.contentMode = .scaleAspectFill
+        iv.layer.masksToBounds = true
+        iv.layer.cornerRadius = imageWidth/2
+        iv.configureShimmer(gradientFrame: self.bounds)
+        return iv
     }()
     
     private var chevronArrow: UIImageView = {
@@ -103,8 +104,10 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         self.viewModel = viewModel
         
         self.viewModel.gymClassName
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] name in
                 if name != "" {
+                    print("Class name \(name)")
                     self.classNameLabel.view.text = name
                     self.classNameLabel.shimmer?.stopAndHide()
                 }
@@ -113,6 +116,7 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         
         
         self.viewModel.timePresented
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] timeString in
                 if timeString != "" {
                     self.timeLabel.view.text = timeString
@@ -123,9 +127,10 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         
         
         self.viewModel.trainerName
-//            .assign(to: \.text, on: trainerNameLabel.view)
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] name in
                 if name != "" {
+                    print("Trainer name \(name)")
                     self.trainerNameLabel.view.text = name
                     self.trainerNameLabel.shimmer?.stopAndHide()
                 }
@@ -134,6 +139,7 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         
         
         self.viewModel.trainerImage
+            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] image in
                 if image != nil {
                     self.trainerImageView.view.image = image

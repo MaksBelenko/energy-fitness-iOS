@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ScheduleOrganiserProtocol {
-    func sort(sessions: [GymSession], by type: ScheduleFilterType) -> [OrganisedSession]
+    func sort(sessions: [GymSessionDto], by type: ScheduleFilterType) -> [OrganisedSession]
 }
 
 class ScheduleOrganiser: ScheduleOrganiserProtocol {
@@ -19,7 +19,7 @@ class ScheduleOrganiser: ScheduleOrganiserProtocol {
         self.timeFormatter = timeFormatter
     }
     
-    func sort(sessions: [GymSession], by type: ScheduleFilterType) -> [OrganisedSession] {
+    func sort(sessions: [GymSessionDto], by type: ScheduleFilterType) -> [OrganisedSession] {
         switch type {
             case .time:
                 return sortByTime(sessions)
@@ -30,8 +30,8 @@ class ScheduleOrganiser: ScheduleOrganiserProtocol {
         }
     }
     
-    private func sortByTime(_ sessions: [GymSession]) -> [OrganisedSession] {
-        var sessionDictionary = Dictionary<Date, [GymSession]>()
+    private func sortByTime(_ sessions: [GymSessionDto]) -> [OrganisedSession] {
+        var sessionDictionary = Dictionary<Date, [GymSessionDto]>()
         
         // organise sessions in dictionary
         for session in sessions {
@@ -57,8 +57,8 @@ class ScheduleOrganiser: ScheduleOrganiserProtocol {
     }
     
     
-    private func sortByTrainer(_ sessions: [GymSession]) -> [OrganisedSession] {
-        var sessionDictionary = Dictionary<String, [GymSession]>()
+    private func sortByTrainer(_ sessions: [GymSessionDto]) -> [OrganisedSession] {
+        var sessionDictionary = Dictionary<String, [GymSessionDto]>()
         
         // organise sessions in dictionary
         for session in sessions {
@@ -90,8 +90,8 @@ class ScheduleOrganiser: ScheduleOrganiserProtocol {
     }
     
     
-    private func sortByGymClass(_ sessions: [GymSession]) -> [OrganisedSession] {
-        var sessionDictionary = Dictionary<String, [GymSession]>()
+    private func sortByGymClass(_ sessions: [GymSessionDto]) -> [OrganisedSession] {
+        var sessionDictionary = Dictionary<String, [GymSessionDto]>()
         
         // organise sessions in dictionary
         for session in sessions {
