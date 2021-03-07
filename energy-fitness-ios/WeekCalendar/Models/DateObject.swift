@@ -23,3 +23,11 @@ struct DateObject {
         return Date.calendar.date(from: dateComp)!
     }
 }
+
+extension DateObject {
+    static func ==(lhs: DateObject, rhs: DateObject) -> Bool {
+        return lhs.day == rhs.day
+            && lhs.month == rhs.month
+            && lhs.year == rhs.year
+    }
+}

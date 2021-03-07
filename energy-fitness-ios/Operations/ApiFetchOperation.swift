@@ -34,7 +34,7 @@ class ApiFetchOperation<T: Decodable>: ChainedAsyncResultOperation<URLRequest, T
                     self?.finish(with: .success(gymSessions))
 
                case .failure(let error):
-                    Log.exception(message: "Received error \(error.localizedDescription) when fetching [GymSession]", error)
+                    Log.exception(message: "Received error \(error.localizedDescription) when fetching ", error)
                     self?.finish(with: .failure(.requestFailed(error)))
             }
         })

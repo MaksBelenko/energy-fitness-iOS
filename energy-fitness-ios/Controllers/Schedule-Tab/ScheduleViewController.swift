@@ -134,7 +134,6 @@ extension ScheduleViewController: DateSelectedDelegate {
 
 extension ScheduleViewController: CellSelectedDelegate {
     func onCellSelected() {
-        print("Starting \(CFAbsoluteTimeGetCurrent())")
         let bookVC = BookClassViewController()
         bookVC.modalPresentationStyle = .fullScreen
         present(bookVC, animated: true, completion: nil)

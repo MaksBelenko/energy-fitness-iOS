@@ -6,12 +6,13 @@
 //
 
 import UIKit.UIColor
-import RandomColor
+//import RandomColor
 
 class NiceRandomColour {
     
     func generate() -> UIColor {
-        let colour = randomColor(hue: .random, luminosity: .dark)
-        return colour
+        return .brown
+//        let colour = randomColor(hue: .random, luminosity: .dark)
+//        return colour
     }
 }

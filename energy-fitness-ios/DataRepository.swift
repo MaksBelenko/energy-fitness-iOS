@@ -28,8 +28,14 @@ class DataRepository {
     // MARK: - Public methods
     
     func getAllGymSessions(completion: @escaping (Result<[GymSessionDto], DataError>) -> ()) {
-            self.networkService.getAllSessions { gymSessions in
-                completion(.success(gymSessions))
+            self.networkService.getAllSessions { result in
+                switch result {
+                case .success(let gymSessions):
+                    completion(.success(gymSessions))
+
+                case .failure(let error):
+                    Log.exception(message: "Error \(error.localizedDescription) appeared when fetching", error)
+                }
             }
     }
     

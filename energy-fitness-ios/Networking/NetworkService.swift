@@ -8,7 +8,7 @@
 import UIKit.UIImage
 
 protocol NetworkServiceProtocol {
-    func getAllSessions(completion: @escaping ([GymSessionDto]) -> ())
+    func getAllSessions(completion: @escaping (Result<[GymSessionDto], APIError> ) -> ())
     func downloadImage(for imageRouteType: ImageDownloadRoute, imageName: String, completion: @escaping (UIImage) -> ())
 }
 
@@ -50,14 +50,14 @@ class NetworkService: NetworkServiceProtocol {
     
     
     
-    func getAllSessions(completion: @escaping ([GymSessionDto]) -> ()) {
+    func getAllSessions(completion: @escaping (Result<[GymSessionDto], APIError> ) -> ()) {
         let request = getAllGymClassesRequest
 
         let fetchGymClassesOperation = apiFetchOperationFactory.create(urlRequest: request, returnType: [GymSessionDto].self)
         fetchGymClassesOperation.onResult = { result in
             switch result {
             case .success(let gymSessions):
-                completion(gymSessions)
+                completion(.success(gymSessions))
 
             case .failure(let error):
                 Log.exception(message: "Error \(error.localizedDescription) appeared when fetching", error)
@@ -73,7 +73,7 @@ class NetworkService: NetworkServiceProtocol {
         
         let request = requestBuilder
                         .withBaseURL(EnergyApi.baseURL)
-                        .withPath(path) //("/trainers/image/download/Евгений_Рябов-small-6e69bad5-5267-4de1-858a-3860ca41533a.png")
+                        .withPath(path)
                         .build()
         
         let imageDownloadOperation = imageDownloadOperationFactory.create(urlRequest: request)
@@ -90,8 +90,10 @@ class NetworkService: NetworkServiceProtocol {
         
         networkOperationQueue.addOperation(imageDownloadOperation)
     }
+
     
-//    func getAllTrainers(completion: @escaping ([TrainerDto]) -> ()) {
-//        try! networkAdapter.request(method: .get, apiRoute: .Trainers, returnType: [Trainer].self, completion: completion)
-//    }
+    
+    // MARK: - Helper methods
+    
+//    private func handle(error: )
 }

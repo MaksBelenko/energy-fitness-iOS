@@ -51,7 +51,6 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
         self.scheduleOrganiser = scheduleOrganiser
         
         isInitialContentLoading = true
-        setForInitialLoadingCells()
         fetchGymClasses()
     }
     
@@ -66,31 +65,25 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
         delegate?.reloadData()
     }
     
-    private func setForInitialLoadingCells() {
-        isInitialContentLoading = true
-        let dummyVM = cellFactory.createScheduleCellViewModel()
-        self.scheduleCellViewModels[IndexPath(row: 0, section: 0)] =  dummyVM
-    }
     
     func fetchGymClasses() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.dataRepository.getAllGymSessions { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let sessions):
-                    print("Here")
                     self.organisedSessions = self.scheduleOrganiser.sort(sessions: sessions, by: .time)
-                    self.showLoadedSessions()
+                    self.showLoadedTextForSessions()
                     
                 case .failure(let error):
                     Log.exception(message: "Received error \(error.localizedDescription)", error)
                 }
             }
-//        }
+        }
     }
     
     
-    private func showLoadedSessions() {
+    private func showLoadedTextForSessions() {
         self.scheduleCellViewModels.removeAll()
         
         for section in 0..<organisedSessions.count {
@@ -161,7 +154,6 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
     }
     
     func getViewModel(for indexPath: IndexPath) -> ScheduleCellViewModelProtocol {
-        print("--- section \(indexPath.section) row \(indexPath.row)")
         return isInitialContentLoading
                     ? dummyLoadingCellViewModel
                     : scheduleCellViewModels[indexPath]!

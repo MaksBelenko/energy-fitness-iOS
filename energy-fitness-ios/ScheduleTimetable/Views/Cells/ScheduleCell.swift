@@ -92,7 +92,6 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        print("Layout shadow")
         internalView.layer.applyShadow(rect: internalView.bounds, cornerRadius: internalViewCornerRadius, color: .black, alpha: 0.16, x: 5, y: 5, blur: 10)
     }
     
@@ -107,7 +106,6 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] name in
                 if name != "" {
-                    print("Class name \(name)")
                     self.classNameLabel.view.text = name
                     self.classNameLabel.shimmer?.stopAndHide()
                 }
@@ -130,7 +128,6 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] name in
                 if name != "" {
-                    print("Trainer name \(name)")
                     self.trainerNameLabel.view.text = name
                     self.trainerNameLabel.shimmer?.stopAndHide()
                 }

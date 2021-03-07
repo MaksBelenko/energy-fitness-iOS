@@ -17,20 +17,20 @@ class ScheduleOrganiserTests: XCTestCase {
     private lazy var date_13_00 = createDateWithTime(hour: 13, minute: 0)
     private lazy var date_14_30 = createDateWithTime(hour: 14, minute: 30)
 
-    private let yoga = GymClass(id: "1", name: "Yoga", description: "", photos: [])
-    private let crossfit = GymClass(id: "2", name: "Crossfit", description: "", photos: [])
+    private let yoga = GymClassDto(id: "1", name: "Yoga", description: "", photos: [])
+    private let crossfit = GymClassDto(id: "2", name: "Crossfit", description: "", photos: [])
 
-    private let trainer1 = Trainer(id: "1", forename: "Maks", surname: "Belenko", description: "", type: "PERMANENT", photos: [])
-    private let trainer2 = Trainer(id: "2", forename: "Alex", surname: "Alexov", description: "", type: "GUEST", photos: [])
+    private let trainer1 = TrainerDto(id: "1", forename: "Maks", surname: "Belenko", description: "", type: "PERMANENT", photos: [])
+    private let trainer2 = TrainerDto(id: "2", forename: "Alex", surname: "Alexov", description: "", type: "GUEST", photos: [])
     
-    private lazy var testSessions: [GymSession] = {
+    private lazy var testSessions: [GymSessionDto] = {
         return [
-        GymSession(id: "1", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_12_00, durationMins: 60, gymClass: yoga, trainer: trainer1),
-        GymSession(id: "2", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_12_00, durationMins: 60, gymClass: yoga, trainer: trainer2),
-        GymSession(id: "3", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_13_00, durationMins: 60, gymClass: crossfit, trainer: trainer2),
-        GymSession(id: "4", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_13_00, durationMins: 60, gymClass: yoga, trainer: trainer2),
-        GymSession(id: "5", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_14_30, durationMins: 60, gymClass: crossfit, trainer: trainer1),
-        GymSession(id: "6", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_14_30, durationMins: 60, gymClass: yoga, trainer: trainer1),
+        GymSessionDto(id: "1", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_12_00, durationMins: 60, gymClass: yoga, trainer: trainer1),
+        GymSessionDto(id: "2", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_12_00, durationMins: 60, gymClass: yoga, trainer: trainer2),
+        GymSessionDto(id: "3", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_13_00, durationMins: 60, gymClass: crossfit, trainer: trainer2),
+        GymSessionDto(id: "4", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_13_00, durationMins: 60, gymClass: yoga, trainer: trainer2),
+        GymSessionDto(id: "5", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_14_30, durationMins: 60, gymClass: crossfit, trainer: trainer1),
+        GymSessionDto(id: "6", maxNumberOfPlaces: 5, bookedPlaces: 0, startDate: date_14_30, durationMins: 60, gymClass: yoga, trainer: trainer1),
         ]
     }()
     

@@ -52,7 +52,7 @@ class DIContainer {
         container.autoregister(ImageDownloadOperationFactory.self, initializer: ImageDownloadOperationFactory.init)
         
         container.autoregister(IJsonDecoderWrapper.self, initializer: JSONDecoderWrapper.init)
-        container.autoregister(NetworkAdapterProtocol.self, initializer: URLSessionAdapter.init)
+        container.autoregister(NetworkAdapterProtocol.self, initializer: ApiClient.init)
         container.autoregister(NetworkServiceProtocol.self, initializer: NetworkService.init)
         container.autoregister(RequestBuilderProtocol.self, initializer: RequestBuilder.init)
     }

@@ -7,16 +7,17 @@
 
 import UIKit.UIImage
 
-class ImageDownloadOperation: ChainedAsyncResultOperation<URLRequest, UIImage, ImageDownloadOperation.Error> {
+public enum ImageDownloadError: Error {
+    case requestFailed(APIError)
+    case canceled
+    case missingInputURL
+    case noDataLoaded
+    case cannotConvertDataToImage
+}
+
+
+class ImageDownloadOperation: ChainedAsyncResultOperation<URLRequest, UIImage, ImageDownloadError> {
     
-    public enum Error: Swift.Error {
-        case canceled
-        case requestFailed(APIError)
-        case networkAdapterNotInjected
-        case missingInputURL
-        case noDataLoaded
-        case cannotConvertDataToImage
-    }
     
     deinit {
         Log.logDeinit("\(self)")
@@ -28,7 +29,7 @@ class ImageDownloadOperation: ChainedAsyncResultOperation<URLRequest, UIImage, I
     
     override func main() {
         guard let urlRequest = input else { return finish(with: .failure(.missingInputURL)) }
-        guard let networkAdapter = networkAdapter else { return finish(with: .failure(.networkAdapterNotInjected))}
+        guard let networkAdapter = networkAdapter else { fatalError("NetworkAdapter not injected")}
         
         downloadTask = networkAdapter.downloadImage(using: urlRequest, completion: { [weak self] result in
             switch result {

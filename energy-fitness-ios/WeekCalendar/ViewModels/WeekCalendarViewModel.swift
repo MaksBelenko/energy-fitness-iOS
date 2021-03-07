@@ -54,7 +54,10 @@ class WeekCalendarViewModel: WeekCalendarVMProtocol {
         
         self.headerSpacing = data.headerSpacing
         self.startWeekDay = data.startDay
-        generateMetaData(for: data.numberOfWeeks)
+        
+//        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            self.generateMetaData(for: data.numberOfWeeks)
+//        }
     }
     
     

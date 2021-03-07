@@ -13,7 +13,7 @@ enum NetworkError: Error {
 }
 
 
-class URLSessionAdapter: NetworkAdapterProtocol {
+class ApiClient: NetworkAdapterProtocol {
     
     // TODO: Put in DI properties below
     private let jsonDecoder: IJsonDecoderWrapper
