@@ -15,7 +15,7 @@ public enum HTTPMethod: String {
 }
 
 extension HTTPMethod {
-    func getString() -> String {
+    func getHttpMethodName() -> String {
         return self.rawValue.uppercased()
     }
 }

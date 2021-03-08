@@ -7,12 +7,11 @@
 
 import Foundation
 
-class ApiFetchOperation<T: Decodable>: ChainedAsyncResultOperation<URLRequest, T, ApiFetchOperation.Error> {
+class NetworkFetchOperation<T: Decodable>: ChainedAsyncResultOperation<URLRequest, T, NetworkFetchOperation.Error> {
     
     public enum Error: Swift.Error {
         case canceled
         case requestFailed(APIError)
-        case networkAdapterNotInjected
         case missingInputURL
     }
     
@@ -26,7 +25,7 @@ class ApiFetchOperation<T: Decodable>: ChainedAsyncResultOperation<URLRequest, T
     
     override func main() {
         guard let input = input else { return finish(with: .failure(.missingInputURL)) }
-        guard let networkAdapter = networkAdapter else { return finish(with: .failure(.networkAdapterNotInjected))}
+        guard let networkAdapter = networkAdapter else { fatalError("NetworkAdapter Not Injected") }
         
         dataTask = networkAdapter.request(input, returnType: T.self, completion: { [weak self] result in
             switch result {
@@ -34,7 +33,6 @@ class ApiFetchOperation<T: Decodable>: ChainedAsyncResultOperation<URLRequest, T
                     self?.finish(with: .success(gymSessions))
 
                case .failure(let error):
-                    Log.exception(message: "Received error \(error.localizedDescription) when fetching ", error)
                     self?.finish(with: .failure(.requestFailed(error)))
             }
         })

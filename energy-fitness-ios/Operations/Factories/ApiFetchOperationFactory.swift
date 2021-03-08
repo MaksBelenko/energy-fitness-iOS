@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol ApiFetchOperationFactoryProtocol {
-    func create<T: Decodable>(urlRequest: URLRequest?, returnType: T.Type) -> ApiFetchOperation<T>
+protocol NetworkFetchOperationFactoryProtocol {
+    func create<T: Decodable>(urlRequest: URLRequest?, returnType: T.Type) -> NetworkFetchOperation<T>
 }
 
-class ApiFetchOperationFactory: ApiFetchOperationFactoryProtocol {
+class ApiFetchOperationFactory: NetworkFetchOperationFactoryProtocol {
     
     private let networkAdapter: NetworkAdapterProtocol
     
@@ -19,8 +19,8 @@ class ApiFetchOperationFactory: ApiFetchOperationFactoryProtocol {
         self.networkAdapter = networkAdapter
     }
     
-    func create<T: Decodable>(urlRequest: URLRequest? = nil, returnType: T.Type) -> ApiFetchOperation<T> {
-        let operation = ApiFetchOperation<T>(input: urlRequest) // no need for nil check as it will be resilved by updateDependancies
+    func create<T: Decodable>(urlRequest: URLRequest? = nil, returnType: T.Type) -> NetworkFetchOperation<T> {
+        let operation = NetworkFetchOperation<T>(input: urlRequest) // no need for nil check as it will be resilved by updateDependancies
         operation.networkAdapter = networkAdapter
         return operation
     }

@@ -16,11 +16,11 @@ class NetworkService: NetworkServiceProtocol {
     
     private var networkOperationQueue: OperationQueue = {
         let operationQueue = OperationQueue()
-        operationQueue.maxConcurrentOperationCount = 10
+        operationQueue.maxConcurrentOperationCount = 5
         return operationQueue
     }()
     
-    private let apiFetchOperationFactory: ApiFetchOperationFactoryProtocol
+    private let networkFetchOperationFactory: NetworkFetchOperationFactoryProtocol
     private let requestBuilder: RequestBuilderProtocol
     private let imageDownloadOperationFactory: ImageDownloadOperationFactory
     
@@ -36,11 +36,11 @@ class NetworkService: NetworkServiceProtocol {
     // MARK: - Lifecycle
     init(
         requestBuilder: RequestBuilderProtocol,
-        apiFetchOperationFactory: ApiFetchOperationFactoryProtocol,
+        networkFetchOperationFactory: NetworkFetchOperationFactoryProtocol,
         imageDownloadOperationFactory: ImageDownloadOperationFactory
     ) {
         self.requestBuilder = requestBuilder
-        self.apiFetchOperationFactory = apiFetchOperationFactory
+        self.networkFetchOperationFactory = networkFetchOperationFactory
         self.imageDownloadOperationFactory = imageDownloadOperationFactory
     }
     
@@ -53,7 +53,7 @@ class NetworkService: NetworkServiceProtocol {
     func getAllSessions(completion: @escaping (Result<[GymSessionDto], APIError> ) -> ()) {
         let request = getAllGymClassesRequest
 
-        let fetchGymClassesOperation = apiFetchOperationFactory.create(urlRequest: request, returnType: [GymSessionDto].self)
+        let fetchGymClassesOperation = networkFetchOperationFactory.create(urlRequest: request, returnType: [GymSessionDto].self)
         fetchGymClassesOperation.onResult = { result in
             switch result {
             case .success(let gymSessions):
@@ -95,5 +95,7 @@ class NetworkService: NetworkServiceProtocol {
     
     // MARK: - Helper methods
     
-//    private func handle(error: )
+    private func handle(error: Error) {
+        
+    }
 }

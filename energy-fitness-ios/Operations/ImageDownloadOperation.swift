@@ -37,7 +37,6 @@ class ImageDownloadOperation: ChainedAsyncResultOperation<URLRequest, UIImage, I
                     self?.decodeImageAndFinish(from: downloadedImageUrl)
 
                case .failure(let error):
-                    Log.exception(message: "Received error \(error.localizedDescription) when fetching [GymSession]", error)
                     self?.finish(with: .failure(.requestFailed(error)))
             }
         })
