@@ -26,7 +26,7 @@
 		B527C90625CC74A100342113 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5A25CC7037002264C2 /* Raleway-Regular.ttf */; };
 		B527C90825CC74A400342113 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E6025CC7038002264C2 /* Raleway-SemiBold.ttf */; };
 		B527C90A25CC74A600342113 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E6125CC7038002264C2 /* Raleway-Thin.ttf */; };
-		B527C90D25CC7DD200342113 /* ScheduleCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */; };
+		B527C90D25CC7DD200342113 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90C25CC7DD200342113 /* ScheduleView.swift */; };
 		B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90F25CC7E4000342113 /* ScheduleCell.swift */; };
 		B53AE28825F57D8200D3C319 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28725F57D8200D3C319 /* CoreDataStack.swift */; };
 		B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28B25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld */; };
@@ -158,7 +158,7 @@
 		B52339F925F3E13700B58BC9 /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		B523CC7425E877710068D74A /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFilterType.swift; sourceTree = "<group>"; };
-		B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionView.swift; sourceTree = "<group>"; };
+		B527C90C25CC7DD200342113 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		B53AE28725F57D8200D3C319 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B53AE28C25F57E6500D3C319 /* EnergyDbModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnergyDbModel.xcdatamodel; sourceTree = "<group>"; };
@@ -807,7 +807,7 @@
 				B523E76325ED460A003DD3BE /* Models */,
 				B578F39225E1D14E00301BE9 /* Cells */,
 				B5D2678925E6B4CC008CE0BE /* ScheduleViewModel.swift */,
-				B527C90C25CC7DD200342113 /* ScheduleCollectionView.swift */,
+				B527C90C25CC7DD200342113 /* ScheduleView.swift */,
 				B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */,
 			);
 			path = ScheduleTimetable;
@@ -967,7 +967,7 @@
 			files = (
 				B588E85625F2BA6700A989DB /* HTTPMethod.swift in Sources */,
 				B54F6E4025CC4503002264C2 /* MonthFactory.swift in Sources */,
-				B527C90D25CC7DD200342113 /* ScheduleCollectionView.swift in Sources */,
+				B527C90D25CC7DD200342113 /* ScheduleView.swift in Sources */,
 				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
 				B5D0657425F4463200E7785F /* ImageDownloadOperationFactory.swift in Sources */,
 				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,

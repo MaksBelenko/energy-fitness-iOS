@@ -119,8 +119,6 @@ extension ScheduleView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: realReuseIdentifier, for: indexPath) as! ScheduleCell
         let cellViewModel = viewModel.getViewModel(for: indexPath)
         cell.setViewModel(to: cellViewModel)
-//        cell.isTextLoading = true
-//        cell.isImagesLoading = true
         return cell
     }
 
