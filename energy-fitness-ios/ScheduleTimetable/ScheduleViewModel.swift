@@ -25,7 +25,7 @@ protocol ScheduleViewModelProtocol {
 }
 
 
-class ScheduleViewModel: ScheduleViewModelProtocol {
+final class ScheduleViewModel: ScheduleViewModelProtocol {
     
     weak var delegate: ScheduleViewModelDelegate?
     
@@ -96,6 +96,7 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
                 cellViewModel.gymClassName.value = session.gymClass.name
                 cellViewModel.timePresented.value = TimePeriodFormatter().getTimePeriod(from: session.startDate, durationMins: session.durationMins)
                 cellViewModel.trainerName.value = "\(session.trainer.surname) \(session.trainer.forename.prefix(1))."
+                cellViewModel.trainerImageUrl.value = EnergyApi.baseURL.absoluteString + "/trainers/image/download/" + session.trainer.photos.first!.small
             }
         }
 
@@ -104,37 +105,6 @@ class ScheduleViewModel: ScheduleViewModelProtocol {
             self?.isInitialContentLoading = false
             self?.delegate?.reloadData()
         }
-        
-        downloadImagesForTrainers(for: organisedSessions)
-    }
-    
-    private func downloadImagesForTrainers(for sessions: [OrganisedSession]) {
-        var imageCellVMDictionary = Dictionary<String, [ScheduleCellViewModelProtocol]>()
-        
-        for section in 0..<organisedSessions.count {
-            for row in 0..<organisedSessions[section].sessions.count {
-                let session = organisedSessions[section].sessions[row]
-                
-                if let imageUrl = session.trainer.photos.first?.small {
-                    let cellViewModel = scheduleCellViewModels[IndexPath(row: row, section: section)]!
-                    
-                    if imageCellVMDictionary[imageUrl] == nil {
-                        imageCellVMDictionary[imageUrl] = [cellViewModel]
-                    } else {
-                        imageCellVMDictionary[imageUrl]!.append(cellViewModel)
-                    }
-                }
-            }
-        }
-        
-        imageCellVMDictionary.keys.forEach { [weak self] imageDownloadName in
-            self?.dataRepository.getTrainerImage(imageDownloadName, completion: { image in
-                imageCellVMDictionary[imageDownloadName]?.forEach { cellViewModel in
-                    cellViewModel.trainerImage.value = image
-                }
-            })
-        }
-        
     }
     
     

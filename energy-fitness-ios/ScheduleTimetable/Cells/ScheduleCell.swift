@@ -98,12 +98,31 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
     // MARK: - Set ViewModel
     func setViewModel(to viewModel: ScheduleCellViewModelProtocol) {
-        subscriptions.removeAll()
         
-        self.viewModel = viewModel
-        
-        self.viewModel.gymClassName
+        viewModel.trainerName
             .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] name in
+                if name != "" {
+                    self.trainerNameLabel.view.text = name
+                    self.trainerNameLabel.shimmer?.stopAndHide()
+                }
+            })
+            .store(in: &subscriptions)
+        
+        viewModel.trainerImage
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [unowned self] image in
+                if image != nil {
+                    self.trainerImageView.view.image = image
+                    self.trainerImageView.shimmer?.stopAndHide()
+                }
+            })
+            .store(in: &subscriptions)
+        
+        
+        viewModel.gymClassName
+            .receive(on: DispatchQueue.main)
+//            .map { $0 == "" ? " " : $0 }
             .sink(receiveValue: { [unowned self] name in
                 if name != "" {
                     self.classNameLabel.view.text = name
@@ -113,7 +132,7 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
             .store(in: &subscriptions)
         
         
-        self.viewModel.timePresented
+        viewModel.timePresented
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] timeString in
                 if timeString != "" {
@@ -124,26 +143,6 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
             .store(in: &subscriptions)
         
         
-        self.viewModel.trainerName
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [unowned self] name in
-                if name != "" {
-                    self.trainerNameLabel.view.text = name
-                    self.trainerNameLabel.shimmer?.stopAndHide()
-                }
-            })
-            .store(in: &subscriptions)
-        
-        
-        self.viewModel.trainerImage
-            .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [unowned self] image in
-                if image != nil {
-                    self.trainerImageView.view.image = image
-                    self.trainerImageView.shimmer?.stopAndHide()
-                }
-            })
-            .store(in: &subscriptions)
     }
     
     // MARK: - UI Configuration

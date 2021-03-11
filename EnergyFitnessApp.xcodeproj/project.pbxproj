@@ -28,6 +28,8 @@
 		B527C90A25CC74A600342113 /* Raleway-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E6125CC7038002264C2 /* Raleway-Thin.ttf */; };
 		B527C90D25CC7DD200342113 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90C25CC7DD200342113 /* ScheduleView.swift */; };
 		B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90F25CC7E4000342113 /* ScheduleCell.swift */; };
+		B536FB6025F977FC00853AD0 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B536FB5F25F977FC00853AD0 /* Nuke */; };
+		B536FB6525F9782A00853AD0 /* ImagePublisher in Frameworks */ = {isa = PBXBuildFile; productRef = B536FB6425F9782A00853AD0 /* ImagePublisher */; };
 		B53AE28825F57D8200D3C319 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28725F57D8200D3C319 /* CoreDataStack.swift */; };
 		B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28B25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld */; };
 		B53AE29325F585D100D3C319 /* TrainerEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */; };
@@ -295,7 +297,9 @@
 			files = (
 				B59BB57625D43AB300910962 /* Alamofire in Frameworks */,
 				B569CDD525CE142E00B1DBAE /* Swinject in Frameworks */,
+				B536FB6525F9782A00853AD0 /* ImagePublisher in Frameworks */,
 				B5739F6725D0A654001E71B9 /* SwinjectAutoregistration in Frameworks */,
+				B536FB6025F977FC00853AD0 /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,6 +855,8 @@
 				B569CDD425CE142E00B1DBAE /* Swinject */,
 				B5739F6625D0A654001E71B9 /* SwinjectAutoregistration */,
 				B59BB57525D43AB300910962 /* Alamofire */,
+				B536FB5F25F977FC00853AD0 /* Nuke */,
+				B536FB6425F9782A00853AD0 /* ImagePublisher */,
 			);
 			productName = "energy-fitness-ios";
 			productReference = B598E622258140FF0068DB9E /* EnergyFitnessApp.app */;
@@ -888,6 +894,8 @@
 				B569CDD325CE142E00B1DBAE /* XCRemoteSwiftPackageReference "Swinject" */,
 				B5739F6525D0A654001E71B9 /* XCRemoteSwiftPackageReference "SwinjectAutoregistration" */,
 				B59BB57425D43AB200910962 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B536FB5E25F977FC00853AD0 /* XCRemoteSwiftPackageReference "Nuke" */,
+				B536FB6325F9782A00853AD0 /* XCRemoteSwiftPackageReference "ImagePublisher" */,
 			);
 			productRefGroup = B598E623258140FF0068DB9E /* Products */;
 			projectDirPath = "";
@@ -1322,6 +1330,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B536FB5E25F977FC00853AD0 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.3.0;
+			};
+		};
+		B536FB6325F9782A00853AD0 /* XCRemoteSwiftPackageReference "ImagePublisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/ImagePublisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
 		B569CDD325CE142E00B1DBAE /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject";
@@ -1349,6 +1373,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B536FB5F25F977FC00853AD0 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B536FB5E25F977FC00853AD0 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		B536FB6425F9782A00853AD0 /* ImagePublisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B536FB6325F9782A00853AD0 /* XCRemoteSwiftPackageReference "ImagePublisher" */;
+			productName = ImagePublisher;
+		};
 		B569CDD425CE142E00B1DBAE /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B569CDD325CE142E00B1DBAE /* XCRemoteSwiftPackageReference "Swinject" */;

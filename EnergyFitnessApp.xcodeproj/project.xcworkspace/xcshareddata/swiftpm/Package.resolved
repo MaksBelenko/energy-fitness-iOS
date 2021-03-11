@@ -11,6 +11,24 @@
         }
       },
       {
+        "package": "ImagePublisher",
+        "repositoryURL": "https://github.com/kean/ImagePublisher",
+        "state": {
+          "branch": null,
+          "revision": "b74c0c3b36c5f77023891f996be818fafc77f264",
+          "version": "0.2.1"
+        }
+      },
+      {
+        "package": "Nuke",
+        "repositoryURL": "https://github.com/kean/Nuke",
+        "state": {
+          "branch": null,
+          "revision": "e2eb1b7b82983c6f6a2df496e850406a78cdef05",
+          "version": "9.3.0"
+        }
+      },
+      {
         "package": "Swinject",
         "repositoryURL": "https://github.com/Swinject/Swinject",
         "state": {
