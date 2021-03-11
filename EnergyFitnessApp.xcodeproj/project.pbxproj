@@ -30,6 +30,7 @@
 		B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B527C90F25CC7E4000342113 /* ScheduleCell.swift */; };
 		B536FB6025F977FC00853AD0 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B536FB5F25F977FC00853AD0 /* Nuke */; };
 		B536FB6525F9782A00853AD0 /* ImagePublisher in Frameworks */ = {isa = PBXBuildFile; productRef = B536FB6425F9782A00853AD0 /* ImagePublisher */; };
+		B536FB7525FA6D2E00853AD0 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B536FB7425FA6D2E00853AD0 /* Section.swift */; };
 		B53AE28825F57D8200D3C319 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28725F57D8200D3C319 /* CoreDataStack.swift */; };
 		B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28B25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld */; };
 		B53AE29325F585D100D3C319 /* TrainerEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */; };
@@ -162,6 +163,7 @@
 		B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFilterType.swift; sourceTree = "<group>"; };
 		B527C90C25CC7DD200342113 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
+		B536FB7425FA6D2E00853AD0 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		B53AE28725F57D8200D3C319 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B53AE28C25F57E6500D3C319 /* EnergyDbModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnergyDbModel.xcdatamodel; sourceTree = "<group>"; };
 		B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainerEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				B5A2CE9F25E5DE4300776B25 /* Logging */,
 				B5AB78F925EAD73A006AE89C /* UIControl+Combine */,
 				B5AB78FE25EADD60006AE89C /* UIViewGestures+Combine */,
+				B536FB7425FA6D2E00853AD0 /* Section.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1007,6 +1010,7 @@
 				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
 				B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */,
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,
+				B536FB7525FA6D2E00853AD0 /* Section.swift in Sources */,
 				B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,

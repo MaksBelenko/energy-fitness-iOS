@@ -99,6 +99,8 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     // MARK: - Set ViewModel
     func setViewModel(to viewModel: ScheduleCellViewModelProtocol) {
         
+//        self.viewModel = viewModel
+        
         viewModel.trainerName
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] name in

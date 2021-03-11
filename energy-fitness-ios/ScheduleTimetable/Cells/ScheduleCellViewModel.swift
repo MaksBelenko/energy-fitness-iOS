@@ -36,11 +36,26 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
     var trainerImageUrl = CurrentValueSubject<String?, Never>(nil)
     var trainerImage = CurrentValueSubject<UIImage?, Never>(nil)
     
+    private let gymSession: GymSessionDto
+    
+    
     deinit {
         Log.logDeinit("\(self)")
     }
     
-    init() {
+    init(gymSession: GymSessionDto) {
+        self.gymSession = gymSession
+        createBindings()
+        
+        gymClassName.value = gymSession.gymClass.name
+        timePresented.value = TimePeriodFormatter().getTimePeriod(from: gymSession.startDate, durationMins: gymSession.durationMins)
+        trainerName.value = gymSession.trainer.surname
+        if let trainerPhoto = gymSession.trainer.photos.first {
+            trainerImageUrl.value = "http://localhost:3000/api/trainers/image/download/" + trainerPhoto.small
+        }
+    }
+    
+    private func createBindings() {
         let this = ScheduleCellViewModel.self
         
         trainerImageUrl
@@ -58,7 +73,6 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
                         self?.trainerImage.value = image
                   })
             .store(in: &subscriptions)
-        
     }
     
 //    func setTextLoading(to value: Bool) {

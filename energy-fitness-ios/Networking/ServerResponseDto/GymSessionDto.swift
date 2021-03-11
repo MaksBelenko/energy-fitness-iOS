@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GymSessionDto: Decodable {
+struct GymSessionDto: Decodable, Hashable {
     let id: String
     let maxNumberOfPlaces: Int
     let bookedPlaces: Int
@@ -15,4 +15,12 @@ struct GymSessionDto: Decodable {
     let durationMins: Int
     let gymClass: GymClassDto
     let trainer: TrainerDto
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: GymSessionDto, rhs: GymSessionDto) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

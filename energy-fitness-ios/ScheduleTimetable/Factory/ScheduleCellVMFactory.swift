@@ -19,29 +19,29 @@ struct GymClassTextData {
     let trainerName: String
 }
 
-class ScheduleCellVMFactory: ScheduleCellVMFactoryProtocol {
-    
-    func createScheduleCellViewModel() -> ScheduleCellViewModelProtocol {
-        return ScheduleCellViewModel()
-        
-//        if let textData = textData {
-//            vm.gymClassName = textData.gymClassName
-//            vm.timePresented = textData.timePresented
-//            vm.trainerName = textData.trainerName
-//        } else {
-////            vm.setTextLoading(to: true)
-//        }
-//
-//        if let trainerImage = trainerImage {
-//            vm.trainerImage = trainerImage
-//        } else {
-////            vm.setImageLoading(to: true)
-//        }
-//
-//        return vm
-    }
-    
-    func createHeaderCellViewModel() -> ScheduleHeaderCellProtocol {
-        return ScheduleHeaderCell()
-    }
-}
+//class ScheduleCellVMFactory: ScheduleCellVMFactoryProtocol {
+//    
+//    func createScheduleCellViewModel() -> ScheduleCellViewModelProtocol {
+//        return ScheduleCellViewModel()
+//        
+////        if let textData = textData {
+////            vm.gymClassName = textData.gymClassName
+////            vm.timePresented = textData.timePresented
+////            vm.trainerName = textData.trainerName
+////        } else {
+//////            vm.setTextLoading(to: true)
+////        }
+////
+////        if let trainerImage = trainerImage {
+////            vm.trainerImage = trainerImage
+////        } else {
+//////            vm.setImageLoading(to: true)
+////        }
+////
+////        return vm
+//    }
+//    
+//    func createHeaderCellViewModel() -> ScheduleHeaderCellProtocol {
+//        return ScheduleHeaderCell()
+//    }
+//}

@@ -13,3 +13,13 @@ struct PhotoDto: Decodable {
     let medium: String
     let large: String
 }
+
+extension PhotoDto: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    
+    static func ==(lhs: PhotoDto, rhs: PhotoDto) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

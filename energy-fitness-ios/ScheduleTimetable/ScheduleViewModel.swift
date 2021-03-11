@@ -8,6 +8,7 @@
 import Foundation
 import UIKit.UIImage
 import Combine
+import CombineDataSources
 
 protocol ScheduleViewModelDelegate: AnyObject {
     func reloadData()
@@ -16,12 +17,14 @@ protocol ScheduleViewModelDelegate: AnyObject {
 protocol ScheduleViewModelProtocol {
     var delegate: ScheduleViewModelDelegate? { get set }
     
-    func getViewModel(for indexPath: IndexPath) -> ScheduleCellViewModelProtocol
-    func enableLoadingAnimation()
-    func getNumberOfSections() -> Int
-    func getNumberOfItems(for section: Int) -> Int
-    func getTextForHeader(at section: Int) -> String
-    func checkIfLoadingHeader() -> Bool
+    var organisedSessions: PassthroughSubject<[Section<GymSessionDto>], Never> { get set }
+    
+//    func getViewModel(for indexPath: IndexPath) -> ScheduleCellViewModelProtocol
+//    func enableLoadingAnimation()
+//    func getNumberOfSections() -> Int
+//    func getNumberOfItems(for section: Int) -> Int
+//    func getTextForHeader(at section: Int) -> String
+//    func checkIfLoadingHeader() -> Bool
 }
 
 
@@ -29,25 +32,29 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     
     weak var delegate: ScheduleViewModelDelegate?
     
+    private var subscriptions = Set<AnyCancellable>()
+    
+    
     private var isInitialContentLoading: Bool
     
     private let dataRepository: DataRepository
-    private let cellFactory: ScheduleCellVMFactoryProtocol
     private let scheduleOrganiser: ScheduleOrganiserProtocol
     
-    private var organisedSessions = [OrganisedSession]()
+    var organisedSessions = PassthroughSubject<[Section<GymSessionDto>], Never>()
+    
     private var scheduleCellViewModels = Dictionary<IndexPath, ScheduleCellViewModelProtocol>()
-    private lazy var dummyLoadingCellViewModel = ScheduleCellViewModel()
+    
+//    private lazy var dummyLoadingCellViewModel = ScheduleCellViewModel()
+    
+    private let networkAdapter = URLCombine()
     
     
     // MARK: - Lifecycle
     init(
         dataRepository: DataRepository,
-        cellFactory: ScheduleCellVMFactoryProtocol,
         scheduleOrganiser: ScheduleOrganiserProtocol
     ) {
         self.dataRepository = dataRepository
-        self.cellFactory = cellFactory
         self.scheduleOrganiser = scheduleOrganiser
         
         isInitialContentLoading = true
@@ -67,76 +74,30 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     
     
     func fetchGymClasses() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.dataRepository.getAllGymSessions { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let sessions):
-                    self.organisedSessions = self.scheduleOrganiser.sort(sessions: sessions, by: .time)
-                    self.showLoadedTextForSessions()
+        
+//        let dummyDto = GymSessionDto(id: "", maxNumberOfPlaces: 0,
+//                                     bookedPlaces: 0,
+//                                     startDate: Date(),
+//                                     durationMins: 0,
+//                                     gymClass: GymClassDto(id: "", name: "", description: "", photos: []),
+//                                     trainer: TrainerDto(id: "", forename: "", surname: "", description: "", type: "", photos: []))
+//        
+//        self.organisedSessions.value = [Section(header: nil, items: [dummyDto], footer: nil, id: nil)]
+        
+        networkAdapter
+            .fetch(returnType: [GymSessionDto].self)
+            .compactMap { [weak self] in
+                self?.scheduleOrganiser.sort(sessions: $0, by: .time)
+            }
+            .map { $0.map { Section(header: $0.header, items: $0.sessions, footer: nil, id: nil) } }
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { [weak self] sections in
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        self?.organisedSessions.send(sections)
+//                    })
                     
-                case .failure(let error):
-                    Log.exception(message: "Received error \(error.localizedDescription)", error)
-                }
-            }
-        }
-    }
-    
-    
-    private func showLoadedTextForSessions() {
-        self.scheduleCellViewModels.removeAll()
-        
-        for section in 0..<organisedSessions.count {
-            for row in 0..<organisedSessions[section].sessions.count {
-                
-                let session = organisedSessions[section].sessions[row]
-                let cellViewModel = cellFactory.createScheduleCellViewModel()
-                scheduleCellViewModels[IndexPath(row: row, section: section)] = cellViewModel
-                
-                cellViewModel.gymClassName.value = session.gymClass.name
-                cellViewModel.timePresented.value = TimePeriodFormatter().getTimePeriod(from: session.startDate, durationMins: session.durationMins)
-                cellViewModel.trainerName.value = "\(session.trainer.surname) \(session.trainer.forename.prefix(1))."
-                cellViewModel.trainerImageUrl.value = EnergyApi.baseURL.absoluteString + "/trainers/image/download/" + session.trainer.photos.first!.small
-            }
-        }
-
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.isInitialContentLoading = false
-            self?.delegate?.reloadData()
-        }
-    }
-    
-    
-    
-    // MARK: - CollectionView related
-    
-    func getNumberOfSections() -> Int {
-        return isInitialContentLoading
-                    ? 1
-                    : organisedSessions.count
-    }
-    
-    func getNumberOfItems(for section: Int) -> Int {
-        return isInitialContentLoading
-                    ? 10
-                    : organisedSessions[section].sessions.count
-    }
-    
-    func getViewModel(for indexPath: IndexPath) -> ScheduleCellViewModelProtocol {
-        return isInitialContentLoading
-                    ? dummyLoadingCellViewModel
-                    : scheduleCellViewModels[indexPath]!
-    }
-    
-    func getTextForHeader(at section: Int) -> String {
-        return isInitialContentLoading
-                    ? " "
-                    : organisedSessions[section].header
-    }
-    
-    func checkIfLoadingHeader() -> Bool {
-        return isInitialContentLoading
+            })
+            .store(in: &subscriptions)
     }
 }
 

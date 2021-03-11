@@ -15,7 +15,7 @@ class URLCombine {
     
     func fetch<T: Decodable>(returnType: T.Type) -> AnyPublisher<T, Error> {
         
-        let url = URL(string: "http://localhost:3000/api/gym-classes")!
+        let url = URL(string: "http://localhost:3000/api/gym-sessions")!
         
         return URLSession.shared
             .dataTaskPublisher(for: url)
