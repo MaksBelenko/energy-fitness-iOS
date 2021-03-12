@@ -13,6 +13,7 @@
 		B507035825E8065F000FF843 /* ShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507035725E8065F000FF843 /* ShimmerView.swift */; };
 		B511010925F6D3DF009C7DC9 /* ViewModelBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511010825F6D3DF009C7DC9 /* ViewModelBindable.swift */; };
 		B519BCBE25F2F87900D44A38 /* ApiRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = B519BCBD25F2F87900D44A38 /* ApiRoute.swift */; };
+		B520640C25FBF90A00E63B23 /* ScheduleShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520640B25FBF90A00E63B23 /* ScheduleShowStatus.swift */; };
 		B52339F425F3DD5900B58BC9 /* ApiFetchOperationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52339F325F3DD5900B58BC9 /* ApiFetchOperationFactory.swift */; };
 		B52339FA25F3E13700B58BC9 /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52339F925F3E13700B58BC9 /* DataRepository.swift */; };
 		B523CC7525E877710068D74A /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7425E877710068D74A /* NoSessionView.swift */; };
@@ -121,6 +122,8 @@
 		B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB790925EADE08006AE89C /* GestureSubscription.swift */; };
 		B5AB790E25EADE46006AE89C /* UIViewGesture+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB790D25EADE46006AE89C /* UIViewGesture+Ext.swift */; };
 		B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5244725ED23D600018CB0 /* Shimmered.swift */; };
+		B5B5E27A25FC05CB0081B212 /* SortDropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5E27925FC05CB0081B212 /* SortDropDownMenu.swift */; };
+		B5B5E28125FC07840081B212 /* SortOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5E28025FC07840081B212 /* SortOption.swift */; };
 		B5BCFF1C25DFD2A4007746F8 /* ButtonAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */; };
 		B5CA0ED525CF597700CCCC22 /* MockMonthFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA0ED425CF597700CCCC22 /* MockMonthFactory.swift */; };
 		B5CA0EDB25D05EA500CCCC22 /* DateObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA0EDA25D05EA500CCCC22 /* DateObjectTests.swift */; };
@@ -157,6 +160,7 @@
 		B507035725E8065F000FF843 /* ShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerView.swift; sourceTree = "<group>"; };
 		B511010825F6D3DF009C7DC9 /* ViewModelBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindable.swift; sourceTree = "<group>"; };
 		B519BCBD25F2F87900D44A38 /* ApiRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRoute.swift; sourceTree = "<group>"; };
+		B520640B25FBF90A00E63B23 /* ScheduleShowStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleShowStatus.swift; sourceTree = "<group>"; };
 		B52339F325F3DD5900B58BC9 /* ApiFetchOperationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiFetchOperationFactory.swift; sourceTree = "<group>"; };
 		B52339F925F3E13700B58BC9 /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		B523CC7425E877710068D74A /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
@@ -267,6 +271,8 @@
 		B5AB790925EADE08006AE89C /* GestureSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureSubscription.swift; sourceTree = "<group>"; };
 		B5AB790D25EADE46006AE89C /* UIViewGesture+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewGesture+Ext.swift"; sourceTree = "<group>"; };
 		B5B5244725ED23D600018CB0 /* Shimmered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmered.swift; sourceTree = "<group>"; };
+		B5B5E27925FC05CB0081B212 /* SortDropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortDropDownMenu.swift; sourceTree = "<group>"; };
+		B5B5E28025FC07840081B212 /* SortOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortOption.swift; sourceTree = "<group>"; };
 		B5BCFF1B25DFD2A4007746F8 /* ButtonAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimations.swift; sourceTree = "<group>"; };
 		B5CA0ED425CF597700CCCC22 /* MockMonthFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMonthFactory.swift; sourceTree = "<group>"; };
 		B5CA0EDA25D05EA500CCCC22 /* DateObjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectTests.swift; sourceTree = "<group>"; };
@@ -354,6 +360,14 @@
 			path = Errors;
 			sourceTree = "<group>";
 		};
+		B520640F25FBFD5D00E63B23 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				B520640B25FBF90A00E63B23 /* ScheduleShowStatus.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		B520898925C8AC070026AF4A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +375,7 @@
 				B5AB32AA25DEFED6003E950F /* GradientImageView.swift */,
 				B598E630258140FF0068DB9E /* LaunchScreen.storyboard */,
 				B523CC7425E877710068D74A /* NoSessionView.swift */,
+				B5B5E28425FC07880081B212 /* DropDownMenu */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -384,6 +399,8 @@
 				B55451C725CC830000BCA984 /* CALayer+Ext.swift */,
 				B5A9B7B425E71C2600921D4E /* DateFormatter+Ext.swift */,
 				B57AB5D025E9DB0900D66E19 /* Publisher+Ext.swift */,
+				B5AB78F925EAD73A006AE89C /* UIControl+Combine */,
+				B5AB78FE25EADD60006AE89C /* UIViewGestures+Combine */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -400,8 +417,6 @@
 				B585773225E6DEF7006B21C3 /* TimePeriodFormatter.swift */,
 				B5B5245325ED2EEA00018CB0 /* Shimmer */,
 				B5A2CE9F25E5DE4300776B25 /* Logging */,
-				B5AB78F925EAD73A006AE89C /* UIControl+Combine */,
-				B5AB78FE25EADD60006AE89C /* UIViewGestures+Combine */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -749,6 +764,15 @@
 			path = Shimmer;
 			sourceTree = "<group>";
 		};
+		B5B5E28425FC07880081B212 /* DropDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				B5B5E28025FC07840081B212 /* SortOption.swift */,
+				B5B5E27925FC05CB0081B212 /* SortDropDownMenu.swift */,
+			);
+			path = DropDownMenu;
+			sourceTree = "<group>";
+		};
 		B5C92BAA25ED421200755963 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +834,7 @@
 		B5FF272125E5BC1E003AB00B /* ScheduleTimetable */ = {
 			isa = PBXGroup;
 			children = (
+				B520640F25FBFD5D00E63B23 /* Enums */,
 				B5C92BAA25ED421200755963 /* Factory */,
 				B523E76325ED460A003DD3BE /* Models */,
 				B578F39225E1D14E00301BE9 /* Cells */,
@@ -980,6 +1005,7 @@
 				B54F6E4025CC4503002264C2 /* MonthFactory.swift in Sources */,
 				B527C90D25CC7DD200342113 /* ScheduleView.swift in Sources */,
 				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
+				B5B5E28125FC07840081B212 /* SortOption.swift in Sources */,
 				B5D0657425F4463200E7785F /* ImageDownloadOperationFactory.swift in Sources */,
 				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,
 				B57AB5CD25E9AA1B00D66E19 /* ScheduleCellViewModel.swift in Sources */,
@@ -1027,8 +1053,10 @@
 				B507035825E8065F000FF843 /* ShimmerView.swift in Sources */,
 				B5A386E625CA056C000883E0 /* UIView+Ext.swift in Sources */,
 				B585773E25E71418006B21C3 /* PhotoDto.swift in Sources */,
+				B520640C25FBF90A00E63B23 /* ScheduleShowStatus.swift in Sources */,
 				B585774825E7150F006B21C3 /* GymSessionDto.swift in Sources */,
 				B54F6E4425CC4503002264C2 /* MonthNameHeader.swift in Sources */,
+				B5B5E27A25FC05CB0081B212 /* SortDropDownMenu.swift in Sources */,
 				B53AE29325F585D100D3C319 /* TrainerEntity+CoreDataClass.swift in Sources */,
 				B5AB790E25EADE46006AE89C /* UIViewGesture+Ext.swift in Sources */,
 				B5A386F125CA0876000883E0 /* UIFont+Ext.swift in Sources */,

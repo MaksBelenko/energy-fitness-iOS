@@ -16,24 +16,39 @@ protocol ScheduleViewModelDelegate: AnyObject {
 protocol ScheduleViewModelProtocol {
     var delegate: ScheduleViewModelDelegate? { get set }
     var organisedSessions: CurrentValueSubject<[Section<GymSessionDto>], Never> { get set }
+    var showNoConnectionIcon: CurrentValueSubject<Bool, Never> { get set }
+    var showNoEventsIcon: CurrentValueSubject<Bool, Never> { get set }
 }
 
 
 final class ScheduleViewModel: ScheduleViewModelProtocol {
     
     weak var delegate: ScheduleViewModelDelegate?
-    
-    private var subscriptions = Set<AnyCancellable>()
-    
-    
-    private var isInitialContentLoading: Bool
-    
-    private let dataRepository: DataRepository
-    private let scheduleOrganiser: ScheduleOrganiserProtocol
-    
     var organisedSessions = CurrentValueSubject<[Section<GymSessionDto>], Never>([])
     
+    var showNoConnectionIcon = CurrentValueSubject<Bool, Never>(false)
+    var showNoEventsIcon = CurrentValueSubject<Bool, Never>(false)
+    
+    private var subscriptions = Set<AnyCancellable>()
+    private let dataRepository: DataRepository
+    private let scheduleOrganiser: ScheduleOrganiserProtocol
     private let networkAdapter = URLCombine()
+    
+    private var presentingMode: ScheduleShowStatus = .presenting {
+        didSet {
+            switch presentingMode {
+            case .presenting:
+                showNoConnectionIcon.send(false)
+                showNoEventsIcon.send(false)
+            case .noInternetConnection:
+                showNoConnectionIcon.send(true)
+                showNoEventsIcon.send(false)
+            case .noEvents:
+                showNoEventsIcon.send(true)
+                showNoConnectionIcon.send(false)
+            }
+        }
+    }
     
     
     // MARK: - Lifecycle
@@ -44,7 +59,6 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
         self.dataRepository = dataRepository
         self.scheduleOrganiser = scheduleOrganiser
         
-        isInitialContentLoading = true
         fetchGymClasses()
     }
     
@@ -66,21 +80,29 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
 //            self.organisedSessions.send(self.createDummySections())
 //        })
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-            self.changeOrder(by: .trainer)
-        })
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+//            self.changeOrder(by: .trainer)
+//        })
         
         networkAdapter
             .fetch(returnType: [GymSessionDto].self)
             .compactMap { [weak self] in
                 self?.scheduleOrganiser.sort(sessions: $0, by: .time)
             }
-            .map { $0.map { Section(header: $0.header, items: $0.sessions, footer: nil, id: nil) } }
-            .sink(receiveCompletion: { _ in },
-                  receiveValue: { [weak self] sections in
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+            .map { $0.map { Section(header: $0.header, items: $0.sessions) } }
+            .sink(receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    Log.exception(message: "Error fetching [GymSessionDto]; Error = \(error.localizedDescription)", "")
+                    self?.presentingMode = .noInternetConnection
+                }
+            }, receiveValue: { [weak self] sections in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         self?.organisedSessions.send(sections)
-//                    })
+                        self?.presentingMode = .presenting
+                    })
                     
             })
             .store(in: &subscriptions)

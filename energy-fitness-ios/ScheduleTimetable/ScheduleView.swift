@@ -29,8 +29,14 @@ class ScheduleView: UIView, ScheduleViewProtocol {
 
     private var dataSource: UICollectionViewDiffableDataSource<Section<GymSessionDto>, GymSessionDto>?
     
-    private let noSessionView: NoSessionView = {
-        let view = NoSessionView()
+    private lazy var noSessionView: NoSessionView = {
+        let view = NoSessionView(image: #imageLiteral(resourceName: "nosessions"), text: NSLocalizedString("No sessions", comment: "No session text"))
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var noInternetConnectionView: NoSessionView = {
+        let view = NoSessionView(image: #imageLiteral(resourceName: "no-wifi"), text: NSLocalizedString("No Internet Connection", comment: "No Internet Connection image label"))
         view.isHidden = true
         return view
     }()
@@ -38,11 +44,13 @@ class ScheduleView: UIView, ScheduleViewProtocol {
     private lazy var scheduleCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.isScrollEnabled = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isPagingEnabled = false
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
+        
+        collectionView.delegate = self
+        
         return collectionView
     }()
     
@@ -54,27 +62,67 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         super.init(frame: .zero)
         
         configureUI()
+        bindViewModel()
         registerCells()
-        
-//        scheduleCollectionView.isScrollEnabled = false
-        
         createDataSource()
 //        reloadData(with: viewModel.organisedSessions.value)
-        
-        
-        self.viewModel.organisedSessions
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] organisedSessions in
-                print("***Number of sessions = \(organisedSessions.count)")
-                self?.reloadData(with: organisedSessions)
-            }
-            .store(in: &subscriptions)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // MARK: - UI Configuration
+    private func configureUI() {
+        addSubview(scheduleCollectionView)
+        scheduleCollectionView.contain(in: self)
+        
+        addSubview(noSessionView)
+        noSessionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noSessionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
+            noSessionView.heightAnchor.constraint(equalToConstant: 180),
+            noSessionView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            noSessionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30)
+        ])
+        
+        addSubview(noInternetConnectionView)
+        noInternetConnectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            noInternetConnectionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
+            noInternetConnectionView.heightAnchor.constraint(equalToConstant: 180),
+            noInternetConnectionView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            noInternetConnectionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30)
+        ])
+    }
+    
+    // MARK: - ViewModel Bindings
+    private func bindViewModel() {
+        viewModel.organisedSessions
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] organisedSessions in
+                print("***Number of sessions = \(organisedSessions.count)")
+                self?.reloadData(with: organisedSessions)
+            }
+            .store(in: &subscriptions)
+        
+        viewModel.showNoConnectionIcon
+            .receive(on: DispatchQueue.main)
+            .invert()
+            .assign(to: \.isHidden, on: noInternetConnectionView)
+            .store(in: &subscriptions)
+        
+        viewModel.showNoEventsIcon
+            .receive(on: DispatchQueue.main)
+            .invert()
+            .assign(to: \.isHidden, on: noSessionView)
+            .store(in: &subscriptions)
+    }
+    
+    
+    
+    // MARK: - Cell Registration
     private func registerCells() {
         headerReuseIdentifier = ScheduleHeaderCell.reuseIdentifier()
         scheduleCollectionView.register(ScheduleHeaderCell.self,
@@ -132,7 +180,6 @@ class ScheduleView: UIView, ScheduleViewProtocol {
     
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
-//            let section = self.viewModel.organisedSessions.value[sectionIndex]
             return self.createLayoutSection()
         }
 
@@ -154,7 +201,6 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         layoutGroup.edgeSpacing = .init(leading: .none, top: .none, trailing: .none, bottom: .fixed(5))
 
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-//        layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
         
         let layoutSectionHeader = createSectionHeader()
         layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
@@ -168,21 +214,12 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         layoutSectionHeader.pinToVisibleBounds = true
         return layoutSectionHeader
     }
-    
-    
-    // MARK: - UI Configuration
-    private func configureUI() {
-        addSubview(scheduleCollectionView)
-        scheduleCollectionView.contain(in: self)
-        
-        addSubview(noSessionView)
-        noSessionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            noSessionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
-            noSessionView.heightAnchor.constraint(equalToConstant: 180),
-            noSessionView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            noSessionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30)
-        ])
+}
+
+// MARK: - UICollectionViewDelegate
+extension ScheduleView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Pressed")
     }
 }
 

@@ -98,9 +98,11 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
     // MARK: - Set ViewModel
     func setViewModel(to viewModel: ScheduleCellViewModelProtocol) {
-        
-//        self.viewModel = viewModel
-        
+        self.viewModel = viewModel
+        createBindings()
+    }
+    
+    private func createBindings() {
         viewModel.trainerName
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] name in
@@ -124,7 +126,6 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         
         viewModel.gymClassName
             .receive(on: DispatchQueue.main)
-//            .map { $0 == "" ? " " : $0 }
             .sink(receiveValue: { [unowned self] name in
                 if name != "" {
                     self.classNameLabel.view.text = name
@@ -143,9 +144,8 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
                 }
             })
             .store(in: &subscriptions)
-        
-        
     }
+    
     
     // MARK: - UI Configuration
     

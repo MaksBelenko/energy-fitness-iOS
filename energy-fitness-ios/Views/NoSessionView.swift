@@ -13,7 +13,6 @@ class NoSessionView: UIView {
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "nosessions")
         iv.contentMode = .scaleAspectFit
         return iv
     }()
@@ -25,17 +24,23 @@ class NoSessionView: UIView {
         label.font = .raleway(ofSize: 18, weight: .medium)
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.text = NSLocalizedString("No sessions", comment: "No session text")
         return label
     }()
     
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(image: UIImage, text: String) {
+        super.init(frame: .zero)
+        
+        imageView.image = image
+        textLabel.text = text
         
         backgroundColor = .clear
         configureUI()
     }
+    
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -70,7 +75,7 @@ struct NoSessionView_IntegratedController: UIViewRepresentable {
     }
     
     func makeUIView(context: Context) -> some UIView {
-        let view = NoSessionView()
+        let view = NoSessionView(image: #imageLiteral(resourceName: "nosessions"), text: NSLocalizedString("No sessions", comment: "No session text"))
         return view
     }
 }

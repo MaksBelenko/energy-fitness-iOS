@@ -14,7 +14,6 @@ protocol ScheduleCellViewModelProtocol {
     var gymClassName: CurrentValueSubject<String, Never> { get set }
     var timePresented: CurrentValueSubject<String, Never> { get set }
     var trainerName: CurrentValueSubject<String, Never> { get set }
-    var trainerImageUrl: CurrentValueSubject<String?, Never> { get set }
     var trainerImage: CurrentValueSubject<UIImage?, Never> { get set }
 }
 
@@ -28,7 +27,7 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
     
     
     private var subscriptions = Set<AnyCancellable>()
-    private static let imagePipeline = Nuke.ImagePipeline.shared
+    private let imagePipeline = Nuke.ImagePipeline.shared
     
     var gymClassName = CurrentValueSubject<String, Never>("")
     var timePresented = CurrentValueSubject<String, Never>("")
@@ -51,24 +50,26 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
         timePresented.value = TimePeriodFormatter().getTimePeriod(from: gymSession.startDate, durationMins: gymSession.durationMins)
         trainerName.value = gymSession.trainer.surname
         if let trainerPhoto = gymSession.trainer.photos.first {
-            trainerImageUrl.value = "http://localhost:3000/api/trainers/image/download/" + trainerPhoto.small
+            trainerImageUrl.value = "http://localhost:3000/api/trainers/image/download/1" + trainerPhoto.small
         }
     }
     
     private func createBindings() {
-        let this = ScheduleCellViewModel.self
         
         trainerImageUrl
             .unwrap()
             .mapToURL()
             .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
-            .flatMap { imageRequest in
-                this.imagePipeline.imagePublisher(with: imageRequest)
-                    .eraseToAnyPublisher()
+            .flatMap { [weak self] imageRequest -> AnyPublisher<ImageResponse, ImagePipeline.Error> in
+                guard let imagePublisher = self?.imagePipeline.imagePublisher(with: imageRequest) else {
+                    return Empty(completeImmediately: true).eraseToAnyPublisher()
+                }
+                
+                return imagePublisher.eraseToAnyPublisher()
             }
             .map { $0.image }
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in },
+            .sink(receiveCompletion: { completion in print("Completed") },
                   receiveValue: { [weak self] image in
                         self?.trainerImage.value = image
                   })

@@ -9,13 +9,13 @@ import Combine
 import Foundation
 
 extension Publisher where Self.Failure == Never {
-    public func assignOnWeak<Root>(to keyPath: ReferenceWritableKeyPath<Root, Self.Output>, on object: Root) -> AnyCancellable where Root: AnyObject {
+    public func weakAssign<Root>(to keyPath: ReferenceWritableKeyPath<Root, Self.Output>, on object: Root) -> AnyCancellable where Root: AnyObject {
         sink { [weak object] (value) in
             object?[keyPath: keyPath] = value
         }
     }
     
-    public func assignOnUnowned<Root>(to keyPath: ReferenceWritableKeyPath<Root, Self.Output>, on object: Root) -> AnyCancellable where Root: AnyObject {
+    public func unownedAssign<Root>(to keyPath: ReferenceWritableKeyPath<Root, Self.Output>, on object: Root) -> AnyCancellable where Root: AnyObject {
         sink { [unowned object] (value) in
             object[keyPath: keyPath] = value
         }
@@ -70,5 +70,10 @@ extension Publisher {
 
     func unwrap<T>() -> Publishers.CompactMap<Self, T> where Output == Optional<T> {
         compactMap { $0 }
+    }
+    
+    /// Map to invert boolean
+    func invert() -> Publishers.Map<Self, Bool> where Output == Bool {
+        map { !$0 }
     }
 }

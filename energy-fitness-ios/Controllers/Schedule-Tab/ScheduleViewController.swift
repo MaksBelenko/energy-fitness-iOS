@@ -7,14 +7,19 @@
 
 import UIKit
 import SwiftUI
+import Combine
+
+extension ScheduleViewController: UIPopoverPresentationControllerDelegate {}
 
 class ScheduleViewController: UIViewController {
+    
+    private var subscriptions = Set<AnyCancellable>()
     
     private let weekCalendarView: WeekCalendarViewProtocol
     private let scheduleView: ScheduleViewProtocol
     private var topCornerDateView: TopCornerDateView!
     
-    private lazy var filterButton: UIView = {
+    private lazy var sortButton: UIView = {
         let view = UIView()
         let icon = UIImageView()
         icon.image = UIImage(systemName: "line.horizontal.3.decrease.circle")
@@ -32,6 +37,8 @@ class ScheduleViewController: UIViewController {
         return label
     }()
     
+    let dropDownMenu = SortDropDownMenu<ScheduleShowStatus>()
+    
     // MARK: - Lifecycle
     
     init(
@@ -41,7 +48,23 @@ class ScheduleViewController: UIViewController {
         self.weekCalendarView = weekCalendarView
         self.scheduleView = scheduleView
         super.init(nibName: nil, bundle: nil)
+        
+        sortButton.gesture(.tap())
+            .sink { [weak self] gestureType in
+                guard let self = self else { return }
+                let popoverPresentationController = self.dropDownMenu.createDropDownMenu(for: self.sortButton, ofSize: CGSize(width: 200, height: 130))
+                popoverPresentationController?.delegate = self
+//                dropDownMenu.sortButtonLabelDelegate = self
+                self.present(self.dropDownMenu.tableViewController, animated: true, completion: nil)
+                print("tapped")
+            }
+            .store(in: &subscriptions)
+            
     }
+    
+//    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+//        return .none
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -111,14 +134,14 @@ class ScheduleViewController: UIViewController {
                         height: 73)
         
         /* Filter Button */
-        scheduleViewContainer.addSubview(filterButton)
-        filterButton.anchor(top: weekCalendarView.bottomAnchor, paddingTop: 5,
+        scheduleViewContainer.addSubview(sortButton)
+        sortButton.anchor(top: weekCalendarView.bottomAnchor, paddingTop: 5,
                             trailing: scheduleViewContainer.trailingAnchor, paddingTrailing: 25,
                             width: 30, height: 30)
 
         /* Schedule collection view */
         scheduleViewContainer.addSubview(scheduleView)
-        scheduleView.anchor(top: filterButton.bottomAnchor, paddingTop: 5,
+        scheduleView.anchor(top: sortButton.bottomAnchor, paddingTop: 5,
                            leading: scheduleViewContainer.leadingAnchor,
                            bottom: scheduleViewContainer.bottomAnchor,
                            trailing: scheduleViewContainer.trailingAnchor)
