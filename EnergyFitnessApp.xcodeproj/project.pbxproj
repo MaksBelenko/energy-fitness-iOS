@@ -391,6 +391,7 @@
 		B520898D25C8AC420026AF4A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B536FB7425FA6D2E00853AD0 /* Section.swift */,
 				B511010825F6D3DF009C7DC9 /* ViewModelBindable.swift */,
 				B5D0657925F4586100E7785F /* ProfileImageGenerator.swift */,
 				B5D0658425F4604E00E7785F /* NiceRandomColour.swift */,
@@ -401,7 +402,6 @@
 				B5A2CE9F25E5DE4300776B25 /* Logging */,
 				B5AB78F925EAD73A006AE89C /* UIControl+Combine */,
 				B5AB78FE25EADD60006AE89C /* UIViewGestures+Combine */,
-				B536FB7425FA6D2E00853AD0 /* Section.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

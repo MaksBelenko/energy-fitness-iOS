@@ -8,7 +8,6 @@
 import Foundation
 import UIKit.UIImage
 import Combine
-import CombineDataSources
 
 protocol ScheduleViewModelDelegate: AnyObject {
     func reloadData()
@@ -16,15 +15,7 @@ protocol ScheduleViewModelDelegate: AnyObject {
 
 protocol ScheduleViewModelProtocol {
     var delegate: ScheduleViewModelDelegate? { get set }
-    
-    var organisedSessions: PassthroughSubject<[Section<GymSessionDto>], Never> { get set }
-    
-//    func getViewModel(for indexPath: IndexPath) -> ScheduleCellViewModelProtocol
-//    func enableLoadingAnimation()
-//    func getNumberOfSections() -> Int
-//    func getNumberOfItems(for section: Int) -> Int
-//    func getTextForHeader(at section: Int) -> String
-//    func checkIfLoadingHeader() -> Bool
+    var organisedSessions: CurrentValueSubject<[Section<GymSessionDto>], Never> { get set }
 }
 
 
@@ -40,11 +31,7 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     private let dataRepository: DataRepository
     private let scheduleOrganiser: ScheduleOrganiserProtocol
     
-    var organisedSessions = PassthroughSubject<[Section<GymSessionDto>], Never>()
-    
-    private var scheduleCellViewModels = Dictionary<IndexPath, ScheduleCellViewModelProtocol>()
-    
-//    private lazy var dummyLoadingCellViewModel = ScheduleCellViewModel()
+    var organisedSessions = CurrentValueSubject<[Section<GymSessionDto>], Never>([])
     
     private let networkAdapter = URLCombine()
     
@@ -75,14 +62,13 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     
     func fetchGymClasses() {
         
-//        let dummyDto = GymSessionDto(id: "", maxNumberOfPlaces: 0,
-//                                     bookedPlaces: 0,
-//                                     startDate: Date(),
-//                                     durationMins: 0,
-//                                     gymClass: GymClassDto(id: "", name: "", description: "", photos: []),
-//                                     trainer: TrainerDto(id: "", forename: "", surname: "", description: "", type: "", photos: []))
-//        
-//        self.organisedSessions.value = [Section(header: nil, items: [dummyDto], footer: nil, id: nil)]
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+//            self.organisedSessions.send(self.createDummySections())
+//        })
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            self.changeOrder(by: .trainer)
+        })
         
         networkAdapter
             .fetch(returnType: [GymSessionDto].self)
@@ -92,12 +78,43 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
             .map { $0.map { Section(header: $0.header, items: $0.sessions, footer: nil, id: nil) } }
             .sink(receiveCompletion: { _ in },
                   receiveValue: { [weak self] sections in
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
                         self?.organisedSessions.send(sections)
 //                    })
                     
             })
             .store(in: &subscriptions)
+    }
+    
+    func changeOrder(by type: ScheduleFilterType) {
+        DispatchQueue.global(qos: .userInteractive).async {
+            let sessions = self.organisedSessions.value.flatMap { $0.items }
+            let sections = self.scheduleOrganiser.sort(sessions: sessions, by: type)
+                .map { Section(header: $0.header, items: $0.sessions, footer: nil, id: nil) }
+            
+            self.organisedSessions.value = sections
+        }
+    }
+    
+    
+    private func createDummySections() -> [Section<GymSessionDto>] {
+        let dummyDto1 = GymSessionDto(id: "1", maxNumberOfPlaces: 0,
+                                      bookedPlaces: 0,
+                                      startDate: Date(),
+                                      durationMins: 0,
+                                      gymClass: GymClassDto(id: "", name: "", description: "", photos: []),
+                                      trainer: TrainerDto(id: "", forename: "", surname: "", description: "", type: "", photos: []))
+        
+        var dummyDto2 = dummyDto1
+        dummyDto2.id = "2"
+        
+        var dummyDto3 = dummyDto1
+        dummyDto3.id = "3"
+        
+        var dummyDto4 = dummyDto1
+        dummyDto4.id = "4"
+        
+        return [Section(header: "test", items: [dummyDto1, dummyDto2, dummyDto3, dummyDto4], footer: nil, id: nil)]
     }
 }
 

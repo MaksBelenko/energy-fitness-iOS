@@ -8,7 +8,6 @@
 import UIKit
 import SwiftUI
 import Combine
-import CombineDataSources
 
 protocol CellSelectedDelegate: AnyObject {
     func onCellSelected()
@@ -66,6 +65,7 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         self.viewModel.organisedSessions
             .receive(on: DispatchQueue.main)
             .sink { [weak self] organisedSessions in
+                print("***Number of sessions = \(organisedSessions.count)")
                 self?.reloadData(with: organisedSessions)
             }
             .store(in: &subscriptions)
@@ -91,7 +91,7 @@ class ScheduleView: UIView, ScheduleViewProtocol {
     private func createDataSource() {
         dataSource = .init(collectionView: scheduleCollectionView, cellProvider: { [weak self] (collectionView, indexPath, gymSession) -> UICollectionViewCell? in
             guard let self = self else { return nil }
-            print("---Data source index path section = \(indexPath.section) row = \(indexPath.row)")
+            print("-Data source index path section = \(indexPath.section) row = \(indexPath.row)")
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.realReuseIdentifier, for: indexPath) as! ScheduleCell
             let viewModel = ScheduleCellViewModel(gymSession: gymSession)
             cell.setViewModel(to: viewModel)
@@ -99,23 +99,19 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         })
         
         dataSource?.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
-            print("Supplimentary view for section =  \(indexPath.section) row =  \(indexPath.row)")
             guard let self = self else { return nil }
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: self.headerReuseIdentifier, for: indexPath) as? ScheduleHeaderCell else {
                 return nil
             }
-            
+
             guard let firstSession = self.dataSource?.itemIdentifier(for: indexPath),
                   let section = self.dataSource?.snapshot().sectionIdentifier(containingItem: firstSession),
                   let header = section.header else {
-//                return nil
-                print("Didnt reach so default header... \(self.dataSource?.itemIdentifier(for: indexPath)?.trainer)")
-                sectionHeader.isLoading = true
-                return sectionHeader
+                return nil
             }
             
-            print("Header name \(header)")
-            sectionHeader.isLoading = false
+            print("*****Header with name \(header)")
+            sectionHeader.isLoading = header == ""
             sectionHeader.setTimeLabelText(to: header)
             return sectionHeader
         }
@@ -130,6 +126,7 @@ class ScheduleView: UIView, ScheduleViewProtocol {
             snapshot.appendItems(section.items, toSection: section)
         }
         
+        print("+++______________ calling datasource apply _____________________+++")
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
@@ -140,7 +137,7 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         }
 
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 20
+//        config.interSectionSpacing = 20
         
         layout.configuration = config
         return layout
@@ -150,11 +147,11 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
 
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 2, trailing: 5)
-//        layoutItem.edgeSpacing = .init(leading: .none, top: .none, trailing: .none, bottom: .fixed(2))
+        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
 
         let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(100))
         let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: layoutGroupSize, subitems: [layoutItem])
+        layoutGroup.edgeSpacing = .init(leading: .none, top: .none, trailing: .none, bottom: .fixed(5))
 
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
 //        layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
@@ -188,48 +185,6 @@ class ScheduleView: UIView, ScheduleViewProtocol {
         ])
     }
 }
-
-// MARK: - UICollectionViewDelegateFlowLayout
-//extension ScheduleView: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = self.frame.width
-//        return CGSize(width: width - 5, height: 100)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath) as! ScheduleHeaderCell
-////        header.setTimeLabelText(to: viewModel.getTextForHeader(at: indexPath.section))
-////        header.isLoading = viewModel.checkIfLoadingHeader()
-//        return header
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: self.frame.width, height: 30)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 5.0, left: 0, bottom: 15, right: 0)
-//    }
-//
-//}
-
-// MARK: - UICollectionViewDelegate
-//extension ScheduleView: UICollectionViewDelegate {
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-////        let cell = collectionView.cellForItem(at: indexPath)!
-//        delegate?.onCellSelected()
-//    }
-//}
-
-//extension ScheduleView: ScheduleViewModelDelegate {
-//    func reloadData() {
-//        scheduleCollectionView.reloadData()
-//    }
-//}
-
-
-
 
 
 

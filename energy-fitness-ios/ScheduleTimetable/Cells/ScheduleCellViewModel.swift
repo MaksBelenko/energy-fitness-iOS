@@ -59,15 +59,15 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
         let this = ScheduleCellViewModel.self
         
         trainerImageUrl
-            .receive(on: DispatchQueue.main)
-            .compactMap { $0?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) }
-            .compactMap { URL(string: $0)?.asImageRequest() }
-            .setFailureType(to: ImagePipeline.Error.self) // this is required for iOS 13
+            .unwrap()
+            .mapToURL()
+            .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
             .flatMap { imageRequest in
                 this.imagePipeline.imagePublisher(with: imageRequest)
                     .eraseToAnyPublisher()
             }
             .map { $0.image }
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in },
                   receiveValue: { [weak self] image in
                         self?.trainerImage.value = image

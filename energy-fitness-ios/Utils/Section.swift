@@ -27,7 +27,7 @@ public struct Section<Element: Hashable>: SectionProtocol, Identifiable {
 
     public let header: String?
     public let footer: String?
-    public let items: [Element]
+    public var items: [Element]
 }
 
 extension Section: Equatable {

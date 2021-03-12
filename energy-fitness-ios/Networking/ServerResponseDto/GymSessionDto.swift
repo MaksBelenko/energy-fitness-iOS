@@ -8,7 +8,7 @@
 import Foundation
 
 struct GymSessionDto: Decodable, Hashable {
-    let id: String
+    var id: String
     let maxNumberOfPlaces: Int
     let bookedPlaces: Int
     let startDate: Date
