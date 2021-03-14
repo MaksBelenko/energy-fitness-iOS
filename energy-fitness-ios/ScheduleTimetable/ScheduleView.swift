@@ -9,18 +9,13 @@ import UIKit
 import SwiftUI
 import Combine
 
-protocol CellSelectedDelegate: AnyObject {
-    func onCellSelected()
-}
-
 protocol ScheduleViewProtocol: UIView {
-    var delegate: CellSelectedDelegate? { get set }
+    var selectedCell: PassthroughSubject<Void, Never> { get set }
 }
 
-class ScheduleView: UIView, ScheduleViewProtocol {
+final class ScheduleView: UIView, ScheduleViewProtocol {
     
-    weak var delegate: CellSelectedDelegate?
-    
+    var selectedCell = PassthroughSubject<Void, Never>()
     private var viewModel: ScheduleViewModelProtocol
     private var subscriptions = Set<AnyCancellable>()
     
@@ -219,7 +214,7 @@ class ScheduleView: UIView, ScheduleViewProtocol {
 // MARK: - UICollectionViewDelegate
 extension ScheduleView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Pressed")
+        selectedCell.send()
     }
 }
 

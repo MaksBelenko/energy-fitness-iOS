@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-class BookClassViewController: UIViewController {
+class BookSessionViewController: UIViewController {
 
     private let gradientIV = GradientImageView()
     private let sideTextPadding: CGFloat = 25
@@ -87,6 +87,14 @@ class BookClassViewController: UIViewController {
     
     
     // MARK: - Lifecycle
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .energyBackgroundColor
@@ -160,7 +168,7 @@ class BookClassViewController: UIViewController {
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------------
 struct BookClassViewControllerIntegratedController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        return BookClassViewController()
+        return BookSessionViewController()
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

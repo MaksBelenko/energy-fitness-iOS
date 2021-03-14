@@ -12,7 +12,7 @@ import Combine
 protocol ScheduleCellProtocol: UICollectionViewCell, ReuseIdentifiable {
 }
 
-class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
+final class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
     private var viewModel: ScheduleCellViewModelProtocol!
     private var subscriptions = Set<AnyCancellable>()
@@ -115,11 +115,9 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         
         viewModel.trainerImage
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [unowned self] image in
-                if image != nil {
-                    self.trainerImageView.view.image = image
-                    self.trainerImageView.shimmer?.stopAndHide()
-                }
+            .sink(receiveValue: { [unowned trainerImageView] image in
+                trainerImageView.view.image = image
+                trainerImageView.shimmer?.stopAndHide()
             })
             .store(in: &subscriptions)
         
@@ -186,35 +184,6 @@ class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
         chevronArrow.centerY(withView: view)
         
     }
-    
-    // MARK: - Shimmers
-//    private func addShimmers() {
-//        shimmerGymClassName = addShimmerView(for: classNameLabel, width: 166, topOffset: 3)
-//        shimmerTime = addShimmerView(for: timeLabel, width: 127, topOffset: 3)
-//        shimmerTrainerName = addShimmerView(for: trainerNameLabel, width: 93, topOffset: 3)
-        
-//        shimmerTrainerImageView = addShimmerView(for: trainerImageView)
-//        shimmerTrainerImageView!.layer.cornerRadius = imageWidth/2
-//    }
-    
-    
-//    private func addShimmerView(for view: UIView, width: CGFloat? = nil, topOffset: CGFloat = 0) -> ShimmerView {
-//        let shimmerView = ShimmerView(gradientColour: .energyShimmerUnder, gradientFrame: self.bounds)
-//        shimmerView.backgroundColor = .energyShimmer
-//
-//        self.addSubview(shimmerView)
-//        shimmerView.anchor(top: view.topAnchor, paddingTop: topOffset,
-//                           leading: view.leadingAnchor,
-//                           bottom: view.bottomAnchor)
-//
-//        if let width = width {
-//            shimmerView.anchor(width: width)
-//        } else {
-//            shimmerView.anchor(trailing: view.trailingAnchor)
-//        }
-//
-//        return shimmerView
-//    }
     
     // MARK: - Configure Gestures
     

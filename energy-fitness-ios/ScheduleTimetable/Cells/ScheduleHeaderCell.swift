@@ -13,7 +13,7 @@ protocol ScheduleHeaderCellProtocol: ReuseIdentifiable {
     func setTimeLabelText(to text: String)
 }
 
-class ScheduleHeaderCell: UICollectionViewCell, ScheduleHeaderCellProtocol {
+final class ScheduleHeaderCell: UICollectionViewCell, ScheduleHeaderCellProtocol {
     
     var isLoading: Bool = true {
         didSet {

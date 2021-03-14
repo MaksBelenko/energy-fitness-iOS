@@ -8,16 +8,23 @@
 import UIKit
 import SwiftUI
 
-protocol MainTabControllerProtocol: UIViewController {
-}
+protocol MainTabControllerProtocol: UIViewController {}
 
 class MainTabBarController: UITabBarController, MainTabControllerProtocol {
     
-    static func create(viewControllers: [UIViewController]) -> MainTabBarController {
-        let tabBarController = MainTabBarController()
-        tabBarController.viewControllers = viewControllers
-
-        return tabBarController
+    private let scheduleTabCoordinator: ScheduleTabCoordinator
+    
+    
+    // MARK: - Initialisation
+    init(
+        scheduleTabCoordinator: ScheduleTabCoordinator
+    ) {
+        self.scheduleTabCoordinator = scheduleTabCoordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -27,16 +34,16 @@ class MainTabBarController: UITabBarController, MainTabControllerProtocol {
         super.viewDidLoad()
         
         configureTabBar()
-
-//        tabBar.layer.cornerRadius = 15
-//        tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-//        tabBar.layer.masksToBounds = true
-        
+        viewControllers = [scheduleTabCoordinator.navController]
     }
     
     // MARK: - Configuration
 
     private func configureTabBar() {
+//        tabBar.layer.cornerRadius = 15
+//        tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//        tabBar.layer.masksToBounds = true
+        
         UITabBar.appearance().barTintColor = .energyBackgroundColor
         UITabBar.appearance().tintColor = .energyOrange
         // remove tabbar separator line
@@ -54,36 +61,42 @@ extension MainTabBarController: UITabBarControllerDelegate {
 }
 
 
+
+
+
+
+
+
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------
-struct MainTabBar_TestIntegratedController: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> some UIViewController {
-        let container = DIContainer.staticContainerSwiftUIPreviews
-        let vc1 = container.resolve(ScheduleViewController.self)!
-        vc1.tabBarItem.image = UIImage(systemName: "calendar")
-        
-        return MainTabBarController.create(viewControllers: [vc1])
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-    }
-}
-
-struct MainTabBar_TestPreviewController: View {
-    var body: some View {
-        MainTabBar_TestIntegratedController()
-            .edgesIgnoringSafeArea(.all)
-    }
-}
-
-struct MainTabBar_TestPreviewController_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            MainTabBar_TestPreviewController()
-                .preferredColorScheme(.light)
-    //            .previewDevice("iPhone 7")
-            
-            MainTabBar_TestPreviewController()
-                .preferredColorScheme(.dark)
-        }
-    }
-}
+//struct MainTabBar_TestIntegratedController: UIViewControllerRepresentable {
+//    func makeUIViewController(context: Context) -> some UIViewController {
+//        let container = DIContainer.staticContainerSwiftUIPreviews
+//        let vc1 = container.resolve(ScheduleViewController.self)!
+//        vc1.tabBarItem.image = UIImage(systemName: "calendar")
+//
+//        return MainTabBarController.create(viewControllers: [vc1])
+//    }
+//
+//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+//    }
+//}
+//
+//struct MainTabBar_TestPreviewController: View {
+//    var body: some View {
+//        MainTabBar_TestIntegratedController()
+//            .edgesIgnoringSafeArea(.all)
+//    }
+//}
+//
+//struct MainTabBar_TestPreviewController_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Group {
+//            MainTabBar_TestPreviewController()
+//                .preferredColorScheme(.light)
+//    //            .previewDevice("iPhone 7")
+//
+//            MainTabBar_TestPreviewController()
+//                .preferredColorScheme(.dark)
+//        }
+//    }
+//}

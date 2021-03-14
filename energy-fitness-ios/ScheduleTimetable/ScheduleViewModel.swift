@@ -9,21 +9,14 @@ import Foundation
 import UIKit.UIImage
 import Combine
 
-protocol ScheduleViewModelDelegate: AnyObject {
-    func reloadData()
-}
-
 protocol ScheduleViewModelProtocol {
-    var delegate: ScheduleViewModelDelegate? { get set }
     var organisedSessions: CurrentValueSubject<[Section<GymSessionDto>], Never> { get set }
     var showNoConnectionIcon: CurrentValueSubject<Bool, Never> { get set }
     var showNoEventsIcon: CurrentValueSubject<Bool, Never> { get set }
 }
 
-
 final class ScheduleViewModel: ScheduleViewModelProtocol {
     
-    weak var delegate: ScheduleViewModelDelegate?
     var organisedSessions = CurrentValueSubject<[Section<GymSessionDto>], Never>([])
     
     var showNoConnectionIcon = CurrentValueSubject<Bool, Never>(false)
@@ -59,7 +52,7 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
         self.dataRepository = dataRepository
         self.scheduleOrganiser = scheduleOrganiser
         
-        fetchGymClasses()
+        fetchGymSessions()
     }
     
     deinit {
@@ -68,19 +61,13 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     
     
     
-    // MARK: - Animation handling
-    func enableLoadingAnimation() {
-        delegate?.reloadData()
-    }
-    
-    
-    func fetchGymClasses() {
+    func fetchGymSessions() {
         
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
 //            self.organisedSessions.send(self.createDummySections())
 //        })
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
 //            self.changeOrder(by: .trainer)
 //        })
         
@@ -99,10 +86,10 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
                     self?.presentingMode = .noInternetConnection
                 }
             }, receiveValue: { [weak self] sections in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         self?.organisedSessions.send(sections)
                         self?.presentingMode = .presenting
-                    })
+//                    })
                     
             })
             .store(in: &subscriptions)

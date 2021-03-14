@@ -11,7 +11,7 @@ protocol ScheduleOrganiserProtocol {
     func sort(sessions: [GymSessionDto], by type: ScheduleFilterType) -> [OrganisedSession]
 }
 
-class ScheduleOrganiser: ScheduleOrganiserProtocol {
+final class ScheduleOrganiser: ScheduleOrganiserProtocol {
     
     private let timeFormatter: TimePeriodFormatterProtocol
     

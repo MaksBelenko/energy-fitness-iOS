@@ -14,7 +14,7 @@ protocol ScheduleCellViewModelProtocol {
     var gymClassName: CurrentValueSubject<String, Never> { get set }
     var timePresented: CurrentValueSubject<String, Never> { get set }
     var trainerName: CurrentValueSubject<String, Never> { get set }
-    var trainerImage: CurrentValueSubject<UIImage?, Never> { get set }
+    var trainerImage: PassthroughSubject<UIImage, Never> { get set }
 }
 
 
@@ -33,8 +33,9 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
     var timePresented = CurrentValueSubject<String, Never>("")
     var trainerName = CurrentValueSubject<String, Never>("")
     var trainerImageUrl = CurrentValueSubject<String?, Never>(nil)
-    var trainerImage = CurrentValueSubject<UIImage?, Never>(nil)
+    var trainerImage = PassthroughSubject<UIImage, Never>()
     
+    private let trainerInitials: String
     private let gymSession: GymSessionDto
     
     
@@ -44,11 +45,15 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
     
     init(gymSession: GymSessionDto) {
         self.gymSession = gymSession
+        let trainerForename = gymSession.trainer.forename
+        let trainerSurname = gymSession.trainer.surname
+        trainerInitials = (trainerForename.first?.uppercased() ?? "-") + (trainerSurname.first?.uppercased() ?? "-")
+        
         createBindings()
         
+        trainerName.value = "\(trainerForename.first?.uppercased() ?? "-"). \(trainerSurname)"
         gymClassName.value = gymSession.gymClass.name
         timePresented.value = TimePeriodFormatter().getTimePeriod(from: gymSession.startDate, durationMins: gymSession.durationMins)
-        trainerName.value = gymSession.trainer.surname
         if let trainerPhoto = gymSession.trainer.photos.first {
             trainerImageUrl.value = "http://localhost:3000/api/trainers/image/download/1" + trainerPhoto.small
         }
@@ -60,23 +65,13 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
             .unwrap()
             .mapToURL()
             .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
-            .flatMap { [weak self] imageRequest -> AnyPublisher<ImageResponse, ImagePipeline.Error> in
-                guard let imagePublisher = self?.imagePipeline.imagePublisher(with: imageRequest) else {
-                    return Empty(completeImmediately: true).eraseToAnyPublisher()
-                }
-                
-                return imagePublisher.eraseToAnyPublisher()
-            }
+            .flatMap(imagePipeline.imagePublisher)
             .map { $0.image }
-            .receive(on: DispatchQueue.main)
+            .replaceError(with: ProfileImageGenerator().generateProfileImage(initials: trainerInitials))
             .sink(receiveCompletion: { completion in print("Completed") },
                   receiveValue: { [weak self] image in
-                        self?.trainerImage.value = image
+                        self?.trainerImage.send(image)
                   })
             .store(in: &subscriptions)
     }
-    
-//    func setTextLoading(to value: Bool) {
-//        isTextLoadingSubject.send(value)
-//    }
 }

@@ -36,7 +36,5 @@ class URLCombine {
                 try self!.jsonDecoder.decode(T.self, from: data)
             }
             .eraseToAnyPublisher()
-        
-        
     }
 }

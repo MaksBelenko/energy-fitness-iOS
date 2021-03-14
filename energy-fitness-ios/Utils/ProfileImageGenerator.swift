@@ -9,6 +9,10 @@ import UIKit
 
 class ProfileImageGenerator {
     
+    deinit {
+        Log.logDeinit("\(self)")
+    }
+    
     func generateProfileImage(initials: String) -> UIImage {
         let label = UILabel()
         label.frame.size = CGSize(width: 100.0, height: 100.0)
@@ -16,7 +20,7 @@ class ProfileImageGenerator {
         label.text = initials
         label.font = .systemFont(ofSize: 50)
         label.textAlignment = .center
-        label.backgroundColor = NiceRandomColour().generate()
+        label.backgroundColor = .energyOrange //NiceRandomColour().generate()
         label.layer.cornerRadius = 50.0
 
         UIGraphicsBeginImageContext(label.frame.size)

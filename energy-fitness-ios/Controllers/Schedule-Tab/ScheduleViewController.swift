@@ -13,6 +13,8 @@ extension ScheduleViewController: UIPopoverPresentationControllerDelegate {}
 
 class ScheduleViewController: UIViewController {
     
+    weak var coordinator: ScheduleTabCoordinator?
+    
     private var subscriptions = Set<AnyCancellable>()
     
     private let weekCalendarView: WeekCalendarViewProtocol
@@ -48,18 +50,6 @@ class ScheduleViewController: UIViewController {
         self.weekCalendarView = weekCalendarView
         self.scheduleView = scheduleView
         super.init(nibName: nil, bundle: nil)
-        
-        sortButton.gesture(.tap())
-            .sink { [weak self] gestureType in
-                guard let self = self else { return }
-                let popoverPresentationController = self.dropDownMenu.createDropDownMenu(for: self.sortButton, ofSize: CGSize(width: 200, height: 130))
-                popoverPresentationController?.delegate = self
-//                dropDownMenu.sortButtonLabelDelegate = self
-                self.present(self.dropDownMenu.tableViewController, animated: true, completion: nil)
-                print("tapped")
-            }
-            .store(in: &subscriptions)
-            
     }
     
 //    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
@@ -85,8 +75,25 @@ class ScheduleViewController: UIViewController {
     
     
     
+    // MARK: - Subscriptions configuration
     private func configureSubscriptions() {
-        scheduleView.delegate = self
+        sortButton.gesture(.tap())
+            .sink { [weak self] gestureType in
+                guard let self = self else { return }
+                let popoverPresentationController = self.dropDownMenu.createDropDownMenu(for: self.sortButton, ofSize: CGSize(width: 200, height: 130))
+                popoverPresentationController?.delegate = self
+//                dropDownMenu.sortButtonLabelDelegate = self
+                self.present(self.dropDownMenu.tableViewController, animated: true, completion: nil)
+                print("tapped")
+            }
+            .store(in: &subscriptions)
+            
+        
+        scheduleView.selectedCell
+            .sink { [weak self] _ in
+                self?.coordinator?.showBookClass()
+            }
+            .store(in: &subscriptions)
     }
     
     // MARK: - Configure UI
@@ -152,15 +159,6 @@ class ScheduleViewController: UIViewController {
 extension ScheduleViewController: DateSelectedDelegate {
     func onDateSelected(date: DateObject) {
         print("Selected date = \(date)")
-    }
-}
-
-extension ScheduleViewController: CellSelectedDelegate {
-    func onCellSelected() {
-        let bookVC = BookClassViewController()
-        bookVC.modalPresentationStyle = .fullScreen
-        present(bookVC, animated: true, completion: nil)
-        print("Cell Selected")
     }
 }
 

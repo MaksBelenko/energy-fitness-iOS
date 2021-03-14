@@ -20,26 +20,35 @@ class DIContainer {
     }
     
     func setupContainer(using container: Container) {
-        
+        setupForCoordinators(using: container)
+        setupForControllers(using: container)
         setupForRepository(using: container)
         setupForNetworking(using: container)
         setupForWeekCalendar(using: container)
         setupForScheduleView(using: container)
-        
-        
+    }
+    
+    
+    
+    
+    // MARK: - Coordinators setup of container
+    private func setupForCoordinators(using container: Container) {
+        container.autoregister(ScheduleTabCoordinator.self, initializer: ScheduleTabCoordinator.init)
+            .inObjectScope(.transient)
+    }
+    
+    // MARK: - Controllers setup of container
+    private func setupForControllers(using container: Container) {
         container.autoregister(ScheduleViewController.self, initializer: ScheduleViewController.init)
             .inObjectScope(.transient)
+        container.autoregister(BookSessionViewController.self, initializer: BookSessionViewController.init)
+            .inObjectScope(.transient)
         
-        container.register(MainTabControllerProtocol.self) { resolver in
-            let vc1 = resolver.resolve(ScheduleViewController.self)!
-            vc1.tabBarItem.image = UIImage(systemName: "calendar")
-            let vc2 = UIViewController()
-            vc2.view.backgroundColor = .gray
-            vc2.tabBarItem.image = UIImage(systemName: "calendar")
-            return MainTabBarController.create(viewControllers: [vc1, vc2])
-        }
-//        .inObjectScope(.transient)
+        
+        container.autoregister(MainTabControllerProtocol.self, initializer: MainTabBarController.init)
+            .inObjectScope(.transient)
     }
+    
     
     // MARK: - Repository for data setup of container
     private func setupForRepository(using container: Container) {
@@ -62,7 +71,6 @@ class DIContainer {
     private func setupForScheduleView(using container: Container) {
         container.autoregister(TimePeriodFormatterProtocol.self, initializer: TimePeriodFormatter.init)
         container.autoregister(ScheduleOrganiserProtocol.self, initializer: ScheduleOrganiser.init)
-//        container.autoregister(ScheduleCellVMFactoryProtocol.self, initializer: ScheduleCellVMFactory.init)
 
         container.autoregister(ScheduleViewProtocol.self, initializer: ScheduleView.init)
             .inObjectScope(.transient)

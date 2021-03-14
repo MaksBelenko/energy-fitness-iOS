@@ -32,8 +32,8 @@ extension UIColor {
 //MARK: - Custom App Colours
 extension UIColor {
     
-    static let customLightGray = UIColor(rgb: 0xEFEFEF)
-    static let customOrangeLight = UIColor(rgb: 0xEF7D54)
+    static let customLightGray = UIColor(rgb: 0xF1F1F1)
+    static let customOrangeLight = UIColor(rgb: 0xF48758)//e68c62
     static let customOrangeDark = UIColor(rgb: 0xD36E4A)
     static let customTextGreyLight = UIColor(rgb: 0x9A9A9A)
     static let customTextGreyDark = UIColor(rgb: 0x7C7C7C)
