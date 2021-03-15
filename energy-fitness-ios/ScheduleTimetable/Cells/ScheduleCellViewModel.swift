@@ -55,7 +55,7 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
         gymClassName.value = gymSession.gymClass.name
         timePresented.value = TimePeriodFormatter().getTimePeriod(from: gymSession.startDate, durationMins: gymSession.durationMins)
         if let trainerPhoto = gymSession.trainer.photos.first {
-            trainerImageUrl.value = "http://localhost:3000/api/trainers/image/download/1" + trainerPhoto.small
+            trainerImageUrl.value = "http://localhost:3000/api/trainers/image/download/" + trainerPhoto.small
         }
     }
     

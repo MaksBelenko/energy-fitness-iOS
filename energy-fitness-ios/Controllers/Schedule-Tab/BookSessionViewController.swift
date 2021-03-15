@@ -11,10 +11,10 @@ import SwiftUI
 class BookSessionViewController: UIViewController {
 
     private let gradientIV = GradientImageView()
-    private let sideTextPadding: CGFloat = 25
-    
+//    private let sideTextPadding: CGFloat = 25
+//
     private let buttonAnimations = ButtonAnimations()
-    
+
     private let classNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Yoga".uppercased()
@@ -22,7 +22,7 @@ class BookSessionViewController: UIViewController {
         label.textColor = .energyOrange
         return label
     }()
-    
+
     private let timeLabel: UILabel = {
         let label = UILabel()
         label.text = "11:00am - 12:00pm"
@@ -30,8 +30,8 @@ class BookSessionViewController: UIViewController {
         label.textColor = .energyOrange
         return label
     }()
-    
-    private let descriptionText: UITextView = {
+
+    private let descriptionTextView: UITextView = {
         let textView = UITextView()
         textView.text = """
         Yoga is an ancient form of exercise that focuses on
@@ -47,7 +47,7 @@ class BookSessionViewController: UIViewController {
         textView.isEditable = false
         return textView
     }()
-    
+
     private let trainerImageView: UIImageView = {
         let iv = UIImageView()
         iv.image = #imageLiteral(resourceName: "zhgileva")
@@ -55,8 +55,8 @@ class BookSessionViewController: UIViewController {
         iv.layer.masksToBounds = true
         return iv
     }()
-    
-    
+
+
     private let trainerLabel: UILabel = {
         let label = UILabel()
         label.text = NSLocalizedString("Trainer", comment: "Trainer label")
@@ -64,7 +64,7 @@ class BookSessionViewController: UIViewController {
         label.textColor = .energyParagraphColor
         return label
     }()
-    
+
     private let trainerNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Жгилева Е."
@@ -72,7 +72,7 @@ class BookSessionViewController: UIViewController {
         label.textColor = .energyParagraphColor
         return label
     }()
-    
+
     private lazy var bookButton: UIButton = {
         let button = UIButton()
         let buttonText = NSLocalizedString("Book", comment: "Book button label")
@@ -80,7 +80,7 @@ class BookSessionViewController: UIViewController {
         button.titleLabel?.font = .helveticaNeue(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .energyOrange
-        buttonAnimations.startAnimatingPressActions(for: button)
+//        buttonAnimations.startAnimatingPressActions(for: button)
         button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 20, bottom: 17, right: 20)
         return button
     }()
@@ -99,7 +99,7 @@ class BookSessionViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .energyBackgroundColor
         configureUI()
-        print("Stopping \(CFAbsoluteTimeGetCurrent())")
+//        print("Stopping \(CFAbsoluteTimeGetCurrent())")
     }
 
     deinit {
@@ -113,56 +113,70 @@ class BookSessionViewController: UIViewController {
                           leading: view.leadingAnchor,
                           trailing: view.trailingAnchor,
                           height: view.frame.height * 4/7)
-        
+
         let infoView = UIView()
         view.addSubview(infoView)
         infoView.anchor(top: gradientIV.bottomAnchor, paddingTop: 5,
                         leading: view.leadingAnchor, paddingLeading: 25,
                         bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 25,
                         trailing: view.trailingAnchor, paddingTrailing: 25)
-        
+
         setupElements(in: infoView)
     }
-    
+
     private func setupElements(in infoContainer: UIView) {
         infoContainer.addSubview(classNameLabel)
         classNameLabel.anchor(top: infoContainer.topAnchor,
                               leading: infoContainer.leadingAnchor)
-        
+
         infoContainer.addSubview(timeLabel)
         timeLabel.anchor(top: classNameLabel.bottomAnchor, paddingTop: 3,
                          leading: classNameLabel.leadingAnchor)
-        
+
         infoContainer.addSubview(trainerImageView)
         trainerImageView.anchor(leading: classNameLabel.leadingAnchor,
                                 bottom: infoContainer.bottomAnchor,
                                 width: 55, height: 55)
-        
-        infoContainer.addSubview(descriptionText)
-        descriptionText.anchor(top: timeLabel.bottomAnchor, paddingTop: 17,
+
+        infoContainer.addSubview(descriptionTextView)
+        descriptionTextView.anchor(top: timeLabel.bottomAnchor, paddingTop: 17,
                                leading: timeLabel.leadingAnchor,
                                bottom: trainerImageView.topAnchor, paddingBottom: 25,
                                trailing: infoContainer.trailingAnchor)
-        
-        
+
+
         infoContainer.addSubview(trainerLabel)
         trainerLabel.centerY(withView: trainerImageView, constant: -10)
         trainerLabel.anchor(leading: trainerImageView.trailingAnchor, paddingLeading: 7)
-        
+
         infoContainer.addSubview(trainerNameLabel)
         trainerNameLabel.centerY(withView: trainerImageView, constant: 10)
         trainerNameLabel.anchor(leading: trainerLabel.leadingAnchor)
-        
+
         infoContainer.addSubview(bookButton)
         bookButton.centerY(withView: trainerImageView)
         bookButton.anchor(trailing: infoContainer.trailingAnchor)
-        
+
         infoContainer.layoutIfNeeded()
         trainerImageView.layer.cornerRadius = trainerImageView.frame.height / 2
         bookButton.layer.cornerRadius = bookButton.frame.height/2
     }
     
+    
+    // MARK: - Set GymSession to show
+    func setGymSessionToShow(to session: GymSessionDto) {
+        timeLabel.text = TimePeriodFormatter().getTimePeriod(from: session.startDate, durationMins: session.durationMins)
+        classNameLabel.text = session.gymClass.name
+        trainerNameLabel.text = session.trainer.forename
+        descriptionTextView.text = session.gymClass.description
+    }
 }
+
+
+
+
+
+
 
 
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------------

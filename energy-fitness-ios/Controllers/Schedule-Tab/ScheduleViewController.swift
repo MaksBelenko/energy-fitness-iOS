@@ -11,7 +11,7 @@ import Combine
 
 extension ScheduleViewController: UIPopoverPresentationControllerDelegate {}
 
-class ScheduleViewController: UIViewController {
+final class ScheduleViewController: UIViewController {
     
     weak var coordinator: ScheduleTabCoordinator?
     
@@ -90,8 +90,8 @@ class ScheduleViewController: UIViewController {
             
         
         scheduleView.selectedCell
-            .sink { [weak self] _ in
-                self?.coordinator?.showBookClass()
+            .sink { [weak self] session in
+                self?.coordinator?.showBookSession(for: session)
             }
             .store(in: &subscriptions)
     }

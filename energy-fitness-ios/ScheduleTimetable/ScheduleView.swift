@@ -10,12 +10,12 @@ import SwiftUI
 import Combine
 
 protocol ScheduleViewProtocol: UIView {
-    var selectedCell: PassthroughSubject<Void, Never> { get set }
+    var selectedCell: PassthroughSubject<GymSessionDto, Never> { get set }
 }
 
 final class ScheduleView: UIView, ScheduleViewProtocol {
     
-    var selectedCell = PassthroughSubject<Void, Never>()
+    var selectedCell = PassthroughSubject<GymSessionDto, Never>()
     private var viewModel: ScheduleViewModelProtocol
     private var subscriptions = Set<AnyCancellable>()
     
@@ -214,7 +214,9 @@ final class ScheduleView: UIView, ScheduleViewProtocol {
 // MARK: - UICollectionViewDelegate
 extension ScheduleView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedCell.send()
+        let allSessions = viewModel.organisedSessions.value
+        let session = allSessions[indexPath.section][indexPath.row]
+        selectedCell.send(session)
     }
 }
 

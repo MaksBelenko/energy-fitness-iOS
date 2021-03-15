@@ -11,27 +11,27 @@ final class ScheduleTabCoordinator: Coordinator {
     var childCoordinators: [Coordinator] = []
     var navController: UINavigationController
     
-    private let scheduleVC: ScheduleViewController
-    private let bookSessionVC: BookSessionViewController
+    private let viewControllerProvider: ViewControllerProvider
     
     init(
-        scheduleVC: ScheduleViewController,
-        bookSessionVC: BookSessionViewController
+        viewControllerProvider: ViewControllerProvider
     ) {
         self.navController = UINavigationController()
-        self.scheduleVC = scheduleVC
-        self.bookSessionVC = bookSessionVC
+        self.viewControllerProvider = viewControllerProvider
         start()
     }
     
     func start() {
+        let scheduleVC = viewControllerProvider.createScheduleVC()
         scheduleVC.tabBarItem.image = UIImage(systemName: "calendar")
         scheduleVC.coordinator = self
         navController.setNavigationBarHidden(true, animated: false)
         navController.pushViewController(scheduleVC, animated: true)
     }
     
-    func showBookClass() {
+    func showBookSession(for session: GymSessionDto) {
+        let bookSessionVC = viewControllerProvider.createBookSessionVC()
+        bookSessionVC.setGymSessionToShow(to: session)
         navController.pushViewController(bookSessionVC, animated: true)
     }
     

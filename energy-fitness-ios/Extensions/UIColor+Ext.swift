@@ -38,7 +38,7 @@ extension UIColor {
     static let customTextGreyLight = UIColor(rgb: 0x9A9A9A)
     static let customTextGreyDark = UIColor(rgb: 0x7C7C7C)
     static let customContainerDark = UIColor(rgb: 0x0F0F0F)
-    static let customCellLightGray = UIColor(rgb: 0xEFEFEF)
+    static let customCellLightGray = UIColor(rgb: 0xF1F1F1)
     static let customCellDarkGray = UIColor(rgb: 0x1C1C1C)
     static let customShimmerLight = UIColor(rgb: 0xD6D6D6)
     static let customShimmerDark = UIColor(rgb: 0x2F2F2F)

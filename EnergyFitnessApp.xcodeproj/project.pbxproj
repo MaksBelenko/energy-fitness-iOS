@@ -34,6 +34,7 @@
 		B536FB7525FA6D2E00853AD0 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B536FB7425FA6D2E00853AD0 /* Section.swift */; };
 		B539540F25FE9E83007CE6C1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539540E25FE9E83007CE6C1 /* Coordinator.swift */; };
 		B539542425FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539542325FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift */; };
+		B539544425FED76F007CE6C1 /* ViewControllerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539544325FED76F007CE6C1 /* ViewControllerProvider.swift */; };
 		B53AE28825F57D8200D3C319 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28725F57D8200D3C319 /* CoreDataStack.swift */; };
 		B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28B25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld */; };
 		B53AE29325F585D100D3C319 /* TrainerEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */; };
@@ -172,6 +173,7 @@
 		B536FB7425FA6D2E00853AD0 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		B539540E25FE9E83007CE6C1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B539542325FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTabCoordinator.swift; sourceTree = "<group>"; };
+		B539544325FED76F007CE6C1 /* ViewControllerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProvider.swift; sourceTree = "<group>"; };
 		B53AE28725F57D8200D3C319 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B53AE28C25F57E6500D3C319 /* EnergyDbModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnergyDbModel.xcdatamodel; sourceTree = "<group>"; };
 		B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainerEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -665,6 +667,7 @@
 				B598E625258140FF0068DB9E /* AppDelegate.swift */,
 				B598E627258140FF0068DB9E /* SceneDelegate.swift */,
 				B569CDD725CE160500B1DBAE /* DIContainer.swift */,
+				B539544325FED76F007CE6C1 /* ViewControllerProvider.swift */,
 				B52339F925F3E13700B58BC9 /* DataRepository.swift */,
 				B5A386F325CA0892000883E0 /* Fonts */,
 				B539540925FE9D4B007CE6C1 /* Coordinator */,
@@ -1049,6 +1052,7 @@
 				B588E85225F2B98400A989DB /* EnergyApi.swift in Sources */,
 				B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */,
 				B52339FA25F3E13700B58BC9 /* DataRepository.swift in Sources */,
+				B539544425FED76F007CE6C1 /* ViewControllerProvider.swift in Sources */,
 				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
 				B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */,
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,

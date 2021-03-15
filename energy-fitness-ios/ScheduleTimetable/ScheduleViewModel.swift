@@ -86,11 +86,8 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
                     self?.presentingMode = .noInternetConnection
                 }
             }, receiveValue: { [weak self] sections in
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                        self?.organisedSessions.send(sections)
-                        self?.presentingMode = .presenting
-//                    })
-                    
+                    self?.organisedSessions.send(sections)
+                    self?.presentingMode = .presenting
             })
             .store(in: &subscriptions)
     }

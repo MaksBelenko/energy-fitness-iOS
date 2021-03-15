@@ -39,6 +39,11 @@ class DIContainer {
     
     // MARK: - Controllers setup of container
     private func setupForControllers(using container: Container) {
+        container.register(ViewControllerProvider.self) {
+            ViewControllerProvider(scheduleVC: $0.resolve(Provider<ScheduleViewController>.self)!,
+                                   bookSessionVC: $0.resolve(Provider<BookSessionViewController>.self)!)
+        }
+        
         container.autoregister(ScheduleViewController.self, initializer: ScheduleViewController.init)
             .inObjectScope(.transient)
         container.autoregister(BookSessionViewController.self, initializer: BookSessionViewController.init)
