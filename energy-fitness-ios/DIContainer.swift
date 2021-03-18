@@ -26,6 +26,8 @@ class DIContainer {
         setupForNetworking(using: container)
         setupForWeekCalendar(using: container)
         setupForScheduleView(using: container)
+        
+        setupForUtils(using: container)
     }
     
     
@@ -43,14 +45,24 @@ class DIContainer {
             ViewControllerProvider(scheduleVC: $0.resolve(Provider<ScheduleViewController>.self)!,
                                    bookSessionVC: $0.resolve(Provider<BookSessionViewController>.self)!)
         }
+
         
+        container.autoregister(MainTabControllerProtocol.self, initializer: MainTabBarController.init)
+            .inObjectScope(.transient)
+        
+        /* Schedule Tab */
         container.autoregister(ScheduleViewController.self, initializer: ScheduleViewController.init)
             .inObjectScope(.transient)
         container.autoregister(BookSessionViewController.self, initializer: BookSessionViewController.init)
             .inObjectScope(.transient)
+        container.autoregister(BookViewModel.self, initializer: BookViewModel.init)
+            .inObjectScope(.transient)
         
-        
-        container.autoregister(MainTabControllerProtocol.self, initializer: MainTabBarController.init)
+    }
+    
+    // MARK: - Utils setup of container
+    private func setupForUtils(using container: Container) {
+        container.autoregister(TimePeriodFormatter.self, initializer: TimePeriodFormatter.init)
             .inObjectScope(.transient)
     }
     

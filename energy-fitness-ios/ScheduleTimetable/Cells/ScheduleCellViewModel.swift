@@ -45,13 +45,11 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
     
     init(gymSession: GymSessionDto) {
         self.gymSession = gymSession
-        let trainerForename = gymSession.trainer.forename
-        let trainerSurname = gymSession.trainer.surname
-        trainerInitials = (trainerForename.first?.uppercased() ?? "-") + (trainerSurname.first?.uppercased() ?? "-")
+        trainerInitials = gymSession.trainer.getInitials()
         
         createBindings()
         
-        trainerName.value = "\(trainerForename.first?.uppercased() ?? "-"). \(trainerSurname)"
+        trainerName.value =  gymSession.trainer.getSurnameWithFirstNameLetter()
         gymClassName.value = gymSession.gymClass.name
         timePresented.value = TimePeriodFormatter().getTimePeriod(from: gymSession.startDate, durationMins: gymSession.durationMins)
         if let trainerPhoto = gymSession.trainer.photos.first {
@@ -67,7 +65,7 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
             .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
             .flatMap(imagePipeline.imagePublisher)
             .map { $0.image }
-            .replaceError(with: ProfileImageGenerator().generateProfileImage(initials: trainerInitials))
+            .replaceError(with: ImageGenerator().generateProfileImage(initials: trainerInitials))
             .sink(receiveCompletion: { completion in print("Completed") },
                   receiveValue: { [weak self] image in
                         self?.trainerImage.send(image)

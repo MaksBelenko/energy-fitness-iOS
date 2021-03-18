@@ -27,7 +27,7 @@ class NetworkService: NetworkServiceProtocol {
     private lazy var getAllGymClassesRequest: URLRequest = {
         let request = requestBuilder
                         .withBaseURL(EnergyApi.baseURL)
-                        .withPath(ApiRoute.GymSessions.rawValue)
+                        .withPath(ApiRoute.gymSessions.rawValue)
                         .build()
         return request
     }()

@@ -7,17 +7,18 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 class BookSessionViewController: UIViewController {
 
+    private let viewModel: BookViewModel
+    private var subscriptions = Set<AnyCancellable>()
+    
     private let gradientIV = GradientImageView()
-//    private let sideTextPadding: CGFloat = 25
-//
     private let buttonAnimations = ButtonAnimations()
 
     private let classNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Yoga".uppercased()
         label.font = .helveticaNeue(ofSize: 29, weight: .medium)
         label.textColor = .energyOrange
         return label
@@ -25,7 +26,7 @@ class BookSessionViewController: UIViewController {
 
     private let timeLabel: UILabel = {
         let label = UILabel()
-        label.text = "11:00am - 12:00pm"
+        label.text = "-"
         label.font = .helveticaNeue(ofSize: 14)
         label.textColor = .energyOrange
         return label
@@ -33,11 +34,6 @@ class BookSessionViewController: UIViewController {
 
     private let descriptionTextView: UITextView = {
         let textView = UITextView()
-        textView.text = """
-        Yoga is an ancient form of exercise that focuses on
-        strength, flexibility and breathing to boost physical
-        and mental wellbeing. The main components of yoga
-        """
         textView.font = .helveticaNeue(ofSize: 14)
         textView.textColor = .energyParagraphColor
         textView.backgroundColor = .clear
@@ -80,15 +76,18 @@ class BookSessionViewController: UIViewController {
         button.titleLabel?.font = .helveticaNeue(ofSize: 14)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .energyOrange
-//        buttonAnimations.startAnimatingPressActions(for: button)
+        buttonAnimations.startAnimatingPressActions(for: button)
         button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 20, bottom: 17, right: 20)
         return button
     }()
     
     
     // MARK: - Lifecycle
-    init() {
+    init(viewModel: BookViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+
+        createBindings()
     }
     
     required init?(coder: NSCoder) {
@@ -165,10 +164,45 @@ class BookSessionViewController: UIViewController {
     
     // MARK: - Set GymSession to show
     func setGymSessionToShow(to session: GymSessionDto) {
-        timeLabel.text = TimePeriodFormatter().getTimePeriod(from: session.startDate, durationMins: session.durationMins)
-        classNameLabel.text = session.gymClass.name
-        trainerNameLabel.text = session.trainer.forename
-        descriptionTextView.text = session.gymClass.description
+        viewModel.setViewModel(with: session)
+    }
+    
+    
+    private func createBindings() {
+        viewModel.gymClassImage
+            .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
+            .assign(to: \.image, on: gradientIV)
+            .store(in: &subscriptions)
+        
+        viewModel.gymClassName
+            .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
+            .assign(to: \.text, on: classNameLabel)
+            .store(in: &subscriptions)
+        
+        viewModel.sessionTime
+            .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
+            .assign(to: \.text, on: timeLabel)
+            .store(in: &subscriptions)
+
+        viewModel.gymClassDescription
+            .receive(on: DispatchQueue.main)
+            .assign(to: \.text, on: descriptionTextView)
+            .store(in: &subscriptions)
+
+        viewModel.trainerName
+            .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
+            .assign(to: \.text, on: trainerNameLabel)
+            .store(in: &subscriptions)
+
+        viewModel.trainerImage
+            .receive(on: DispatchQueue.main)
+            .compactMap { $0 }
+            .assign(to: \.image, on: trainerImageView)
+            .store(in: &subscriptions)
     }
 }
 
@@ -182,7 +216,7 @@ class BookSessionViewController: UIViewController {
 // MARK: - -------------- SWIFTUI PREVIEW HELPER --------------------
 struct BookClassViewControllerIntegratedController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        return BookSessionViewController()
+        return BookSessionViewController(viewModel: BookViewModel(timeFormatter: TimePeriodFormatter()))
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {

@@ -8,7 +8,11 @@
 import Foundation
 
 enum ApiRoute: String {
-    case GymClasses = "/gym-classes"
-    case GymSessions = "/gym-sessions"
-    case Trainers = "/trainers"
+    case gymClasses = "/gym-classes"
+    case gymSessions = "/gym-sessions"
+    case trainers = "/trainers"
+}
+
+enum ImageDownloadRoute: String {
+    case trainer = "/trainers/image/download"
 }

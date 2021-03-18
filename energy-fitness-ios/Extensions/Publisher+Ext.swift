@@ -50,18 +50,6 @@ extension Publisher {
             }
     }
     
-    func tryUnwrap<T>(
-            orThrow error: @escaping @autoclosure () -> Failure
-        ) -> Publishers.TryMap<Self, T> where Output == Optional<T> {
-            tryMap { output in
-                switch output {
-                case .some(let value):
-                    return value
-                case nil:
-                    throw error()
-                }
-            }
-        }
     
     func mapToURL() -> Publishers.CompactMap<Self, URL> where Output == String {
         return compactMap { $0.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) }
@@ -76,4 +64,20 @@ extension Publisher {
     func invert() -> Publishers.Map<Self, Bool> where Output == Bool {
         map { !$0 }
     }
+    
+    func tryUnwrap<T>() -> Publishers.TryMap<Self, T> where Output == Optional<T> {
+        tryMap { try $0.unwrap() }
+    }
 }
+//    func tryUnwrap<T>(
+//            orThrow error: @escaping @autoclosure () -> Failure
+//        ) -> Publishers.TryMap<Self, T> where Output == Optional<T> {
+//            tryMap { output in
+//                switch output {
+//                case .some(let value):
+//                    return value
+//                case nil:
+//                    throw error()
+//                }
+//            }
+//        }

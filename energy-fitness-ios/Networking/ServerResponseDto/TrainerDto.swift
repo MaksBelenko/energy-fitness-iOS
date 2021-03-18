@@ -21,3 +21,13 @@ extension TrainerDto {
         return lhs.id == rhs.id
     }
 }
+
+extension TrainerDto {
+    func getInitials() -> String {
+        return (forename.first?.uppercased() ?? "-") + (surname.first?.uppercased() ?? "-")
+    }
+    
+    func getSurnameWithFirstNameLetter() -> String {
+        return "\(surname) \(forename.first?.uppercased() ?? "")."
+    }
+}
