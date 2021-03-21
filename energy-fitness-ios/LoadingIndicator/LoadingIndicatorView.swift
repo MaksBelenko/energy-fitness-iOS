@@ -15,12 +15,12 @@ class LoadingIndicatorView: UIView {
                 self.animateStroke()
                 self.animateRotation()
             } else {
-                UIView.animate(withDuration: 1) { [weak self] in
-                    self?.alpha = 0
-                } completion: { [weak self] _ in
-                    self?.shapeLayer.removeFromSuperlayer()
-                    self?.layer.removeAllAnimations()
-                }
+//                UIView.animate(withDuration: 1) { [weak self] in
+//                    self?.alpha = 0
+//                } completion: { [weak self] _ in
+                    shapeLayer.removeFromSuperlayer()
+                    layer.removeAllAnimations()
+//                }
             }
         }
     }

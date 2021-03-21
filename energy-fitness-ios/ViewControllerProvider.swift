@@ -11,13 +11,16 @@ import Swinject
 final class ViewControllerProvider {
     private let scheduleVCProvider: Provider<ScheduleViewController>
     private let bookSessionVCProvider: Provider<BookSessionViewController>
+    private let bookFormVCProvider: Provider<BookFormViewController>
     
     init(
         scheduleVC: Provider<ScheduleViewController>,
-        bookSessionVC: Provider<BookSessionViewController>
+        bookSessionVC: Provider<BookSessionViewController>,
+        bookFormVCProvider: Provider<BookFormViewController>
     ) {
         self.scheduleVCProvider = scheduleVC
         self.bookSessionVCProvider = bookSessionVC
+        self.bookFormVCProvider = bookFormVCProvider
     }
     
     func createScheduleVC() -> ScheduleViewController {
@@ -26,5 +29,9 @@ final class ViewControllerProvider {
     
     func createBookSessionVC() -> BookSessionViewController {
         return bookSessionVCProvider.instance
+    }
+    
+    func createBookFormVC() -> BookFormViewController {
+        return bookFormVCProvider.instance
     }
 }

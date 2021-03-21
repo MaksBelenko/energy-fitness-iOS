@@ -31,8 +31,21 @@ final class ScheduleTabCoordinator: Coordinator {
     
     func showBookSession(for session: GymSessionDto) {
         let bookSessionVC = viewControllerProvider.createBookSessionVC()
+        bookSessionVC.coordinator = self
+        bookSessionVC.hidesBottomBarWhenPushed = true
         bookSessionVC.setGymSessionToShow(to: session)
         navController.pushViewController(bookSessionVC, animated: true)
+    }
+    
+    func showBookForm() {
+        let bookFormVC = viewControllerProvider.createBookFormVC()
+        bookFormVC.hidesBottomBarWhenPushed = true
+        navController.pushViewController(bookFormVC, animated: true)
+    }
+    
+    
+    func goBack() {
+        navController.popViewController(animated: true)
     }
     
     

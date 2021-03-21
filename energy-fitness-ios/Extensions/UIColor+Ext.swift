@@ -32,43 +32,48 @@ extension UIColor {
 //MARK: - Custom App Colours
 extension UIColor {
     
-    static let customLightGray = UIColor(rgb: 0xF1F1F1)
-    static let customOrangeLight = UIColor(rgb: 0xF48758)//e68c62
-    static let customOrangeDark = UIColor(rgb: 0xD36E4A)
-    static let customTextGreyLight = UIColor(rgb: 0x9A9A9A)
-    static let customTextGreyDark = UIColor(rgb: 0x7C7C7C)
-    static let customContainerDark = UIColor(rgb: 0x0F0F0F)
-    static let customCellLightGray = UIColor(rgb: 0xF1F1F1)
-    static let customCellDarkGray = UIColor(rgb: 0x1C1C1C)
-    static let customShimmerLight = UIColor(rgb: 0xD6D6D6)
-    static let customShimmerDark = UIColor(rgb: 0x2F2F2F)
-    static let customParagraphTextLight = UIColor(rgb: 0x808080)
-    static let customParagraphTextDark = UIColor(rgb: 0x909090)
+    static private let customLightGrey = UIColor(rgb: 0xF1F1F1)
+    static private let customDarkGrey = UIColor(rgb: 0x212121)
+    static private let customOrangeLight = UIColor(rgb: 0xF48758)//e68c62
+    static private let customOrangeDark = UIColor(rgb: 0xD36E4A)
+    static private let customTextGreyLight = UIColor(rgb: 0x9A9A9A)
+    static private let customTextGreyDark = UIColor(rgb: 0x7C7C7C)
+    static private let customContainerDark = UIColor(rgb: 0x0F0F0F)
+    static private let customCellLightGray = UIColor(rgb: 0xF1F1F1)
+    static private let customCellDarkGray = UIColor(rgb: 0x1C1C1C)
+    static private let customShimmerLight = UIColor(rgb: 0xD6D6D6)
+    static private let customShimmerDark = UIColor(rgb: 0x2F2F2F)
+    static private let customParagraphTextLight = UIColor(rgb: 0x808080)
+    static private let customParagraphTextDark = UIColor(rgb: 0x909090)
     
-    
-    static let energyBackgroundColor = UIColor.dynamic(light: .customLightGray, dark: .black)
+    /* Schedule colours */
+    static let energyBackgroundColor = UIColor.dynamic(light: .customLightGrey, dark: .black)
     static let energyContainerColor = UIColor.dynamic(light: .white, dark: .customContainerDark)
     static let energyOrange = UIColor.dynamic(light: .customOrangeLight, dark: .customOrangeDark)
     static let energyCalendarDateColour = UIColor.dynamic(light: .black, dark: .white)
     static let energyDateDarkened = UIColor.dynamic(light: .customTextGreyLight, dark: .customTextGreyDark)
     static let energyScheduleTrainerName = UIColor.dynamic(light: .customTextGreyLight, dark: .customTextGreyDark)
     static let energyCellColour = UIColor.dynamic(light: .customCellLightGray, dark: .customCellDarkGray)
-    
-    static let energyShimmerUnder = UIColor.dynamic(light: .customCellLightGray, dark: .customCellDarkGray)
-    static let energyShimmer = UIColor.dynamic(light: .customShimmerLight, dark: .customShimmerDark)
-    
     static let energyParagraphColor = UIColor.dynamic(light: customParagraphTextLight, dark: customParagraphTextDark)
     
+    /* Shimmer colours */
+    static let energyShimmerUnder = UIColor.dynamic(light: .customCellLightGray, dark: .customCellDarkGray)
+    static let energyShimmer = UIColor.dynamic(light: .customShimmerLight, dark: .customShimmerDark)
+
+    /* BookForm colours */
+    static private let customTextFieldBackgroundLight = UIColor(rgb: 0xF1F1F1)
+    static private let customTextFieldBackgroundDark = UIColor(rgb: 0x212121)
+    static private let customTextFieldTextLight = UIColor(rgb: 0x1F1F1F)
+    static private let customTextFieldTextDark = UIColor(rgb: 0xD1D1D1)
+    static private let customTextFieldPlaceholderLight = UIColor(rgb: 0x6F6F6F)
+    static private let customTextFieldPlaceholderDark = UIColor(rgb: 0x919191)
+    static private let customTextFieldWarning = UIColor(rgb: 0xFF5353)
     
-    static let customBlue = UIColor(rgb: 0x0075EB)
-    static let lightRed = UIColor(rgb: 0xFF6060)
-    static let lightGreen = UIColor(rgb: 0x27AE60)
-    static let superLightGray = UIColor(rgb: 0xEEEEEE).withAlphaComponent(0.8)
-    
-    
-    
-    
-    static let cellSelectionColor = UIColor.dynamic(light: .superLightGray, dark: .darkGray)
+    static let energyBookFormBackground = UIColor.dynamic(light: .white, dark: .black)
+    static let energyBookFormOuter = UIColor.dynamic(light: .black, dark: .white)
+    static let energyTextFieldBackground = UIColor.dynamic(light: .customTextFieldBackgroundLight, dark: .customTextFieldBackgroundDark)
+    static let energyTFPlaceholderColour = UIColor.dynamic(light: .customTextFieldPlaceholderLight, dark: .customTextFieldPlaceholderDark)
+    static let energyTextFieldTextColour = UIColor.dynamic(light: .customTextFieldTextLight, dark: .customTextFieldTextDark)
 
     
     static func dynamic(light: UIColor, dark: UIColor) -> UIColor {

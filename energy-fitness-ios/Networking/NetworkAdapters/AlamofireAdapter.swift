@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Alamofire
+//import Alamofire
 
 class AlamofireAdapter {//: NetworkAdapterProtocol {
     
@@ -17,9 +17,9 @@ class AlamofireAdapter {//: NetworkAdapterProtocol {
     }
     
     
-    func request() {
-        AF.request("http://localhost:3000/api/gym-classes").response { response in
-            debugPrint(response)
-        }
-    }
+//    func request() {
+//        AF.request("http://localhost:3000/api/gym-classes").response { response in
+//            debugPrint(response)
+//        }
+//    }
 }

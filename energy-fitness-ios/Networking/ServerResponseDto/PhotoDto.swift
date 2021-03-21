@@ -9,9 +9,9 @@ import Foundation
 
 struct PhotoDto: Decodable {
     let id: String
-    let small: String
-    let medium: String
-    let large: String
+    let small: String  // 100px
+    let medium: String // 500px
+    let large: String  // 1024px
 }
 
 extension PhotoDto: Hashable {

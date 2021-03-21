@@ -43,7 +43,8 @@ class DIContainer {
     private func setupForControllers(using container: Container) {
         container.register(ViewControllerProvider.self) {
             ViewControllerProvider(scheduleVC: $0.resolve(Provider<ScheduleViewController>.self)!,
-                                   bookSessionVC: $0.resolve(Provider<BookSessionViewController>.self)!)
+                                   bookSessionVC: $0.resolve(Provider<BookSessionViewController>.self)!,
+                                   bookFormVCProvider: $0.resolve(Provider<BookFormViewController>.self)!)
         }
 
         
@@ -55,6 +56,9 @@ class DIContainer {
             .inObjectScope(.transient)
         container.autoregister(BookSessionViewController.self, initializer: BookSessionViewController.init)
             .inObjectScope(.transient)
+        container.autoregister(BookFormViewController.self, initializer: BookFormViewController.init)
+            .inObjectScope(.transient)
+        
         container.autoregister(BookViewModel.self, initializer: BookViewModel.init)
             .inObjectScope(.transient)
         

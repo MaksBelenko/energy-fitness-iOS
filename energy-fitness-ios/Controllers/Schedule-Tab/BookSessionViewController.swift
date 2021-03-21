@@ -11,6 +11,8 @@ import Combine
 
 class BookSessionViewController: UIViewController {
 
+    weak var coordinator: ScheduleTabCoordinator?
+    
     private let viewModel: BookViewModel
     private var subscriptions = Set<AnyCancellable>()
     
@@ -46,7 +48,6 @@ class BookSessionViewController: UIViewController {
 
     private let trainerImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = #imageLiteral(resourceName: "zhgileva")
         iv.contentMode = .scaleAspectFill
         iv.layer.masksToBounds = true
         return iv
@@ -63,7 +64,7 @@ class BookSessionViewController: UIViewController {
 
     private let trainerNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Жгилева Е."
+        label.text = " "
         label.font = .helveticaNeue(ofSize: 14)
         label.textColor = .energyParagraphColor
         return label
@@ -81,6 +82,13 @@ class BookSessionViewController: UIViewController {
         return button
     }()
     
+    private lazy var backButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.tintColor = .systemGray
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.05)
+        return button
+    }()
     
     // MARK: - Lifecycle
     init(viewModel: BookViewModel) {
@@ -98,7 +106,6 @@ class BookSessionViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .energyBackgroundColor
         configureUI()
-//        print("Stopping \(CFAbsoluteTimeGetCurrent())")
     }
 
     deinit {
@@ -113,6 +120,12 @@ class BookSessionViewController: UIViewController {
                           trailing: view.trailingAnchor,
                           height: view.frame.height * 4/7)
 
+        view.addSubview(backButton)
+        backButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 8,
+                          leading: view.leadingAnchor, paddingLeading: 15,
+                          width: 40, height: 40)
+        backButton.layer.cornerRadius = 20
+        
         let infoView = UIView()
         view.addSubview(infoView)
         infoView.anchor(top: gradientIV.bottomAnchor, paddingTop: 5,
@@ -158,6 +171,7 @@ class BookSessionViewController: UIViewController {
 
         infoContainer.layoutIfNeeded()
         trainerImageView.layer.cornerRadius = trainerImageView.frame.height / 2
+        bookButton.layer.applyShadow(rect: bookButton.frame, cornerRadius: bookButton.frame.height/2)
         bookButton.layer.cornerRadius = bookButton.frame.height/2
     }
     
@@ -169,6 +183,14 @@ class BookSessionViewController: UIViewController {
     
     
     private func createBindings() {
+        backButton.publisher(for: .touchUpInside)
+            .sink { [weak self] in self?.coordinator?.goBack() }
+            .store(in: &subscriptions)
+        
+        bookButton.publisher(for: .touchUpInside)
+            .sink { [weak self] in self?.coordinator?.showBookForm() }
+            .store(in: &subscriptions)
+        
         viewModel.gymClassImage
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }

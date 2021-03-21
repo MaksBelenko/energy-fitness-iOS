@@ -41,6 +41,10 @@ final class BookViewModel {
         setupBindings()
     }
     
+    deinit {
+        Log.logDeinit("\(self)")
+    }
+    
     
     func setViewModel(with gymSession: GymSessionDto) {
         trainerInitials = gymSession.trainer.getInitials()
@@ -57,7 +61,7 @@ final class BookViewModel {
             gymClassImage.send(defaultImage)
         }
         
-        if let largeTrainerImageName = gymSession.trainer.photos.first?.large {
+        if let largeTrainerImageName = gymSession.trainer.photos.first?.small {
             let urlString = "http://localhost:3000/api/trainers/image/download/" + largeTrainerImageName
             trainerImageURL.send(urlString)
         } else {
@@ -69,7 +73,7 @@ final class BookViewModel {
     private func setupBindings() {
         gymClassImageURL
             .mapToURL()
-            .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
+            .setFailureType(to: ImagePipeline.Error.self)
             .flatMap(imagePipeline.imagePublisher)
             .map { $0.image }
             .replaceError(with: defaultImage)
@@ -80,7 +84,7 @@ final class BookViewModel {
         
         trainerImageURL
             .mapToURL()
-            .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
+            .setFailureType(to: ImagePipeline.Error.self)
             .flatMap(imagePipeline.imagePublisher)
             .map { $0.image }
             .replaceError(with: trainerInitialsImage)
