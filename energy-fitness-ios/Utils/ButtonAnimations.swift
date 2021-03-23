@@ -12,11 +12,14 @@ class ButtonAnimations {
     func startAnimatingPressActions(for button: UIButton) {
         button.addTarget(self, action: #selector(animateDown), for: [.touchDown, .touchDragEnter])
         button.addTarget(self, action: #selector(animateUp), for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
-        
-        //Action when button is actualy pressed
-//        button.addTarget(self, action: #selector(ViewController.addButtonPressed), for: .touchUpInside)
     }
     
+    func stopAnimating(for button: UIButton) {
+        button.removeTarget(self, action: #selector(animateDown), for: [.touchDown, .touchDragEnter])
+        button.removeTarget(self, action: #selector(animateUp), for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
+    }
+    
+
     @objc private func animateDown(sender: UIButton) {
         animate(sender, transform: CGAffineTransform.identity.scaledBy(x: 0.85, y: 0.85))
     }

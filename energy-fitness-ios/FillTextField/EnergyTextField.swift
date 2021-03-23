@@ -11,13 +11,17 @@ final class EnergyTextField: FillTextField {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        font = .raleway(ofSize: 13)
+        
+        heightAnchor.constraint(equalToConstant: 45).isActive = true
+        
+        font = .raleway(ofSize: 14)
         backgroundColor = .energyTextFieldBackground
         textColor = .energyTextFieldTextColour
         tintColor = .energyTextFieldTextColour
-        placeholderColor = .energyTFPlaceholderColour
         layer.cornerRadius = 5
-        smallPlaceholderFont = .raleway(ofSize: 11)
+        placeholderColor = .energyTFPlaceholderColour
+        
+        smallPlaceholderFont = .raleway(ofSize: 12)
         smallPlaceholderColor = .energyTFPlaceholderColour
     }
     

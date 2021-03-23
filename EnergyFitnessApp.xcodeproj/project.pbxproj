@@ -44,6 +44,16 @@
 		B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28B25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld */; };
 		B53AE29325F585D100D3C319 /* TrainerEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */; };
 		B53AE29425F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE29225F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift */; };
+		B53C6AA226092A0B00806EF8 /* Authenticator_TEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AA126092A0B00806EF8 /* Authenticator_TEST.swift */; };
+		B53C6AA9260935F700806EF8 /* TokensDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AA8260935F700806EF8 /* TokensDto.swift */; };
+		B53C6AAF2609673100806EF8 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AAE2609673100806EF8 /* Authenticator.swift */; };
+		B53C6AB32609698B00806EF8 /* URLSession+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AB22609698B00806EF8 /* URLSession+Ext.swift */; };
+		B53C6AB926096B5B00806EF8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AB826096B5B00806EF8 /* NetworkManager.swift */; };
+		B53C6ABD260A1EBF00806EF8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6ABC260A1EBF00806EF8 /* LoginViewController.swift */; };
+		B53C6AC2260A266600806EF8 /* AccountButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AC1260A266600806EF8 /* AccountButton.swift */; };
+		B53C6AC6260A2A7700806EF8 /* DarkenedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AC5260A2A7700806EF8 /* DarkenedImageView.swift */; };
+		B53C6ADA260A3DC600806EF8 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AD9260A3DC600806EF8 /* AuthButton.swift */; };
+		B53C6AEB260A467E00806EF8 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AEA260A467E00806EF8 /* Vibration.swift */; };
 		B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543EDCA25DEE13D00710FCC /* URLCombine.swift */; };
 		B545365025F51BD500955FD8 /* MockDateFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545364F25F51BD500955FD8 /* MockDateFinder.swift */; };
 		B545365625F51EA100955FD8 /* MockDateObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545365525F51EA100955FD8 /* MockDateObjectFactory.swift */; };
@@ -192,6 +202,16 @@
 		B53AE28C25F57E6500D3C319 /* EnergyDbModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnergyDbModel.xcdatamodel; sourceTree = "<group>"; };
 		B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainerEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B53AE29225F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainerEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B53C6AA126092A0B00806EF8 /* Authenticator_TEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator_TEST.swift; sourceTree = "<group>"; };
+		B53C6AA8260935F700806EF8 /* TokensDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensDto.swift; sourceTree = "<group>"; };
+		B53C6AAE2609673100806EF8 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		B53C6AB22609698B00806EF8 /* URLSession+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Ext.swift"; sourceTree = "<group>"; };
+		B53C6AB826096B5B00806EF8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B53C6ABC260A1EBF00806EF8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B53C6AC1260A266600806EF8 /* AccountButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButton.swift; sourceTree = "<group>"; };
+		B53C6AC5260A2A7700806EF8 /* DarkenedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkenedImageView.swift; sourceTree = "<group>"; };
+		B53C6AD9260A3DC600806EF8 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		B53C6AEA260A467E00806EF8 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		B543EDCA25DEE13D00710FCC /* URLCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCombine.swift; sourceTree = "<group>"; };
 		B545364F25F51BD500955FD8 /* MockDateFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateFinder.swift; sourceTree = "<group>"; };
 		B545365525F51EA100955FD8 /* MockDateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateObjectFactory.swift; sourceTree = "<group>"; };
@@ -408,10 +428,13 @@
 			isa = PBXGroup;
 			children = (
 				B5A386ED25CA07E4000883E0 /* TopCornerDateView.swift */,
+				B53C6AC5260A2A7700806EF8 /* DarkenedImageView.swift */,
 				B5AB32AA25DEFED6003E950F /* GradientImageView.swift */,
 				B598E630258140FF0068DB9E /* LaunchScreen.storyboard */,
 				B523CC7425E877710068D74A /* NoSessionView.swift */,
 				B5B5E28425FC07880081B212 /* DropDownMenu */,
+				B53C6AC1260A266600806EF8 /* AccountButton.swift */,
+				B53C6AD9260A3DC600806EF8 /* AuthButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -421,6 +444,7 @@
 			children = (
 				B59280DB25C9C805001D7AED /* MainTabBarController.swift */,
 				B5A386DF25CA03E4000883E0 /* Schedule-Tab */,
+				B53C6ABC260A1EBF00806EF8 /* LoginViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -445,6 +469,7 @@
 		B520898D25C8AC420026AF4A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B53C6AEA260A467E00806EF8 /* Vibration.swift */,
 				B536FB7425FA6D2E00853AD0 /* Section.swift */,
 				B511010825F6D3DF009C7DC9 /* ViewModelBindable.swift */,
 				B5D0657925F4586100E7785F /* ImageGenerator.swift */,
@@ -471,6 +496,7 @@
 				B588E85925F2BA8700A989DB /* RequestBuilder.swift */,
 				B5A21B0925E1CD3400B6F739 /* NetworkService.swift */,
 				B511010425F6CCAA009C7DC9 /* NetworkAdapters */,
+				B53C6AA5260934A100806EF8 /* Authentication */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -500,6 +526,17 @@
 				B539542325FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		B53C6AA5260934A100806EF8 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B53C6AA126092A0B00806EF8 /* Authenticator_TEST.swift */,
+				B53C6AAE2609673100806EF8 /* Authenticator.swift */,
+				B53C6AB826096B5B00806EF8 /* NetworkManager.swift */,
+				B53C6AB22609698B00806EF8 /* URLSession+Ext.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		B545364C25F51B2700955FD8 /* Networking */ = {
@@ -724,6 +761,7 @@
 				B59BB58C25D447E800910962 /* GymClassDto.swift */,
 				B585774725E7150F006B21C3 /* GymSessionDto.swift */,
 				B585773D25E71418006B21C3 /* PhotoDto.swift */,
+				B53C6AA8260935F700806EF8 /* TokensDto.swift */,
 			);
 			path = ServerResponseDto;
 			sourceTree = "<group>";
@@ -886,8 +924,8 @@
 		B5FBA62326051B6900DFA75B /* FillTextField */ = {
 			isa = PBXGroup;
 			children = (
-				B5FBA62426051B9300DFA75B /* FillTextField.swift */,
 				B5E4BDA0260801C100A4389E /* EnergyTextField.swift */,
+				B5FBA62426051B9300DFA75B /* FillTextField.swift */,
 			);
 			path = FillTextField;
 			sourceTree = "<group>";
@@ -1067,6 +1105,7 @@
 				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
 				B5CAFFD126001A2F0069311C /* BookViewModel.swift in Sources */,
 				B5B5E28125FC07840081B212 /* SortOption.swift in Sources */,
+				B53C6ADA260A3DC600806EF8 /* AuthButton.swift in Sources */,
 				B5D0657425F4463200E7785F /* ImageDownloadOperationFactory.swift in Sources */,
 				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,
 				B5CAFFD5260024C30069311C /* Optional+Ext.swift in Sources */,
@@ -1080,9 +1119,13 @@
 				B54F6E4225CC4503002264C2 /* DateObject.swift in Sources */,
 				B588E86625F2BB6500A989DB /* APIError.swift in Sources */,
 				B5D0658525F4604E00E7785F /* NiceRandomColour.swift in Sources */,
+				B53C6AC6260A2A7700806EF8 /* DarkenedImageView.swift in Sources */,
+				B53C6AEB260A467E00806EF8 /* Vibration.swift in Sources */,
 				B511010925F6D3DF009C7DC9 /* ViewModelBindable.swift in Sources */,
 				B59BB58825D4436500910962 /* URLSessionAdapter.swift in Sources */,
+				B53C6AA9260935F700806EF8 /* TokensDto.swift in Sources */,
 				B5AB78FB25EAD8AA006AE89C /* EventPublisher.swift in Sources */,
+				B53C6ABD260A1EBF00806EF8 /* LoginViewController.swift in Sources */,
 				B54F6E3E25CC4503002264C2 /* MonthData.swift in Sources */,
 				B598E62A258140FF0068DB9E /* ScheduleViewController.swift in Sources */,
 				B50D8D2A2603E6DB00762BD3 /* LoadingIndicatorView.swift in Sources */,
@@ -1103,6 +1146,7 @@
 				B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */,
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,
 				B536FB7525FA6D2E00853AD0 /* Section.swift in Sources */,
+				B53C6AA226092A0B00806EF8 /* Authenticator_TEST.swift in Sources */,
 				B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
@@ -1112,6 +1156,7 @@
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
 				B55D184825EEAAF10091FD4C /* AsyncOperation.swift in Sources */,
 				B506E11225F168D7001A8B00 /* AsyncResultOperation.swift in Sources */,
+				B53C6AC2260A266600806EF8 /* AccountButton.swift in Sources */,
 				B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */,
 				B506E11725F1699C001A8B00 /* ChainedAsyncResultOperation.swift in Sources */,
 				B5A386EE25CA07E4000883E0 /* TopCornerDateView.swift in Sources */,
@@ -1147,7 +1192,10 @@
 				B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */,
 				B5A2CE9C25E5DE2000776B25 /* Log.swift in Sources */,
 				B50D8D382603E74B00762BD3 /* RotationAnimation.swift in Sources */,
+				B53C6AAF2609673100806EF8 /* Authenticator.swift in Sources */,
 				B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */,
+				B53C6AB32609698B00806EF8 /* URLSession+Ext.swift in Sources */,
+				B53C6AB926096B5B00806EF8 /* NetworkManager.swift in Sources */,
 				B58EFC3125ED9DD10011C677 /* OrganisedSession.swift in Sources */,
 				B50D8D342603E73500762BD3 /* StrokeAnimation.swift in Sources */,
 				B5864D6C25ED738700F47900 /* ScheduleOrganiser.swift in Sources */,

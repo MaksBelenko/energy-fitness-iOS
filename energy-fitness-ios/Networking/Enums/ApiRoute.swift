@@ -11,6 +11,7 @@ enum ApiRoute: String {
     case gymClasses = "/gym-classes"
     case gymSessions = "/gym-sessions"
     case trainers = "/trainers"
+    case refreshToken = "/auth/local/token-refresh"
 }
 
 enum ImageDownloadRoute: String {

@@ -46,6 +46,9 @@ extension UIColor {
     static private let customParagraphTextLight = UIColor(rgb: 0x808080)
     static private let customParagraphTextDark = UIColor(rgb: 0x909090)
     
+    static let energyGradientRedLeft = UIColor(rgb: 0x9D1014)
+    static let energyGradientRedRight = UIColor(rgb: 0xE52D27)
+    
     /* Schedule colours */
     static let energyBackgroundColor = UIColor.dynamic(light: .customLightGrey, dark: .black)
     static let energyContainerColor = UIColor.dynamic(light: .white, dark: .customContainerDark)

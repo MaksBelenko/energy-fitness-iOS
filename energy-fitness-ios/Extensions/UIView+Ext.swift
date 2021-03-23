@@ -7,10 +7,8 @@
 
 import UIKit
 
+//MARK: - Anchor methods
 extension UIView {
-    
-    //MARK: - Anchor methods
-    
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 paddingTop: CGFloat = 0,
                 leading: NSLayoutXAxisAnchor? = nil,
@@ -63,5 +61,3 @@ extension UIView {
                     trailing: view.trailingAnchor)
     }
 }
-
-
