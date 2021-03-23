@@ -14,6 +14,8 @@ final class LoginViewController: UIViewController {
     private var subscriptions = Set<AnyCancellable>()
     private let viewModel = LoginViewModel()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
+    
     private lazy var backgroundView: DarkenedImageView = {
         let imageView = DarkenedImageView(image: #imageLiteral(resourceName: "intro-gym"))
         return imageView
@@ -29,6 +31,7 @@ final class LoginViewController: UIViewController {
         let textField = EnergyTextField()
         textField.placeholder = NSLocalizedString("Email", comment: "Text placeholder")
         textField.smallPlaceholderText = NSLocalizedString("Email", comment: "Text placeholder")
+        textField.smallPlaceHolderBackgroundColour = textField.backgroundColor!.darker(by: 8)!
         return textField
     }()
     
@@ -36,6 +39,7 @@ final class LoginViewController: UIViewController {
         let textField = EnergyTextField()
         textField.placeholder = NSLocalizedString("Password", comment: "Text placeholder")
         textField.smallPlaceholderText = NSLocalizedString("Password", comment: "Text placeholder")
+        textField.smallPlaceHolderBackgroundColour = textField.backgroundColor!.darker(by: 8)!
         textField.isSecureTextEntry = true
         return textField
     }()
@@ -123,6 +127,18 @@ final class LoginViewController: UIViewController {
         passwordTextField.textPublisher
             .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
             .assign(to: \.passwordSubject.value, on: viewModel)
+            .store(in: &subscriptions)
+        
+        viewModel.isEmailValid()
+            .sink { [weak emailTextField] isValid in
+                emailTextField?.smallPlaceholderColor = isValid ? .energyTFPlaceholderColour : .systemRed
+            }
+            .store(in: &subscriptions)
+        
+        viewModel.isPasswordValid()
+            .sink { [weak passwordTextField] isValid in
+                passwordTextField?.smallPlaceholderColor = isValid ? .energyTFPlaceholderColour : .systemRed
+            }
             .store(in: &subscriptions)
         
         viewModel.isValidInputs()

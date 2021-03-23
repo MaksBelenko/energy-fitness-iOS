@@ -12,6 +12,10 @@ class FillTextField: UITextField {
     
     private(set) var isPlaceholderHidden = false
     
+    var smallPlaceHolderBackgroundColour = UIColor.clear {
+        didSet { smallPlaceholderLabel.backgroundColor = smallPlaceHolderBackgroundColour }
+    }
+    
     var placeholderColor: UIColor = .gray {
         didSet { setPlaceholderColor(to: placeholderColor) }
     }
@@ -34,8 +38,8 @@ class FillTextField: UITextField {
     
     // MARK: - Views
     
-    private lazy var smallPlaceholderLabel: UILabel = {
-        let label = UILabel()
+    private lazy var smallPlaceholderLabel: PaddedLabel = {
+        let label = PaddedLabel(top: 0, bottom: 0, left: 5, right: 5)
         label.font = smallPlaceholderFont
         label.textColor = smallPlaceholderColor
         return label
@@ -85,17 +89,15 @@ class FillTextField: UITextField {
     private func setupView() {
         clipsToBounds = false
         setPlaceholderColor(to: placeholderColor)
-        setupSubviews()
-    }
-    
-    private func setupSubviews() {
+        
         smallPlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(smallPlaceholderLabel)
         NSLayoutConstraint.activate([
             smallPlaceholderLabel.centerYAnchor.constraint(equalTo: self.topAnchor, constant: -1),
             smallPlaceholderLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: smallPlaceholderLeftOffset)
         ])
-        
+        smallPlaceholderLabel.clipsToBounds = true
+        smallPlaceholderLabel.layer.cornerRadius = 3
     }
     
     // MARK: - TextField Editing Observer

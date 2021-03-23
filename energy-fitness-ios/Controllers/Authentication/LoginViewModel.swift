@@ -13,22 +13,29 @@ final class LoginViewModel {
     var emailSubject = CurrentValueSubject<String, Never>("")
     var passwordSubject = CurrentValueSubject<String, Never>("")
     
+    private var emailValidSubject = CurrentValueSubject<Bool, Never>(false)
+    private var passwordValidSubject = CurrentValueSubject<Bool, Never>(false)
+    
     private let authenticator = Authenticator(session: URLSession.shared)
+    private let validator = Validator()
     
     
     func isValidInputs() -> AnyPublisher<Bool, Never> {
-        return Publishers.CombineLatest(emailSubject, passwordSubject)
-            .map { username, password in
-                if username.count > 3 && password.count > 3 {
-                    return true
-                }
-                return false
-            }
+        return Publishers.CombineLatest(isEmailValid(), isPasswordValid())
+            .map { $0 && $1 }
             .eraseToAnyPublisher()
     }
     
-//    func login() {
-//        
-//        authenticator.
-//    }
+    func isEmailValid() -> AnyPublisher<Bool, Never> {
+        return emailSubject
+            .flatMap(validator.isEmail)
+            .eraseToAnyPublisher()
+    }
+    
+    func isPasswordValid() -> AnyPublisher<Bool, Never> {
+        return passwordSubject
+            .flatMap(validator.isSecurePassword)
+            .eraseToAnyPublisher()
+    }
+    
 }
