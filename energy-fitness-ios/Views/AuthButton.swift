@@ -12,6 +12,10 @@ class AuthButton: UIButton {
     var title: String = " " {
         didSet { setTitle(title, for: .normal) }
     }
+    
+    var textFont: UIFont = .raleway(ofSize: 18) {
+        didSet { titleLabel?.font = textFont }
+    }
 
     var isActive: Bool = false {
         didSet { changeAppearance(isActive) }
@@ -60,6 +64,8 @@ class AuthButton: UIButton {
         backgroundGradient.colors = isActive ? activeColours : disabledColours
         let textColour = isActive ? UIColor.white : UIColor(white: 1, alpha: 0.5)
         setTitleColor(textColour, for: .normal)
+        
+        isUserInteractionEnabled = isActive
         
         if isActive {
             buttonAnimations.startAnimatingPressActions(for: self)

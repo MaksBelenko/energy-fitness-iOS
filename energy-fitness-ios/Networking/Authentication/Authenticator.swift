@@ -63,4 +63,31 @@ final class Authenticator {
             return publisher
         }
     }
+    
+    func signin(with signinDto: SigninDto) -> AnyPublisher<TokensDto, Error> {
+        return Just(signinDto)
+            .encode(encoder: JSONEncoder())
+//            .mapError { error -> APIError in
+//                return APIError.encodingError(error.localizedDescription)
+//            }
+            .map { encodedData in
+                var request = URLRequest(url: URL(string: "http://localhost:3000/api/auth/local/signin")!)
+                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.httpMethod = HTTPMethod.post.getHttpMethodName()
+                request.httpBody = encodedData
+                return request
+            }
+            .flatMap { request in
+                return URLSession.DataTaskPublisher(request: request, session: .shared)
+                    .tryMap { output in
+                        let response = output.response
+                        if let apiError = APIError.error(from: response) {
+                            throw apiError
+                        }
+                        return output.data
+                    }
+                    .decode(type: TokensDto.self, decoder: JSONDecoder())
+            }
+            .eraseToAnyPublisher()
+    }
 }

@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import Combine
 import SwiftUI
 
 final class LoginViewController: UIViewController {
 
+    private var subscriptions = Set<AnyCancellable>()
+    private let viewModel = LoginViewModel()
+    
     private lazy var backgroundView: DarkenedImageView = {
         let imageView = DarkenedImageView(image: #imageLiteral(resourceName: "intro-gym"))
         return imageView
@@ -40,6 +44,7 @@ final class LoginViewController: UIViewController {
         let button = AuthButton()
         button.title = NSLocalizedString("Login", comment: "Login and Signup items")
         button.isActive = true
+        button.textFont = .raleway(ofSize: 18)
         return button
     }()
     
@@ -56,7 +61,9 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createBindings()
         configureUI()
+        
     }
     
     
@@ -93,7 +100,39 @@ final class LoginViewController: UIViewController {
         haveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingBottom: 10)
     }
     
+    //MARK: - Bindings
+    private func createBindings() {
+        
+//        loginButton.publisher(for: .touchUpInside)
+//            .setFailureType(to: Error.self)
+//            .flatMap {
+//                self.authenticator.signin(with: SigninDto(email: "maksim.belenko@gmail.com", password: "Test123!"))
+//            }
+//            .sink(receiveCompletion: { completion in
+//                print("\(completion)")
+//            }, receiveValue: { tokensDto in
+//                print("TokensDto \(tokensDto)")
+//            })
+//            .store(in: &subscriptions)
+        
+        emailTextField.textPublisher
+            .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
+            .assign(to: \.emailSubject.value, on: viewModel)
+            .store(in: &subscriptions)
+        
+        passwordTextField.textPublisher
+            .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
+            .assign(to: \.passwordSubject.value, on: viewModel)
+            .store(in: &subscriptions)
+        
+        viewModel.isValidInputs()
+            .assign(to: \.isActive, on: loginButton)
+            .store(in: &subscriptions)
+    }
+    
 }
+
+
 
 
 

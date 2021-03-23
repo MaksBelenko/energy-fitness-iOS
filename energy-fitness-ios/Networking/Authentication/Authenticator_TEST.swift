@@ -16,9 +16,9 @@ struct Response: Decodable {
     let message: String
 }
 
-enum ServiceErrorMessage: String, Decodable, Error {
-    case invalidToken = "invalid_token"
-}
+//enum ServiceErrorMessage: String, Decodable, Error {
+//    case invalidToken = "invalid_token"
+//}
 
 struct ServiceError: Decodable, Error {
     let errors: [ServiceErrorMessage]

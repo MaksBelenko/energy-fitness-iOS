@@ -8,6 +8,8 @@
 import Foundation
 
 public enum APIError: Error {
+    /// Encoding issue when trying to send data.
+    case encodingError(String?)
     // if our response is not an HTTPURLResponse
     case unknownResponse
     // The request could not be made (due to a timeout, missing connectivity, offline, etc).

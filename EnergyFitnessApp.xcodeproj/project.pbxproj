@@ -54,6 +54,8 @@
 		B53C6AC6260A2A7700806EF8 /* DarkenedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AC5260A2A7700806EF8 /* DarkenedImageView.swift */; };
 		B53C6ADA260A3DC600806EF8 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AD9260A3DC600806EF8 /* AuthButton.swift */; };
 		B53C6AEB260A467E00806EF8 /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AEA260A467E00806EF8 /* Vibration.swift */; };
+		B53C6AF2260A783000806EF8 /* SigninDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AF1260A783000806EF8 /* SigninDto.swift */; };
+		B53C6AF9260A898C00806EF8 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AF8260A898C00806EF8 /* LoginViewModel.swift */; };
 		B543EDCB25DEE13D00710FCC /* URLCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B543EDCA25DEE13D00710FCC /* URLCombine.swift */; };
 		B545365025F51BD500955FD8 /* MockDateFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545364F25F51BD500955FD8 /* MockDateFinder.swift */; };
 		B545365625F51EA100955FD8 /* MockDateObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545365525F51EA100955FD8 /* MockDateObjectFactory.swift */; };
@@ -212,6 +214,8 @@
 		B53C6AC5260A2A7700806EF8 /* DarkenedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkenedImageView.swift; sourceTree = "<group>"; };
 		B53C6AD9260A3DC600806EF8 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		B53C6AEA260A467E00806EF8 /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
+		B53C6AF1260A783000806EF8 /* SigninDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninDto.swift; sourceTree = "<group>"; };
+		B53C6AF8260A898C00806EF8 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		B543EDCA25DEE13D00710FCC /* URLCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLCombine.swift; sourceTree = "<group>"; };
 		B545364F25F51BD500955FD8 /* MockDateFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateFinder.swift; sourceTree = "<group>"; };
 		B545365525F51EA100955FD8 /* MockDateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateObjectFactory.swift; sourceTree = "<group>"; };
@@ -444,7 +448,7 @@
 			children = (
 				B59280DB25C9C805001D7AED /* MainTabBarController.swift */,
 				B5A386DF25CA03E4000883E0 /* Schedule-Tab */,
-				B53C6ABC260A1EBF00806EF8 /* LoginViewController.swift */,
+				B53C6AF5260A894E00806EF8 /* Authentication */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -487,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				B511010725F6CFFF009C7DC9 /* EnergyNetworking */,
+				B53C6AF0260A777600806EF8 /* RequestDto */,
 				B59BB58B25D447BD00910962 /* ServerResponseDto */,
 				B519BCC325F2FB1500D44A38 /* Errors */,
 				B519BCBC25F2F84500D44A38 /* Enums */,
@@ -535,6 +540,23 @@
 				B53C6AAE2609673100806EF8 /* Authenticator.swift */,
 				B53C6AB826096B5B00806EF8 /* NetworkManager.swift */,
 				B53C6AB22609698B00806EF8 /* URLSession+Ext.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		B53C6AF0260A777600806EF8 /* RequestDto */ = {
+			isa = PBXGroup;
+			children = (
+				B53C6AF1260A783000806EF8 /* SigninDto.swift */,
+			);
+			path = RequestDto;
+			sourceTree = "<group>";
+		};
+		B53C6AF5260A894E00806EF8 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B53C6ABC260A1EBF00806EF8 /* LoginViewController.swift */,
+				B53C6AF8260A898C00806EF8 /* LoginViewModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -1106,6 +1128,7 @@
 				B5CAFFD126001A2F0069311C /* BookViewModel.swift in Sources */,
 				B5B5E28125FC07840081B212 /* SortOption.swift in Sources */,
 				B53C6ADA260A3DC600806EF8 /* AuthButton.swift in Sources */,
+				B53C6AF9260A898C00806EF8 /* LoginViewModel.swift in Sources */,
 				B5D0657425F4463200E7785F /* ImageDownloadOperationFactory.swift in Sources */,
 				B54F6E3A25CC4503002264C2 /* LocalizedString.swift in Sources */,
 				B5CAFFD5260024C30069311C /* Optional+Ext.swift in Sources */,
@@ -1131,6 +1154,7 @@
 				B50D8D2A2603E6DB00762BD3 /* LoadingIndicatorView.swift in Sources */,
 				B5AB790425EADDB4006AE89C /* GestureType.swift in Sources */,
 				B5AB32AB25DEFED6003E950F /* GradientImageView.swift in Sources */,
+				B53C6AF2260A783000806EF8 /* SigninDto.swift in Sources */,
 				B5A21B0A25E1CD3400B6F739 /* NetworkService.swift in Sources */,
 				B598E626258140FF0068DB9E /* AppDelegate.swift in Sources */,
 				B5AB790025EADD76006AE89C /* GesturePublisher.swift in Sources */,

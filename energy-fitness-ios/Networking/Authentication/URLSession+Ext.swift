@@ -12,6 +12,10 @@ protocol NetworkSession: AnyObject {
     func publisher(for url: URL, token: String?) -> AnyPublisher<Data, Error>
 }
 
+enum ServiceErrorMessage: String, Decodable, Error {
+    case invalidToken = "invalid_token"
+}
+
 extension URLSession: NetworkSession {
     func publisher(for url: URL, token: String?) -> AnyPublisher<Data, Error> {
         var request = URLRequest(url: url)
