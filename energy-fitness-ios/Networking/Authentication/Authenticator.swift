@@ -15,6 +15,7 @@ final class Authenticator {
     
     private let session: NetworkSession
     private var currentAccessToken: String?
+    private var currentRefreshToken: String?
     private let queue = DispatchQueue(label: "com.belenko.authentication.\(UUID().uuidString)")
     
     // this publisher is shared amongst all calls that request a token refresh
@@ -64,12 +65,11 @@ final class Authenticator {
         }
     }
     
-    func signin(with signinDto: SigninDto) -> AnyPublisher<TokensDto, Error> {
+    
+    func signin(with signinDto: SigninDto) -> AnyPublisher<Bool, AuthError> {
+        
         return Just(signinDto)
             .encode(encoder: JSONEncoder())
-//            .mapError { error -> APIError in
-//                return APIError.encodingError(error.localizedDescription)
-//            }
             .map { encodedData in
                 var request = URLRequest(url: URL(string: "http://localhost:3000/api/auth/local/signin")!)
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -77,17 +77,30 @@ final class Authenticator {
                 request.httpBody = encodedData
                 return request
             }
-            .flatMap { request in
-                return URLSession.DataTaskPublisher(request: request, session: .shared)
-                    .tryMap { output in
-                        let response = output.response
-                        if let apiError = APIError.error(from: response) {
-                            throw apiError
-                        }
-                        return output.data
-                    }
+            .flatMap { [session] request in
+                return session.publisher(for: request)
                     .decode(type: TokensDto.self, decoder: JSONDecoder())
             }
+            .mapError { error -> AuthError in
+                switch error {
+                case is URLError:
+                    return .network
+                case APIError.requestError(let httpCode):
+                    return httpCode == 401 ? .unauthorised : .unknown
+                case is EncodingError:
+                    return .encoding
+                case is DecodingError:
+                    return .decoding
+                default:
+                    return error as? AuthError ?? .unknown
+                }
+            }
+            .handleEvents(receiveOutput: { [weak self] tokens in
+                print("Retrieved tokens \(tokens)")
+                self?.currentAccessToken = tokens.accessToken
+                self?.currentRefreshToken = tokens.refreshToken
+            })
+            .map { $0 != nil }
             .eraseToAnyPublisher()
     }
 }

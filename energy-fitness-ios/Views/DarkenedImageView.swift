@@ -34,7 +34,6 @@ final class DarkenedImageView: UIImageView {
     
     convenience init(image: UIImage) {
         self.init(frame: .zero)
-        
         self.image = image
     }
     

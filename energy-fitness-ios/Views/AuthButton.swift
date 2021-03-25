@@ -21,6 +21,10 @@ class AuthButton: UIButton {
         didSet { changeAppearance(isActive) }
     }
     
+    var isLoading: Bool = false {
+        didSet { setLoadingStatus(to: isLoading) }
+    }
+    
     
     private let buttonAnimations = ButtonAnimations()
     
@@ -37,6 +41,12 @@ class AuthButton: UIButton {
         return gradient
     }()
     
+    private lazy var loadingIndicator: LoadingIndicatorView = {
+        let view = LoadingIndicatorView(lineWidth: 3)
+        view.isAnimating = false
+        return view
+    }()
+    
     
     // MARK: - Initialisation
     override init(frame: CGRect) {
@@ -47,6 +57,11 @@ class AuthButton: UIButton {
         
         clipsToBounds = true
         layer.insertSublayer(backgroundGradient, at: 0)
+        
+        addSubview(loadingIndicator)
+        loadingIndicator.centerX(withView: self)
+        loadingIndicator.centerY(withView: self)
+        loadingIndicator.anchor(width: 25, height: 25)
     }
     
     override func layoutSubviews() {
@@ -65,12 +80,18 @@ class AuthButton: UIButton {
         let textColour = isActive ? UIColor.white : UIColor(white: 1, alpha: 0.5)
         setTitleColor(textColour, for: .normal)
         
-        isUserInteractionEnabled = isActive
+        isUserInteractionEnabled = isActive && !isLoading
         
         if isActive {
             buttonAnimations.startAnimatingPressActions(for: self)
         } else {
             buttonAnimations.stopAnimating(for: self)
         }
+    }
+    
+    private func setLoadingStatus(to isLoading: Bool) {
+        loadingIndicator.isAnimating = isLoading
+        self.titleLabel?.alpha = isLoading ? 0 : 1
+        isUserInteractionEnabled = !isLoading
     }
 }

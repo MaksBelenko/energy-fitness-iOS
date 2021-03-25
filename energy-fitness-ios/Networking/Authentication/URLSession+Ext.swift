@@ -10,6 +10,7 @@ import Combine
 
 protocol NetworkSession: AnyObject {
     func publisher(for url: URL, token: String?) -> AnyPublisher<Data, Error>
+    func publisher(for urlRequest: URLRequest) -> AnyPublisher<Data, Error>
 }
 
 enum ServiceErrorMessage: String, Decodable, Error {
@@ -17,23 +18,24 @@ enum ServiceErrorMessage: String, Decodable, Error {
 }
 
 extension URLSession: NetworkSession {
+    func publisher(for request: URLRequest) -> AnyPublisher<Data, Error> {
+        return dataTaskPublisher(for: request)
+            .tryMap { result in
+                let response = result.response
+                if let apiError = APIError.error(from: response) {
+                    throw apiError
+                }
+                return result.data
+            }
+            .eraseToAnyPublisher()
+    }
+    
     func publisher(for url: URL, token: String?) -> AnyPublisher<Data, Error> {
         var request = URLRequest(url: url)
         if let token = token {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authentication")
         }
         
-        return dataTaskPublisher(for: request)
-            .tryMap { result in
-                guard let httpResponse = result.response as? HTTPURLResponse,
-                      httpResponse.statusCode == 200 else {
-                    
-                    let error = try JSONDecoder().decode(ServiceError.self, from: result.data)
-                    throw error
-                }
-                
-                return result.data
-            }
-            .eraseToAnyPublisher()
+        return publisher(for: request)
     }
 }

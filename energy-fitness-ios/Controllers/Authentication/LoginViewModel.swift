@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+enum SigninError: Error {
+    case signinFailed
+}
+
 final class LoginViewModel {
     
     var emailSubject = CurrentValueSubject<String, Never>("")
@@ -35,6 +39,15 @@ final class LoginViewModel {
     func isPasswordValid() -> AnyPublisher<Bool, Never> {
         return passwordSubject
             .flatMap(validator.isSecurePassword)
+            .eraseToAnyPublisher()
+    }
+    
+    func signinAction() -> AnyPublisher<Bool, Never> {
+        let signinDto = SigninDto(email: emailSubject.value.lowercased(), password: passwordSubject.value)
+
+        return authenticator.signin(with: signinDto)
+            .print("Authentication signin")
+            .replaceError(with: false)
             .eraseToAnyPublisher()
     }
     

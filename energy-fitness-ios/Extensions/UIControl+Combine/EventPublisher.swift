@@ -20,6 +20,13 @@ extension UITextField {
             .map { self.text ?? "" }
             .eraseToAnyPublisher()
     }
+    
+    var keyboardReturnPublisher: AnyPublisher<Void, Never> {
+        publisher(for: .editingDidEndOnExit)
+            .eraseToAnyPublisher()
+    }
+    
+    
 }
 
 extension UIControl {

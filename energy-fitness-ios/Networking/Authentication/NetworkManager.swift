@@ -17,6 +17,11 @@ struct NetworkManager {
         self.authenticator = Authenticator(session: session)
     }
     
+//    func signin(with signinDto: SigninDto) -> AnyPublisher<Bool, Never> {
+//        authenticator.signin(with: signinDto)
+//    }
+    
+    
     func performAuthenticatedRequest() -> AnyPublisher<Response, Error> {
         let url = URL(string: "https://donnys-app.com/authenticated/resource")!
         

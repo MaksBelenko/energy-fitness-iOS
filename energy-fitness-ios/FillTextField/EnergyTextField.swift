@@ -14,14 +14,14 @@ final class EnergyTextField: FillTextField {
         
         heightAnchor.constraint(equalToConstant: 45).isActive = true
         
-        font = .raleway(ofSize: 14)
+        font = .raleway(ofSize: 16)
         backgroundColor = .energyTextFieldBackground
         textColor = .energyTextFieldTextColour
         tintColor = .energyTextFieldTextColour
         layer.cornerRadius = 5
         placeholderColor = .energyTFPlaceholderColour
         
-        smallPlaceholderFont = .raleway(ofSize: 12)
+        smallPlaceholderFont = .raleway(ofSize: 14)
         smallPlaceholderColor = .energyTFPlaceholderColour
     }
     
