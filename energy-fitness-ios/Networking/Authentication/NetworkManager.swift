@@ -35,26 +35,21 @@ struct NetworkManager {
     }
     
     
-    func performAuthenticated(request: URLRequest) -> AnyPublisher<Data, Error> {
+    private func performAuthenticated(request: URLRequest) -> AnyPublisher<Data, Error> {
         
         return authenticator.getValidAccessToken()
             .flatMap { accessToken in
-                // we can now use this token to authenticate the request
-                session.publisher(for: request, token: accessToken)
+                session.publisher(for: request, token: accessToken) // try request with accessToken
             }
             .tryCatch { error -> AnyPublisher<Data, Error> in
-                guard let apiError = error as? APIError else {
+                guard let apiError = error as? APIError,
+                      apiError == .requestError(401) else { // check if the access is unauthorised (401)
                     throw error
-                }
-                // not unauthorised or not forbidden
-                if apiError != .requestError(401) || apiError != .requestError(403) {
-                    throw apiError
                 }
                 
                 return authenticator.getValidAccessToken(forceRefresh: true)
                     .flatMap { accessToken in
-                        // we can now use this new token to authenticate the second attempt at making this request
-                        session.publisher(for: request, token: accessToken)
+                        session.publisher(for: request, token: accessToken) // try again with new access token
                     }
                     .eraseToAnyPublisher()
             }

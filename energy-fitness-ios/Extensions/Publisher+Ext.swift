@@ -68,16 +68,17 @@ extension Publisher {
     func tryUnwrap<T>() -> Publishers.TryMap<Self, T> where Output == Optional<T> {
         tryMap { try $0.unwrap() }
     }
+    
+    func log(
+        _ message: @escaping (Self.Output) -> Any? = { (output: Self.Output) in return output },
+        functionName: String = #function,
+        fileName: String = #file,
+        lineNumber: Int = #line
+    ) -> AnyPublisher<Self.Output, Self.Failure> {
+        return self.map {
+            Log.debug(message: message($0) as! String, "", file: fileName, function: functionName, line: lineNumber)
+            return $0
+        }
+        .eraseToAnyPublisher()
+    }
 }
-//    func tryUnwrap<T>(
-//            orThrow error: @escaping @autoclosure () -> Failure
-//        ) -> Publishers.TryMap<Self, T> where Output == Optional<T> {
-//            tryMap { output in
-//                switch output {
-//                case .some(let value):
-//                    return value
-//                case nil:
-//                    throw error()
-//                }
-//            }
-//        }

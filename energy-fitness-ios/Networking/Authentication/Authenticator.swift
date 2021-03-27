@@ -8,19 +8,18 @@
 import Foundation
 import Combine
 
-typealias AccessToken = String
-
 enum AuthenticationError: Error {
     case loginRequired
 }
 
-
 final class Authenticator {
-    private let refreshTokenURL = URL(string: EnergyAPI.baseURLString + "/auth/local/token-refresh")!
-    private let signinURL = URL(string: EnergyAPI.baseURLString + ApiRoute.localSignin.rawValue)!
+    private let tokenRefreshURL = EnergyEndpoint.tokenRefresh.url
+    private let signinURL = EnergyEndpoint.localSignin.url
     
     private let session: NetworkSession
     private let queue = DispatchQueue(label: "com.belenko.authentication.\(UUID().uuidString)")
+    
+    typealias AccessToken = String
     private var currentAccessToken: String?
     private var currentRefreshToken: String?
     
@@ -52,13 +51,14 @@ final class Authenticator {
             }
             
             // scenario 4: we need a new set of tokens token
-            var request = URLRequest(url: refreshTokenURL)
+            var request = URLRequest(url: tokenRefreshURL)
             request.httpMethod = HTTPMethod.post.rawValue
             
             let publisher = session.publisher(for: request, token: refreshToken)
                 .share()
                 .decode(type: TokensDto.self, decoder: JSONDecoder())
-                .print("Auth validToken schenario 4")
+//                .print("Auth validToken scenario 4")
+                .log { "Auth validToken scenario 4 received tokens = \n\($0)" }
                 .handleEvents(receiveOutput: { tokens in
                     self?.queue.sync {
                         print("---Tokens to change \(tokens)")
