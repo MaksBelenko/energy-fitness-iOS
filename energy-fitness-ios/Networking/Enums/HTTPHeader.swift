@@ -9,4 +9,5 @@ import Foundation
 
 enum HTTPHeader: String {
     case authorization = "authorization"
+    case contentType = "Content-Type"
 }

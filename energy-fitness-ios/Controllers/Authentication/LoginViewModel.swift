@@ -20,7 +20,7 @@ final class LoginViewModel {
     private var emailValidSubject = CurrentValueSubject<Bool, Never>(false)
     private var passwordValidSubject = CurrentValueSubject<Bool, Never>(false)
     
-    private let authenticator = Authenticator(session: URLSession.shared)
+//    private let authenticator = Authenticator(session: URLSession.shared)
     private let validator = Validator()
     private let networkManager = NetworkManager(session: URLSession.shared)
     
@@ -46,15 +46,15 @@ final class LoginViewModel {
     func signinAction() -> AnyPublisher<Bool, Never> {
         let signinDto = SigninDto(email: emailSubject.value.lowercased(), password: passwordSubject.value)
 
-        return authenticator.signin(with: signinDto)
+        return networkManager.signin(with: signinDto)
             .print("Authentication signin")
             .replaceError(with: false)
             .eraseToAnyPublisher()
     }
     
     func performTestRequest() -> AnyPublisher<TestMessage, Never> {
-        return networkManager.performAuthenticatedRequest()
-            .replaceError(with: TestMessage(message: "something went wrong"))
+        return networkManager.testAuthEndpoint()
+            .replaceError(with: TestMessage(message: "not successful request, probably error with authentication"))
             .eraseToAnyPublisher()
     }
     

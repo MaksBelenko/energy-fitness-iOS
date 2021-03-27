@@ -45,7 +45,6 @@
 		B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28B25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld */; };
 		B53AE29325F585D100D3C319 /* TrainerEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */; };
 		B53AE29425F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE29225F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift */; };
-		B53C6AA226092A0B00806EF8 /* Authenticator_TEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AA126092A0B00806EF8 /* Authenticator_TEST.swift */; };
 		B53C6AA9260935F700806EF8 /* TokensDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AA8260935F700806EF8 /* TokensDto.swift */; };
 		B53C6AAF2609673100806EF8 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AAE2609673100806EF8 /* Authenticator.swift */; };
 		B53C6AB32609698B00806EF8 /* URLSession+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C6AB22609698B00806EF8 /* URLSession+Ext.swift */; };
@@ -104,8 +103,7 @@
 		B5864D6C25ED738700F47900 /* ScheduleOrganiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */; };
 		B5864D7325ED791800F47900 /* ScheduleOrganiserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D7225ED791800F47900 /* ScheduleOrganiserTests.swift */; };
 		B5864D7A25ED7D6300F47900 /* MockTimePeriodFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */; };
-		B588E84D25F2B91900A989DB /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E84C25F2B91900A989DB /* ApiClient.swift */; };
-		B588E85225F2B98400A989DB /* EnergyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85125F2B98400A989DB /* EnergyApi.swift */; };
+		B588E85225F2B98400A989DB /* EnergyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85125F2B98400A989DB /* EnergyAPI.swift */; };
 		B588E85625F2BA6700A989DB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85525F2BA6700A989DB /* HTTPMethod.swift */; };
 		B588E85A25F2BA8700A989DB /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E85925F2BA8700A989DB /* RequestBuilder.swift */; };
 		B588E86625F2BB6500A989DB /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B588E86525F2BB6500A989DB /* APIError.swift */; };
@@ -168,6 +166,7 @@
 		B5D8AFB325CF4D820010CE47 /* WeedayEnumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFB225CF4D820010CE47 /* WeedayEnumTests.swift */; };
 		B5D8AFC125CF56C40010CE47 /* DateObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFC025CF56C40010CE47 /* DateObjectFactory.swift */; };
 		B5D8AFC725CF57100010CE47 /* DateObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D8AFC625CF57100010CE47 /* DateObjectFactory.swift */; };
+		B5DDCB1C260FE3E50066D556 /* EnergyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DDCB1B260FE3E50066D556 /* EnergyEndpoint.swift */; };
 		B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3125CC4503002264C2 /* WeekdayFactory.swift */; };
 		B5E4BDA1260801C100A4389E /* EnergyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4BDA0260801C100A4389E /* EnergyTextField.swift */; };
 		B5F70079260525BD0064197D /* BookFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F70078260525BD0064197D /* BookFormViewController.swift */; };
@@ -212,7 +211,6 @@
 		B53AE28C25F57E6500D3C319 /* EnergyDbModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EnergyDbModel.xcdatamodel; sourceTree = "<group>"; };
 		B53AE29125F585D100D3C319 /* TrainerEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainerEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B53AE29225F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainerEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		B53C6AA126092A0B00806EF8 /* Authenticator_TEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator_TEST.swift; sourceTree = "<group>"; };
 		B53C6AA8260935F700806EF8 /* TokensDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensDto.swift; sourceTree = "<group>"; };
 		B53C6AAE2609673100806EF8 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		B53C6AB22609698B00806EF8 /* URLSession+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Ext.swift"; sourceTree = "<group>"; };
@@ -282,8 +280,7 @@
 		B5864D6B25ED738700F47900 /* ScheduleOrganiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOrganiser.swift; sourceTree = "<group>"; };
 		B5864D7225ED791800F47900 /* ScheduleOrganiserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOrganiserTests.swift; sourceTree = "<group>"; };
 		B5864D7925ED7D6300F47900 /* MockTimePeriodFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimePeriodFormatter.swift; sourceTree = "<group>"; };
-		B588E84C25F2B91900A989DB /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
-		B588E85125F2B98400A989DB /* EnergyApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyApi.swift; sourceTree = "<group>"; };
+		B588E85125F2B98400A989DB /* EnergyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyAPI.swift; sourceTree = "<group>"; };
 		B588E85525F2BA6700A989DB /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		B588E85925F2BA8700A989DB /* RequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
 		B588E86525F2BB6500A989DB /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -349,6 +346,7 @@
 		B5D8AFB225CF4D820010CE47 /* WeedayEnumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeedayEnumTests.swift; sourceTree = "<group>"; };
 		B5D8AFC025CF56C40010CE47 /* DateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectFactory.swift; sourceTree = "<group>"; };
 		B5D8AFC625CF57100010CE47 /* DateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectFactory.swift; sourceTree = "<group>"; };
+		B5DDCB1B260FE3E50066D556 /* EnergyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyEndpoint.swift; sourceTree = "<group>"; };
 		B5E4BDA0260801C100A4389E /* EnergyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTextField.swift; sourceTree = "<group>"; };
 		B5F70078260525BD0064197D /* BookFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFormViewController.swift; sourceTree = "<group>"; };
 		B5FBA62426051B9300DFA75B /* FillTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillTextField.swift; sourceTree = "<group>"; };
@@ -421,8 +419,8 @@
 			isa = PBXGroup;
 			children = (
 				B588E85525F2BA6700A989DB /* HTTPMethod.swift */,
-				B519BCBD25F2F87900D44A38 /* ApiRoute.swift */,
 				B5687329260F77B10077770D /* HTTPHeader.swift */,
+				B519BCBD25F2F87900D44A38 /* ApiRoute.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -515,8 +513,7 @@
 				B519BCC325F2FB1500D44A38 /* Errors */,
 				B519BCBC25F2F84500D44A38 /* Enums */,
 				B59BB59225D48E8600910962 /* Wrappers */,
-				B588E84C25F2B91900A989DB /* ApiClient.swift */,
-				B588E85125F2B98400A989DB /* EnergyApi.swift */,
+				B588E85125F2B98400A989DB /* EnergyAPI.swift */,
 				B588E85925F2BA8700A989DB /* RequestBuilder.swift */,
 				B5A21B0925E1CD3400B6F739 /* NetworkService.swift */,
 				B511010425F6CCAA009C7DC9 /* NetworkAdapters */,
@@ -555,11 +552,11 @@
 		B53C6AA5260934A100806EF8 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				B53C6AA126092A0B00806EF8 /* Authenticator_TEST.swift */,
 				B53C6AAE2609673100806EF8 /* Authenticator.swift */,
 				B53C6AB826096B5B00806EF8 /* NetworkManager.swift */,
 				B53C6AB22609698B00806EF8 /* URLSession+Ext.swift */,
 				B52F4F23260BFE4B00DA53BE /* AuthError.swift */,
+				B5DDCB1B260FE3E50066D556 /* EnergyEndpoint.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -1155,7 +1152,6 @@
 				B5CAFFD5260024C30069311C /* Optional+Ext.swift in Sources */,
 				B57AB5CD25E9AA1B00D66E19 /* ScheduleCellViewModel.swift in Sources */,
 				B539542425FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift in Sources */,
-				B588E84D25F2B91900A989DB /* ApiClient.swift in Sources */,
 				B57AB5D525E9EAB000D66E19 /* ScheduleCellVMFactory.swift in Sources */,
 				B585774225E7149B006B21C3 /* TrainerDto.swift in Sources */,
 				B54F6E3D25CC4503002264C2 /* Day.swift in Sources */,
@@ -1183,7 +1179,7 @@
 				B54F6E4525CC4503002264C2 /* WeekCalendarViewModel.swift in Sources */,
 				B54F6E4925CC454A002264C2 /* Date+Ext.swift in Sources */,
 				B59BB58D25D447E800910962 /* GymClassDto.swift in Sources */,
-				B588E85225F2B98400A989DB /* EnergyApi.swift in Sources */,
+				B588E85225F2B98400A989DB /* EnergyAPI.swift in Sources */,
 				B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */,
 				B52339FA25F3E13700B58BC9 /* DataRepository.swift in Sources */,
 				B5E4BDA1260801C100A4389E /* EnergyTextField.swift in Sources */,
@@ -1192,12 +1188,12 @@
 				B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */,
 				B58B3AB225CF3ED900F46BCF /* main.swift in Sources */,
 				B536FB7525FA6D2E00853AD0 /* Section.swift in Sources */,
-				B53C6AA226092A0B00806EF8 /* Authenticator_TEST.swift in Sources */,
 				B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */,
 				B54F6E4125CC4503002264C2 /* Month.swift in Sources */,
 				B527C91025CC7E4000342113 /* ScheduleCell.swift in Sources */,
 				B588E85A25F2BA8700A989DB /* RequestBuilder.swift in Sources */,
 				B50D8D3C2603E76B00762BD3 /* StrokeColourAnimation.swift in Sources */,
+				B5DDCB1C260FE3E50066D556 /* EnergyEndpoint.swift in Sources */,
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
 				B55D184825EEAAF10091FD4C /* AsyncOperation.swift in Sources */,

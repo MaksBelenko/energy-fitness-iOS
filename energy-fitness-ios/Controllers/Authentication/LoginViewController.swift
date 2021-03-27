@@ -132,24 +132,24 @@ final class LoginViewController: UIViewController {
             .sink { [weak self] _ in self?.view.endEditing(true) }
             .store(in: &subscriptions)
         
-//        loginButton.tapPublisher
-//            .handleEvents(receiveOutput: { [weak self] _ in
-//                self?.loginButton.isLoading = true
-//                self?.view.endEditing(true)
-//            })
-//            .flatMap(viewModel.signinAction)
-//            .receive(on: DispatchQueue.main)
-//            .sink { [weak self] signedIn in
-//                self?.loginButton.isLoading = false
-//                print("SignedIn? \(signedIn)")
-//            }
-//            .store(in: &subscriptions)
-        
         loginButton.tapPublisher
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.loginButton.isLoading = true
+                self?.view.endEditing(true)
+            })
+            .flatMap(viewModel.signinAction)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] signedIn in
+                self?.loginButton.isLoading = false
+                print("SignedIn? \(signedIn)")
+            }
+            .store(in: &subscriptions)
+        
+        haveAccountButton.tapPublisher
             .flatMap(viewModel.performTestRequest)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] textMessage in
-                print("SignedIn? \(textMessage.message)")
+            .sink {  textMessage in
+                print("Test successful? \(textMessage.message)")
             }
             .store(in: &subscriptions)
     }

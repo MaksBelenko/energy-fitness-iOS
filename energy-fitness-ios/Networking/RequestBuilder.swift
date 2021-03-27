@@ -22,6 +22,7 @@ class RequestBuilder: RequestBuilderProtocol {
     var path: String?
     var headers: [String: String] = [:]
     var queryParams: [URLQueryItem] = []
+    var httpBody: Data?
     
     
     func withBaseURL(_ baseURL: URL) -> RequestBuilder {
@@ -48,6 +49,12 @@ class RequestBuilder: RequestBuilderProtocol {
     }
     
     @discardableResult
+    func withHttpBody(_ httpBody: Data) -> RequestBuilder {
+        self.httpBody = httpBody
+        return self
+    }
+    
+    @discardableResult
     func withQueryParam(name: String, value: String) -> RequestBuilder {
         let queryItem = URLQueryItem(name: name, value: value)
         queryParams.append(queryItem)
@@ -69,6 +76,7 @@ class RequestBuilder: RequestBuilderProtocol {
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = headers
         request.httpMethod = method.getHttpMethodName()
+        request.httpBody = httpBody
         
         return request
     }

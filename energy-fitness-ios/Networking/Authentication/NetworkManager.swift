@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+struct TestMessage: Decodable {
+    let message: String
+}
+
 struct NetworkManager {
     private let session: NetworkSession
     private let authenticator: Authenticator
@@ -17,38 +21,44 @@ struct NetworkManager {
         self.authenticator = Authenticator(session: session)
     }
     
-//    func signin(with signinDto: SigninDto) -> AnyPublisher<Bool, Never> {
-//        authenticator.signin(with: signinDto)
-//    }
+    func signin(with signinDto: SigninDto) -> AnyPublisher<Bool, AuthError> {
+        return authenticator.signin(with: signinDto)
+    }
     
     
-    func performAuthenticatedRequest() -> AnyPublisher<TestMessage, Error> {
-        let url = URL(string: EnergyApi.baseURLString + "/auth/local/test")!
-        let request = URLRequest(url: url)
+    func testAuthEndpoint() -> AnyPublisher<TestMessage, Error> {
+        let request = URLRequest(endpoint: .authTest)
+     
+        return performAuthenticated(request: request)
+            .decode(type: TestMessage.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+    }
+    
+    
+    func performAuthenticated(request: URLRequest) -> AnyPublisher<Data, Error> {
         
-        return authenticator.validToken()
+        return authenticator.getValidAccessToken()
             .flatMap { accessToken in
                 // we can now use this token to authenticate the request
                 session.publisher(for: request, token: accessToken)
             }
             .tryCatch { error -> AnyPublisher<Data, Error> in
-//                guard let serviceError = error as? ServiceError,
-//                      serviceError.errors.contains(ServiceErrorMessage.invalidToken) else {
-//                    throw error
-//                }
+                guard let apiError = error as? APIError else {
+                    throw error
+                }
+                // not unauthorised or not forbidden
+                if apiError != .requestError(401) || apiError != .requestError(403) {
+                    throw apiError
+                }
                 
-                return authenticator.validToken(forceRefresh: true)
-                    .flatMap { token in
+                return authenticator.getValidAccessToken(forceRefresh: true)
+                    .flatMap { accessToken in
                         // we can now use this new token to authenticate the second attempt at making this request
-                        session.publisher(for: url, token: token)
+                        session.publisher(for: request, token: accessToken)
                     }
                     .eraseToAnyPublisher()
             }
-            .decode(type: TestMessage.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
 }
 
-struct TestMessage: Decodable {
-    let message: String
-}

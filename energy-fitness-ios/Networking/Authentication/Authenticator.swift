@@ -10,14 +10,19 @@ import Combine
 
 typealias AccessToken = String
 
+enum AuthenticationError: Error {
+    case loginRequired
+}
+
+
 final class Authenticator {
-    private let refreshTokenURL = EnergyApi.baseURLString + "/auth/local/token-refresh"
-    private let signinURL = URL(string: EnergyApi.baseURLString + ApiRoute.localSignin.rawValue)!
+    private let refreshTokenURL = URL(string: EnergyAPI.baseURLString + "/auth/local/token-refresh")!
+    private let signinURL = URL(string: EnergyAPI.baseURLString + ApiRoute.localSignin.rawValue)!
     
     private let session: NetworkSession
-    private var currentAccessToken: String? = "c2f69c1e-54df-40d0-bfd6-e2a440858af8"
-    private var currentRefreshToken: String? = "f1fa8d64-d17b-4d9e-b637-f35b31bb30c7"
     private let queue = DispatchQueue(label: "com.belenko.authentication.\(UUID().uuidString)")
+    private var currentAccessToken: String?
+    private var currentRefreshToken: String?
     
     // this publisher is shared amongst all calls that request a token refresh
     private var refreshPublisher: AnyPublisher<AccessToken, Error>?
@@ -26,7 +31,7 @@ final class Authenticator {
         self.session = session
     }
     
-    func validToken(forceRefresh: Bool = false) -> AnyPublisher<AccessToken, Error> {
+    func getValidAccessToken(forceRefresh: Bool = false) -> AnyPublisher<AccessToken, Error> {
         return queue.sync { [weak self] in
             // scenario 1: we're already loading a new token
             if let publisher = self?.refreshPublisher {
@@ -47,8 +52,7 @@ final class Authenticator {
             }
             
             // scenario 4: we need a new set of tokens token
-            let endpoint = URL(string: refreshTokenURL)!
-            var request = URLRequest(url: endpoint)
+            var request = URLRequest(url: refreshTokenURL)
             request.httpMethod = HTTPMethod.post.rawValue
             
             let publisher = session.publisher(for: request, token: refreshToken)
@@ -83,8 +87,8 @@ final class Authenticator {
             .encode(encoder: JSONEncoder())
             .map { [signinURL] encodedData in
                 var request = URLRequest(url: signinURL)
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.httpMethod = HTTPMethod.post.getHttpMethodName()
+                request.setHeader(.contentType, to: "application/json")
+                request.setHttpMethod(to: .post)
                 request.httpBody = encodedData
                 return request
             }
