@@ -10,6 +10,7 @@ import Combine
 
 protocol NetworkSession: AnyObject {
     func publisher(for url: URL, token: String?) -> AnyPublisher<Data, Error>
+    func publisher(for request: URLRequest, token: String?) -> AnyPublisher<Data, Error>
     func publisher(for urlRequest: URLRequest) -> AnyPublisher<Data, Error>
 }
 
@@ -31,9 +32,14 @@ extension URLSession: NetworkSession {
     }
     
     func publisher(for url: URL, token: String?) -> AnyPublisher<Data, Error> {
-        var request = URLRequest(url: url)
+        let request = URLRequest(url: url)
+        return publisher(for: request, token: token)
+    }
+    
+    func publisher(for request: URLRequest, token: String?) -> AnyPublisher<Data, Error> {
+        var request = request
         if let token = token {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authentication")
+            request.setHeader(.authorization, to: "Bearer \(token)")
         }
         
         return publisher(for: request)

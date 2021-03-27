@@ -22,19 +22,20 @@ struct NetworkManager {
 //    }
     
     
-    func performAuthenticatedRequest() -> AnyPublisher<Response, Error> {
-        let url = URL(string: "https://donnys-app.com/authenticated/resource")!
+    func performAuthenticatedRequest() -> AnyPublisher<TestMessage, Error> {
+        let url = URL(string: EnergyApi.baseURLString + "/auth/local/test")!
+        let request = URLRequest(url: url)
         
         return authenticator.validToken()
-            .flatMap { token in
+            .flatMap { accessToken in
                 // we can now use this token to authenticate the request
-                session.publisher(for: url, token: token)
+                session.publisher(for: request, token: accessToken)
             }
             .tryCatch { error -> AnyPublisher<Data, Error> in
-                guard let serviceError = error as? ServiceError,
-                      serviceError.errors.contains(ServiceErrorMessage.invalidToken) else {
-                    throw error
-                }
+//                guard let serviceError = error as? ServiceError,
+//                      serviceError.errors.contains(ServiceErrorMessage.invalidToken) else {
+//                    throw error
+//                }
                 
                 return authenticator.validToken(forceRefresh: true)
                     .flatMap { token in
@@ -43,7 +44,11 @@ struct NetworkManager {
                     }
                     .eraseToAnyPublisher()
             }
-            .decode(type: Response.self, decoder: JSONDecoder())
+            .decode(type: TestMessage.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
+}
+
+struct TestMessage: Decodable {
+    let message: String
 }

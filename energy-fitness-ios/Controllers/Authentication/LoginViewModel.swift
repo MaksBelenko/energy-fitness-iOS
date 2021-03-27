@@ -22,6 +22,7 @@ final class LoginViewModel {
     
     private let authenticator = Authenticator(session: URLSession.shared)
     private let validator = Validator()
+    private let networkManager = NetworkManager(session: URLSession.shared)
     
     
     func isValidInputs() -> AnyPublisher<Bool, Never> {
@@ -48,6 +49,12 @@ final class LoginViewModel {
         return authenticator.signin(with: signinDto)
             .print("Authentication signin")
             .replaceError(with: false)
+            .eraseToAnyPublisher()
+    }
+    
+    func performTestRequest() -> AnyPublisher<TestMessage, Never> {
+        return networkManager.performAuthenticatedRequest()
+            .replaceError(with: TestMessage(message: "something went wrong"))
             .eraseToAnyPublisher()
     }
     

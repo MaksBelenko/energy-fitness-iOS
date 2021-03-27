@@ -11,15 +11,16 @@ import Combine
 typealias AccessToken = String
 
 final class Authenticator {
-    private let refreshTokenURL = EnergyApi.baseURLString + ApiRoute.refreshToken.rawValue
+    private let refreshTokenURL = EnergyApi.baseURLString + "/auth/local/token-refresh"
+    private let signinURL = URL(string: EnergyApi.baseURLString + ApiRoute.localSignin.rawValue)!
     
     private let session: NetworkSession
-    private var currentAccessToken: String?
-    private var currentRefreshToken: String?
+    private var currentAccessToken: String? = "c2f69c1e-54df-40d0-bfd6-e2a440858af8"
+    private var currentRefreshToken: String? = "f1fa8d64-d17b-4d9e-b637-f35b31bb30c7"
     private let queue = DispatchQueue(label: "com.belenko.authentication.\(UUID().uuidString)")
     
     // this publisher is shared amongst all calls that request a token refresh
-    private var refreshPublisher: AnyPublisher<String, Error>?
+    private var refreshPublisher: AnyPublisher<AccessToken, Error>?
     
     init(session: NetworkSession = URLSession.shared) {
         self.session = session
@@ -32,31 +33,41 @@ final class Authenticator {
                 return publisher
             }
             
-            // scenario 2: we don't have a token at all, the user should probably log in
-            guard let token = self?.currentAccessToken else {
+            // scenario 2: we don't have refresh token at all, the user should log in
+            guard let refreshToken = self?.currentRefreshToken else {
                 return Fail(error: AuthenticationError.loginRequired)
                     .eraseToAnyPublisher()
             }
             
-            // scenario 3: we already have a valid token and don't want to force a refresh
-//            if token.isValid, !forceRefresh {
-//                return Just(token)
-//                    .setFailureType(to: Error.self)
-//                    .eraseToAnyPublisher()
-//            }
+            // scenario 3: we already have access token and don't want to force a refresh
+            if let accessToken = self?.currentAccessToken, !forceRefresh {
+                return Just(accessToken)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
             
-            // scenario 4: we need a new token
+            // scenario 4: we need a new set of tokens token
             let endpoint = URL(string: refreshTokenURL)!
-            let publisher = session.publisher(for: endpoint, token: nil)
+            var request = URLRequest(url: endpoint)
+            request.httpMethod = HTTPMethod.post.rawValue
+            
+            let publisher = session.publisher(for: request, token: refreshToken)
                 .share()
                 .decode(type: TokensDto.self, decoder: JSONDecoder())
+                .print("Auth validToken schenario 4")
                 .handleEvents(receiveOutput: { tokens in
-                    self?.currentAccessToken = tokens.accessToken
+                    self?.queue.sync {
+                        print("---Tokens to change \(tokens)")
+                        self?.currentAccessToken = tokens.accessToken
+                        self?.currentRefreshToken = tokens.refreshToken
+                    }
                 }, receiveCompletion: { _ in
                     self?.queue.sync {
+                        print("---Changing refreshPublisher to nil")
                         self?.refreshPublisher = nil
                     }
                 })
+                .print("Before map to accessToken")
                 .map { $0.accessToken }
                 .eraseToAnyPublisher()
             
@@ -70,8 +81,8 @@ final class Authenticator {
         
         return Just(signinDto)
             .encode(encoder: JSONEncoder())
-            .map { encodedData in
-                var request = URLRequest(url: URL(string: "http://localhost:3000/api/auth/local/signin")!)
+            .map { [signinURL] encodedData in
+                var request = URLRequest(url: signinURL)
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpMethod = HTTPMethod.post.getHttpMethodName()
                 request.httpBody = encodedData
@@ -96,9 +107,11 @@ final class Authenticator {
                 }
             }
             .handleEvents(receiveOutput: { [weak self] tokens in
-                print("Retrieved tokens \(tokens)")
-                self?.currentAccessToken = tokens.accessToken
-                self?.currentRefreshToken = tokens.refreshToken
+                print("Signin Retrieved tokens \(tokens)")
+                self?.queue.sync {
+                    self?.currentAccessToken = tokens.accessToken
+                    self?.currentRefreshToken = tokens.refreshToken
+                }
             })
             .map { $0 != nil }
             .eraseToAnyPublisher()

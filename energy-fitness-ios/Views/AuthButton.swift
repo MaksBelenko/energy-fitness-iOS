@@ -44,6 +44,7 @@ class AuthButton: UIButton {
     private lazy var loadingIndicator: LoadingIndicatorView = {
         let view = LoadingIndicatorView(lineWidth: 3)
         view.isAnimating = false
+        view.isUserInteractionEnabled = false
         return view
     }()
     

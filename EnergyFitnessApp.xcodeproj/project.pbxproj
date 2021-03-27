@@ -85,6 +85,8 @@
 		B556D62725CF341200F39EDC /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D62625CF341200F39EDC /* TestingAppDelegate.swift */; };
 		B556D62D25CF34D800F39EDC /* TestingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B556D62C25CF34D800F39EDC /* TestingSceneDelegate.swift */; };
 		B55D184825EEAAF10091FD4C /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55D184725EEAAF10091FD4C /* AsyncOperation.swift */; };
+		B568732A260F77B10077770D /* HTTPHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5687329260F77B10077770D /* HTTPHeader.swift */; };
+		B568732E260F78460077770D /* URLRequest+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B568732D260F78460077770D /* URLRequest+Ext.swift */; };
 		B569CDD525CE142E00B1DBAE /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B569CDD425CE142E00B1DBAE /* Swinject */; };
 		B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569CDD725CE160500B1DBAE /* DIContainer.swift */; };
 		B57372E125DB062300CC541F /* BookSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57372E025DB062300CC541F /* BookSessionViewController.swift */; };
@@ -263,6 +265,8 @@
 		B556D62C25CF34D800F39EDC /* TestingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingSceneDelegate.swift; sourceTree = "<group>"; };
 		B556D63025CF350300F39EDC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		B55D184725EEAAF10091FD4C /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		B5687329260F77B10077770D /* HTTPHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPHeader.swift; sourceTree = "<group>"; };
+		B568732D260F78460077770D /* URLRequest+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Ext.swift"; sourceTree = "<group>"; };
 		B569CDD725CE160500B1DBAE /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		B57372E025DB062300CC541F /* BookSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSessionViewController.swift; sourceTree = "<group>"; };
 		B5739F6B25D0B18B001E71B9 /* DateFinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFinderTests.swift; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 			children = (
 				B588E85525F2BA6700A989DB /* HTTPMethod.swift */,
 				B519BCBD25F2F87900D44A38 /* ApiRoute.swift */,
+				B5687329260F77B10077770D /* HTTPHeader.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 				B5AB78F925EAD73A006AE89C /* UIControl+Combine */,
 				B5AB78FE25EADD60006AE89C /* UIViewGestures+Combine */,
 				B5CAFFD4260024C30069311C /* Optional+Ext.swift */,
+				B568732D260F78460077770D /* URLRequest+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1242,10 +1248,12 @@
 				B54F6E3C25CC4503002264C2 /* WeekDay.swift in Sources */,
 				B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */,
 				B59BB59425D48E9C00910962 /* JsonDecoderWrapper.swift in Sources */,
+				B568732E260F78460077770D /* URLRequest+Ext.swift in Sources */,
 				B53AE29425F585D100D3C319 /* TrainerEntity+CoreDataProperties.swift in Sources */,
 				B5AFEB26260B84E500156730 /* FileExtensions.swift in Sources */,
 				B5BCFF1C25DFD2A4007746F8 /* ButtonAnimations.swift in Sources */,
 				B523CC7525E877710068D74A /* NoSessionView.swift in Sources */,
+				B568732A260F77B10077770D /* HTTPHeader.swift in Sources */,
 				B598E628258140FF0068DB9E /* SceneDelegate.swift in Sources */,
 				B585773325E6DEF7006B21C3 /* TimePeriodFormatter.swift in Sources */,
 				B53AE28825F57D8200D3C319 /* CoreDataStack.swift in Sources */,
