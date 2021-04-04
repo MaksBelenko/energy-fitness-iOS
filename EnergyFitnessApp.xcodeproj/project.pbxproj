@@ -23,6 +23,7 @@
 		B52339FA25F3E13700B58BC9 /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52339F925F3E13700B58BC9 /* DataRepository.swift */; };
 		B523CC7525E877710068D74A /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7425E877710068D74A /* NoSessionView.swift */; };
 		B523E76025ED45D6003DD3BE /* ScheduleFilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */; };
+		B5245FDF26191D14001063A1 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5245FDE26191D14001063A1 /* AuthCoordinator.swift */; };
 		B527C8FA25CC749000342113 /* Raleway-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5925CC7037002264C2 /* Raleway-Black.ttf */; };
 		B527C8FC25CC749300342113 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5C25CC7038002264C2 /* Raleway-Bold.ttf */; };
 		B527C8FE25CC749600342113 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B54F6E5B25CC7038002264C2 /* Raleway-ExtraBold.ttf */; };
@@ -169,7 +170,6 @@
 		B5DDCB1C260FE3E50066D556 /* EnergyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DDCB1B260FE3E50066D556 /* EnergyEndpoint.swift */; };
 		B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F6E3125CC4503002264C2 /* WeekdayFactory.swift */; };
 		B5E4BDA1260801C100A4389E /* EnergyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E4BDA0260801C100A4389E /* EnergyTextField.swift */; };
-		B5F70079260525BD0064197D /* BookFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F70078260525BD0064197D /* BookFormViewController.swift */; };
 		B5FBA62526051B9300DFA75B /* FillTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBA62426051B9300DFA75B /* FillTextField.swift */; };
 /* End PBXBuildFile section */
 
@@ -200,6 +200,7 @@
 		B52339F925F3E13700B58BC9 /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		B523CC7425E877710068D74A /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		B523E75F25ED45D6003DD3BE /* ScheduleFilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFilterType.swift; sourceTree = "<group>"; };
+		B5245FDE26191D14001063A1 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		B527C90C25CC7DD200342113 /* ScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		B52F4F23260BFE4B00DA53BE /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
@@ -348,7 +349,6 @@
 		B5D8AFC625CF57100010CE47 /* DateObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateObjectFactory.swift; sourceTree = "<group>"; };
 		B5DDCB1B260FE3E50066D556 /* EnergyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyEndpoint.swift; sourceTree = "<group>"; };
 		B5E4BDA0260801C100A4389E /* EnergyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTextField.swift; sourceTree = "<group>"; };
-		B5F70078260525BD0064197D /* BookFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFormViewController.swift; sourceTree = "<group>"; };
 		B5FBA62426051B9300DFA75B /* FillTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -545,6 +545,7 @@
 			children = (
 				B539540E25FE9E83007CE6C1 /* Coordinator.swift */,
 				B539542325FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift */,
+				B5245FDE26191D14001063A1 /* AuthCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -829,7 +830,6 @@
 				B598E629258140FF0068DB9E /* ScheduleViewController.swift */,
 				B57372E025DB062300CC541F /* BookSessionViewController.swift */,
 				B5CAFFD026001A2F0069311C /* BookViewModel.swift */,
-				B5F70078260525BD0064197D /* BookFormViewController.swift */,
 			);
 			path = "Schedule-Tab";
 			sourceTree = "<group>";
@@ -1224,8 +1224,8 @@
 				B55451C825CC830000BCA984 /* CALayer+Ext.swift in Sources */,
 				B569CDD825CE160500B1DBAE /* DIContainer.swift in Sources */,
 				B57372E125DB062300CC541F /* BookSessionViewController.swift in Sources */,
+				B5245FDF26191D14001063A1 /* AuthCoordinator.swift in Sources */,
 				B5A9B7B525E71C2600921D4E /* DateFormatter+Ext.swift in Sources */,
-				B5F70079260525BD0064197D /* BookFormViewController.swift in Sources */,
 				B58AB97125F19C3000D55DC0 /* NetworkFetchOperation.swift in Sources */,
 				B55451CB25CC94AC00BCA984 /* ReuseIdentifiable.swift in Sources */,
 				B59BB57A25D43ADD00910962 /* AlamofireAdapter.swift in Sources */,

@@ -11,8 +11,10 @@ import SwiftUI
 
 final class LoginViewController: UIViewController {
 
+    weak var coordinator: AuthCoordinator?
+    
+    private let viewModel: LoginViewModel
     private var subscriptions = Set<AnyCancellable>()
-    private let viewModel = LoginViewModel()
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
     
@@ -64,13 +66,23 @@ final class LoginViewController: UIViewController {
     
     
     // MARK: - Lifecycle
+    
+    init(coordinator: AuthCoordinator, viewModel: LoginViewModel) {
+        self.coordinator = coordinator
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         createControllerViewsBindings()
         createViewModelBindings()
         configureUI()
-        
     }
     
     
@@ -184,7 +196,8 @@ final class LoginViewController: UIViewController {
 // -------------- SWIFTUI PREVIEW HELPER --------------------
 struct LoginIntegratedController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
-        return LoginViewController()
+        let container = DIContainer.staticContainerSwiftUIPreviews
+        return container.resolve(LoginViewController.self)!
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}

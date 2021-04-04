@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ScheduleTabCoordinator: Coordinator {
+final class ScheduleTabCoordinator: ParentCoordinator {
     var childCoordinators: [Coordinator] = []
     var navController: UINavigationController
     
@@ -18,7 +18,6 @@ final class ScheduleTabCoordinator: Coordinator {
     ) {
         self.navController = UINavigationController()
         self.viewControllerProvider = viewControllerProvider
-        start()
     }
     
     func start() {
@@ -37,16 +36,30 @@ final class ScheduleTabCoordinator: Coordinator {
         navController.pushViewController(bookSessionVC, animated: true)
     }
     
-    func showBookForm() {
-        let bookFormVC = viewControllerProvider.createBookFormVC()
-        bookFormVC.hidesBottomBarWhenPushed = true
-        navController.pushViewController(bookFormVC, animated: true)
-    }
-    
     
     func goBack() {
         navController.popViewController(animated: true)
     }
     
     
+    func showAuth() {
+        let authCoordinator = AuthCoordinator(viewControllerProvider: viewControllerProvider)
+        authCoordinator.parentCoordinator = self
+        authCoordinator.start()
+        
+        authCoordinator.navController.modalPresentationStyle = .overFullScreen
+        navController.present(authCoordinator.navController, animated: true, completion: nil)
+        childCoordinators.append(authCoordinator)
+    }
+    
+    
+    
+    func childDidFinish(_ child: Coordinator?) {
+        for (index, coordinator) in childCoordinators.enumerated() {
+            if child === coordinator {
+                childCoordinators.remove(at: index)
+                break
+            }
+        }
+    }
 }

@@ -13,3 +13,7 @@ protocol Coordinator: AnyObject {
     
     func start()
 }
+
+protocol ParentCoordinator: Coordinator {
+    func childDidFinish(_ child: Coordinator?)
+}

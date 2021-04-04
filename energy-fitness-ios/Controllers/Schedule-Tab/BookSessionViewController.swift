@@ -187,9 +187,9 @@ class BookSessionViewController: UIViewController {
             .sink { [weak self] in self?.coordinator?.goBack() }
             .store(in: &subscriptions)
         
-        bookButton.publisher(for: .touchUpInside)
-            .sink { [weak self] in self?.coordinator?.showBookForm() }
-            .store(in: &subscriptions)
+//        bookButton.publisher(for: .touchUpInside)
+//            .sink { [weak self] in self?.coordinator?.showBookForm() }
+//            .store(in: &subscriptions)
         
         viewModel.gymClassImage
             .receive(on: DispatchQueue.main)

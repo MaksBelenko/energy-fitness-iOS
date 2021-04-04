@@ -51,8 +51,8 @@ final class Authenticator {
             }
             
             // scenario 4: we need a new set of tokens token
-            var request = URLRequest(url: tokenRefreshURL)
-            request.httpMethod = HTTPMethod.post.rawValue
+            var request = URLRequest(endpoint: .tokenRefresh)
+            request.setHttpMethod(to: .post)
             
             let publisher = session.publisher(for: request, token: refreshToken)
                 .share()

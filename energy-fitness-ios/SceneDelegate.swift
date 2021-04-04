@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  energy-fitness-ios
+//  energy-fitness-iOS
 //
 //  Created by Maksim on 09/12/2020.
 //
@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = LoginViewController()//container.resolve(MainTabControllerProtocol.self)
+        window.rootViewController = container.resolve(MainTabControllerProtocol.self)
         window.makeKeyAndVisible()
         self.window = window
     }

@@ -20,6 +20,7 @@ class MainTabBarController: UITabBarController, MainTabControllerProtocol {
         scheduleTabCoordinator: ScheduleTabCoordinator
     ) {
         self.scheduleTabCoordinator = scheduleTabCoordinator
+        self.scheduleTabCoordinator.start()
         super.init(nibName: nil, bundle: nil)
     }
     

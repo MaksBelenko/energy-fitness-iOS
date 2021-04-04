@@ -36,7 +36,8 @@ class DIContainer {
     // MARK: - Coordinators setup of container
     private func setupForCoordinators(using container: Container) {
         container.autoregister(ScheduleTabCoordinator.self, initializer: ScheduleTabCoordinator.init)
-            .inObjectScope(.transient)
+//            .inObjectScope(.transient)
+        container.autoregister(AuthCoordinator.self, initializer: AuthCoordinator.init)
     }
     
     // MARK: - Controllers setup of container
@@ -44,7 +45,7 @@ class DIContainer {
         container.register(ViewControllerProvider.self) {
             ViewControllerProvider(scheduleVC: $0.resolve(Provider<ScheduleViewController>.self)!,
                                    bookSessionVC: $0.resolve(Provider<BookSessionViewController>.self)!,
-                                   bookFormVCProvider: $0.resolve(Provider<BookFormViewController>.self)!)
+                                   loginVCProvider: $0.resolve(Provider<LoginViewController>.self)!)
         }
 
         
@@ -54,12 +55,16 @@ class DIContainer {
         /* Schedule Tab */
         container.autoregister(ScheduleViewController.self, initializer: ScheduleViewController.init)
             .inObjectScope(.transient)
+        
         container.autoregister(BookSessionViewController.self, initializer: BookSessionViewController.init)
             .inObjectScope(.transient)
-        container.autoregister(BookFormViewController.self, initializer: BookFormViewController.init)
+        container.autoregister(BookViewModel.self, initializer: BookViewModel.init)
             .inObjectScope(.transient)
         
-        container.autoregister(BookViewModel.self, initializer: BookViewModel.init)
+        /* Auth */
+        container.autoregister(LoginViewController.self, initializer: LoginViewController.init)
+            .inObjectScope(.transient)
+        container.autoregister(LoginViewModel.self, initializer: LoginViewModel.init)
             .inObjectScope(.transient)
         
     }

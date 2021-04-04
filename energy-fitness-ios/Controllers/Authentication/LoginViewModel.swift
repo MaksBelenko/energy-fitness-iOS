@@ -8,10 +8,6 @@
 import Foundation
 import Combine
 
-enum SigninError: Error {
-    case signinFailed
-}
-
 final class LoginViewModel {
     
     var emailSubject = CurrentValueSubject<String, Never>("")
@@ -20,7 +16,6 @@ final class LoginViewModel {
     private var emailValidSubject = CurrentValueSubject<Bool, Never>(false)
     private var passwordValidSubject = CurrentValueSubject<Bool, Never>(false)
     
-//    private let authenticator = Authenticator(session: URLSession.shared)
     private let validator = Validator()
     private let networkManager = NetworkManager(session: URLSession.shared)
     
@@ -34,12 +29,14 @@ final class LoginViewModel {
     func isEmailValid() -> AnyPublisher<Bool, Never> {
         return emailSubject
             .flatMap(validator.isEmail)
+            .share()
             .eraseToAnyPublisher()
     }
     
     func isPasswordValid() -> AnyPublisher<Bool, Never> {
         return passwordSubject
             .flatMap(validator.isSecurePassword)
+            .share()
             .eraseToAnyPublisher()
     }
     
