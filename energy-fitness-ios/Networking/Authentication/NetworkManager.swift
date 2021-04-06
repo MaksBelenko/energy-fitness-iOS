@@ -12,13 +12,18 @@ struct TestMessage: Decodable {
     let message: String
 }
 
-struct NetworkManager {
+final class NetworkManager {
     private let session: NetworkSession
     private let authenticator: Authenticator
     
     init(session: NetworkSession = URLSession.shared) {
         self.session = session
         self.authenticator = Authenticator(session: session)
+    }
+    
+    
+    func isSignedIn() -> AnyPublisher<Bool, Never> {
+        return authenticator.isSignedIn()
     }
     
     func signin(with signinDto: SigninDto) -> AnyPublisher<Bool, AuthError> {
@@ -38,10 +43,10 @@ struct NetworkManager {
     private func performAuthenticated(request: URLRequest) -> AnyPublisher<Data, Error> {
         
         return authenticator.getValidAccessToken()
-            .flatMap { accessToken in
+            .flatMap { [session] accessToken in
                 session.publisher(for: request, token: accessToken) // try request with accessToken
             }
-            .tryCatch { error -> AnyPublisher<Data, Error> in
+            .tryCatch { [authenticator, session] error -> AnyPublisher<Data, Error> in
                 guard let apiError = error as? APIError,
                       apiError == .requestError(401) else { // check if the access is unauthorised (401)
                     throw error

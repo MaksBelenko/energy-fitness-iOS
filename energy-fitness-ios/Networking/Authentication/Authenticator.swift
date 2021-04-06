@@ -26,8 +26,17 @@ final class Authenticator {
     // this publisher is shared amongst all calls that request a token refresh
     private var refreshPublisher: AnyPublisher<AccessToken, Error>?
     
+    // MARK: - Lifecycle
     init(session: NetworkSession = URLSession.shared) {
         self.session = session
+    }
+    
+    
+    // MARK: - Public methods
+    func isSignedIn() -> AnyPublisher<Bool, Never> {
+        return Just(currentAccessToken)
+                .map { $0 != nil }
+                .eraseToAnyPublisher()
     }
     
     func getValidAccessToken(forceRefresh: Bool = false) -> AnyPublisher<AccessToken, Error> {

@@ -47,7 +47,6 @@ final class ScheduleTabCoordinator: ParentCoordinator {
         authCoordinator.parentCoordinator = self
         authCoordinator.start()
         
-        authCoordinator.navController.modalPresentationStyle = .overFullScreen
         navController.present(authCoordinator.navController, animated: true, completion: nil)
         childCoordinators.append(authCoordinator)
     }

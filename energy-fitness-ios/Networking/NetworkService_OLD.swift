@@ -12,7 +12,7 @@ protocol NetworkServiceProtocol {
     func downloadImage(for imageRouteType: ImageDownloadRoute, imageName: String, completion: @escaping (UIImage) -> ())
 }
 
-class NetworkService: NetworkServiceProtocol {
+class NetworkService123: NetworkServiceProtocol {
     
     private var networkOperationQueue: OperationQueue = {
         let operationQueue = OperationQueue()
@@ -26,7 +26,7 @@ class NetworkService: NetworkServiceProtocol {
     
     private lazy var getAllGymClassesRequest: URLRequest = {
         let request = requestBuilder
-                        .withBaseURL(URL(string: EnergyAPI.baseURLString)!)
+                        .withBaseURL(URL(string: "http://localhost:3000/api")!)
                         .withPath(ApiRoute.gymSessions.rawValue)
                         .build()
         return request
@@ -72,7 +72,7 @@ class NetworkService: NetworkServiceProtocol {
         let path = imageRouteType.rawValue + "/" + imageName
         
         let request = requestBuilder
-            .withBaseURL(URL(string: EnergyAPI.baseURLString)!)
+            .withBaseURL(URL(string: "http://localhost:3000/api")!)
                         .withPath(path)
                         .build()
         

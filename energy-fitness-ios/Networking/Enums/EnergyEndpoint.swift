@@ -15,8 +15,11 @@ protocol EndpointResource {
 
 enum EnergyEndpoint {
     case gymClasses
+    case gymClass(String)
     case gymSessions
+    case gymSession(String)
     case trainers
+    case trainer(String)
     case tokenRefresh
     case localSignin
     case authTest
@@ -31,10 +34,16 @@ extension EnergyEndpoint: EndpointResource {
         switch self {
         case .gymClasses:
             return baseURL + "/gym-classes"
+        case .gymClass(let id):
+            return "\(EnergyEndpoint.gymClasses.endpoint)/\(id)"
         case .gymSessions:
             return baseURL + "/gym-sessions"
+        case .gymSession(let id):
+            return "\(EnergyEndpoint.gymSessions.endpoint)/\(id)"
         case .trainers:
             return baseURL + "/trainers"
+        case .trainer(let id):
+            return "\(EnergyEndpoint.trainers.endpoint)/\(id)"
         case .tokenRefresh:
             return baseURL + "/auth/local/token-refresh"
         case .localSignin:
@@ -45,6 +54,6 @@ extension EnergyEndpoint: EndpointResource {
     }
     
     var url: URL {
-        return URL(string: self.endpoint)!
+        return URL(string: self.endpoint.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
     }
 }

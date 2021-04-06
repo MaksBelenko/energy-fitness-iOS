@@ -70,6 +70,9 @@ extension UIColor {
     static private let customParagraphTextLight = UIColor(rgb: 0x808080)
     static private let customParagraphTextDark = UIColor(rgb: 0x909090)
     
+    static private let customCardDark = UIColor(rgb: 0x171717)
+    static private let customCardHandleDark = UIColor(rgb: 0x333333)
+    
     static let energyGradientRedLeft = UIColor(rgb: 0x9D1014)
     static let energyGradientRedRight = UIColor(rgb: 0xE52D27)
     
@@ -86,6 +89,10 @@ extension UIColor {
     /* Shimmer colours */
     static let energyShimmerUnder = UIColor.dynamic(light: .customCellLightGray, dark: .customCellDarkGray)
     static let energyShimmer = UIColor.dynamic(light: .customShimmerLight, dark: .customShimmerDark)
+    
+    /* Card colour */
+    static let energyCard = UIColor.dynamic(light: .white, dark: .customCardDark)
+    static let energyCardHandle = UIColor.dynamic(light: .white, dark: .customCardHandleDark)
 
     /* BookForm colours */
     static private let customTextFieldBackgroundLight = UIColor(rgb: 0xF1F1F1)

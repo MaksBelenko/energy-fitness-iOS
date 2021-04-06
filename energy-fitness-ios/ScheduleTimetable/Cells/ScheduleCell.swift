@@ -57,7 +57,6 @@ final class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
 
     private lazy var trainerImageView: Shimmered<UIImageView> = {
         let iv = Shimmered<UIImageView>()
-        iv.view.image = #imageLiteral(resourceName: "zhgileva")
         iv.view.contentMode = .scaleAspectFill
         iv.layer.masksToBounds = true
         iv.layer.cornerRadius = imageWidth/2

@@ -11,4 +11,8 @@ extension UIView {
     func gesture(_ gestureType: GestureType = .tap()) -> GesturePublisher {
         .init(view: self, gestureType: gestureType)
     }
+    
+    func tapGesture() -> GesturePublisher {
+        .init(view: self, gestureType: .tap())
+    }
 }

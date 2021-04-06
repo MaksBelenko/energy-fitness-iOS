@@ -23,6 +23,8 @@ final class AuthCoordinator: Coordinator {
     }
     
     func start() {
+        navController.modalPresentationStyle = .overFullScreen
+        
         let loginVC = viewControllerProvider.createLoginVC()
         navController.setNavigationBarHidden(true, animated: false)
         navController.pushViewController(loginVC, animated: false)

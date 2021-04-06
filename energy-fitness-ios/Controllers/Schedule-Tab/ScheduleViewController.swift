@@ -21,7 +21,10 @@ final class ScheduleViewController: UIViewController {
     private let scheduleView: ScheduleViewProtocol
     private var topCornerDateView: TopCornerDateView!
     
-    private lazy var sortButton: UIView = {
+    private let filterOptions: [CardFilterItem<AnyHashable>] = [.init(value: ScheduleFilterType.time, image: UIImage(named: "icon-clock")!, filterName: "Time"),
+                                                                .init(value: ScheduleFilterType.trainer, image: UIImage(named: "icon-trainer")!, filterName: "Trainer's name"),
+                                                                .init(value: ScheduleFilterType.gymClass, image: UIImage(named: "icon-skipping")!, filterName: "Gym class name")]
+    private lazy var filterButton: UIView = {
         let view = UIView()
         let icon = UIImageView()
         icon.image = UIImage(systemName: "line.horizontal.3.decrease.circle")
@@ -38,8 +41,6 @@ final class ScheduleViewController: UIViewController {
         label.textColor = .energyContainerColor
         return label
     }()
-    
-    let dropDownMenu = SortDropDownMenu<ScheduleShowStatus>()
     
     // MARK: - Lifecycle
     
@@ -77,14 +78,15 @@ final class ScheduleViewController: UIViewController {
     
     // MARK: - Subscriptions configuration
     private func configureSubscriptions() {
-        sortButton.gesture(.tap())
-            .sink { [weak self] gestureType in
+        filterButton.tapGesture()
+            .sink { [weak self] _ in
                 guard let self = self else { return }
-                let popoverPresentationController = self.dropDownMenu.createDropDownMenu(for: self.sortButton, ofSize: CGSize(width: 200, height: 130))
-                popoverPresentationController?.delegate = self
-//                dropDownMenu.sortButtonLabelDelegate = self
-                self.present(self.dropDownMenu.tableViewController, animated: true, completion: nil)
-                print("tapped")
+                let filterView = FilterCardView(title: "Select filter option:", items: self.filterOptions)
+                let cardVC = CardViewController(innerView: filterView)
+                cardVC.cardHeight = 250
+                filterView.delegate = self
+                cardVC.modalPresentationStyle = .overFullScreen
+                self.present(cardVC, animated: false, completion: nil)
             }
             .store(in: &subscriptions)
             
@@ -141,14 +143,14 @@ final class ScheduleViewController: UIViewController {
                         height: 73)
         
         /* Filter Button */
-        scheduleViewContainer.addSubview(sortButton)
-        sortButton.anchor(top: weekCalendarView.bottomAnchor, paddingTop: 5,
+        scheduleViewContainer.addSubview(filterButton)
+        filterButton.anchor(top: weekCalendarView.bottomAnchor, paddingTop: 5,
                             trailing: scheduleViewContainer.trailingAnchor, paddingTrailing: 25,
                             width: 30, height: 30)
 
         /* Schedule collection view */
         scheduleViewContainer.addSubview(scheduleView)
-        scheduleView.anchor(top: sortButton.bottomAnchor, paddingTop: 5,
+        scheduleView.anchor(top: filterButton.bottomAnchor, paddingTop: 5,
                            leading: scheduleViewContainer.leadingAnchor,
                            bottom: scheduleViewContainer.bottomAnchor,
                            trailing: scheduleViewContainer.trailingAnchor)
@@ -162,7 +164,11 @@ extension ScheduleViewController: DateSelectedDelegate {
     }
 }
 
-
+extension ScheduleViewController: FilterItemSelectedDelegate {
+    func selectedItem(item: CardFilterItem<AnyHashable>) {
+        print("DEBUG: Item selected: \(item.value)")
+    }
+}
 
 
 
