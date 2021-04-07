@@ -11,6 +11,8 @@ import Combine
 
 protocol ScheduleViewProtocol: UIView {
     var sortingOptionChangedSubject: PassthroughSubject<ScheduleSortType, Never> { get set }
+    var dateChosenSubject: CurrentValueSubject<DateObject, Never> { get set }
+    
     var selectedCell: PassthroughSubject<GymSessionDto, Never> { get set }
 }
 
@@ -19,6 +21,7 @@ final class ScheduleView: UIView, ScheduleViewProtocol {
     // INPUTS:
     /// Publish the change in sorting to the view
     var sortingOptionChangedSubject = PassthroughSubject<ScheduleSortType, Never>()
+    var dateChosenSubject = CurrentValueSubject<DateObject, Never>(DateObject(day: 7, month: .November, year: 2020))
     
     // OUTPUTS:
     var selectedCell = PassthroughSubject<GymSessionDto, Never>()
@@ -98,6 +101,12 @@ final class ScheduleView: UIView, ScheduleViewProtocol {
         sortingOptionChangedSubject
             .sink { [weak self] newSortingType in
                 self?.viewModel.changeOrder(by: newSortingType)
+            }
+            .store(in: &subscriptions)
+        
+        dateChosenSubject
+            .sink { [weak self] dateObject in
+                self?.viewModel.dateChosenSubject.send(dateObject)
             }
             .store(in: &subscriptions)
     }

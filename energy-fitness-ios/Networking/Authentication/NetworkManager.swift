@@ -47,20 +47,25 @@ final class NetworkManager {
             .eraseToAnyPublisher()
     }
     
-    func fetch<T: Decodable>(from endpoint: EnergyEndpoint, returnType: T.Type) -> AnyPublisher<T, Error> {
-        let request = URLRequest(endpoint: endpoint)
+    func getGymSession(for dateObject: DateObject) -> AnyPublisher<[GymSessionDto], Error> {
+        let request = RequestBuilder()
+            .withBaseURL(EnergyEndpoint.gymSessions.url)
+            .withQueryParam(name: "start", value: dateObject.getStartDateIsoString())
+            .withQueryParam(name: "end", value: dateObject.getEndDateIsoString())
+            .build()
         
-//        let url = URL(string: "http://localhost:3000/api/gym-sessions")!
-//        let dataTaskPublisher = urlSession.dataTaskPublisher(for: url)
-        
+        return fetch(with: request, returnType: [GymSessionDto].self)
+    }
+    
+    func fetch<T: Decodable>(with request: URLRequest, returnType: T.Type) -> AnyPublisher<T, Error> {
         return session.publisher(for: request)
-            .share()
-//            .tryCatch { error -> AnyPublisher<(data: Data, response: URLResponse), Error> in
-//                Log.exception(message: "Received error \(APIError.networkError(error))", "")
-//                return dataTaskPublisher
-//            }
             .decode(type: T.self, decoder: jsonDecoder)
+            .share()
             .eraseToAnyPublisher()
+    }
+    
+    func fetch<T: Decodable>(from endpoint: EnergyEndpoint, returnType: T.Type) -> AnyPublisher<T, Error> {
+        return fetch(with: URLRequest(endpoint: endpoint), returnType: returnType)
     }
     
     

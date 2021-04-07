@@ -393,13 +393,6 @@
 			path = LoadingIndicator;
 			sourceTree = "<group>";
 		};
-		B511010725F6CFFF009C7DC9 /* EnergyNetworking */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = EnergyNetworking;
-			sourceTree = "<group>";
-		};
 		B519BCBC25F2F84500D44A38 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,14 +402,6 @@
 				B519BCBD25F2F87900D44A38 /* ApiRoute.swift */,
 			);
 			path = Enums;
-			sourceTree = "<group>";
-		};
-		B519BCC325F2FB1500D44A38 /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				B588E86525F2BB6500A989DB /* APIError.swift */,
-			);
-			path = Errors;
 			sourceTree = "<group>";
 		};
 		B520640F25FBFD5D00E63B23 /* Enums */ = {
@@ -493,13 +478,12 @@
 		B520898E25C8AC580026AF4A /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				B511010725F6CFFF009C7DC9 /* EnergyNetworking */,
 				B53C6AF0260A777600806EF8 /* RequestDto */,
 				B59BB58B25D447BD00910962 /* ServerResponseDto */,
-				B519BCC325F2FB1500D44A38 /* Errors */,
 				B519BCBC25F2F84500D44A38 /* Enums */,
 				B59BB59225D48E8600910962 /* Wrappers */,
 				B588E85925F2BA8700A989DB /* RequestBuilder.swift */,
+				B588E86525F2BB6500A989DB /* APIError.swift */,
 				B53C6AA5260934A100806EF8 /* Authentication */,
 			);
 			path = Networking;

@@ -31,3 +31,46 @@ extension DateObject {
             && lhs.year == rhs.year
     }
 }
+
+extension DateObject {
+    func getStartDateIsoString() -> String {
+        var dateComp = DateComponents()
+        dateComp.year = self.year
+        dateComp.month = self.month.getNumber()
+        dateComp.day = self.day
+        dateComp.hour = 0
+        dateComp.minute = 0
+        dateComp.second = 0
+        
+        let date = Date.calendar.date(from: dateComp)!
+        return date.iso8601withFractionalSeconds
+    }
+    
+    func getEndDateIsoString() -> String {
+        var dateComp = DateComponents()
+        dateComp.year = self.year
+        dateComp.month = self.month.getNumber()
+        dateComp.day = self.day
+        dateComp.hour = 23
+        dateComp.minute = 59
+        dateComp.second = 59
+        
+        let date = Date.calendar.date(from: dateComp)!
+        return date.iso8601withFractionalSeconds
+    }
+}
+
+extension Formatter {
+    static let iso8601withFractionalSeconds = ISO8601DateFormatter([.withInternetDateTime, .withFractionalSeconds])
+}
+
+extension Date {
+    var iso8601withFractionalSeconds: String { return Formatter.iso8601withFractionalSeconds.string(from: self) }
+}
+
+extension ISO8601DateFormatter {
+    convenience init(_ formatOptions: Options) {
+        self.init()
+        self.formatOptions = formatOptions
+    }
+}

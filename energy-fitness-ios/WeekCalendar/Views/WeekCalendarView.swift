@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 protocol DateSelectedDelegate: AnyObject {
     func onDateSelected(date: DateObject)
@@ -15,11 +16,13 @@ protocol DateSelectedDelegate: AnyObject {
 
 protocol WeekCalendarViewProtocol: UIView {
     var delegate: DateSelectedDelegate? { get set }
+    var selectedDateSubject: PassthroughSubject<DateObject, Never> { get set }
 }
 
 class WeekCalendarView: UIView, WeekCalendarViewProtocol {
     
     weak var delegate: DateSelectedDelegate?
+    var selectedDateSubject = PassthroughSubject<DateObject, Never>()
     
     private var viewModel: WeekCalendarVMProtocol!
     private var spacingBetweenCells: CGFloat!
@@ -49,6 +52,12 @@ class WeekCalendarView: UIView, WeekCalendarViewProtocol {
         let view = WeekCalendarView()
         view.spacingBetweenCells = spacingBetweenCells
         view.viewModel = viewModel
+        
+        var dateComp = DateComponents()
+        dateComp.year = 2020
+        dateComp.month = 11
+        dateComp.day = 7
+        viewModel.setStartDate(to: Date.calendar.date(from: dateComp)!)
         return view
     }
     
@@ -102,6 +111,7 @@ extension WeekCalendarView: UICollectionViewDelegateFlowLayout {
             
             let selectedDate = viewModel.getDate(from: indexPath)
             delegate?.onDateSelected(date: selectedDate)
+            selectedDateSubject.send(selectedDate)
         }
     }
 }

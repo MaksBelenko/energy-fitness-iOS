@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 protocol WeekCalendarVMProtocol {
+    func setStartDate(to date: Date)
     func setSelectedCell(indexPath: IndexPath) -> IndexPath
     func getDate(from indexPath: IndexPath) -> DateObject
     func getNumberOfSections() -> Int
@@ -35,7 +36,8 @@ class WeekCalendarViewModel: WeekCalendarVMProtocol {
     private var numberOfMonthsDifference: Int!
     private var selectedIndexPath: IndexPath!
     
-    private lazy var todayDate = Date()
+    private let weekSelectionData: WeekCalendarData
+//    private lazy var todayDate = Date()
     
     
     // MARK: - Lifecycle
@@ -46,6 +48,7 @@ class WeekCalendarViewModel: WeekCalendarVMProtocol {
          monthFactory: MonthFactoryProtocol,
          dateObjectFactory: DateObjectFactoryProtocol
     ) {
+        self.weekSelectionData = data
         self.dateFinder = dateFinder
         self.weekdayFactory = weekdayFactory
         self.monthFactory = monthFactory
@@ -56,17 +59,21 @@ class WeekCalendarViewModel: WeekCalendarVMProtocol {
         self.startWeekDay = data.startDay
         
 //        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            self.generateMetaData(for: data.numberOfWeeks)
+//            self.generateMetaData(for: data.numberOfWeeks)
 //        }
+    }
+    
+    func setStartDate(to date: Date) {
+        generateMetaData(for: weekSelectionData.numberOfWeeks, from: date)
     }
     
     
     // MARK: - Private methods
     
-    private func generateMetaData(for numberOfWeeks: Int) {
-        let currentWeekMondayDate = dateFinder.getWeekBeginDate(from: startWeekDay, date: todayDate)
+    private func generateMetaData(for numberOfWeeks: Int, from date: Date) {
+        let currentWeekMondayDate = dateFinder.getWeekBeginDate(from: startWeekDay, date: date)
         
-        setSelectedIndex(firstDayDate: currentWeekMondayDate, todayDate: todayDate)
+        setSelectedIndex(firstDayDate: currentWeekMondayDate, todayDate: date)
         
         let numberOfDays = numberOfWeeks * 7
         
