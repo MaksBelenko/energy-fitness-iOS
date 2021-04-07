@@ -13,7 +13,7 @@ protocol ScheduleViewModelProtocol {
     var organisedSessions: CurrentValueSubject<[Section<GymSessionDto>], Never> { get set }
     var showNoConnectionIcon: CurrentValueSubject<Bool, Never> { get set }
     var showNoEventsIcon: CurrentValueSubject<Bool, Never> { get set }
-    func changeOrder(by type: ScheduleFilterType)
+    func changeOrder(by type: ScheduleSortType)
 }
 
 final class ScheduleViewModel: ScheduleViewModelProtocol {
@@ -24,9 +24,9 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     var showNoEventsIcon = CurrentValueSubject<Bool, Never>(false)
     
     private var subscriptions = Set<AnyCancellable>()
-    private let dataRepository: DataRepository
     private let scheduleOrganiser: ScheduleOrganiserProtocol
-    private let networkAdapter = URLCombine()
+    
+    private let networkManager = NetworkManager()
     
     private var presentingMode: ScheduleShowStatus = .presenting {
         didSet {
@@ -46,11 +46,7 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     
     
     // MARK: - Lifecycle
-    init(
-        dataRepository: DataRepository,
-        scheduleOrganiser: ScheduleOrganiserProtocol
-    ) {
-        self.dataRepository = dataRepository
+    init(scheduleOrganiser: ScheduleOrganiserProtocol) {
         self.scheduleOrganiser = scheduleOrganiser
         
         fetchGymSessions()
@@ -68,12 +64,7 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
 //            self.organisedSessions.send(self.createDummySections())
 //        })
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
-//            self.changeOrder(by: .trainer)
-//        })
-        
-        networkAdapter
-            .fetch(returnType: [GymSessionDto].self)
+        networkManager.fetch(from: .gymSessions, returnType: [GymSessionDto].self)
             .compactMap { [weak self] in
                 self?.scheduleOrganiser.sort(sessions: $0, by: .time)
             }
@@ -93,7 +84,8 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
             .store(in: &subscriptions)
     }
     
-    func changeOrder(by type: ScheduleFilterType) {
+    /// Change order of the presented sessions
+    func changeOrder(by type: ScheduleSortType) {
         DispatchQueue.global(qos: .userInteractive).async {
             let sessions = self.organisedSessions.value.flatMap { $0.items }
             let sections = self.scheduleOrganiser.sort(sessions: sessions, by: type)

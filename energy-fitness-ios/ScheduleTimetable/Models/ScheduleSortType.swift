@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ScheduleFilterType {
+enum ScheduleSortType {
     case time
     case trainer
     case gymClass

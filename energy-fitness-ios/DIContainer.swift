@@ -22,7 +22,6 @@ class DIContainer {
     func setupContainer(using container: Container) {
         setupForCoordinators(using: container)
         setupForControllers(using: container)
-        setupForRepository(using: container)
         setupForNetworking(using: container)
         setupForWeekCalendar(using: container)
         setupForScheduleView(using: container)
@@ -75,20 +74,9 @@ class DIContainer {
             .inObjectScope(.transient)
     }
     
-    
-    // MARK: - Repository for data setup of container
-    private func setupForRepository(using container: Container) {
-        container.autoregister(DataRepository.self, initializer: DataRepository.init)
-    }
-    
     // MARK: - Networking setup of container
     private func setupForNetworking(using container: Container) {
-        container.autoregister(NetworkFetchOperationFactoryProtocol.self, initializer: ApiFetchOperationFactory.init)
-        container.autoregister(ImageDownloadOperationFactory.self, initializer: ImageDownloadOperationFactory.init)
-        
         container.autoregister(IJsonDecoderWrapper.self, initializer: JSONDecoderWrapper.init)
-        container.autoregister(NetworkServiceProtocol.self, initializer: NetworkService123.init)
-        container.autoregister(NetworkAdapterProtocol.self, initializer: URLSessionAdapter.init)
         container.autoregister(RequestBuilderProtocol.self, initializer: RequestBuilder.init)
     }
     

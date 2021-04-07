@@ -16,10 +16,18 @@ final class NetworkManager {
     private let session: NetworkSession
     private let authenticator: Authenticator
     
+    private let jsonDecoder: JSONDecoder = {
+        let d = JSONDecoder()
+        d.dateDecodingStrategy = .formatted(.iso8601Full)
+        return d
+    }()
+    
     init(session: NetworkSession = URLSession.shared) {
         self.session = session
         self.authenticator = Authenticator(session: session)
     }
+    
+    
     
     
     func isSignedIn() -> AnyPublisher<Bool, Never> {
@@ -39,7 +47,24 @@ final class NetworkManager {
             .eraseToAnyPublisher()
     }
     
+    func fetch<T: Decodable>(from endpoint: EnergyEndpoint, returnType: T.Type) -> AnyPublisher<T, Error> {
+        let request = URLRequest(endpoint: endpoint)
+        
+//        let url = URL(string: "http://localhost:3000/api/gym-sessions")!
+//        let dataTaskPublisher = urlSession.dataTaskPublisher(for: url)
+        
+        return session.publisher(for: request)
+            .share()
+//            .tryCatch { error -> AnyPublisher<(data: Data, response: URLResponse), Error> in
+//                Log.exception(message: "Received error \(APIError.networkError(error))", "")
+//                return dataTaskPublisher
+//            }
+            .decode(type: T.self, decoder: jsonDecoder)
+            .eraseToAnyPublisher()
+    }
     
+    
+    // MARK: - Authenticated call
     private func performAuthenticated(request: URLRequest) -> AnyPublisher<Data, Error> {
         
         return authenticator.getValidAccessToken()

@@ -15,7 +15,7 @@ class JSONDecoderWrapper: IJsonDecoderWrapper {
     
     private let decoder: JSONDecoder = {
         let d = JSONDecoder()
-        d.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+        d.dateDecodingStrategy = .formatted(.iso8601Full)
         // d.dateDecodingStrategy = .iso8601 <- not uses milliseconds
         return d
     }()

@@ -10,22 +10,25 @@ import SwiftUI
 import Combine
 
 protocol ScheduleViewProtocol: UIView {
-    var sortingOptionChangedSubject: PassthroughSubject<ScheduleFilterType, Never> { get set }
+    var sortingOptionChangedSubject: PassthroughSubject<ScheduleSortType, Never> { get set }
     var selectedCell: PassthroughSubject<GymSessionDto, Never> { get set }
 }
 
 final class ScheduleView: UIView, ScheduleViewProtocol {
     
+    // INPUTS:
     /// Publish the change in sorting to the view
-    var sortingOptionChangedSubject = PassthroughSubject<ScheduleFilterType, Never>()
+    var sortingOptionChangedSubject = PassthroughSubject<ScheduleSortType, Never>()
     
+    // OUTPUTS:
     var selectedCell = PassthroughSubject<GymSessionDto, Never>()
+    
+    
+    
     private var viewModel: ScheduleViewModelProtocol
     private var subscriptions = Set<AnyCancellable>()
-    
     private var headerReuseIdentifier: String!
     private var realReuseIdentifier: String!
-
     private var dataSource: UICollectionViewDiffableDataSource<Section<GymSessionDto>, GymSessionDto>?
     
     private lazy var noSessionView: NoSessionView = {
@@ -78,22 +81,16 @@ final class ScheduleView: UIView, ScheduleViewProtocol {
         scheduleCollectionView.contain(in: self)
         
         addSubview(noSessionView)
-        noSessionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            noSessionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
-            noSessionView.heightAnchor.constraint(equalToConstant: 180),
-            noSessionView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            noSessionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30)
-        ])
+        noSessionView.centerY(withView: self)
+        noSessionView.centerX(withView: self)
+        noSessionView.anchor(height: 170)
+        noSessionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
         
         addSubview(noInternetConnectionView)
-        noInternetConnectionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            noInternetConnectionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
-            noInternetConnectionView.heightAnchor.constraint(equalToConstant: 180),
-            noInternetConnectionView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            noInternetConnectionView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -30)
-        ])
+        noInternetConnectionView.centerX(withView: self)
+        noInternetConnectionView.centerY(withView: self)
+        noInternetConnectionView.anchor(height: 170)
+        noInternetConnectionView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7).isActive = true
     }
     
     // MARK: - Bindings
@@ -109,7 +106,6 @@ final class ScheduleView: UIView, ScheduleViewProtocol {
         viewModel.organisedSessions
             .receive(on: DispatchQueue.main)
             .sink { [weak self] organisedSessions in
-                print("***Number of sessions = \(organisedSessions.count)")
                 self?.reloadData(with: organisedSessions)
             }
             .store(in: &subscriptions)

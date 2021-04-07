@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 protocol ScheduleOrganiserProtocol {
-    func sort(sessions: [GymSessionDto], by type: ScheduleFilterType) -> [OrganisedSession]
+    func sort(sessions: [GymSessionDto], by type: ScheduleSortType) -> [OrganisedSession]
 }
 
 final class ScheduleOrganiser: ScheduleOrganiserProtocol {
@@ -19,7 +20,7 @@ final class ScheduleOrganiser: ScheduleOrganiserProtocol {
         self.timeFormatter = timeFormatter
     }
     
-    func sort(sessions: [GymSessionDto], by type: ScheduleFilterType) -> [OrganisedSession] {
+    func sort(sessions: [GymSessionDto], by type: ScheduleSortType) -> [OrganisedSession] {
         switch type {
             case .time:
                 return sortByTime(sessions)

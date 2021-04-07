@@ -21,7 +21,7 @@ final class ScheduleViewController: UIViewController {
     private let scheduleView: ScheduleViewProtocol
     private var topCornerDateView: TopCornerDateView!
     
-    private let filterOptions: [CardFilterItem<ScheduleFilterType>] = [.init(value: .time, image: UIImage(named: "icon-clock")!, filterName: "Time"),
+    private let filterOptions: [CardFilterItem<ScheduleSortType>] = [.init(value: .time, image: UIImage(named: "icon-clock")!, filterName: "Time"),
                                                                        .init(value: .trainer, image: UIImage(named: "icon-trainer")!, filterName: "Trainer's name"),
                                                                        .init(value: .gymClass, image: UIImage(named: "icon-skipping")!, filterName: "Gym class name")]
     private lazy var filterButton: UIView = {
@@ -79,7 +79,7 @@ final class ScheduleViewController: UIViewController {
     // MARK: - Subscriptions configuration
     private func configureSubscriptions() {
         filterButton.tapGesture()
-            .flatMap { [unowned coordinator, unowned self] _ -> AnyPublisher<ScheduleFilterType, Never> in
+            .flatMap { [unowned coordinator, unowned self] _ -> AnyPublisher<ScheduleSortType, Never> in
                 return coordinator!.showSortCard(title: "Select filter option:", items: self.filterOptions)
             }
             .sink(receiveValue: { [scheduleView] sortOption in
