@@ -10,10 +10,14 @@ import SwiftUI
 import Combine
 
 protocol ScheduleViewProtocol: UIView {
+    var sortingOptionChangedSubject: PassthroughSubject<ScheduleFilterType, Never> { get set }
     var selectedCell: PassthroughSubject<GymSessionDto, Never> { get set }
 }
 
 final class ScheduleView: UIView, ScheduleViewProtocol {
+    
+    /// Publish the change in sorting to the view
+    var sortingOptionChangedSubject = PassthroughSubject<ScheduleFilterType, Never>()
     
     var selectedCell = PassthroughSubject<GymSessionDto, Never>()
     private var viewModel: ScheduleViewModelProtocol
@@ -57,10 +61,10 @@ final class ScheduleView: UIView, ScheduleViewProtocol {
         super.init(frame: .zero)
         
         configureUI()
+        bindInputs()
         bindViewModel()
         registerCells()
         createDataSource()
-//        reloadData(with: viewModel.organisedSessions.value)
     }
     
     required init?(coder: NSCoder) {
@@ -92,7 +96,15 @@ final class ScheduleView: UIView, ScheduleViewProtocol {
         ])
     }
     
-    // MARK: - ViewModel Bindings
+    // MARK: - Bindings
+    private func bindInputs() {
+        sortingOptionChangedSubject
+            .sink { [weak self] newSortingType in
+                self?.viewModel.changeOrder(by: newSortingType)
+            }
+            .store(in: &subscriptions)
+    }
+    
     private func bindViewModel() {
         viewModel.organisedSessions
             .receive(on: DispatchQueue.main)
@@ -153,7 +165,7 @@ final class ScheduleView: UIView, ScheduleViewProtocol {
                 return nil
             }
             
-            print("*****Header with name \(header)")
+            print("DEBUG: *****Header with name \(header)")
             sectionHeader.isLoading = header == ""
             sectionHeader.setTimeLabelText(to: header)
             return sectionHeader

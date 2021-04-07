@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import Combine
 
 final class ScheduleTabCoordinator: ParentCoordinator {
-    var childCoordinators: [Coordinator] = []
+    var childCoordinators: [CoordinatorType] = []
     var navController: UINavigationController
     
     private let viewControllerProvider: ViewControllerProvider
@@ -51,9 +52,20 @@ final class ScheduleTabCoordinator: ParentCoordinator {
         childCoordinators.append(authCoordinator)
     }
     
+    func showSortCard<T: Hashable>(title: String, items: [CardFilterItem<T>]) -> AnyPublisher<T, Never> {
+        let filterView = FilterCardView(title: title, items: items)
+        let cardVC = CardViewController(innerView: filterView)
+        cardVC.cardHeight = 250
+        cardVC.modalPresentationStyle = .overFullScreen
+        navController.present(cardVC, animated: false, completion: nil)
+        
+        return filterView.selectedSubject
+            .eraseToAnyPublisher()
+    }
     
     
-    func childDidFinish(_ child: Coordinator?) {
+    
+    func childDidFinish(_ child: CoordinatorType?) {
         for (index, coordinator) in childCoordinators.enumerated() {
             if child === coordinator {
                 childCoordinators.remove(at: index)

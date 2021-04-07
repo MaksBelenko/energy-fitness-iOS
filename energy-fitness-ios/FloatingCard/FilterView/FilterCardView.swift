@@ -6,20 +6,16 @@
 //
 
 import UIKit
+import Combine
 
-protocol FilterItemSelectedDelegate: AnyObject {
-    func selectedItem(item: CardFilterItem<AnyHashable>)
-}
-
-
-final class FilterCardView: UIView, CardClosable {
+final class FilterCardView<T: Hashable>: UIView, CardClosable, UITableViewDelegate, UITableViewDataSource {
     
+    var selectedSubject = PassthroughSubject<T, Never>()
     weak var closeCardDelegate: CardCloseDelegate?
-    weak var delegate: FilterItemSelectedDelegate?
     
     private let cellHeight: CGFloat = 50
     private let tableView = UITableView()
-    private let items: [CardFilterItem<AnyHashable>]
+    private let items: [CardFilterItem<T>]
     private let titleText: String
     private var cellReuseIdentifier: String!
     
@@ -31,7 +27,7 @@ final class FilterCardView: UIView, CardClosable {
     }()
     
     // MARK: - Lifecycle
-    init(title: String, items: [CardFilterItem<AnyHashable>]) {
+    init(title: String, items: [CardFilterItem<T>]) {
         self.items = items
         self.titleText = title
         super.init(frame: .zero)
@@ -69,10 +65,9 @@ final class FilterCardView: UIView, CardClosable {
                          bottom: bottomAnchor,
                          trailing: trailingAnchor)
     }
-}
-
-// MARK: - UITableViewDelegate, UITableViewDataSource
-extension FilterCardView: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    // MARK: - TableView datasource and delegate
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -97,9 +92,9 @@ extension FilterCardView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let selectedItem = items[indexPath.row]
-        delegate?.selectedItem(item: selectedItem)
-
+        let item = items[indexPath.row].value
+        
+        selectedSubject.send(item)
         closeCardDelegate?.closeCard()
     }
 }

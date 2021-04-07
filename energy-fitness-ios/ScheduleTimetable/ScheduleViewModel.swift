@@ -13,6 +13,7 @@ protocol ScheduleViewModelProtocol {
     var organisedSessions: CurrentValueSubject<[Section<GymSessionDto>], Never> { get set }
     var showNoConnectionIcon: CurrentValueSubject<Bool, Never> { get set }
     var showNoEventsIcon: CurrentValueSubject<Bool, Never> { get set }
+    func changeOrder(by type: ScheduleFilterType)
 }
 
 final class ScheduleViewModel: ScheduleViewModelProtocol {
@@ -98,7 +99,7 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
             let sections = self.scheduleOrganiser.sort(sessions: sessions, by: type)
                 .map { Section(header: $0.header, items: $0.sessions, footer: nil, id: nil) }
             
-            self.organisedSessions.value = sections
+            self.organisedSessions.send(sections)
         }
     }
     
@@ -120,7 +121,7 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
         var dummyDto4 = dummyDto1
         dummyDto4.id = "4"
         
-        return [Section(header: "test", items: [dummyDto1, dummyDto2, dummyDto3, dummyDto4], footer: nil, id: nil)]
+        return [Section(header: "", items: [dummyDto1, dummyDto2, dummyDto3, dummyDto4], footer: nil, id: nil)]
     }
 }
 

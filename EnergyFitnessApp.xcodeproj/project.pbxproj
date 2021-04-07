@@ -39,7 +39,7 @@
 		B536FB6025F977FC00853AD0 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = B536FB5F25F977FC00853AD0 /* Nuke */; };
 		B536FB6525F9782A00853AD0 /* ImagePublisher in Frameworks */ = {isa = PBXBuildFile; productRef = B536FB6425F9782A00853AD0 /* ImagePublisher */; };
 		B536FB7525FA6D2E00853AD0 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = B536FB7425FA6D2E00853AD0 /* Section.swift */; };
-		B539540F25FE9E83007CE6C1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539540E25FE9E83007CE6C1 /* Coordinator.swift */; };
+		B539540F25FE9E83007CE6C1 /* CoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539540E25FE9E83007CE6C1 /* CoordinatorType.swift */; };
 		B539542425FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539542325FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift */; };
 		B539544425FED76F007CE6C1 /* ViewControllerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B539544325FED76F007CE6C1 /* ViewControllerProvider.swift */; };
 		B53AE28825F57D8200D3C319 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53AE28725F57D8200D3C319 /* CoreDataStack.swift */; };
@@ -213,7 +213,7 @@
 		B527C90F25CC7E4000342113 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		B52F4F23260BFE4B00DA53BE /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		B536FB7425FA6D2E00853AD0 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
-		B539540E25FE9E83007CE6C1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		B539540E25FE9E83007CE6C1 /* CoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorType.swift; sourceTree = "<group>"; };
 		B539542325FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTabCoordinator.swift; sourceTree = "<group>"; };
 		B539544325FED76F007CE6C1 /* ViewControllerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerProvider.swift; sourceTree = "<group>"; };
 		B53AE28725F57D8200D3C319 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -559,7 +559,7 @@
 		B539540925FE9D4B007CE6C1 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				B539540E25FE9E83007CE6C1 /* Coordinator.swift */,
+				B539540E25FE9E83007CE6C1 /* CoordinatorType.swift */,
 				B539542325FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift */,
 				B5245FDE26191D14001063A1 /* AuthCoordinator.swift */,
 			);
@@ -1180,7 +1180,7 @@
 			files = (
 				B588E85625F2BA6700A989DB /* HTTPMethod.swift in Sources */,
 				B54F6E4025CC4503002264C2 /* MonthFactory.swift in Sources */,
-				B539540F25FE9E83007CE6C1 /* Coordinator.swift in Sources */,
+				B539540F25FE9E83007CE6C1 /* CoordinatorType.swift in Sources */,
 				B527C90D25CC7DD200342113 /* ScheduleView.swift in Sources */,
 				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
 				B5CAFFD126001A2F0069311C /* BookViewModel.swift in Sources */,

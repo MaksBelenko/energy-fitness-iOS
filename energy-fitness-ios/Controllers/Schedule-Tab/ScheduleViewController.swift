@@ -21,9 +21,9 @@ final class ScheduleViewController: UIViewController {
     private let scheduleView: ScheduleViewProtocol
     private var topCornerDateView: TopCornerDateView!
     
-    private let filterOptions: [CardFilterItem<AnyHashable>] = [.init(value: ScheduleFilterType.time, image: UIImage(named: "icon-clock")!, filterName: "Time"),
-                                                                .init(value: ScheduleFilterType.trainer, image: UIImage(named: "icon-trainer")!, filterName: "Trainer's name"),
-                                                                .init(value: ScheduleFilterType.gymClass, image: UIImage(named: "icon-skipping")!, filterName: "Gym class name")]
+    private let filterOptions: [CardFilterItem<ScheduleFilterType>] = [.init(value: .time, image: UIImage(named: "icon-clock")!, filterName: "Time"),
+                                                                       .init(value: .trainer, image: UIImage(named: "icon-trainer")!, filterName: "Trainer's name"),
+                                                                       .init(value: .gymClass, image: UIImage(named: "icon-skipping")!, filterName: "Gym class name")]
     private lazy var filterButton: UIView = {
         let view = UIView()
         let icon = UIImageView()
@@ -79,15 +79,12 @@ final class ScheduleViewController: UIViewController {
     // MARK: - Subscriptions configuration
     private func configureSubscriptions() {
         filterButton.tapGesture()
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                let filterView = FilterCardView(title: "Select filter option:", items: self.filterOptions)
-                let cardVC = CardViewController(innerView: filterView)
-                cardVC.cardHeight = 250
-                filterView.delegate = self
-                cardVC.modalPresentationStyle = .overFullScreen
-                self.present(cardVC, animated: false, completion: nil)
+            .flatMap { [unowned coordinator, unowned self] _ -> AnyPublisher<ScheduleFilterType, Never> in
+                return coordinator!.showSortCard(title: "Select filter option:", items: self.filterOptions)
             }
+            .sink(receiveValue: { [scheduleView] sortOption in
+                scheduleView.sortingOptionChangedSubject.send(sortOption)
+            })
             .store(in: &subscriptions)
             
         
@@ -161,12 +158,6 @@ final class ScheduleViewController: UIViewController {
 extension ScheduleViewController: DateSelectedDelegate {
     func onDateSelected(date: DateObject) {
         print("Selected date = \(date)")
-    }
-}
-
-extension ScheduleViewController: FilterItemSelectedDelegate {
-    func selectedItem(item: CardFilterItem<AnyHashable>) {
-        print("DEBUG: Item selected: \(item.value)")
     }
 }
 

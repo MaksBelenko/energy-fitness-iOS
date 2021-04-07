@@ -20,6 +20,8 @@ enum EnergyEndpoint {
     case gymSession(String)
     case trainers
     case trainer(String)
+    case trainerImageDownload(String)
+    
     case tokenRefresh
     case localSignin
     case authTest
@@ -36,14 +38,19 @@ extension EnergyEndpoint: EndpointResource {
             return baseURL + "/gym-classes"
         case .gymClass(let id):
             return "\(EnergyEndpoint.gymClasses.endpoint)/\(id)"
+            
         case .gymSessions:
             return baseURL + "/gym-sessions"
         case .gymSession(let id):
             return "\(EnergyEndpoint.gymSessions.endpoint)/\(id)"
+            
         case .trainers:
             return baseURL + "/trainers"
         case .trainer(let id):
             return "\(EnergyEndpoint.trainers.endpoint)/\(id)"
+        case .trainerImageDownload(let imageName):
+            return "\(EnergyEndpoint.trainers.endpoint)/image/download/\(imageName)"
+            
         case .tokenRefresh:
             return baseURL + "/auth/local/token-refresh"
         case .localSignin:

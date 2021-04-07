@@ -11,65 +11,70 @@ import Nuke
 import ImagePublisher
 
 protocol ScheduleCellViewModelProtocol {
-    var gymClassName: CurrentValueSubject<String, Never> { get set }
-    var timePresented: CurrentValueSubject<String, Never> { get set }
-    var trainerName: CurrentValueSubject<String, Never> { get set }
-    var trainerImage: PassthroughSubject<UIImage, Never> { get set }
+    func getGymClassName() -> AnyPublisher<String, Never>
+    func getTime() -> AnyPublisher<String, Never>
+    func getTrainerName() -> AnyPublisher<String, Never>
+    func getTrainerImage() -> AnyPublisher<UIImage, Never>
 }
 
-
 final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
-//    var isTextLoading: AnyPublisher<Bool, Never> {
-//        return isTextLoadingSubject.eraseToAnyPublisher()
-//    }
-
-//    private var isTextLoadingSubject = CurrentValueSubject<Bool, Never>(true)
-    
-    
     private var subscriptions = Set<AnyCancellable>()
     private let imagePipeline = Nuke.ImagePipeline.shared
     
-    var gymClassName = CurrentValueSubject<String, Never>("")
-    var timePresented = CurrentValueSubject<String, Never>("")
-    var trainerName = CurrentValueSubject<String, Never>("")
-    var trainerImageUrl = CurrentValueSubject<String?, Never>(nil)
-    var trainerImage = PassthroughSubject<UIImage, Never>()
-    
+    private var gymSessionSubject = CurrentValueSubject<GymSessionDto?, Never>(nil)
     private let trainerInitials: String
-    private let gymSession: GymSessionDto
-    
+    private var trainerInitialsImage: UIImage  {
+        get { return ImageGenerator().generateProfileImage(initials: trainerInitials) }
+    }    
     
     deinit {
         Log.logDeinit("\(self)")
     }
     
     init(gymSession: GymSessionDto) {
-        self.gymSession = gymSession
+        gymSessionSubject.send(gymSession)
         trainerInitials = gymSession.trainer.getInitials()
-        
-        createBindings()
-        
-        trainerName.value =  gymSession.trainer.getSurnameWithFirstNameLetter()
-        gymClassName.value = gymSession.gymClass.name
-        timePresented.value = TimePeriodFormatter().getTimePeriod(from: gymSession.startDate, durationMins: gymSession.durationMins)
-        if let trainerPhoto = gymSession.trainer.photos.first {
-            trainerImageUrl.value = "http://localhost:3000/api/trainers/image/download/" + trainerPhoto.small
-        }
     }
     
-    private func createBindings() {
-        
-        trainerImageUrl
+    // MARK: - Public publishers
+    func getGymClassName() -> AnyPublisher<String, Never> {
+        return gymSessionSubject
             .unwrap()
-            .mapToURL()
-            .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
-            .flatMap(imagePipeline.imagePublisher)
-            .map { $0.image }
-            .replaceError(with: ImageGenerator().generateProfileImage(initials: trainerInitials))
-            .sink(receiveCompletion: { completion in print("Completed") },
-                  receiveValue: { [weak self] image in
-                        self?.trainerImage.send(image)
-                  })
-            .store(in: &subscriptions)
+            .map(\.gymClass.name)
+            .eraseToAnyPublisher()
+    }
+    
+    func getTime() -> AnyPublisher<String, Never> {
+        return gymSessionSubject
+            .unwrap()
+            .map { TimePeriodFormatter().getTimePeriod(from: $0.startDate, durationMins: $0.durationMins) }
+            .eraseToAnyPublisher()
+    }
+    
+    func getTrainerName() -> AnyPublisher<String, Never> {
+        return gymSessionSubject
+            .unwrap()
+            .map { $0.trainer.getSurnameWithFirstNameLetter() }
+            .eraseToAnyPublisher()
+    }
+    
+    func getTrainerImage() -> AnyPublisher<UIImage, Never> {
+        return gymSessionSubject
+            .map { $0?.trainer.photos.first?.small }
+            .flatMap { [trainerInitialsImage, imagePipeline] imageUrl -> AnyPublisher<UIImage, Never> in
+                guard let url = imageUrl else {
+                    return Just(trainerInitialsImage)
+                        .eraseToAnyPublisher()
+                }
+                
+                return Just(url)
+                    .map { EnergyEndpoint.trainerImageDownload($0).url }
+                    .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
+                    .flatMap(imagePipeline.imagePublisher)
+                    .map { $0.image }
+                    .replaceError(with: trainerInitialsImage)
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
 }

@@ -102,26 +102,29 @@ final class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     }
     
     private func createBindings() {
-        viewModel.trainerName
+        viewModel.getTrainerName()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] name in
                 if name != "" {
+                    print("DEBUG: --- TEXT received")
                     self.trainerNameLabel.view.text = name
                     self.trainerNameLabel.shimmer?.stopAndHide()
                 }
             })
             .store(in: &subscriptions)
         
-        viewModel.trainerImage
+        
+        viewModel.getTrainerImage()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned trainerImageView] image in
+                print("DEBUG: --- Image received")
                 trainerImageView.view.image = image
                 trainerImageView.shimmer?.stopAndHide()
             })
             .store(in: &subscriptions)
         
         
-        viewModel.gymClassName
+        viewModel.getGymClassName()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] name in
                 if name != "" {
@@ -132,7 +135,7 @@ final class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
             .store(in: &subscriptions)
         
         
-        viewModel.timePresented
+        viewModel.getTime()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] timeString in
                 if timeString != "" {
