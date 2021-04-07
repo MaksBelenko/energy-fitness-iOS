@@ -97,6 +97,7 @@ final class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
     
     // MARK: - Set ViewModel
     func setViewModel(to viewModel: ScheduleCellViewModelProtocol) {
+        subscriptions.removeAll()
         self.viewModel = viewModel
         createBindings()
     }
@@ -112,8 +113,8 @@ final class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
                 }
             })
             .store(in: &subscriptions)
-        
-        
+
+
         viewModel.getTrainerImage()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned trainerImageView] image in
@@ -122,8 +123,8 @@ final class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
                 trainerImageView.shimmer?.stopAndHide()
             })
             .store(in: &subscriptions)
-        
-        
+
+
         viewModel.getGymClassName()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] name in
@@ -133,8 +134,8 @@ final class ScheduleCell: UICollectionViewCell, ScheduleCellProtocol {
                 }
             })
             .store(in: &subscriptions)
-        
-        
+
+
         viewModel.getTime()
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [unowned self] timeString in

@@ -18,14 +18,13 @@ protocol ScheduleCellViewModelProtocol {
 }
 
 final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
-    private var subscriptions = Set<AnyCancellable>()
     private let imagePipeline = Nuke.ImagePipeline.shared
     
     private var gymSessionSubject = CurrentValueSubject<GymSessionDto?, Never>(nil)
-    private let trainerInitials: String
+    private var trainerInitials: String!
     private var trainerInitialsImage: UIImage  {
         get { return ImageGenerator().generateProfileImage(initials: trainerInitials) }
-    }    
+    }
     
     deinit {
         Log.logDeinit("\(self)")
@@ -61,13 +60,13 @@ final class ScheduleCellViewModel: ScheduleCellViewModelProtocol {
     func getTrainerImage() -> AnyPublisher<UIImage, Never> {
         return gymSessionSubject
             .map { $0?.trainer.photos.first?.small }
-            .flatMap { [trainerInitialsImage, imagePipeline] imageUrl -> AnyPublisher<UIImage, Never> in
-                guard let url = imageUrl else {
+            .flatMap { [imagePipeline, trainerInitialsImage] imageName -> AnyPublisher<UIImage, Never> in
+                guard let imageName = imageName else {
                     return Just(trainerInitialsImage)
                         .eraseToAnyPublisher()
                 }
                 
-                return Just(url)
+                return Just(imageName)
                     .map { EnergyEndpoint.trainerImageDownload($0).url }
                     .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
                     .flatMap(imagePipeline.imagePublisher)
