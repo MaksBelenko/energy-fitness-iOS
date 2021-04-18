@@ -12,21 +12,22 @@ protocol MainTabControllerProtocol: UIViewController {}
 
 class MainTabBarController: UITabBarController, MainTabControllerProtocol {
     
-    private let scheduleTabCoordinator: ScheduleTabCoordinator
+//    private let scheduleTabCoordinator: ScheduleTabCoordinator
     
     
     // MARK: - Initialisation
-    init(
-        scheduleTabCoordinator: ScheduleTabCoordinator
-    ) {
-        self.scheduleTabCoordinator = scheduleTabCoordinator
-        self.scheduleTabCoordinator.start()
-        super.init(nibName: nil, bundle: nil)
-    }
+//    init(
+//        scheduleTabCoordinator: ScheduleTabCoordinator
+//    ) {
+//        self.scheduleTabCoordinator = scheduleTabCoordinator
+//        self.scheduleTabCoordinator.start()
+//
+//        super.init(nibName: nil, bundle: nil)
+//    }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    } 
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    } 
     
     
     // MARK: - Lifecycle
@@ -35,7 +36,7 @@ class MainTabBarController: UITabBarController, MainTabControllerProtocol {
         super.viewDidLoad()
         
         configureTabBar()
-        viewControllers = [scheduleTabCoordinator.navController]
+//        viewControllers = [scheduleTabCoordinator.navController]
     }
     
     // MARK: - Configuration

@@ -20,23 +20,29 @@ final class Authenticator {
     private let queue = DispatchQueue(label: "com.belenko.authentication.\(UUID().uuidString)")
     
     typealias AccessToken = String
+    private lazy var refreshTokenPublisher = CurrentValueSubject<String?, Never>(currentRefreshToken)
     private var currentAccessToken: String?
-    private var currentRefreshToken: String?
+    private var currentRefreshToken: String? {
+        didSet {
+            refreshTokenPublisher.send(currentRefreshToken)
+        }
+    }
     
     // this publisher is shared amongst all calls that request a token refresh
     private var refreshPublisher: AnyPublisher<AccessToken, Error>?
     
     // MARK: - Lifecycle
-    init(session: NetworkSession = URLSession.shared) {
+    init(session: NetworkSession) {
         self.session = session
     }
     
-    
     // MARK: - Public methods
     func isSignedIn() -> AnyPublisher<Bool, Never> {
-        return Just(currentAccessToken)
-                .map { $0 != nil }
-                .eraseToAnyPublisher()
+        return refreshTokenPublisher
+            .print("TTT: hh")
+            .receive(on: DispatchQueue.main)
+            .map { $0 != nil }
+            .eraseToAnyPublisher()
     }
     
     func getValidAccessToken(forceRefresh: Bool = false) -> AnyPublisher<AccessToken, Error> {
@@ -66,21 +72,20 @@ final class Authenticator {
             let publisher = session.publisher(for: request, token: refreshToken)
                 .share()
                 .decode(type: TokensDto.self, decoder: JSONDecoder())
-//                .print("Auth validToken scenario 4")
                 .log { "Auth validToken scenario 4 received tokens = \n\($0)" }
-                .handleEvents(receiveOutput: { tokens in
-                    self?.queue.sync {
-                        print("---Tokens to change \(tokens)")
-                        self?.currentAccessToken = tokens.accessToken
-                        self?.currentRefreshToken = tokens.refreshToken
+                .tryCatch { error -> AnyPublisher<TokensDto, Error> in
+                    if let error = error as? APIError, error == .requestError(401) {
+                        self?.setTokensSync(access: nil, refresh: nil)
                     }
+                    throw error
+                }
+                .handleEvents(receiveOutput: { tokens in
+                    self?.setTokensSync(access: tokens.accessToken, refresh: tokens.refreshToken)
                 }, receiveCompletion: { _ in
                     self?.queue.sync {
-                        print("---Changing refreshPublisher to nil")
                         self?.refreshPublisher = nil
                     }
                 })
-                .print("Before map to accessToken")
                 .map { $0.accessToken }
                 .eraseToAnyPublisher()
             
@@ -121,12 +126,18 @@ final class Authenticator {
             }
             .handleEvents(receiveOutput: { [weak self] tokens in
                 print("Signin Retrieved tokens \(tokens)")
-                self?.queue.sync {
-                    self?.currentAccessToken = tokens.accessToken
-                    self?.currentRefreshToken = tokens.refreshToken
-                }
+                self?.setTokensSync(access: tokens.accessToken, refresh: tokens.refreshToken)
             })
             .map { $0 != nil }
             .eraseToAnyPublisher()
+    }
+    
+    
+    
+    private func setTokensSync(access: String?, refresh: String?) {
+        queue.sync { [weak self] in
+            self?.currentAccessToken = access
+            self?.currentRefreshToken = refresh
+        }
     }
 }

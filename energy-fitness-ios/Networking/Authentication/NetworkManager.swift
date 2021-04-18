@@ -22,9 +22,12 @@ final class NetworkManager {
         return d
     }()
     
-    init(session: NetworkSession = URLSession.shared) {
+    init(
+        session: NetworkSession,
+        authenticator: Authenticator
+    ) {
         self.session = session
-        self.authenticator = Authenticator(session: session)
+        self.authenticator = authenticator
     }
     
     

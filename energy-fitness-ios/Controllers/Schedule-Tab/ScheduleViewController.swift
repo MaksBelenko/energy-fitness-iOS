@@ -87,12 +87,14 @@ final class ScheduleViewController: UIViewController {
             })
             .store(in: &subscriptions)
             
+        
         weekCalendarView.selectedDateSubject
             .sink { [weak self] selectedDateObject in
                 print("DateObj \(selectedDateObject)")
                 self?.scheduleView.dateChosenSubject.send(selectedDateObject)
             }
             .store(in: &subscriptions)
+        
         
         scheduleView.selectedCell
             .sink { [weak self] session in

@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class Validator {
+final class InputValidator {
     
     enum ValidationRegex: String {
         case emailRegex = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-+]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z‌​]{2,})$"

@@ -37,6 +37,7 @@ class DIContainer {
         container.autoregister(ScheduleTabCoordinator.self, initializer: ScheduleTabCoordinator.init)
 //            .inObjectScope(.transient)
         container.autoregister(AuthCoordinator.self, initializer: AuthCoordinator.init)
+            .inObjectScope(.transient)
     }
     
     // MARK: - Controllers setup of container
@@ -47,9 +48,11 @@ class DIContainer {
                                    loginVCProvider: $0.resolve(Provider<LoginViewController>.self)!)
         }
 
-        
-        container.autoregister(MainTabControllerProtocol.self, initializer: MainTabBarController.init)
+        container.autoregister(AppCoordinator.self, initializer: AppCoordinator.init)
             .inObjectScope(.transient)
+        
+//        container.autoregister(MainTabControllerProtocol.self, initializer: MainTabBarController.init)
+//            .inObjectScope(.transient)
         
         /* Schedule Tab */
         container.autoregister(ScheduleViewController.self, initializer: ScheduleViewController.init)
@@ -65,6 +68,8 @@ class DIContainer {
             .inObjectScope(.transient)
         container.autoregister(LoginViewModel.self, initializer: LoginViewModel.init)
             .inObjectScope(.transient)
+        container.autoregister(InputValidator.self, initializer: InputValidator.init)
+            .inObjectScope(.transient)
         
     }
     
@@ -78,6 +83,9 @@ class DIContainer {
     private func setupForNetworking(using container: Container) {
         container.autoregister(IJsonDecoderWrapper.self, initializer: JSONDecoderWrapper.init)
         container.autoregister(RequestBuilderProtocol.self, initializer: RequestBuilder.init)
+        container.register(NetworkSession.self) { _ in return URLSession.shared }
+        container.autoregister(Authenticator.self, initializer: Authenticator.init).inObjectScope(.container)
+        container.autoregister(NetworkManager.self, initializer: NetworkManager.init).inObjectScope(.container)
     }
     
     

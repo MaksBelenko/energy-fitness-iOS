@@ -27,7 +27,7 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     
     private var subscriptions = Set<AnyCancellable>()
     private let scheduleOrganiser: ScheduleOrganiserProtocol
-    private let networkManager = NetworkManager()
+    private let networkManager: NetworkManager
     
     private var presentingMode: ScheduleShowStatus = .presenting {
         didSet {
@@ -47,8 +47,12 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     
     
     // MARK: - Lifecycle
-    init(scheduleOrganiser: ScheduleOrganiserProtocol) {
+    init(
+        scheduleOrganiser: ScheduleOrganiserProtocol,
+        networkManager: NetworkManager
+    ) {
         self.scheduleOrganiser = scheduleOrganiser
+        self.networkManager = networkManager
         setBindings()
     }
     
@@ -64,44 +68,12 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
                 self?.scheduleOrganiser.sort(sessions: $0, by: .time)
             }
             .map { $0.map { Section(header: $0.header, items: $0.sessions) } }
-            .sink(receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished: break
-                case .failure(let error):
-                    Log.exception(message: "Error fetching [GymSessionDto]; Error = \(error.localizedDescription)", "")
-                    self?.presentingMode = .noInternetConnection
-                }
-            }, receiveValue: { [weak self] sections in
+            .replaceError(with: [Section<GymSessionDto>]())
+            .sink(receiveValue: { [weak self] sections in
                 self?.presentingMode = sections.isEmpty ? .noEvents : .presenting
                 self?.organisedSessions.send(sections)
             })
             .store(in: &subscriptions)
-    }
-    
-    func fetchGymSessions() -> AnyPublisher<Void, Error> {
-        return dateChosenSubject
-            .setFailureType(to: Error.self)
-            .flatMap(networkManager.getGymSession)
-            .compactMap { [weak self] in
-                self?.scheduleOrganiser.sort(sessions: $0, by: .time)
-            }
-            .map { $0.map { Section(header: $0.header, items: $0.sessions) } }
-            .handleEvents(receiveOutput: { [weak self] sections in
-                self?.presentingMode = sections.isEmpty ? .noEvents : .presenting
-                self?.organisedSessions.send(sections)
-            }, receiveCompletion: { [weak self] completion in
-                switch completion {
-                case .finished: break
-                case .failure(let error):
-                    Log.exception(message: "Error fetching [GymSessionDto]; Error = \(error.localizedDescription)", "")
-                    self?.presentingMode = .noInternetConnection
-                }
-            })
-            .flatMap { _ -> AnyPublisher<Void, Error> in
-                return Empty().eraseToAnyPublisher()
-            }
-//            .replaceError(with: [Section<GymSessionDto>]())
-            .eraseToAnyPublisher()
     }
     
     /// Change order of the presented sessions

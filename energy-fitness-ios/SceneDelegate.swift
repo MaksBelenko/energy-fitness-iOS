@@ -7,20 +7,27 @@
 
 import UIKit
 import Swinject
+import Combine
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
     let container = Container()
-
+    
+    private lazy var appCoordinator: AppCoordinator = {
+        let coordinator = container.resolve(AppCoordinator.self)!
+        coordinator.start()
+        return coordinator
+    }()
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         DIContainer().setupContainer(using: container)
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = container.resolve(MainTabControllerProtocol.self)
+        
+        window.rootViewController = appCoordinator.navController
         window.makeKeyAndVisible()
         self.window = window
     }

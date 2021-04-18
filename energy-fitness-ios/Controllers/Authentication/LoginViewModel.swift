@@ -16,8 +16,21 @@ final class LoginViewModel {
     private var emailValidSubject = CurrentValueSubject<Bool, Never>(false)
     private var passwordValidSubject = CurrentValueSubject<Bool, Never>(false)
     
-    private let validator = Validator()
-    private let networkManager = NetworkManager(session: URLSession.shared)
+    private let inputValidator: InputValidator
+    private let networkManager: NetworkManager
+    
+    
+    init(
+        networkManager: NetworkManager,
+        inputValidator: InputValidator
+    ) {
+        self.networkManager = networkManager
+        self.inputValidator = inputValidator
+    }
+    
+    deinit {
+        Log.logDeinit("\(self)")
+    }
     
     
     func isValidInputs() -> AnyPublisher<Bool, Never> {
@@ -28,14 +41,14 @@ final class LoginViewModel {
     
     func isEmailValid() -> AnyPublisher<Bool, Never> {
         return emailSubject
-            .flatMap(validator.isEmail)
+            .flatMap(inputValidator.isEmail)
             .share()
             .eraseToAnyPublisher()
     }
     
     func isPasswordValid() -> AnyPublisher<Bool, Never> {
         return passwordSubject
-            .flatMap(validator.isSecurePassword)
+            .flatMap(inputValidator.isSecurePassword)
             .share()
             .eraseToAnyPublisher()
     }

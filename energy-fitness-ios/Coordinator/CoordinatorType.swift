@@ -17,3 +17,14 @@ protocol CoordinatorType: AnyObject {
 protocol ParentCoordinator: CoordinatorType {
     func childDidFinish(_ child: CoordinatorType?)
 }
+
+extension ParentCoordinator {
+    func childDidFinish(_ child: CoordinatorType?) {
+        for (index, coordinator) in childCoordinators.enumerated() {
+            if child === coordinator {
+                childCoordinators.remove(at: index)
+                break
+            }
+        }
+    }
+}

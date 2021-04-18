@@ -77,6 +77,10 @@ final class LoginViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        Log.logDeinit("\(self)")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

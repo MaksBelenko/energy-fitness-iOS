@@ -11,15 +11,16 @@ final class AuthCoordinator: CoordinatorType {
     weak var parentCoordinator: ParentCoordinator?
     
     var childCoordinators: [CoordinatorType] = []
-    var navController: UINavigationController
+    lazy var navController = UINavigationController()
     
     private let viewControllerProvider: ViewControllerProvider
     
-    init(
-        viewControllerProvider: ViewControllerProvider
-    ) {
-        self.navController = UINavigationController()
+    init(viewControllerProvider: ViewControllerProvider) {
         self.viewControllerProvider = viewControllerProvider
+    }
+    
+    deinit {
+        Log.logDeinit("\(self)")
     }
     
     func start() {

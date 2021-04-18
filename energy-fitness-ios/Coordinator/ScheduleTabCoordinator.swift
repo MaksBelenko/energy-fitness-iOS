@@ -9,16 +9,21 @@ import UIKit
 import Combine
 
 final class ScheduleTabCoordinator: ParentCoordinator {
+    weak var parentCoordinator: ParentCoordinator?
+    
     var childCoordinators: [CoordinatorType] = []
-    var navController: UINavigationController
+    lazy var navController = UINavigationController()
     
     private let viewControllerProvider: ViewControllerProvider
     
     init(
         viewControllerProvider: ViewControllerProvider
     ) {
-        self.navController = UINavigationController()
         self.viewControllerProvider = viewControllerProvider
+    }
+    
+    deinit {
+        Log.logDeinit("\(self)")
     }
     
     func start() {
@@ -43,15 +48,6 @@ final class ScheduleTabCoordinator: ParentCoordinator {
     }
     
     
-    func showAuth() {
-        let authCoordinator = AuthCoordinator(viewControllerProvider: viewControllerProvider)
-        authCoordinator.parentCoordinator = self
-        authCoordinator.start()
-        
-        navController.present(authCoordinator.navController, animated: true, completion: nil)
-        childCoordinators.append(authCoordinator)
-    }
-    
     func showSortCard<T: Hashable>(title: String, items: [CardFilterItem<T>]) -> AnyPublisher<T, Never> {
         let filterView = FilterCardView(title: title, items: items)
         let cardVC = CardViewController(innerView: filterView)
@@ -61,16 +57,5 @@ final class ScheduleTabCoordinator: ParentCoordinator {
         
         return filterView.selectedSubject
             .eraseToAnyPublisher()
-    }
-    
-    
-    
-    func childDidFinish(_ child: CoordinatorType?) {
-        for (index, coordinator) in childCoordinators.enumerated() {
-            if child === coordinator {
-                childCoordinators.remove(at: index)
-                break
-            }
-        }
     }
 }
