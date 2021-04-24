@@ -14,11 +14,11 @@ protocol CoordinatorType: AnyObject {
     func start()
 }
 
-protocol ParentCoordinator: CoordinatorType {
+protocol ParentCoordinatorType: CoordinatorType {
     func childDidFinish(_ child: CoordinatorType?)
 }
 
-extension ParentCoordinator {
+extension ParentCoordinatorType {
     func childDidFinish(_ child: CoordinatorType?) {
         for (index, coordinator) in childCoordinators.enumerated() {
             if child === coordinator {

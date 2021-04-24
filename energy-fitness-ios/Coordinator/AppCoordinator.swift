@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class AppCoordinator: ParentCoordinator {
+final class AppCoordinator: ParentCoordinatorType {
     var childCoordinators: [CoordinatorType] = []
     lazy var navController = UINavigationController()
     
@@ -26,7 +26,7 @@ final class AppCoordinator: ParentCoordinator {
     ) {
         self.viewControllerProvider = viewControllerProvider
         self.networkManager = networkManager
-        setupAuthListener()
+//        setupAuthListener()
     }
     
     func start() {

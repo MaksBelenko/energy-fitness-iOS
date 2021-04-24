@@ -104,7 +104,7 @@ final class CardViewController: UIViewController {
         
         grabBackgroundHandleView.addSubview(handleView)
         handleView.centerX(withView: grabBackgroundHandleView)
-        handleView.anchor(bottom: grabBackgroundHandleView.bottomAnchor, paddingBottom: 10 ,width: 50, height: 5)
+        handleView.anchor(bottom: grabBackgroundHandleView.bottomAnchor, paddingBottom: 7 ,width: 50, height: 5)
         handleView.layer.cornerRadius = 2.5
     }
     

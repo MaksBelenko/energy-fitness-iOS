@@ -22,7 +22,7 @@ final class FilterCardView<T: Hashable>: UIView, CardClosable, UITableViewDelega
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = titleText
-        label.font = .raleway(ofSize: 17, weight: .semiBold)
+        label.font = .raleway(ofSize: 17, weight: .regular)
         return label
     }()
     

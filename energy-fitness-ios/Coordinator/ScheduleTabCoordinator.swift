@@ -8,8 +8,8 @@
 import UIKit
 import Combine
 
-final class ScheduleTabCoordinator: ParentCoordinator {
-    weak var parentCoordinator: ParentCoordinator?
+final class ScheduleTabCoordinator: ParentCoordinatorType {
+    weak var parentCoordinator: ParentCoordinatorType?
     
     var childCoordinators: [CoordinatorType] = []
     lazy var navController = UINavigationController()
@@ -48,10 +48,19 @@ final class ScheduleTabCoordinator: ParentCoordinator {
     }
     
     
-    func showSortCard<T: Hashable>(title: String, items: [CardFilterItem<T>]) -> AnyPublisher<T, Never> {
-        let filterView = FilterCardView(title: title, items: items)
+    func showSortCard() -> AnyPublisher<ScheduleSortType, Never> {
+        let sortOptions: [CardFilterItem<ScheduleSortType>] = [.init(value: .time, image: UIImage(named: "icon-clock")!, filterName: NSLocalizedString("time_sort", comment: "Card sort option")),
+                                                               .init(value: .trainer, image: UIImage(named: "icon-trainer")!, filterName: NSLocalizedString("trainer_name_sort", comment: "Card sort option")),
+                                                               .init(value: .gymClass, image: UIImage(named: "icon-skipping")!, filterName: NSLocalizedString("gym_class_name_sort", comment: "Card sort option"))]
+        
+        let filterView = FilterCardView(title: NSLocalizedString("select_sort_option", comment: "Card sort option"),
+                                        items: sortOptions)
         let cardVC = CardViewController(innerView: filterView)
-        cardVC.cardHeight = 250
+        
+        let window = UIApplication.shared.windows[0]
+        let bottomPadding = window.safeAreaInsets.bottom
+        cardVC.cardHeight = 210 + bottomPadding // adjust for safeArea
+        
         cardVC.modalPresentationStyle = .overFullScreen
         navController.present(cardVC, animated: false, completion: nil)
         

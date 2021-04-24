@@ -9,8 +9,6 @@ import UIKit
 import SwiftUI
 import Combine
 
-extension ScheduleViewController: UIPopoverPresentationControllerDelegate {}
-
 final class ScheduleViewController: UIViewController {
     
     weak var coordinator: ScheduleTabCoordinator?
@@ -20,10 +18,7 @@ final class ScheduleViewController: UIViewController {
     private let weekCalendarView: WeekCalendarViewProtocol
     private let scheduleView: ScheduleViewProtocol
     private var topCornerDateView: TopCornerDateView!
-    
-    private let filterOptions: [CardFilterItem<ScheduleSortType>] = [.init(value: .time, image: UIImage(named: "icon-clock")!, filterName: "Time"),
-                                                                       .init(value: .trainer, image: UIImage(named: "icon-trainer")!, filterName: "Trainer's name"),
-                                                                       .init(value: .gymClass, image: UIImage(named: "icon-skipping")!, filterName: "Gym class name")]
+
     private lazy var filterButton: UIView = {
         let view = UIView()
         let icon = UIImageView()
@@ -53,9 +48,6 @@ final class ScheduleViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-//    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
-//        return .none
-//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -79,8 +71,8 @@ final class ScheduleViewController: UIViewController {
     // MARK: - Subscriptions configuration
     private func configureSubscriptions() {
         filterButton.tapGesture()
-            .flatMap { [unowned coordinator, unowned self] _ -> AnyPublisher<ScheduleSortType, Never> in
-                return coordinator!.showSortCard(title: "Select filter option:", items: self.filterOptions)
+            .flatMap { [unowned coordinator] _ -> AnyPublisher<ScheduleSortType, Never> in
+                return coordinator!.showSortCard()
             }
             .sink(receiveValue: { [scheduleView] sortOption in
                 scheduleView.sortingOptionChangedSubject.send(sortOption)

@@ -8,7 +8,7 @@
 import UIKit
 
 final class AuthCoordinator: CoordinatorType {
-    weak var parentCoordinator: ParentCoordinator?
+    weak var parentCoordinator: ParentCoordinatorType?
     
     var childCoordinators: [CoordinatorType] = []
     lazy var navController = UINavigationController()

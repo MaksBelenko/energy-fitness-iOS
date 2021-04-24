@@ -20,7 +20,7 @@ final class CardTableCell: UITableViewCell, ReuseIdentifiable {
     
     private lazy var cellLabel: UILabel = {
         let label = UILabel()
-        label.font = .roboto(ofSize: 17)
+        label.font = .roboto(ofSize: 16, weight: .light)
         return label
     }()
     
