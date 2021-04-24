@@ -13,7 +13,7 @@ protocol ScheduleViewModelProtocol {
     var organisedSessions: CurrentValueSubject<[Section<GymSessionDto>], Never> { get set }
     var showNoConnectionIcon: CurrentValueSubject<Bool, Never> { get set }
     var showNoEventsIcon: CurrentValueSubject<Bool, Never> { get set }
-    var dateChosenSubject: PassthroughSubject<DateObject, Never> { get set }
+    func fetchGymClasses(for dateObject: DateObject) -> AnyPublisher<[Section<GymSessionDto>], Never>
     func changeOrder(by type: ScheduleSortType)
 }
 
@@ -22,8 +22,6 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     var organisedSessions = CurrentValueSubject<[Section<GymSessionDto>], Never>([])
     var showNoConnectionIcon = CurrentValueSubject<Bool, Never>(false)
     var showNoEventsIcon = CurrentValueSubject<Bool, Never>(false)
-    
-    var dateChosenSubject = PassthroughSubject<DateObject, Never>()
     
     private var subscriptions = Set<AnyCancellable>()
     private let scheduleOrganiser: ScheduleOrganiserProtocol
@@ -53,27 +51,34 @@ final class ScheduleViewModel: ScheduleViewModelProtocol {
     ) {
         self.scheduleOrganiser = scheduleOrganiser
         self.networkManager = networkManager
-        setBindings()
+//        setBindings()
     }
     
     deinit {
         Log.logDeinit("\(self)")
     }
     
-    func setBindings() {
-        dateChosenSubject
-            .setFailureType(to: Error.self)
-            .flatMap(networkManager.getGymSession)
+    
+    func fetchGymClasses(for dateObject: DateObject) -> AnyPublisher<[Section<GymSessionDto>], Never> {
+        return networkManager.getGymSession(for: dateObject)
             .compactMap { [weak self] in
                 self?.scheduleOrganiser.sort(sessions: $0, by: .time)
             }
             .map { $0.map { Section(header: $0.header, items: $0.sessions) } }
-            .replaceError(with: [Section<GymSessionDto>]())
-            .sink(receiveValue: { [weak self] sections in
+            .handleEvents(receiveOutput: { [weak self] sections in
                 self?.presentingMode = sections.isEmpty ? .noEvents : .presenting
                 self?.organisedSessions.send(sections)
+            }, receiveCompletion: { [weak self] completion in
+                switch completion {
+                case .finished: ()
+                case .failure(_):
+                    //TODO: make case for something went wrong
+                    self?.presentingMode = .noInternetConnection
+                    self?.organisedSessions.send([Section<GymSessionDto>]())
+                }
             })
-            .store(in: &subscriptions)
+            .replaceError(with: [Section<GymSessionDto>]())
+            .eraseToAnyPublisher()
     }
     
     /// Change order of the presented sessions

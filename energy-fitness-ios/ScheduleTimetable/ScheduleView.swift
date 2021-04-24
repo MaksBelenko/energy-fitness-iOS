@@ -105,11 +105,11 @@ final class ScheduleView: UIView, ScheduleViewProtocol {
             .store(in: &subscriptions)
         
         dateChosenSubject
-            .sink { [weak self] dateObject in
-                self?.viewModel.dateChosenSubject.send(dateObject)
-            }
+            .flatMap(viewModel.fetchGymClasses)
+            .sink { dateObject in }
             .store(in: &subscriptions)
     }
+    
     
     private func bindViewModel() {
         viewModel.organisedSessions
