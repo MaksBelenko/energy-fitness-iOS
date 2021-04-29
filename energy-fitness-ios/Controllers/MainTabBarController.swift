@@ -10,33 +10,13 @@ import SwiftUI
 
 protocol MainTabControllerProtocol: UIViewController {}
 
-class MainTabBarController: UITabBarController, MainTabControllerProtocol {
-    
-//    private let scheduleTabCoordinator: ScheduleTabCoordinator
-    
-    
-    // MARK: - Initialisation
-//    init(
-//        scheduleTabCoordinator: ScheduleTabCoordinator
-//    ) {
-//        self.scheduleTabCoordinator = scheduleTabCoordinator
-//        self.scheduleTabCoordinator.start()
-//
-//        super.init(nibName: nil, bundle: nil)
-//    }
-    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    } 
-    
+final class MainTabBarController: UITabBarController, MainTabControllerProtocol {
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureTabBar()
-//        viewControllers = [scheduleTabCoordinator.navController]
     }
     
     // MARK: - Configuration

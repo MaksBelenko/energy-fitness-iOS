@@ -128,7 +128,8 @@ final class Authenticator {
                 print("Signin Retrieved tokens \(tokens)")
                 self?.setTokensSync(access: tokens.accessToken, refresh: tokens.refreshToken)
             })
-            .map { $0 != nil }
+            .map { _ in return true }
+//            .replaceError(with: false)
             .eraseToAnyPublisher()
     }
     

@@ -14,7 +14,7 @@ struct ImageDownsampler {
     /// Downsampling image
     ///
     ///
-    /// Useful when downloaded image is has bix pixel size (3648px × 5472px)
+    /// Useful when downloaded image is has bit pixel size (3648px × 5472px)
     /// as UIImage allocates the memory of 4 bytes for every pixel (1 byte for red, 1 byte for green,
     /// 1 byte for blue, and 1 byte for the alpha component).
     ///
@@ -27,7 +27,7 @@ struct ImageDownsampler {
     ///     imageView.image = downsampleImage
     ///
     /// - Parameters:
-    ///   - imageURL: url of downloded photo (or one in the Bundle)
+    ///   - imageURL: url of downloaded photo (or one in the Bundle)
     ///   - pointSize: size to which it will be sampled
     ///   - scale: scale (default is UIScreen.main.scale)
     /// - Returns: Optional image

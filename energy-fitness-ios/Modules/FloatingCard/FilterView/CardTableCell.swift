@@ -10,7 +10,6 @@ import UIKit
 final class CardTableCell: UITableViewCell, ReuseIdentifiable {    
     
     private let iconSize: CGFloat = 35
-    private let selectedCellColour = UIColor(red: 239/256, green: 239/256, blue: 239/256, alpha: 1)
     
     private lazy var icon: UIImageView = {
         let iv = UIImageView()
@@ -27,10 +26,6 @@ final class CardTableCell: UITableViewCell, ReuseIdentifiable {
     // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-    
-//        let view = UIView()
-//        view.backgroundColor = selectedCellColour
-//        selectedBackgroundView = view
         
         backgroundColor = .clear
         configureUI()
