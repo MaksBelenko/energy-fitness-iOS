@@ -12,15 +12,18 @@ final class ViewControllerProvider {
     private let scheduleVCProvider: Provider<ScheduleViewController>
     private let bookSessionVCProvider: Provider<BookSessionViewController>
     private let loginVCProvider: Provider<LoginViewController>
+    private let signupVCProvider: Provider<SignupViewController>
     
     init(
         scheduleVC: Provider<ScheduleViewController>,
         bookSessionVC: Provider<BookSessionViewController>,
-        loginVCProvider: Provider<LoginViewController>
+        loginVCProvider: Provider<LoginViewController>,
+        signupVCProvider: Provider<SignupViewController>
     ) {
         self.scheduleVCProvider = scheduleVC
         self.bookSessionVCProvider = bookSessionVC
         self.loginVCProvider = loginVCProvider
+        self.signupVCProvider = signupVCProvider
     }
     
     func createScheduleVC() -> ScheduleViewController {
@@ -33,5 +36,9 @@ final class ViewControllerProvider {
     
     func createLoginVC() -> LoginViewController {
         return loginVCProvider.instance
+    }
+    
+    func createSignupVC() -> SignupViewController {
+        return signupVCProvider.instance
     }
 }

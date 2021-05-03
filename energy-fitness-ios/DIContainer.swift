@@ -45,7 +45,8 @@ class DIContainer {
         container.register(ViewControllerProvider.self) {
             ViewControllerProvider(scheduleVC: $0.resolve(Provider<ScheduleViewController>.self)!,
                                    bookSessionVC: $0.resolve(Provider<BookSessionViewController>.self)!,
-                                   loginVCProvider: $0.resolve(Provider<LoginViewController>.self)!)
+                                   loginVCProvider: $0.resolve(Provider<LoginViewController>.self)!,
+                                   signupVCProvider: $0.resolve(Provider<SignupViewController>.self)!)
         }
 
         container.autoregister(AppCoordinator.self, initializer: AppCoordinator.init)
@@ -68,8 +69,13 @@ class DIContainer {
             .inObjectScope(.transient)
         container.autoregister(LoginViewModel.self, initializer: LoginViewModel.init)
             .inObjectScope(.transient)
+        container.autoregister(SignupViewController.self, initializer: SignupViewController.init)
+            .inObjectScope(.transient)
+        container.autoregister(SignupViewModel.self, initializer: SignupViewModel.init)
+            .inObjectScope(.transient)
         container.autoregister(InputValidator.self, initializer: InputValidator.init)
             .inObjectScope(.transient)
+        
         
     }
     

@@ -26,7 +26,7 @@ final class AppCoordinator: ParentCoordinatorType {
     ) {
         self.viewControllerProvider = viewControllerProvider
         self.networkManager = networkManager
-//        setupAuthListener()
+        setupAuthListener()
     }
     
     func start() {

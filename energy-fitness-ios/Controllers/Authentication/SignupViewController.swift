@@ -1,19 +1,19 @@
 //
-//  LoginViewController.swift
+//  SignupViewController.swift
 //  EnergyFitnessApp
 //
-//  Created by Maksim on 23/03/2021.
+//  Created by Maksim on 03/05/2021.
 //
 
 import UIKit
 import Combine
 import SwiftUI
 
-final class LoginViewController: UIViewController {
+final class SignupViewController: UIViewController {
 
     weak var coordinator: AuthCoordinator?
     
-    private let viewModel: LoginViewModel
+    private let viewModel: SignupViewModel
     private var subscriptions = Set<AnyCancellable>()
     
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent }
@@ -29,10 +29,21 @@ final class LoginViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var fullNameTextField: EnergyTextField = {
+        let textField = EnergyTextField()
+        let fullNameLocalisedTitle = NSLocalizedString("Full name", comment: "Text placeholder")
+        textField.placeholder = fullNameLocalisedTitle
+        textField.smallPlaceholderText = fullNameLocalisedTitle
+        textField.smallPlaceHolderBackgroundColour = textField.backgroundColor!.darker(by: 8)!
+        textField.keyboardType = .alphabet
+        return textField
+    }()
+    
     private lazy var emailTextField: EnergyTextField = {
         let textField = EnergyTextField()
-        textField.placeholder = NSLocalizedString("Email", comment: "Text placeholder")
-        textField.smallPlaceholderText = NSLocalizedString("Email", comment: "Text placeholder")
+        let emailLocalisedTitle = NSLocalizedString("Email", comment: "Text placeholder")
+        textField.placeholder = emailLocalisedTitle
+        textField.smallPlaceholderText = emailLocalisedTitle
         textField.smallPlaceHolderBackgroundColour = textField.backgroundColor!.darker(by: 8)!
         textField.keyboardType = .emailAddress
         textField.autocapitalizationType = .none
@@ -41,16 +52,19 @@ final class LoginViewController: UIViewController {
     
     private lazy var passwordTextField: EnergyTextField = {
         let textField = EnergyTextField()
-        textField.placeholder = NSLocalizedString("Password", comment: "Text placeholder")
-        textField.smallPlaceholderText = NSLocalizedString("Password", comment: "Text placeholder")
+        let passwordLocalisedTitle = NSLocalizedString("Password", comment: "Text placeholder")
+        textField.placeholder = passwordLocalisedTitle
+        textField.smallPlaceholderText = passwordLocalisedTitle
         textField.smallPlaceHolderBackgroundColour = textField.backgroundColor!.darker(by: 8)!
         textField.isSecureTextEntry = true
+        textField.autocapitalizationType = .none
         return textField
     }()
     
-    private lazy var loginButton: AuthButton = {
+    
+    private lazy var signupButton: AuthButton = {
         let button = AuthButton()
-        button.title = NSLocalizedString("Login", comment: "Login and Signup items")
+        button.title = NSLocalizedString("Sign up", comment: "Login and Signup items")
         button.isActive = false
         button.textFont = .raleway(ofSize: 19)
         return button
@@ -58,16 +72,16 @@ final class LoginViewController: UIViewController {
     
     private lazy var haveAccountButton: AccountButton = {
         let button = AccountButton(type: .system)
-        let loginQuestion = NSLocalizedString("no_account_question", comment: "Login and Signup items")
-        let signupText = NSLocalizedString("Sign up", comment: "Login and Signup items")
-        button.setupLabel(question: loginQuestion, actionName: signupText)
+        let signupQuestion = NSLocalizedString("already_have_account_question", comment: "Login and Signup items")
+        let loginText = NSLocalizedString("Login", comment: "Login and Signup items")
+        button.setupLabel(question: signupQuestion, actionName: loginText)
         return button
     }()
     
     
     // MARK: - Lifecycle
     
-    init(coordinator: AuthCoordinator, viewModel: LoginViewModel) {
+    init(coordinator: AuthCoordinator, viewModel: SignupViewModel) {
         self.coordinator = coordinator
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -104,9 +118,10 @@ final class LoginViewController: UIViewController {
             logo.topAnchor.constraint(lessThanOrEqualToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 3)
         ])
         
-        let stack = UIStackView(arrangedSubviews: [emailTextField,
+        let stack = UIStackView(arrangedSubviews: [fullNameTextField,
+                                                   emailTextField,
                                                    passwordTextField,
-                                                   loginButton])
+                                                   signupButton])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.spacing = 12
@@ -126,6 +141,11 @@ final class LoginViewController: UIViewController {
     //MARK: - Bindings
     private func createControllerViewsBindings() {
         
+        fullNameTextField.textPublisher
+            .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
+            .assign(to: \.fullNameSubject.value, on: viewModel)
+            .store(in: &subscriptions)
+        
         emailTextField.textPublisher
             .debounce(for: .seconds(0.2), scheduler: DispatchQueue.main)
             .assign(to: \.emailSubject.value, on: viewModel)
@@ -136,39 +156,57 @@ final class LoginViewController: UIViewController {
             .assign(to: \.passwordSubject.value, on: viewModel)
             .store(in: &subscriptions)
         
-        emailTextField.publisher(for: .editingDidEndOnExit)
-            .sink { [weak self] in self?.passwordTextField.becomeFirstResponder() }
-            .store(in: &subscriptions)
-        
-        passwordTextField.keyboardReturnPublisher
-            .sink { [weak self] in self?.view.endEditing(true) }
-            .store(in: &subscriptions)
-        
-        view.gesture(.tap())
-            .sink { [weak self] _ in self?.view.endEditing(true) }
-            .store(in: &subscriptions)
-        
-        loginButton.tapPublisher
-            .handleEvents(receiveOutput: { [weak self] _ in
-                self?.loginButton.isLoading = true
-                self?.view.endEditing(true)
-            })
-            .flatMap(viewModel.signinAction)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] signedIn in
-                self?.loginButton.isLoading = false
-                print("SignedIn? \(signedIn)")
+        /* Enter press publishers */
+        fullNameTextField.publisher(for: .editingDidEndOnExit)
+            .sink { [weak self] in
+                self?.emailTextField.becomeFirstResponder()
             }
             .store(in: &subscriptions)
         
+        emailTextField.publisher(for: .editingDidEndOnExit)
+            .sink { [weak self] in
+                self?.passwordTextField.becomeFirstResponder()
+            }
+            .store(in: &subscriptions)
+        
+        passwordTextField.keyboardReturnPublisher
+            .sink { [weak self] in
+                self?.view.endEditing(true)
+            }
+            .store(in: &subscriptions)
+        
+        /* Tap press publishers */
+        view.gesture(.tap())
+            .sink { [weak self] _
+                in self?.view.endEditing(true)
+            }
+            .store(in: &subscriptions)
+        
+//        signupButton.tapPublisher
+//            .handleEvents(receiveOutput: { [weak self] _ in
+//                self?.signupButton.isLoading = true
+//                self?.view.endEditing(true)
+//            })
+//            .flatMap(viewModel.signinAction)
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] signedIn in
+//                self?.signupButton.isLoading = false
+//                print("SignedIn? \(signedIn)")
+//            }
+//            .store(in: &subscriptions)
+        
         haveAccountButton.tapPublisher
             .sink { [weak coordinator] _ in
-                coordinator?.showRegisterVC()
+                coordinator?.backToLogin()
             }
             .store(in: &subscriptions)
     }
     
     private func createViewModelBindings() {
+        viewModel.isFullNameValid() 
+            .map { $0 ? UIColor.energyTFPlaceholderColour : UIColor.systemRed }
+            .assign(to: \.smallPlaceholderColor, on: fullNameTextField)
+            .store(in: &subscriptions)
         
         viewModel.isEmailValid()
             .map { $0 ? UIColor.energyTFPlaceholderColour : UIColor.systemRed }
@@ -181,7 +219,7 @@ final class LoginViewController: UIViewController {
             .store(in: &subscriptions)
         
         viewModel.isValidInputs()
-            .assign(to: \.isActive, on: loginButton)
+            .assign(to: \.isActive, on: signupButton)
             .store(in: &subscriptions)
     }
 }
@@ -196,33 +234,34 @@ final class LoginViewController: UIViewController {
 
 
 // -------------- SWIFTUI PREVIEW HELPER --------------------
-struct LoginIntegratedController: UIViewControllerRepresentable {
+struct SignupIntegratedController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> some UIViewController {
         let container = DIContainer.staticContainerSwiftUIPreviews
-        return container.resolve(LoginViewController.self)!
+        return container.resolve(SignupViewController.self)!
     }
     
     func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
 }
 
-struct LoginPreviewController: View {
+struct SignupPreviewController: View {
     var body: some View {
-        LoginIntegratedController().edgesIgnoringSafeArea(.all)
+        SignupIntegratedController().edgesIgnoringSafeArea(.all)
     }
 }
 
-struct LoginPreviewController_Previews: PreviewProvider {
+struct SignupPreviewController_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            LoginPreviewController()
+            SignupPreviewController()
                 .previewDevice("iPhone X")
                 .preferredColorScheme(.light)
                 .environment(\.locale, .init(identifier: "ru"))
             
-            LoginPreviewController()
+            SignupPreviewController()
                 .previewDevice("iPhone 8")
                 .preferredColorScheme(.dark)
                 .environment(\.locale, .init(identifier: "ru"))
         }
     }
 }
+

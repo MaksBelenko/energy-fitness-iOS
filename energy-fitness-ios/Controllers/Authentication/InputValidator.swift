@@ -13,6 +13,7 @@ final class InputValidator {
     enum ValidationRegex: String {
         case emailRegex = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-+]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z‌​]{2,})$"
         case passwordRegex = "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[0-9])(?=.*[A-Z]).{8,}$"
+        case nameRegex = "^[^0-9_!¡?÷?¿\\/\\+=@#%ˆ^&*(){}|~<>;:\\[\\]\n$£€¥₹৳]{1,}$"
     }
 
     func isEmail(_ email: String) -> AnyPublisher<Bool, Never> {
@@ -21,6 +22,10 @@ final class InputValidator {
     
     func isSecurePassword(_ password: String) -> AnyPublisher<Bool, Never> {
         return validate(password, with: .passwordRegex)
+    }
+    
+    func isName(_ name: String) -> AnyPublisher<Bool, Never> {
+        return validate(name, with: .nameRegex)
     }
     
     

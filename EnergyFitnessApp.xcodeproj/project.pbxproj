@@ -108,6 +108,8 @@
 		B58EFC3125ED9DD10011C677 /* OrganisedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58EFC3025ED9DD10011C677 /* OrganisedSession.swift */; };
 		B59280DC25C9C805001D7AED /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DB25C9C805001D7AED /* MainTabBarController.swift */; };
 		B59280E025C9CC7E001D7AED /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */; };
+		B5951DE3264039FE001E2D29 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5951DE2264039FE001E2D29 /* SignupViewController.swift */; };
+		B5951DE926404EFA001E2D29 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5951DE826404EFA001E2D29 /* SignupViewModel.swift */; };
 		B598558B261CD14B00262D46 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598558A261CD14B00262D46 /* CardViewController.swift */; };
 		B598558F261CD15C00262D46 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B598558E261CD15C00262D46 /* CardView.swift */; };
 		B5985593261CD16200262D46 /* GestureHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5985592261CD16200262D46 /* GestureHandler.swift */; };
@@ -282,6 +284,8 @@
 		B58EFC3025ED9DD10011C677 /* OrganisedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganisedSession.swift; sourceTree = "<group>"; };
 		B59280DB25C9C805001D7AED /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		B59280DF25C9CC7E001D7AED /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		B5951DE2264039FE001E2D29 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		B5951DE826404EFA001E2D29 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		B598558A261CD14B00262D46 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		B598558E261CD15C00262D46 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		B5985592261CD16200262D46 /* GestureHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GestureHandler.swift; sourceTree = "<group>"; };
@@ -544,6 +548,8 @@
 			children = (
 				B53C6ABC260A1EBF00806EF8 /* LoginViewController.swift */,
 				B53C6AF8260A898C00806EF8 /* LoginViewModel.swift */,
+				B5951DE2264039FE001E2D29 /* SignupViewController.swift */,
+				B5951DE826404EFA001E2D29 /* SignupViewModel.swift */,
 				B53C6AFD260AA46600806EF8 /* InputValidator.swift */,
 			);
 			path = Authentication;
@@ -1128,6 +1134,7 @@
 				B54F6E4025CC4503002264C2 /* MonthFactory.swift in Sources */,
 				B539540F25FE9E83007CE6C1 /* CoordinatorType.swift in Sources */,
 				B527C90D25CC7DD200342113 /* ScheduleView.swift in Sources */,
+				B5951DE3264039FE001E2D29 /* SignupViewController.swift in Sources */,
 				B54F6E2825CC44FA002264C2 /* HorizontalFloatingHeaderLayout.swift in Sources */,
 				B5CAFFD126001A2F0069311C /* BookViewModel.swift in Sources */,
 				B5B5E28125FC07840081B212 /* SortOption.swift in Sources */,
@@ -1210,6 +1217,7 @@
 				B57372E125DB062300CC541F /* BookSessionViewController.swift in Sources */,
 				B5245FDF26191D14001063A1 /* AuthCoordinator.swift in Sources */,
 				B5A9B7B525E71C2600921D4E /* DateFormatter+Ext.swift in Sources */,
+				B5951DE926404EFA001E2D29 /* SignupViewModel.swift in Sources */,
 				B55451CB25CC94AC00BCA984 /* ReuseIdentifiable.swift in Sources */,
 				B54F6E4325CC4503002264C2 /* DateSelectorCell.swift in Sources */,
 				B54F6E2025CC44EC002264C2 /* WeekViewBuilder.swift in Sources */,

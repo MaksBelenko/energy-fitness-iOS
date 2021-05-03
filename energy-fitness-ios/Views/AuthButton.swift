@@ -30,6 +30,7 @@ class AuthButton: UIButton {
     
     private let activeColours = [UIColor.energyGradientRedLeft.cgColor, UIColor.energyGradientRedRight.cgColor]
     private let disabledColours = [UIColor.lightGray.cgColor, UIColor.lightGray.cgColor]
+    private let disabledOpacity: CGFloat = 0.9
     
     private lazy var backgroundGradient: CAGradientLayer = {
         let gradient: CAGradientLayer = CAGradientLayer()
@@ -78,6 +79,7 @@ class AuthButton: UIButton {
     //MARK: - Private methods
     private func changeAppearance(_ isActive: Bool) {
         backgroundGradient.colors = isActive ? activeColours : disabledColours
+        alpha = isActive ? 1 : disabledOpacity
         let textColour = isActive ? UIColor.white : UIColor(white: 1, alpha: 0.5)
         setTitleColor(textColour, for: .normal)
         
