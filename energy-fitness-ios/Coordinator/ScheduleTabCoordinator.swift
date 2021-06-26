@@ -49,12 +49,13 @@ final class ScheduleTabCoordinator: ParentCoordinatorType {
     
     
     func showSortCard() -> AnyPublisher<ScheduleSortType, Never> {
-        let sortOptions: [CardFilterItem<ScheduleSortType>] = [.init(value: .time, image: UIImage(named: "icon-clock")!, filterName: NSLocalizedString("time_sort", comment: "Card sort option")),
-                                                               .init(value: .trainer, image: UIImage(named: "icon-trainer")!, filterName: NSLocalizedString("trainer_name_sort", comment: "Card sort option")),
-                                                               .init(value: .gymClass, image: UIImage(named: "icon-skipping")!, filterName: NSLocalizedString("gym_class_name_sort", comment: "Card sort option"))]
+        let sortOptions: [CardFilterItem<ScheduleSortType>] = [
+            .init(value: .time, image: UIImage(named: "icon-clock")!, filterName: NSLocalizedString("time_sort", comment: "Card sort option")),
+            .init(value: .trainer, image: UIImage(named: "icon-trainer")!, filterName: NSLocalizedString("trainer_name_sort", comment: "Card sort option")),
+            .init(value: .gymClass, image: UIImage(named: "icon-skipping")!, filterName: NSLocalizedString("gym_class_name_sort", comment: "Card sort option"))
+        ]
         
-        let filterView = FilterCardView(title: NSLocalizedString("select_sort_option", comment: "Card sort option"),
-                                        items: sortOptions)
+        let filterView = FilterCardView(title: NSLocalizedString("select_sort_option", comment: "Card sort option"), items: sortOptions)
         let cardVC = CardViewController(innerView: filterView)
         
         let window = UIApplication.shared.windows[0]

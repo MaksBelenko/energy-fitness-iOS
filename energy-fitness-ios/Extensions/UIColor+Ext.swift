@@ -76,6 +76,8 @@ extension UIColor {
     static let energyGradientRedLeft = UIColor(rgb: 0x9D1014)
     static let energyGradientRedRight = UIColor(rgb: 0xE52D27)
     
+    static let energyWhiteBlack = UIColor.dynamic(light: .white, dark: .black)
+    
     /* Schedule colours */
     static let energyBackgroundColor = UIColor.dynamic(light: .customLightGrey, dark: .black)
     static let energyContainerColor = UIColor.dynamic(light: .white, dark: .customContainerDark)

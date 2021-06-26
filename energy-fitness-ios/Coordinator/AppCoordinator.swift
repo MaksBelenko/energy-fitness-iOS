@@ -26,7 +26,7 @@ final class AppCoordinator: ParentCoordinatorType {
     ) {
         self.viewControllerProvider = viewControllerProvider
         self.networkManager = networkManager
-        setupAuthListener()
+//        setupAuthListener()
     }
     
     func start() {
@@ -34,25 +34,28 @@ final class AppCoordinator: ParentCoordinatorType {
         scheduleCoordinator = ScheduleTabCoordinator(viewControllerProvider: viewControllerProvider)
         scheduleCoordinator!.start()
         
-        tabController.viewControllers = [scheduleCoordinator!.navController]
+        let settingsCoordinator = AccountSettingsCoordinator(viewControllerProvider: viewControllerProvider)
+        settingsCoordinator.start()
+        
+        tabController.viewControllers = [scheduleCoordinator!.navController, settingsCoordinator.navController]
         
         navController.setNavigationBarHidden(true, animated: false)
         navController.pushViewController(tabController, animated: false)
     }
     
     
-    private func setupAuthListener() {
-        networkManager.isSignedIn()
-            .print("TTT: AppDelegate signin")
-            .sink { [unowned self] isSignedIn in
-                if isSignedIn == false {
-                    self.showAuth()
-                } else {
-                    self.dismissAuth()
-                }
-            }
-            .store(in: &subscriptions)
-    }
+//    private func setupAuthListener() {
+//        networkManager.isSignedIn()
+//            .print("TTT: AppDelegate signin")
+//            .sink { [unowned self] isSignedIn in
+//                if isSignedIn == false {
+//                    self.showAuth()
+//                } else {
+//                    self.dismissAuth()
+//                }
+//            }
+//            .store(in: &subscriptions)
+//    }
     
     
     private func showAuth() {

@@ -16,7 +16,10 @@
 		B50D8D342603E73500762BD3 /* StrokeAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D8D332603E73500762BD3 /* StrokeAnimation.swift */; };
 		B50D8D382603E74B00762BD3 /* RotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D8D372603E74B00762BD3 /* RotationAnimation.swift */; };
 		B50D8D3C2603E76B00762BD3 /* StrokeColourAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50D8D3B2603E76B00762BD3 /* StrokeColourAnimation.swift */; };
+		B50DDAE02687A88E002D8411 /* SlideTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDADF2687A88E002D8411 /* SlideTransitionAnimator.swift */; };
+		B50DDAE62687B62C002D8411 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50DDAE52687B62C002D8411 /* AccountViewController.swift */; };
 		B511010925F6D3DF009C7DC9 /* ViewModelBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511010825F6D3DF009C7DC9 /* ViewModelBindable.swift */; };
+		B51CE5A52687BEE0008FD590 /* AccountSettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51CE5A42687BEE0008FD590 /* AccountSettingsCoordinator.swift */; };
 		B520640C25FBF90A00E63B23 /* ScheduleShowStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B520640B25FBF90A00E63B23 /* ScheduleShowStatus.swift */; };
 		B523CC7525E877710068D74A /* NoSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523CC7425E877710068D74A /* NoSessionView.swift */; };
 		B523E76025ED45D6003DD3BE /* ScheduleSortType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B523E75F25ED45D6003DD3BE /* ScheduleSortType.swift */; };
@@ -145,6 +148,7 @@
 		B5AB790425EADDB4006AE89C /* GestureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB790325EADDB4006AE89C /* GestureType.swift */; };
 		B5AB790A25EADE08006AE89C /* GestureSubscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB790925EADE08006AE89C /* GestureSubscription.swift */; };
 		B5AB790E25EADE46006AE89C /* UIViewGesture+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AB790D25EADE46006AE89C /* UIViewGesture+Ext.swift */; };
+		B5AFBC262687B927008C9D3C /* PaddedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AFBC252687B927008C9D3C /* PaddedButton.swift */; };
 		B5AFEB22260B828000156730 /* ImageDownsampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AFEB21260B828000156730 /* ImageDownsampler.swift */; };
 		B5AFEB26260B84E500156730 /* FileExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AFEB25260B84E500156730 /* FileExtensions.swift */; };
 		B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B5244725ED23D600018CB0 /* Shimmered.swift */; };
@@ -193,7 +197,10 @@
 		B50D8D332603E73500762BD3 /* StrokeAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeAnimation.swift; sourceTree = "<group>"; };
 		B50D8D372603E74B00762BD3 /* RotationAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationAnimation.swift; sourceTree = "<group>"; };
 		B50D8D3B2603E76B00762BD3 /* StrokeColourAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeColourAnimation.swift; sourceTree = "<group>"; };
+		B50DDADF2687A88E002D8411 /* SlideTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideTransitionAnimator.swift; sourceTree = "<group>"; };
+		B50DDAE52687B62C002D8411 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		B511010825F6D3DF009C7DC9 /* ViewModelBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindable.swift; sourceTree = "<group>"; };
+		B51CE5A42687BEE0008FD590 /* AccountSettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsCoordinator.swift; sourceTree = "<group>"; };
 		B520640B25FBF90A00E63B23 /* ScheduleShowStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleShowStatus.swift; sourceTree = "<group>"; };
 		B523CC7425E877710068D74A /* NoSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoSessionView.swift; sourceTree = "<group>"; };
 		B523E75F25ED45D6003DD3BE /* ScheduleSortType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSortType.swift; sourceTree = "<group>"; };
@@ -325,6 +332,7 @@
 		B5AB790325EADDB4006AE89C /* GestureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureType.swift; sourceTree = "<group>"; };
 		B5AB790925EADE08006AE89C /* GestureSubscription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureSubscription.swift; sourceTree = "<group>"; };
 		B5AB790D25EADE46006AE89C /* UIViewGesture+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewGesture+Ext.swift"; sourceTree = "<group>"; };
+		B5AFBC252687B927008C9D3C /* PaddedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedButton.swift; sourceTree = "<group>"; };
 		B5AFEB21260B828000156730 /* ImageDownsampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownsampler.swift; sourceTree = "<group>"; };
 		B5AFEB25260B84E500156730 /* FileExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtensions.swift; sourceTree = "<group>"; };
 		B5B5244725ED23D600018CB0 /* Shimmered.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shimmered.swift; sourceTree = "<group>"; };
@@ -409,6 +417,14 @@
 			path = LoadingIndicator;
 			sourceTree = "<group>";
 		};
+		B50DDAE12687B5C4002D8411 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				B50DDAE52687B62C002D8411 /* AccountViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
 		B519BCBC25F2F84500D44A38 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,6 +455,7 @@
 				B53C6AC1260A266600806EF8 /* AccountButton.swift */,
 				B53C6AD9260A3DC600806EF8 /* AuthButton.swift */,
 				B53C6B03260AB0A200806EF8 /* PaddedLabel.swift */,
+				B5AFBC252687B927008C9D3C /* PaddedButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -449,6 +466,7 @@
 				B59280DB25C9C805001D7AED /* MainTabBarController.swift */,
 				B5A386DF25CA03E4000883E0 /* Schedule-Tab */,
 				B53C6AF5260A894E00806EF8 /* Authentication */,
+				B50DDAE12687B5C4002D8411 /* Account */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -474,6 +492,8 @@
 		B520898D25C8AC420026AF4A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B53C6AFD260AA46600806EF8 /* InputValidator.swift */,
+				B50DDADF2687A88E002D8411 /* SlideTransitionAnimator.swift */,
 				B5AFEB21260B828000156730 /* ImageDownsampler.swift */,
 				B5AFEB25260B84E500156730 /* FileExtensions.swift */,
 				B53C6AEA260A467E00806EF8 /* Vibration.swift */,
@@ -521,6 +541,7 @@
 				B5D32121262CCE8F004ECF67 /* AppCoordinator.swift */,
 				B539542325FEAB0A007CE6C1 /* ScheduleTabCoordinator.swift */,
 				B5245FDE26191D14001063A1 /* AuthCoordinator.swift */,
+				B51CE5A42687BEE0008FD590 /* AccountSettingsCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -550,7 +571,6 @@
 				B53C6AF8260A898C00806EF8 /* LoginViewModel.swift */,
 				B5951DE2264039FE001E2D29 /* SignupViewController.swift */,
 				B5951DE826404EFA001E2D29 /* SignupViewModel.swift */,
-				B53C6AFD260AA46600806EF8 /* InputValidator.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -1035,6 +1055,7 @@
 					};
 					B598E621258140FF0068DB9E = {
 						CreatedOnToolsVersion = 12.1;
+						LastSwiftMigration = 1300;
 					};
 				};
 			};
@@ -1173,6 +1194,8 @@
 				B59BB58D25D447E800910962 /* GymClassDto.swift in Sources */,
 				B5B5244825ED23D600018CB0 /* Shimmered.swift in Sources */,
 				B5E4BDA1260801C100A4389E /* EnergyTextField.swift in Sources */,
+				B5AFBC262687B927008C9D3C /* PaddedButton.swift in Sources */,
+				B50DDAE02687A88E002D8411 /* SlideTransitionAnimator.swift in Sources */,
 				B539544425FED76F007CE6C1 /* ViewControllerProvider.swift in Sources */,
 				B54F6E2625CC44FA002264C2 /* LayoutAttrHelper.swift in Sources */,
 				B53AE28D25F57E6500D3C319 /* EnergyDbModel.xcdatamodeld in Sources */,
@@ -1187,6 +1210,7 @@
 				B5E1244425D0BC5300F7F5CC /* WeekdayFactory.swift in Sources */,
 				B54F6E3B25CC4503002264C2 /* DateFinder.swift in Sources */,
 				B55D184825EEAAF10091FD4C /* AsyncOperation.swift in Sources */,
+				B50DDAE62687B62C002D8411 /* AccountViewController.swift in Sources */,
 				B506E11225F168D7001A8B00 /* AsyncResultOperation.swift in Sources */,
 				B53C6AC2260A266600806EF8 /* AccountButton.swift in Sources */,
 				B506E11725F1699C001A8B00 /* ChainedAsyncResultOperation.swift in Sources */,
@@ -1246,6 +1270,7 @@
 				B585773325E6DEF7006B21C3 /* TimePeriodFormatter.swift in Sources */,
 				B53AE28825F57D8200D3C319 /* CoreDataStack.swift in Sources */,
 				B52F4F24260BFE4B00DA53BE /* AuthError.swift in Sources */,
+				B51CE5A52687BEE0008FD590 /* AccountSettingsCoordinator.swift in Sources */,
 				B5A2CE9725E5D97E00776B25 /* LoggingExcluded.swift in Sources */,
 				B53C6B04260AB0A200806EF8 /* PaddedLabel.swift in Sources */,
 				B5985593261CD16200262D46 /* GestureHandler.swift in Sources */,
@@ -1454,6 +1479,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KELPFZXFAP;
 				INFOPLIST_FILE = "energy-fitness-ios/Info.plist";
@@ -1464,6 +1490,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.belenko.energy-fitness-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1474,6 +1501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KELPFZXFAP;
 				INFOPLIST_FILE = "energy-fitness-ios/Info.plist";

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AuthCoordinator: CoordinatorType {
+final class AuthCoordinator: NSObject, CoordinatorType {
     weak var parentCoordinator: ParentCoordinatorType?
     
     var childCoordinators: [CoordinatorType] = []
@@ -17,6 +17,9 @@ final class AuthCoordinator: CoordinatorType {
     
     init(viewControllerProvider: ViewControllerProvider) {
         self.viewControllerProvider = viewControllerProvider
+        super.init()
+
+        navController.delegate = self
     }
     
     deinit {
@@ -48,5 +51,28 @@ final class AuthCoordinator: CoordinatorType {
     func dismissAuth() {
         parentCoordinator?.childDidFinish(self)
         navController.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension AuthCoordinator: UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
+    
+    func navigationController(
+        _ navigationController: UINavigationController,
+        animationControllerFor operation: UINavigationController.Operation,
+        from fromVC: UIViewController,
+        to toVC: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+
+        return nil
+        
+//        if ( (toVC is CameraViewController && fromVC is ViewController) ||
+//            (toVC is ViewController && fromVC is CameraViewController)) {
+//
+//            circularTransition.transitionMode = (operation == .push) ? .present : .pop
+//            circularTransition.startingPoint = animationCentre
+//            return circularTransition
+//        }
+
+//        return nil
     }
 }
