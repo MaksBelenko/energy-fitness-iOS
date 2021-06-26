@@ -9,6 +9,7 @@ import UIKit
 
 final class PaddedButton: UIButton {
     private let insets: UIEdgeInsets
+    private let buttonAnimations = ButtonAnimations()
     
     var textColour: UIColor? {
         didSet { setTitleColor(textColour, for: .normal) }
@@ -18,13 +19,14 @@ final class PaddedButton: UIButton {
         didSet { setTitle(text, for: .normal) }
     }
     
-    var font: UIFont? {
-        didSet { titleLabel?.font = font }
+    var textFont: UIFont? {
+        didSet { titleLabel?.font = textFont }
     }
     
     init(insets: UIEdgeInsets) {
         self.insets = insets
         super.init(frame: .zero)
+        buttonAnimations.startAnimatingPressActions(for: self)
     }
     
     convenience init(top: CGFloat, bottom: CGFloat, left: CGFloat, right: CGFloat) {
@@ -34,6 +36,10 @@ final class PaddedButton: UIButton {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        Log.logDeinit("\(self)")
     }
     
     

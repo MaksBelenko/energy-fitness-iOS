@@ -14,7 +14,7 @@ final class AccountViewController: UIViewController {
         let button = PaddedButton(top: 10, bottom: 10, left: 20, right: 20)
         button.backgroundColor = .energyOrange
         button.text = NSLocalizedString("Sign up", comment: "Login and Signup items")
-        button.font = .raleway(ofSize: 17)
+        button.textFont = .raleway(ofSize: 17)
         button.textColour = .white
         button.layer.cornerRadius = 7
         return button
