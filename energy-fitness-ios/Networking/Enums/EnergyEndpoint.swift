@@ -16,6 +16,8 @@ protocol EndpointResource {
 enum EnergyEndpoint {
     case gymClasses
     case gymClass(String)
+    case gymClassImage(String)
+    
     case gymSessions
     case gymSession(String)
     case trainers
@@ -38,6 +40,8 @@ extension EnergyEndpoint: EndpointResource {
             return baseURL + "/gym-classes"
         case .gymClass(let id):
             return "\(EnergyEndpoint.gymClasses.endpoint)/\(id)"
+        case .gymClassImage(let imageId):
+            return "\(EnergyEndpoint.gymClasses.endpoint)/image/download/\(imageId)"
             
         case .gymSessions:
             return baseURL + "/gym-sessions"

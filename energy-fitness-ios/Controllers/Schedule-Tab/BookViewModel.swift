@@ -12,12 +12,7 @@ import ImagePublisher
 
 final class BookViewModel {
     
-    var gymClassName = PassthroughSubject<String, Never>()
-    var gymClassDescription = PassthroughSubject<String, Never>()
-    var sessionTime = PassthroughSubject<String, Never>()
-    var trainerName = PassthroughSubject<String, Never>()
-    var trainerImage = PassthroughSubject<UIImage, Never>()
-    var gymClassImage = PassthroughSubject<UIImage, Never>()
+    private(set) var gymSessionSubject = PassthroughSubject<GymSessionDto?, Never>()
     
     private let timeFormatter: TimePeriodFormatter
     
@@ -27,18 +22,13 @@ final class BookViewModel {
         return imageGenerator.generateProfileImage(initials: trainerInitials)
     }()
     
-    private var gymClassImageURL = PassthroughSubject<String, Never>()
-    private var trainerImageURL = PassthroughSubject<String, Never>()
-    
+    private let defaultImage = UIImage(named: "ENERGY-black")!
     private let imagePipeline = Nuke.ImagePipeline.shared
     private var subscriptions = Set<AnyCancellable>()
-    
-    private let defaultImage = UIImage(named: "ENERGY-black")!
     
     // MARK: - Initialisation
     init(timeFormatter: TimePeriodFormatter) {
         self.timeFormatter = timeFormatter
-        setupBindings()
     }
     
     deinit {
@@ -48,51 +38,78 @@ final class BookViewModel {
     
     func setViewModel(with gymSession: GymSessionDto) {
         trainerInitials = gymSession.trainer.getInitials()
-        
-        gymClassName.send(gymSession.gymClass.name)
-        gymClassDescription.send(gymSession.gymClass.description)
-        sessionTime.send(timeFormatter.getTimePeriod(from: gymSession.startDate, durationMins: gymSession.durationMins))
-        trainerName.send(gymSession.trainer.getSurnameWithFirstNameLetter())
-        
-        if let largeGymClassImageName = gymSession.gymClass.photos.first?.large {
-            let urlString = "http://localhost:3000/api/gym-classes/image/download/" + largeGymClassImageName
-            gymClassImageURL.send(urlString)
-        } else {
-            gymClassImage.send(defaultImage)
-        }
-        
-        if let largeTrainerImageName = gymSession.trainer.photos.first?.small {
-            let urlString = "http://localhost:3000/api/trainers/image/download/" + largeTrainerImageName
-            trainerImageURL.send(urlString)
-        } else {
-            trainerImage.send(trainerInitialsImage)
-        }
+        gymSessionSubject.send(gymSession)
     }
     
-    // MARK: - Bindings
-    private func setupBindings() {
-        gymClassImageURL
-            .mapToURL()
-            .setFailureType(to: ImagePipeline.Error.self)
-            .flatMap(imagePipeline.imagePublisher)
-            .map { $0.image }
-            .replaceError(with: defaultImage)
-            .sink { [weak self] image in
-                    self?.gymClassImage.send(image)
+    
+    func getGymClassName() -> AnyPublisher<String, Never> {
+        return gymSessionSubject
+            .unwrap()
+            .map(\.gymClass.name)
+            .eraseToAnyPublisher()
+    }
+    
+    func getGymClassDescription() -> AnyPublisher<String, Never> {
+        return gymSessionSubject
+            .unwrap()
+            .map(\.gymClass.description)
+            .eraseToAnyPublisher()
+    }
+    
+    func getSessionTime() -> AnyPublisher<String, Never> {
+        return gymSessionSubject
+            .unwrap()
+            .compactMap { [weak timeFormatter] gs in
+                return timeFormatter?.getTimePeriod(from: gs.startDate, durationMins: gs.durationMins)
             }
-            .store(in: &subscriptions)
-        
-        trainerImageURL
-            .mapToURL()
-            .setFailureType(to: ImagePipeline.Error.self)
-            .flatMap(imagePipeline.imagePublisher)
-            .map { $0.image }
-            .replaceError(with: trainerInitialsImage)
-            .sink { [weak self] image in
-                self?.trainerImage.send(image)
+            .eraseToAnyPublisher()
+    }
+    
+    func getShortenTrainerName() -> AnyPublisher<String, Never> {
+        return gymSessionSubject
+            .unwrap()
+            .map { $0.trainer.getSurnameWithFirstNameLetter() }
+            .eraseToAnyPublisher()
+    }
+    
+    func getGymClassImage() -> AnyPublisher<UIImage, Never> {
+        return gymSessionSubject
+            .map { $0?.gymClass.photos.first?.large }
+            .flatMap { [imagePipeline, defaultImage] imageName -> AnyPublisher<UIImage, Never> in
+                guard let imageName = imageName else {
+                    return Just(defaultImage)
+                        .eraseToAnyPublisher()
+                }
+                
+                return Just(imageName)
+                    .map { EnergyEndpoint.gymClassImage($0).url }
+                    .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
+                    .flatMap(imagePipeline.imagePublisher)
+                    .map { $0.image }
+                    .replaceError(with: defaultImage)
+                    .eraseToAnyPublisher()
             }
-            .store(in: &subscriptions)
-            
+            .eraseToAnyPublisher()
+    }
+    
+    func getTrainerImage() -> AnyPublisher<UIImage, Never> {
+        return gymSessionSubject
+            .map { $0?.trainer.photos.first?.small }
+            .flatMap { [imagePipeline, trainerInitialsImage] imageName -> AnyPublisher<UIImage, Never> in
+                guard let imageName = imageName else {
+                    return Just(trainerInitialsImage)
+                        .eraseToAnyPublisher()
+                }
+                
+                return Just(imageName)
+                    .map { EnergyEndpoint.trainerImageDownload($0).url }
+                    .setFailureType(to: ImagePipeline.Error.self) // for iOS 13
+                    .flatMap(imagePipeline.imagePublisher)
+                    .map { $0.image }
+                    .replaceError(with: trainerInitialsImage)
+                    .eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
 }
 

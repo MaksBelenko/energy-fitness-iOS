@@ -187,44 +187,45 @@ class BookSessionViewController: UIViewController {
             .sink { [weak self] in self?.coordinator?.goBack() }
             .store(in: &subscriptions)
         
-//        bookButton.publisher(for: .touchUpInside)
-//            .sink { [weak self] in self?.coordinator?.showBookForm() }
-//            .store(in: &subscriptions)
-        
-        viewModel.gymClassImage
+        viewModel.getGymClassImage()
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
             .assign(to: \.image, on: gradientIV)
             .store(in: &subscriptions)
         
-        viewModel.gymClassName
+        viewModel.getGymClassName()
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
             .assign(to: \.text, on: classNameLabel)
             .store(in: &subscriptions)
         
-        viewModel.sessionTime
+        viewModel.getSessionTime()
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
             .assign(to: \.text, on: timeLabel)
             .store(in: &subscriptions)
 
-        viewModel.gymClassDescription
+        viewModel.getGymClassDescription()
             .receive(on: DispatchQueue.main)
             .assign(to: \.text, on: descriptionTextView)
             .store(in: &subscriptions)
 
-        viewModel.trainerName
+        viewModel.getShortenTrainerName()
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
             .assign(to: \.text, on: trainerNameLabel)
             .store(in: &subscriptions)
 
-        viewModel.trainerImage
+        viewModel.getTrainerImage()
             .receive(on: DispatchQueue.main)
             .compactMap { $0 }
             .assign(to: \.image, on: trainerImageView)
             .store(in: &subscriptions)
+        
+        
+//        bookButton.publisher(for: .touchUpInside)
+//            .sink { [weak self] in self?.coordinator?.showBookForm() }
+//            .store(in: &subscriptions)
     }
 }
 
